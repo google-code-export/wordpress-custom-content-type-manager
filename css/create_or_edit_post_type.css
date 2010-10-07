@@ -1,0 +1,26 @@
+.formgenerator_label {
+	display:block;
+	font-weight:bold;
+}
+.formgenerator_description {
+	display:block;
+	font-style:italic;
+}
+
+.formgenerator_checkbox_label {
+	display: inline;
+}
+.formgenerator_checkbox
+{
+	width: auto;
+}
+
+	
+.formgenerator_element_wrapper {
+	margin-top: 10px;
+}
+
+#description {
+	width: 600px;
+	height: 120px;
+}
