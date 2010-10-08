@@ -1,12 +1,13 @@
 <?php
-/*
+/*------------------------------------------------------------------------------
 Plugin Name: Custom Content Type Manager
-Plugin URI: http://www.tipsfor.us/
-Description: Allows WordPress 3.x users to create, extend, and manage custom content types (a.k.a. post types) like a true CMS. You can define and standardize custom fields for any content type, including checkboxes, textareas, and dropdowns. This has been geared for production use: it has been tested and is free from PHP notices and errors that plague so many other plugins.
+Description: Allows WordPress 3.x users to create, extend, and manage custom content types (a.k.a. post types) like a true CMS. You can define and standardize custom fields for any content type, including checkboxes, textareas, and dropdowns. This has been geared for production use: it has been tested and is free from PHP notices and errors.
 Author: Everett Griffiths
 Version: 0.6
-Author URI: http://www.tipsfor.us/
+Author URI: http://www.fireproofsocks.com/
+Plugin URI: http://tipsfor.us/plugins/custom-content-type-manager/
 
+About:
 This plugin is similar to the "Custom-Post Type UI" plugin written by Brad Williams:
 http://wordpress.org/extend/plugins/custom-post-type-ui/
 but this plugin stores data differently in the database and allows for different input types 
@@ -27,60 +28,81 @@ http://core.trac.wordpress.org/ticket/11705
 
 Editing Attachments
 http://xplus3.net/2008/11/17/custom-thumbnails-wordpress-plugin/
-*/
-
-include_once('includes/CustomPostTypeManager.php');
-include_once('includes/FormGenerator.php');
-include_once('includes/StandardizedCustomFields.php');
-
-// Register any custom post-types
-add_action( 'init', 'CustomPostTypeManager::register_custom_post_types', 0 );
-
-// create custom plugin settings menu
-add_action('admin_menu', 'CustomPostTypeManager::create_admin_menu');
-
-
-// Standardize Fields
-add_action( 'do_meta_boxes', 'StandardizedCustomFields::remove_default_custom_fields', 10, 3 );
-add_action( 'admin_menu', 'StandardizedCustomFields::create_meta_box' );
-add_action( 'save_post', 'StandardizedCustomFields::save_custom_fields', 1, 2 );
-
-
-
-
-
-/*------------------------------------------------------------------------------
-Array
-(
-    [type] => From Computer
-    [type_url] => From URL
-    [gallery] => Gallery
-    [library] => Media Library
-)
 ------------------------------------------------------------------------------*/
 
 
 
-function simplify_media_tabs($tabs) 
+/*------------------------------------------------------------------------------
+CONFIGURATION: 
+
+Define the names of functions and classes uses by this plugin so we can test 
+for conflicts prior to loading the plugin and message the WP admins.
+
+$function_names_used -- add any function names that this plugin declares in the 
+	main namespace (e.g. utility functions or theme functions).
+
+$class_names_used -- add any class names that are declared by this plugin.
+------------------------------------------------------------------------------*/
+$function_names_used = array('print_custom_field');
+$class_names_used = array('CustomPostTypeManager','FormGenerator','StandardizedCustomFields');
+$constants_used = array('CUSTOM_CONTENT_TYPE_MGR_PATH','CUSTOM_CONTENT_TYPE_MGR_URL');
+
+$error_items = '';
+
+function custom_content_type_manager_cannot_load()
 {
-//	print_r($tabs); exit;
-	unset($tabs['type_url']);
-	unset($tabs['gallery']);
-	return $tabs;
+	global $error_items;
+	print '<div id="custom-post-type-manager-warning" class="error fade"><p><strong>'
+	.__('The Custom Post Type Manager plugin cannot load correctly!')
+	.'</strong> '
+	.__('Another plugin has declared conflicting class, function, or constant names:')
+	."<ul style='margin-left:30px;'>$error_items</ul>"
+	.'</p>'
+	.'<p>'.__('You must deactivate the plugins that are using these conflicting names.').'</p>'
+	.'</div>';
+	
 }
-add_filter('media_upload_tabs', 'simplify_media_tabs');
 
-
-function xyzzy($x)
+/*------------------------------------------------------------------------------
+The following code tests whether or not this plugin can be safely loaded.
+If there are no conflicts, the loader.php is included and the plugin is loaded,
+otherwise, an error is displayed in the manager.
+------------------------------------------------------------------------------*/
+// Check for conflicting function names
+foreach ($function_names_used as $f_name )
 {
-	print '---------------------------------------------------------';
-	print_r($x); 
+	if ( function_exists($f_name) )
+	{
+		$error_items .= '<li>'.__('Function: ') . $f_name .'</li>';
+	}
+}
+// Check for conflicting Class names
+foreach ($class_names_used as $cl_name )
+{
+	if ( class_exists($cl_name) )
+	{
+		$error_items .= '<li>'.__('Class: ') . $cl_name .'</li>';
+	}
+}
+// Check for conflicting Constants
+foreach ($constants_used as $c_name )
+{
+	if ( defined($c_name) )
+	{
+		$error_items .= '<li>'.__('Constant: ') . $c_name .'</li>';
+	}
 }
 
-
-// This one controls the widget 
-//add_filter('admin_post_thumbnail_html', 'xyzzy');
-
-
+// Fire the error, or load the plugin.
+if ($error_items)
+{
+	$error_items = '<ul>'.$error_items.'</ul>';
+	add_action('admin_notices', 'custom_content_type_manager_cannot_load');
+}
+else
+{
+	// Load the plugin
+	include_once('loader.php');
+}
 
 /*EOF*/

@@ -1248,6 +1248,33 @@ Default: value of public argument',
 
 	
 	//! Public Functions
+	/*------------------------------------------------------------------------------
+	Adds a link to the settings directly from the plugins page.  This filter is 
+	called for each plugin, so we need to make sure we only alter the links that
+	are displayed for THIS plugin.
+	
+	INPUT (determined by WordPress):
+	$file is the path to plugin's main file (the one with the info header), 
+		relative to the plugins directory, e.g. 'custom-content-type-manager/index.php'
+	$links is an hash of links to display with the name => translation e.g.
+		array('deactivate' => 'Deactivate')
+	OUTPUT: $links array.
+	------------------------------------------------------------------------------*/
+	public static function add_plugin_settings_link($links, $file)
+	{
+		if ( $file == basename(self::get_basepath()) . '/index.php' ) 
+		{
+			$settings_link = sprintf('<a href="%s">%s</a>'
+				, admin_url( 'options-general.php?page='.self::admin_menu_slug )
+				, __('Settings')
+			);
+			array_unshift( $links, $settings_link );
+		}
+
+		return $links;
+	}
+	
+	
 	// Defines the diretory for this plugin.
 	public static function get_basepath(){
 		return dirname(dirname(__FILE__));
