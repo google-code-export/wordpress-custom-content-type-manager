@@ -209,7 +209,7 @@ Array
         )
 
 )
-		
+	Do not use this function to generate forms in the admin area!		
 	------------------------------------------------------------------------------*/
 	private static function _get_media_element($data)
 	{
@@ -219,10 +219,23 @@ Array
 			<input type="text" name="[+name+]" class="formgenerator_text" id="[+name+]" value="[+value+]"[+extra+]/>';
 		return self::parse($tpl, $data);
 	http://localhost:8888/wp-admin/media-upload.php?post_id=92&type=andimage&andfield=1&flash=0&TB_iframe=true&width=640&height=508	
-*/	
-	global $post;
-	$id = $post->ID;
-	return '<p class="hide-if-no-js"><a title="'.__('Choose media').'" href="media-upload.php?post_id='.$id.'&type=image&TB_iframe=1" id="set-post-thumbnail" class="thickbox">Set Image?</a></p>';
+*/
+// But doing this here is too late!!! The script is still there.
+//wp_deregister_script('do-nothing-xyzzy');
+//global $wp_scripts;
+
+//print_r($wp_scripts);
+//exit;
+
+
+		global $post;
+		$id = $post->ID;
+		$msg = '';
+		$msg .= '<p class="hide-if-no-js"><a title="'.__('Choose media').'" href="'.CUSTOM_CONTENT_TYPE_MGR_URL .'/media-selector.php?TB_iframe=1" class="thickbox">Test</a></p>';
+		
+//		$msg .= '<p class="hide-if-no-js"><a title="'.__('Choose media').'" href="'.CUSTOM_CONTENT_TYPE_MGR_URL .'/media-upload.php?post_id='.$id.'&type=image&TB_iframe=1" class="thickbox">Custom Set Image</a></p>';
+//		$msg .= '<p class="hide-if-no-js"><a title="'.__('Choose media').'" href="media-upload.php?post_id='.$id.'&type=image&TB_iframe=1" id="set-post-thumbnail" class="thickbox">Built in</a></p>';
+		return $msg;
 	}
 	
 	/*------------------------------------------------------------------------------
