@@ -7,27 +7,7 @@ avoid the resulting headaches as much as possible.
 ------------------------------------------------------------------------------*/
 define('CUSTOM_CONTENT_TYPE_MGR_PATH', dirname(__FILE__));
 define('CUSTOM_CONTENT_TYPE_MGR_URL', WP_PLUGIN_URL .'/'. basename(dirname(__FILE__) ) );
-//wp_register_script('do-nothing-xyzzy', CUSTOM_CONTENT_TYPE_MGR_URL. '/do-nothing-xyzzy.js');
-   // enqueue the script
-//wp_enqueue_script('do-nothing-xyzzy');
 
-// If you do this sooner rather than later, it won't show up in the admin...
-add_action( 'wp_print_scripts', 'my_deregister_javascript', 100 );
-
-function my_deregister_javascript() {
-	wp_deregister_script( 'media-upload' );
-}
-
-//wp_deregister_script('do-nothing-xyzzy');
-/*
-function xyz123()
-{
-	print_r( func_get_args());
-	exit;
-}
-
-add_filter('admin_head', 'xyz123');
-*/
 // Required Files
 include_once('includes/CustomPostTypeManager.php');
 include_once('includes/FormGenerator.php');
@@ -48,7 +28,6 @@ add_action( 'admin_menu', 'StandardizedCustomFields::create_meta_box' );
 add_action( 'save_post', 'StandardizedCustomFields::save_custom_fields', 1, 2 );
 
 
-
 /*------------------------------------------------------------------------------
 Array
 (
@@ -59,16 +38,6 @@ Array
 )
 ------------------------------------------------------------------------------*/
 
-
-
-function simplify_media_tabs($tabs) 
-{
-//	print_r($tabs); exit;
-	unset($tabs['type_url']);
-	unset($tabs['gallery']);
-	return $tabs;
-}
-add_filter('media_upload_tabs', 'simplify_media_tabs');
 
 
 /*
@@ -170,15 +139,11 @@ Array
 
 )
 */
-function simplify_image_form($form_fields, $post)
-{
-//	print_r($form_fields); exit;
-	unset($form_fields['url']);
-	unset($form_fields['align']);
-	unset($form_fields['image-size']);
-	return $form_fields;
-}
-add_filter('attachment_fields_to_edit', 'simplify_image_form', 11, 2);
 
+/*
+$error = new WP_Error();
+print_r( $error );
+exit;
+*/
 
 /*EOF*/
