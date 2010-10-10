@@ -220,22 +220,36 @@ Array
 		return self::parse($tpl, $data);
 	http://localhost:8888/wp-admin/media-upload.php?post_id=92&type=andimage&andfield=1&flash=0&TB_iframe=true&width=640&height=508	
 */
-// But doing this here is too late!!! The script is still there.
-//wp_deregister_script('do-nothing-xyzzy');
-//global $wp_scripts;
-
-//print_r($wp_scripts);
-//exit;
-
-
 		global $post;
 		$id = $post->ID;
-		$msg = '';
-		$msg .= '<p class="hide-if-no-js"><a title="'.__('Choose media').'" href="'.CUSTOM_CONTENT_TYPE_MGR_URL .'/media-selector.php?TB_iframe=1" class="thickbox">Test</a></p>';
-		
-//		$msg .= '<p class="hide-if-no-js"><a title="'.__('Choose media').'" href="'.CUSTOM_CONTENT_TYPE_MGR_URL .'/media-upload.php?post_id='.$id.'&type=image&TB_iframe=1" class="thickbox">Custom Set Image</a></p>';
-//		$msg .= '<p class="hide-if-no-js"><a title="'.__('Choose media').'" href="media-upload.php?post_id='.$id.'&type=image&TB_iframe=1" id="set-post-thumbnail" class="thickbox">Built in</a></p>';
-		return $msg;
+		$content='';
+		ob_start();
+    	    include('media_element.php');
+			$content .= ob_get_contents();
+		ob_end_clean();
+
+//		print $content; exit;
+/*
+		$modal_title = __('Choose Media');
+		$div_id_modal_content = 'hiddenModalContent';
+		$click_me_txt = __('Choose Media');
+
+
+		$msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','false'); return false;\">%s</a>"
+			, $modal_title
+			, $div_id_modal_content
+			, $click_me_txt
+		);
+*/
+/*
+		$modal_title = __('Choose Media'); // update so it inclues the field name.
+		$div_id_modal_content = 'hiddenModalContent';
+		$click_me_txt = __('Choose Media');
+
+		$content .= "<a href='#' onclick=\"tb_show('".$modal_title ."', '#TB_inline?inlineId=".$div_id_modal_content."','false'); return false;\">".$click_me_txt .'</a>';
+*/
+
+		return $content;
 	}
 	
 	/*------------------------------------------------------------------------------

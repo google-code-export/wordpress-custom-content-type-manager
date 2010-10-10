@@ -38,22 +38,12 @@ if ( !current_user_can('upload_files') )
 {
 	wp_die(__('You do not have permission to upload files.'));
 }
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Custom Content Type Manager - Media Selector</title> 
-</head>
-<body>
-<?php
+
 $postslist = get_posts('post_type=attachment&numberposts=10&order=ASC&orderby=title');
-foreach ($postslist as $post) : 
+foreach ($postslist as $post)
+{
 	$id = $post->ID;
 	// keyword (thumbnail, medium, large or full)
 	print wp_get_attachment_image( $id, 'thumb' ) . '<br/>';
 	print $post->post_title . "<br/>";
-endforeach; 
-?>
-</body>
-</html>
+}
