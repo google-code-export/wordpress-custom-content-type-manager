@@ -1,0 +1,11 @@
+.mini-thumbnail {
+	vertical-align:middle;
+}
+.media_detail {
+	display:none;
+	margin-left:40px;
+}
+.toggler {
+	float: right;
+	margin-right: 200px;
+}

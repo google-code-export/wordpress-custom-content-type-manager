@@ -209,45 +209,26 @@ Array
         )
 
 )
-	Do not use this function to generate forms in the admin area!		
+	Do not use this function to generate forms in the Custom Content Types Manager 
+	admin area!	It should only generate forms for creating/editing a post type.
 	------------------------------------------------------------------------------*/
 	private static function _get_media_element($data)
 	{
-/*
-		$tpl = '
-			<label for="[+name+]" class="formgenerator_label formgenerator_test_label" id="formgenerator_label_[+name+]">[+label+]</label>
-			<input type="text" name="[+name+]" class="formgenerator_text" id="[+name+]" value="[+value+]"[+extra+]/>';
-		return self::parse($tpl, $data);
-	http://localhost:8888/wp-admin/media-upload.php?post_id=92&type=andimage&andfield=1&flash=0&TB_iframe=true&width=640&height=508	
-*/
-		global $post;
-		$id = $post->ID;
-		$content='';
+		$content = '';
+		$content .= sprintf('<span class="formgenerator_label formgenerator_text_label" id="formgenerator_label_%s">%s</span>', $data['name'], $data['label']);
+		$content .= sprintf('<input id="%s" name="%s" type="hidden" value="%s"/>'
+			, $data['name'], $data['name'] ,$data['value']);
+		$content .= sprintf('<div id="%s_media">', $data['id']); 
+		if ( !empty($data['value']) )
+		{
+			$content .= wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
+		}
+		$content .= '</div>';
+		$fieldname = $data['name'];
 		ob_start();
     	    include('media_element.php');
 			$content .= ob_get_contents();
 		ob_end_clean();
-
-//		print $content; exit;
-/*
-		$modal_title = __('Choose Media');
-		$div_id_modal_content = 'hiddenModalContent';
-		$click_me_txt = __('Choose Media');
-
-
-		$msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','false'); return false;\">%s</a>"
-			, $modal_title
-			, $div_id_modal_content
-			, $click_me_txt
-		);
-*/
-/*
-		$modal_title = __('Choose Media'); // update so it inclues the field name.
-		$div_id_modal_content = 'hiddenModalContent';
-		$click_me_txt = __('Choose Media');
-
-		$content .= "<a href='#' onclick=\"tb_show('".$modal_title ."', '#TB_inline?inlineId=".$div_id_modal_content."','false'); return false;\">".$click_me_txt .'</a>';
-*/
 
 		return $content;
 	}
@@ -288,7 +269,7 @@ Array
 	private static function _get_text_element($data)
 	{
 		$tpl = '
-			<label for="[+name+]" class="formgenerator_label formgenerator_test_label" id="formgenerator_label_[+name+]">[+label+]</label>
+			<label for="[+name+]" class="formgenerator_label formgenerator_text_label" id="formgenerator_label_[+name+]">[+label+]</label>
 			<input type="text" name="[+name+]" class="formgenerator_text" id="[+name+]" value="[+value+]"[+extra+]/>';
 		return self::parse($tpl, $data);
 	}

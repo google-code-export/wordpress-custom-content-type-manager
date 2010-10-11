@@ -47,15 +47,7 @@ $msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','
 	{
 		var search_query = jQuery("#s").val();
 	
-/* 	 	if(search_query != "" && search_query.length > 2 ) { */
-			jQuery.get("<?php print CUSTOM_CONTENT_TYPE_MGR_URL; ?>/media-selector.php", { post_type:post_type }, write_results_to_page);
-/*
-	 	}
-	 	else
-	 	{
-	 		console.log("Search term empty or too short.");
-	 	}
-*/
+		jQuery.get("<?php print CUSTOM_CONTENT_TYPE_MGR_URL; ?>/media-selector.php", { "post_mime_type":post_type,"fieldname":"<?php print $fieldname; ?>" }, write_results_to_page);
 	}
 	
 	/*------------------------------------------------------------------------------
@@ -79,7 +71,6 @@ $msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','
 			jQuery("#ajax_media_selector_results").html(data);
 		}
 	}
-	
 </script>
 
 <div id="hiddenModalContent" style="display: none">
@@ -95,7 +86,7 @@ $msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','
 	<ul class="subsubsub">
 		<li><span onclick="javascript:get_search_results('all')">All Types</span> 
 		| </li>
-		<li><span onclick="javascript:get_search_results('images')" class="current">Images <span class="count">(<span id="image-counter">6</span>)</span></span> 
+		<li><span onclick="javascript:get_search_results('image')" class="current">Images <span class="count">(<span id="image-counter">6</span>)</span></span> 
 		| </li>
 		<li>
 			<span onclick="javascript:get_search_results('video')">Video <span class="count">(<span id="video-counter">1</span>)</span></span>
