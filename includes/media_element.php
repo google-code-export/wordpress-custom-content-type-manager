@@ -24,9 +24,10 @@ $msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','
 */
 //------------------------------------------------------------------------------
 ?>
-<script>
+
+<script type="text/javascript">
 	
-	jQuery(document).ready(main);
+//	jQuery(document).ready(main);
 
 	/* Listeners */
 	function main()
@@ -114,7 +115,7 @@ $msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','
 		<br class="clear" />		
 	</div>
 	</form>
-	<div id="ajax_media_selector_results"></div>
+	<div id="ajax_media_selector_results" style="overflow:auto"></div>
 </div>
 
 <a href='#' onclick="tb_show('<?php print $modal_title; ?>', '#TB_inline?inlineId=<?php print $div_id_modal_content; ?>','false'); return false;"><?php print $click_me_txt; ?></a>
