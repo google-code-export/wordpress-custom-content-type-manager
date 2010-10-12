@@ -166,7 +166,6 @@ class StandardizedCustomFields
 		{
 			return array();
 		}
-//		return self::$content_types_array; //UPDATED
 	}
 
 	/*------------------------------------------------------------------------------

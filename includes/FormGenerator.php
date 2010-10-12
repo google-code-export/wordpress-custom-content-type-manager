@@ -146,76 +146,16 @@ class FormGenerator
 	normal foreign-key relationship. It stores the post_type.ID in a custom field
 	(wp_postmeta) named _thumbnail_id.
 	
-	For image post-types that you upload using WP's Media menu, WP uses the standard
-	post columns MOSTLY: 
-		Title 		--> post_title
-		Alt Text	--> wp_postmeta table. _wp_attachment_image_alt field for this post.
-		Caption		--> post_excerpt
-		Description --> post_content
-		
-	wp_options: _wp_attached_file path from wp-content/uploads to original image, e.g. '2010/09/IMG_0796.jpg'
-	There is also serialized data for _wp_attachment_metadata with all kinds of data
-	about the image:
-Array
-(
-    [width] => 2736
-    [height] => 3648
-    [hwstring_small] => height='96' width='72'
-    [file] => 2010/09/IMG_0796.jpg
-    [sizes] => Array
-        (
-            [thumbnail] => Array
-                (
-                    [file] => IMG_0796-150x150.jpg
-                    [width] => 150
-                    [height] => 150
-                )
-
-            [medium] => Array
-                (
-                    [file] => IMG_0796-225x300.jpg
-                    [width] => 225
-                    [height] => 300
-                )
-
-            [large] => Array
-                (
-                    [file] => IMG_0796-768x1024.jpg
-                    [width] => 768
-                    [height] => 1024
-                )
-
-            [post-thumbnail] => Array
-                (
-                    [file] => IMG_0796-940x198.jpg
-                    [width] => 940
-                    [height] => 198
-                )
-
-        )
-
-    [image_meta] => Array
-        (
-            [aperture] => 3.2
-            [credit] => 
-            [camera] => Canon IXY DIGITAL 920 IS
-            [caption] => 
-            [created_timestamp] => 1247696209
-            [copyright] => 
-            [focal_length] => 6.935
-            [iso] => 640
-            [shutter_speed] => 0.0166666666667
-            [title] => 
-        )
-
-)
 	Do not use this function to generate forms in the Custom Content Types Manager 
-	admin area!	It should only generate forms for creating/editing a post type.
+	content-class admin area!	It should only generate forms for creating/editing 
+	a post.
 	------------------------------------------------------------------------------*/
 	private static function _get_media_element($data)
 	{
+		global $wpdb;
+		
 		$content = '';
-		$content .= sprintf('<span class="formgenerator_label formgenerator_text_label" id="formgenerator_label_%s">%s</span>', $data['name'], $data['label']);
+		$content .= sprintf('<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_%s">%s</span>', $data['name'], $data['label']);
 		$content .= sprintf('<input id="%s" name="%s" type="hidden" value="%s"/>'
 			, $data['name'], $data['name'] ,$data['value']);
 		$content .= sprintf('<div id="%s_media">', $data['id']); 
@@ -224,7 +164,47 @@ Array
 			$content .= wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
 		}
 		$content .= '</div>';
+
 		$fieldname = $data['name'];
+
+		$avail_post_mime_types = get_available_post_mime_types('attachment');
+		$avail_post_mime_types_cnt = count($avail_post_mime_types);
+		$media_type_option_tpl = '<li><a href="#" onclick="javascript:get_search_results(\'%s\')">%s</a> 
+		%s </li>';
+		$separator = '|';
+		$media_type_list_items = sprintf($media_type_option_tpl,'all',__('All Types'),$separator);
+		
+		$media_type_option_tpl = '<li><a href="#" onclick="javascript:get_search_results(\'%s\')">%s <span class="count">(<span id="image-counter">%s</span>)</a> 
+		%s </li>';
+		
+		$i = 1;
+		// Format the list items for menu...
+		foreach ( $avail_post_mime_types as $mt )
+		{
+			$mt_for_js = preg_replace('#/.*$#', '', $mt);
+			//print $mt_for_js; exit;
+			if ( $i == $avail_post_mime_types_cnt)
+			{
+				$separator = ''; // Special for last one.
+			}
+
+			$query = "SELECT post_status, COUNT( * ) AS num_posts FROM {$wpdb->posts} 
+				WHERE post_type = 'attachment'
+				AND post_mime_type = %s  GROUP BY post_status";
+			$raw_cnt = $wpdb->get_results( $wpdb->prepare( $query, $mt ), ARRAY_A );
+
+			$cnt = $raw_cnt[0]['num_posts'];
+
+			$media_type_list_items .= sprintf($media_type_option_tpl
+				, $mt_for_js
+				, __(ucfirst($mt_for_js))
+				, $cnt
+				, $separator);
+			$i++;
+		}
+
+		$date_options = '<option value="0">Show all dates</option>
+				<option value="201010">October 2010</option>';
 		ob_start();
     	    include('media_element.php');
 			$content .= ob_get_contents();

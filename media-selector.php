@@ -1,35 +1,7 @@
 <?php
 /*------------------------------------------------------------------------------
-Intended to be accessed by the Custom Content Type Manager when
+AJAX controller intended to be accessed only by the Custom Content Type Manager when
 adding images/media to a custom form field.
-
-stdClass Object
-(
-    [ID] => 134
-    [post_author] => 1
-    [post_date] => 2010-10-07 01:46:42
-    [post_date_gmt] => 2010-10-07 01:46:42
-    [post_content] => 
-    [post_title] => 39C 008
-    [post_excerpt] => 
-    [post_status] => inherit
-    [comment_status] => open
-    [ping_status] => open
-    [post_password] => 
-    [post_name] => 39c-008
-    [to_ping] => 
-    [pinged] => 
-    [post_modified] => 2010-10-07 01:46:42
-    [post_modified_gmt] => 2010-10-07 01:46:42
-    [post_content_filtered] => 
-    [post_parent] => 0
-    [guid] => http://localhost:8888/wp-content/uploads/2010/10/39C-008.avi
-    [menu_order] => 0
-    [post_type] => attachment
-    [post_mime_type] => video/avi
-    [comment_count] => 0
-    [filter] => raw
-)
 ------------------------------------------------------------------------------*/
 // To tie into WP, we come in through the backdoor, by including the config.
 require_once( realpath('../../../').'/wp-config.php' );
@@ -68,11 +40,17 @@ if ( isset($_GET['fieldname']) && !empty($_GET['fieldname']) )
 	}
 	$fieldname = $_GET['fieldname'];
 }
-
+// Search term
+if ( isset($_GET['s']) && !empty($_GET['s']) )
+{
+	$args['s'] = $_GET['s'];
+}
+// TO-DO: pagination
 if ( isset($_GET['page']))
 {
 	$page = (int) $_GET['page'];
 }
+// TO-DO: monthly archives
 if ( isset($_GET['m']))
 {
 	$page = (int) $_GET['m'];
@@ -106,12 +84,16 @@ if ( isset($_GET['m']))
 <?php
 //------------------------------------------------------------------------------
 $postslist = get_posts($args);
+//$postslist = query_posts($args);
 //print_r($postslist); exit;
 foreach ($postslist as $post):
 //------------------------------------------------------------------------------
 	$id = $post->ID;
 	$thumbnail_html = '';
 	$medium_html = '';
+	$preview_html = '';
+	$dimensions = '';
+	
 	// It's an image
 	if (preg_match('/^image/', $post->post_mime_type) )
 	{
@@ -120,7 +102,9 @@ foreach ($postslist as $post):
 			, $src);
 		$medium_html = wp_get_attachment_image( $post->ID, 'medium' );
 		$preview_html = wp_get_attachment_image( $post->ID, 'thumbnail' );
-	}
+		list($src, $full_w, $full_h) = wp_get_attachment_image_src( $post->ID, 'full');
+		$dimensions = '<p><strong>'.__('Dimensions').':</strong> <span id="media-dims-'. $post->ID .'">'.$full_w.'&nbsp;&times;&nbsp;'.$full_h.'</span></p>';
+		}
 	// It's not an image
 	else
 	{
@@ -138,13 +122,12 @@ foreach ($postslist as $post):
 ?>
 <div id="media-item-<?php print $post->ID; ?>">
 	<div width="400px">
-		<input type="radio" name="<?php print $fieldname;?>" id="media-option-<?php print $post->ID; ?>"> 
 		<label for="media-option-<?php print $post->ID; ?>">
 			<?php print $thumbnail_html; ?>			
 			<span class="title"><?php print $post->post_title; ?></span>
 		</label>
-		<span class="select_me" onclick="javascript:update_selection('<?php print $post->ID; ?>','<?php print $preview_html; ?>')">Select me</span>
-		<span class="toggler" onclick="javascript:toggle_image_detail('media-detail-<?php print $post->ID; ?>');">Show</span>
+		<span class="button" onclick="javascript:update_selection('<?php print $post->ID; ?>','<?php print $preview_html; ?>')"><?php _e('Select'); ?></span>
+		<span class="toggler" onclick="javascript:toggle_image_detail('media-detail-<?php print $post->ID; ?>');"><?php _e('Show/Hide Details'); ?></span>
 	</div>
 	
 	<div id="media-detail-<?php print $post->ID; ?>" class="media_detail">
@@ -156,12 +139,12 @@ foreach ($postslist as $post):
 							<?php print $medium_html; ?>
 						</p>
 					</td>
-					<td>
-						<p><strong>File name:</strong> <?php print $filename; ?></p>
-						<p><strong>File type:</strong> <?php print $post->post_mime_type; ?></p>	
-						<p><strong>Upload date:</strong> <?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></p>
-						<p><strong>Dimensions:</strong> <span id='media-dims-<?php print $post->ID; ?>'><?php print $h; ?>&nbsp;&times;&nbsp;<?php print $w; ?></span></p>
-						<p><a href='http://localhost:8888/?attachment_id=<?php print $post->ID; ?>' target='_blank'>View Original</a></p>
+					<td class="media_info">
+						<p><strong><?php _e('File name'); ?>:</strong> <?php print $filename; ?></p>
+						<p><strong><?php _e('File type'); ?>:</strong> <?php print $post->post_mime_type; ?></p>	
+						<p><strong><?php _e('Upload date'); ?>:</strong> <?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></p>
+						<?php print $dimensions; ?>
+						<p><a href='http://localhost:8888/?attachment_id=<?php print $post->ID; ?>' target="_blank"><?php _e('View Original'); ?></a></p>
 					</td>
 				</tr>
 			</thead>

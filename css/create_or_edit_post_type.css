@@ -1,26 +1,11 @@
-.formgenerator_label {
-	display:block;
-	font-weight:bold;
+/* This is the button used in the manager to choose a new image */
+.choose_media_button{
+	display: hidden;
 }
-.formgenerator_description {
-	display:block;
-	font-style:italic;
+.attachment-thumbnail{
+	padding: 10px;
 }
+/* Used by all labels */
+.formgenerator_label{
 
-.formgenerator_checkbox_label {
-	display: inline;
-}
-.formgenerator_checkbox
-{
-	width: auto;
-}
-
-	
-.formgenerator_element_wrapper {
-	margin-top: 10px;
-}
-
-#description {
-	width: 600px;
-	height: 120px;
 }
