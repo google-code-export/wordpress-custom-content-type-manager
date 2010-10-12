@@ -3,7 +3,7 @@
 Plugin Name: Custom Content Type Manager
 Description: Allows WordPress 3.x users to create, extend, and manage custom content types (a.k.a. post types) like a true CMS. You can define and standardize custom fields for any content type, including checkboxes, textareas, and dropdowns. This has been geared for production use: it has been tested and is free from PHP notices and errors.
 Author: Everett Griffiths
-Version: 0.6
+Version: 0.7.9
 Author URI: http://www.fireproofsocks.com/
 Plugin URI: http://tipsfor.us/plugins/custom-content-type-manager/
 
