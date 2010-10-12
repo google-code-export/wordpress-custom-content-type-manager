@@ -1263,10 +1263,13 @@ Default: value of public argument',
 		// $E = new WP_Error();
 		// include('errors.php');
 		// self::$Errors = $E;
+		wp_register_script('CustomPostTypeManager_js'
+			, CUSTOM_CONTENT_TYPE_MGR_URL .'/js/admin.js');
 		wp_register_style('CustomPostTypeManager_class'
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type_class.css');
 		wp_register_style('CustomPostTypeManager_gui'
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type.css');
+		wp_enqueue_script('CustomPostTypeManager_js');
 		wp_enqueue_style('CustomPostTypeManager_class');
 		wp_enqueue_style('CustomPostTypeManager_gui');		
 	}
