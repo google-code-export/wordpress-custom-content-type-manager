@@ -2,11 +2,11 @@
 /*------------------------------------------------------------------------------
 Included by the media form element type.  The media form element types can launch
 an AJAX resource browser for selecting images, so they need a lot of extra
-code: PHP and JavaScript.
+PHP and JavaScript.
 
 ------------------------------------------------------------------------------*/
-$modal_title = __('Choose Media'); // update so it inclues the field name.
-$div_id_modal_content = 'hiddenModalContent';
+$modal_title = __('Choose Media'); // update so it includes the field name.
+$div_id_modal_content = 'hidden_modal_content_'.$fieldname;
 $click_me_txt = __('Choose Media');
 
 /* make variables to support multiple media fields
@@ -45,9 +45,9 @@ $msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','
 	------------------------------------------------------------------------------*/
 	function get_search_results(post_type)
 	{
-		var search_query = jQuery("#s").val();
-	
-		jQuery.get("<?php print CUSTOM_CONTENT_TYPE_MGR_URL; ?>/media-selector.php", { "post_mime_type":post_type,"fieldname":"<?php print $fieldname; ?>" }, write_results_to_page);
+		var search_term = jQuery("#media_search_term").val();
+		jQuery.get("<?php print CUSTOM_CONTENT_TYPE_MGR_URL; ?>/media-selector.php", { "post_mime_type":post_type,"fieldname":"<?php print $fieldname; ?>", "s":search_term }, write_results_to_page);
+		console.log('Search Term:' + search_term); 
 	}
 	
 	/*------------------------------------------------------------------------------
@@ -73,34 +73,23 @@ $msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','
 	}
 </script>
 
-<div id="hiddenModalContent" style="display: none">
+<div id="<?php print $div_id_modal_content; ?>" style="display: none">
 	<form id="filter" action="" method="get">
 	
-	<p id="media-search" class="search-box">
-		<label class="screen-reader-text" for="media-search-input">Search Media:</label>
-	
-		<input type="text" id="media-search-input" name="s" value="" />
-		<input type="submit" value="Search Media" class="button" />
+	<p id="media-search-term-box" class="search-box">
+		<input type="text" id="media_search_term" name="s" value="" />
+		<span class="button" onclick="javascript:get_search_results('all');"><?php _e('Search Media'); ?></span>
 	</p>
 	
 	<ul class="subsubsub">
-		<li><span onclick="javascript:get_search_results('all')">All Types</span> 
-		| </li>
-		<li><span onclick="javascript:get_search_results('image')" class="current">Images <span class="count">(<span id="image-counter">6</span>)</span></span> 
-		| </li>
-		<li>
-			<span onclick="javascript:get_search_results('video')">Video <span class="count">(<span id="video-counter">1</span>)</span></span>
-		</li>
+		<?php print $media_type_list_items; ?>
 	</ul>
 
 	<div class="tablenav">			
 		<div class="alignleft actions">
 			<select name="m">
-				<?php /* ???? make dynamic  */ ?>
-				<option value="0">Show all dates</option>
-				<option value="201010">October 2010</option>
+				<?php print $date_options; ?>
 			</select>
-			<input type="submit" id="post-query-submit" value="Filter &#187;" class="button-secondary" />
 		</div>
 	
 		<br class="clear" />		
@@ -109,5 +98,4 @@ $msg .= sprintf("<a href='#' onclick=\"tb_show('%s', '#TB_inline?&inlineId=%s','
 	<div id="ajax_media_selector_results" style="overflow:auto"></div>
 </div>
 
-<a href='#' onclick="tb_show('<?php print $modal_title; ?>', '#TB_inline?inlineId=<?php print $div_id_modal_content; ?>','false'); return false;"><?php print $click_me_txt; ?></a>
-
+<a href='#' class="button choose_media_button" onclick="tb_show('<?php print $modal_title; ?>', '#TB_inline?inlineId=<?php print $div_id_modal_content; ?>','false'); return false;"><?php print $click_me_txt; ?></a><br/>

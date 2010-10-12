@@ -8,6 +8,10 @@ class CustomPostTypeManager
 {	
 	const name = 'Custom Post Type Manager';
 	
+	// For testing
+	const wp_req_ver = '3.0.1';
+	const php_req_ver = '5.2.6';
+	
 	// Used to uniquely identify an option_name in the wp_options table 
 	// ALL data describing the post types and their custom fields lives there.
 	const db_key 	= 'custom_content_types_mgr_data';
@@ -30,6 +34,8 @@ class CustomPostTypeManager
 	// Future-proofing: post-type names cannot begin with this:
 	// See: http://codex.wordpress.org/Custom_Post_Types	
 	public static $reserved_prefix = 'wp_';
+
+	public static $Errors;	// used to store WP_Error object
 	
 	// Used when creating or editing Post Types
 	public static $post_type_form_definition =	array(
@@ -277,13 +283,13 @@ Default: "post"',
 			'name'			=> 'permalink_action',
 			'label'			=> 'Permalink Action',
 			'value'			=> 'Off',
-			'options'		=> array('Off','/%postname%/','Custom'), // ,'Custom'),
+			'options'		=> array('Off','/%postname%/'), // ,'Custom'),
 			'extra'			=> '',
 			'description'	=> "Use permalink rewrites for this post_type? Default: Off<br/>
 						<ul style='margin-left:20px;'>
 							<li><strong>Off</strong> - URLs for custom post_types will always look like: http://site.com/?post_type=book&p=39 even if the rest of the site is using a different permalink structure.</li>
 							<li><strong>/%postname%/</strong> - You MUST use the custom permalink structure: '/%postname%/'. Other formats are <strong>not</strong> supported.  Your URLs will look like http://site.com/movie/star-wars/</li>
-							<li><strong>Custom</strong> - Evaluate the contents of slug</li>
+							<!--li><strong>Custom</strong> - Evaluate the contents of slug</li-->
 						<ul>",
 			'type'			=> 'dropdown',
 			'sort_param'	=> 37,
@@ -752,7 +758,7 @@ Default: value of public argument',
 
 		// Variables for our template
 		$style			= '<style>'
-			. file_get_contents( self::get_basepath() .'/css/create_or_edit_post_type.css' ) 
+			. file_get_contents( self::get_basepath() .'/css/create_or_edit_post_type_class.css' ) 
 			. '</style>';
 		$page_header 	= __('Edit Post Type: ') . $post_type;
 		$fields			= '';
@@ -1249,6 +1255,23 @@ Default: value of public argument',
 	
 	//! Public Functions
 	/*------------------------------------------------------------------------------
+	Load CSS and JS for admin folks in the manager
+	Errors: TO-DO. 
+	------------------------------------------------------------------------------*/
+	public static function admin_init()
+	{
+		// $E = new WP_Error();
+		// include('errors.php');
+		// self::$Errors = $E;
+		wp_register_style('CustomPostTypeManager_class'
+			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type_class.css');
+		wp_register_style('CustomPostTypeManager_gui'
+			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type.css');
+		wp_enqueue_style('CustomPostTypeManager_class');
+		wp_enqueue_style('CustomPostTypeManager_gui');		
+	}
+	
+	/*------------------------------------------------------------------------------
 	Adds a link to the settings directly from the plugins page.  This filter is 
 	called for each plugin, so we need to make sure we only alter the links that
 	are displayed for THIS plugin.
@@ -1292,6 +1315,30 @@ Default: value of public argument',
 			self::admin_menu_slug, 					// menu-slug (should be unique)
 			'CustomPostTypeManager::page_main_controller'	// callback function
 		);
+	}
+	
+	
+	/*------------------------------------------------------------------------------
+	Print errors if they were thrown by the tests. Currently this is triggered as 
+	an admin notice so as not to disrupt front-end user access, but if there's an
+	error, you should fix it! The plugin may behave erratically!
+	------------------------------------------------------------------------------*/
+	public static function print_notices()
+	{
+		if ( !empty(CCTMtests::$errors) )
+		{
+			$error_items = '';
+			foreach ( CCTMtests::$errors as $e )
+			{
+				$error_items .= "<li>$e</li>";
+			}
+			print '<div id="custom-post-type-manager-warning" class="error"><p><strong>'
+			.__('The &quot;Custom Post Type Manager&quot; plugin encountered errors! It cannot load!')
+			.'</strong> '
+			."<ul style='margin-left:30px;'>$error_items</ul>"
+			.'</p>'
+			.'</div>';
+		}
 	}
 	
 	

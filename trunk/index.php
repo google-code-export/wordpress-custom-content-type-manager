@@ -17,17 +17,21 @@ See also:
 http://kovshenin.com/archives/extending-custom-post-types-in-wordpress-3-0/
 http://axcoto.com/blog/article/307
 
+TO-DO items:
 Permalinks in Custom Post Types:
 http://xplus3.net/2010/05/20/wp3-custom-post-type-permalinks/
 
 Attachments in Custom Post Types:
 http://xplus3.net/2010/08/08/archives-for-custom-post-types-in-wordpress/
 
-Bummer:
+Bummer. Trying to use the Media Upload Modal window is tricky:
 http://core.trac.wordpress.org/ticket/11705
 
 Editing Attachments
 http://xplus3.net/2008/11/17/custom-thumbnails-wordpress-plugin/
+
+Error messaging could fail if the user is using pre WP 2.0.11. Unlikely, but possible.
+Not really worth fielding that case though...
 ------------------------------------------------------------------------------*/
 
 
@@ -44,7 +48,8 @@ $function_names_used -- add any function names that this plugin declares in the
 $class_names_used -- add any class names that are declared by this plugin.
 ------------------------------------------------------------------------------*/
 $function_names_used = array('print_custom_field');
-$class_names_used = array('CustomPostTypeManager','FormGenerator','StandardizedCustomFields');
+$class_names_used = array('CustomPostTypeManager','FormGenerator','StandardizedCustomFields'
+	,'CCTMtests');
 $constants_used = array('CUSTOM_CONTENT_TYPE_MGR_PATH','CUSTOM_CONTENT_TYPE_MGR_URL');
 
 $error_items = '';

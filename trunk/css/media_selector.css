@@ -1,3 +1,5 @@
+/* This is only used for the AJAX controller when a user chooses to select a new
+media item (e.g. a new image) */
 .mini-thumbnail {
 	vertical-align:middle;
 }
@@ -8,4 +10,7 @@
 .toggler {
 	float: right;
 	margin-right: 200px;
+}
+.media_info{
+	padding-left:20px;
 }
