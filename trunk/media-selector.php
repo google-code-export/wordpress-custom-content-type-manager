@@ -43,7 +43,7 @@ if ( isset($_GET['fieldname']) && !empty($_GET['fieldname']) )
 // Search term
 if ( isset($_GET['s']) && !empty($_GET['s']) )
 {
-	$args['s'] = $_GET['s'];
+	$search_term = $_GET['s'];
 }
 // TO-DO: pagination
 if ( isset($_GET['page']))
@@ -53,7 +53,7 @@ if ( isset($_GET['page']))
 // TO-DO: monthly archives
 if ( isset($_GET['m']))
 {
-	$page = (int) $_GET['m'];
+	$m = (int) $_GET['m'];
 }
 
 
@@ -74,7 +74,10 @@ if ( isset($_GET['m']))
 	function update_selection(id, thumbnail_html)
 	{
 		jQuery('#<?php print $fieldname; ?>').val(id);
-		jQuery('#<?php print $fieldname; ?>_media').html(thumbnail_html);		
+		jQuery('#<?php print $fieldname; ?>_media').html(thumbnail_html);
+		// Close window
+		//TB_closeWindowButton
+		//self.parent.tb_remove();	
 	}
 </script>
 
@@ -85,6 +88,7 @@ if ( isset($_GET['m']))
 //------------------------------------------------------------------------------
 $postslist = get_posts($args);
 //$postslist = query_posts($args);
+//print_r($args);
 //print_r($postslist); exit;
 foreach ($postslist as $post):
 //------------------------------------------------------------------------------
@@ -144,7 +148,7 @@ foreach ($postslist as $post):
 						<p><strong><?php _e('File type'); ?>:</strong> <?php print $post->post_mime_type; ?></p>	
 						<p><strong><?php _e('Upload date'); ?>:</strong> <?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></p>
 						<?php print $dimensions; ?>
-						<p><a href='http://localhost:8888/?attachment_id=<?php print $post->ID; ?>' target="_blank"><?php _e('View Original'); ?></a></p>
+						<p><a href='/?attachment_id=<?php print $post->ID; ?>' target="_blank"><?php _e('View Original'); ?></a></p>
 					</td>
 				</tr>
 			</thead>

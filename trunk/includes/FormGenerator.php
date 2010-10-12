@@ -169,12 +169,12 @@ class FormGenerator
 
 		$avail_post_mime_types = get_available_post_mime_types('attachment');
 		$avail_post_mime_types_cnt = count($avail_post_mime_types);
-		$media_type_option_tpl = '<li><a href="#" onclick="javascript:get_search_results(\'%s\')">%s</a> 
+		$media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'%s\',\''.$fieldname.'\',\''. CUSTOM_CONTENT_TYPE_MGR_URL.'/media-selector.php\')">%s</span> 
 		%s </li>';
 		$separator = '|';
 		$media_type_list_items = sprintf($media_type_option_tpl,'all',__('All Types'),$separator);
 		
-		$media_type_option_tpl = '<li><a href="#" onclick="javascript:get_search_results(\'%s\')">%s <span class="count">(<span id="image-counter">%s</span>)</a> 
+		$media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'%s\',\''.$fieldname.'\',\''. CUSTOM_CONTENT_TYPE_MGR_URL.'/media-selector.php\')">%s <span class="count">(<span id="image-counter">%s</span>)</span> 
 		%s </li>';
 		
 		$i = 1;
