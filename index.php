@@ -1,7 +1,7 @@
 <?php
 /*------------------------------------------------------------------------------
 Plugin Name: Custom Content Type Manager
-Description: Allows WordPress 3.x users to create, extend, and manage custom content types (a.k.a. post types) like a true CMS. You can define and standardize custom fields for any content type, including checkboxes, textareas, and dropdowns. This has been geared for production use: it has been tested and is free from PHP notices and errors.
+Description: Allows WordPress 3.x users to create, extend, and manage custom content types (a.k.a. post types) like a true CMS. You can define and standardize custom fields for any content type, including checkboxes, textareas, dropdowns, WYSIWYG editor fields, and media fields (allowing you to add an image, video, or audio clip).
 Author: Everett Griffiths
 Version: 0.7.9
 Author URI: http://www.fireproofsocks.com/

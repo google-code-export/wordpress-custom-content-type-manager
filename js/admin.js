@@ -1,3 +1,8 @@
+/*
+Matches up to media_element.php div:
+<div id="ajax_media_selector_results_<?php print $fieldname; ?>" style="overflow:auto"></div>
+*/
+var target_id = 'ajax_media_selector_results_';
 /* Listeners */
 function main()
 {
@@ -18,9 +23,9 @@ OUTPUT:
 ------------------------------------------------------------------------------*/
 function get_search_results(post_type, fieldname, ajax_controller_url)
 {
+	target_id = target_id + fieldname;
 	var search_term = jQuery("#media_search_term").val();
 	jQuery.get( ajax_controller_url, { "post_mime_type":post_type,"fieldname":fieldname, "s":search_term }, write_results_to_page);
-	console.log('URL:' + ajax_controller_url); 
 }
 
 /*------------------------------------------------------------------------------
@@ -41,6 +46,6 @@ function write_results_to_page(data,status, xhr)
 	}
 	else
 	{
-		jQuery("#ajax_media_selector_results").html(data);
+		jQuery("#"+target_id).html(data);
 	}
 }
