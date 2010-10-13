@@ -1,80 +1,159 @@
 <?php
 /*------------------------------------------------------------------------------
 This file is an independent controller, used to query the WordPress database
-and provide search results for Ajax requests.
-Reference this file with URL parameters for:
+and provide an ID from wp_posts identifying a specific attachment post.
 
-	s = search term
-	m = month+year 
-	post_mime_type = image | video | all
+TODO: pagination of results
 
-INPUT: 
+INCOMING URL PARAMETERS:
 
+	fieldname = (req) id of field receiving the wp_posts.ID 
+
+	s = (opt) search term
+	m = (opt) month+year 
+	post_mime_type = (opt) image | video | audio | all. Default: all
+	page (opt) integer defining which page of results we're displaying. Default: 0
+
+
+OUTPUT:
+The value of the fieldname identified by 'fieldname' will be updated, e.g.
+
+	<input type="hidden" id="myMediaField" value="123" />
+	
+A div with the id of fieldname + '_preview' will get injected with an img tag
+representing a thumbnail of the selected media item, e.g. 
+
+	<div id="myMediaField_preview"><img src="..." /></div>
 ------------------------------------------------------------------------------*/
-if (!defined('WP_PLUGIN_URL')) 
-{
-	require_once( realpath('../../../').'/wp-config.php' );
-}
 
+// To tie into WP, we come in through the backdoor, by including the config.
+require_once( realpath('../../../').'/wp-config.php' );
+require_once( realpath('../../../').'/wp-admin/includes/post.php');
+$this_dir = dirname(__FILE__);
+include_once($this_dir.'/includes/constants.php');
 
-// No point in executing a query if there's no query string
-if ( empty($_GET['s']))
-{
-	exit;
-}
-
-// Get query vars
-
-// Get posts
-$postslist = get_posts('post_type=attachment&numberposts=10&order=ASC&orderby=title');
-foreach ($postslist as $post) : 
-	$id = $post->ID;
-	// keyword (thumbnail, medium, large or full)
-	print wp_get_attachment_image( $id, 'thumb' ) . '<br/>';
-	print $post->post_title . "<br/>";
-endforeach; 
-
-// print output
-
-
-
-// If there are no results... 
 /*
-if (! count($WP_Query_object->posts) ){
-	print file_get_contents('tpls/no_results.tpl');	
-	exit;
-}
-
-
-// Otherwise, format the results
-$container = array('content'=>''); // define the container's only placeholder
-$single_tpl = file_get_contents('tpls/single_result.tpl');	
-foreach($WP_Query_object->posts as $result)
+if ( !current_user_can('edit_posts') )
 {
-	$result->permalink = get_permalink($result->ID);
-	$container['content'] .= parse($single_tpl, $result);
+	wp_die(__('You do not have permission to edit posts.'));
 }
-
-// Wrap the results
-$results_container_tpl = file_get_contents('tpls/results_container.tpl');
-print parse($results_container_tpl, $container);
 */
 
-/*------------------------------------------------------------------------------
-SYNOPSIS: a simple parsing function for basic templating.
-INPUT:
-	$tpl (str): a string containing [+placeholders+]
-	$hash (array): an associative array('key' => 'value');
-OUTPUT
-	string; placeholders corresponding to the keys of the hash will be replaced
-	with the values and the string will be returned.
-------------------------------------------------------------------------------*/
-function parse($tpl, $hash) {
+// Read supplied get args. Filter them!!!
+$args = array(
+	'post_mime_type' => 'all'
+);
+$valid_post_mime_types = array(
+	'image' => '',
+	'video' => '',
+	'audio' => '',
+	'all'	=> ''
+);
+$fieldname = '';
 
-    foreach ($hash as $key => $value) {
-        $tpl = str_replace('[+'.$key.'+]', $value, $tpl);
-    }
-    return $tpl;
+//------------------------------------------------------------------------------
+if ( isset($_GET['post_mime_type']) && !empty($_GET['post_mime_type']) )
+{
+	if ( !in_array( $_GET['post_mime_type'],  array_keys($valid_post_mime_types) ) )
+	{
+		wp_die(__('Invalid post_mime_type.')); 
+	}
+	$args['post_mime_type'] = $_GET['post_mime_type'];
+}
+if ( isset($_GET['fieldname']) && !empty($_GET['fieldname']) )
+{
+	if ( preg_match('/[^a-z_\-]/i', $_GET['post_mime_type']) )
+	{
+		wp_die(__('Invalid field_name.'));   // Only a-z, _, - is allowed.
+	}
+	$fieldname = $_GET['fieldname'];
+}
+// Search term
+if ( isset($_GET['s']) && !empty($_GET['s']) )
+{
+	$search_term = $_GET['s'];
+}
+// TO-DO: pagination
+if ( isset($_GET['page']))
+{
+	$page = (int) $_GET['page'];
+}
+// TO-DO: monthly archives
+if ( isset($_GET['m']))
+{
+	$m = (int) $_GET['m'];
 }
 
-/* EOF */
+/*------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------*/
+function get_post_mime_type_options($filter='all')
+{
+	global $wpdb;
+	
+	$avail_post_mime_types = array();
+	if ($filter=='all')
+	{
+		$avail_post_mime_types = get_available_post_mime_types('attachment');
+	}
+	else
+	{
+		$avail_post_mime_types = array($filter);
+	}
+
+	$avail_post_mime_types_cnt = count($avail_post_mime_types);
+	$media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'%s\');">%s</span> 
+	%s </li>';
+	$separator = '|';
+	$media_type_list_items = sprintf($media_type_option_tpl,'all',__('All Types'),$separator);
+	
+	$media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'%s\');">%s <span class="count">(<span id="image-counter">%s</span>)</span> 
+	%s </li>';
+	
+	$i = 1;
+	// Format the list items for menu...
+	foreach ( $avail_post_mime_types as $mt )
+	{
+		$mt_for_js = preg_replace('#/.*$#', '', $mt);
+		//print $mt_for_js; exit;
+		if ( $i == $avail_post_mime_types_cnt)
+		{
+			$separator = ''; // Special for last one.
+		}
+
+		$query = "SELECT post_status, COUNT( * ) AS num_posts FROM {$wpdb->posts} 
+			WHERE post_type = 'attachment'
+			AND post_mime_type = %s  GROUP BY post_status";
+		$raw_cnt = $wpdb->get_results( $wpdb->prepare( $query, $mt ), ARRAY_A );
+
+		$cnt = $raw_cnt[0]['num_posts'];
+
+		$media_type_list_items .= sprintf($media_type_option_tpl
+			, $mt_for_js
+			, __(ucfirst($mt_for_js))
+			, $cnt
+			, $separator);
+		$i++;
+	}
+
+	$date_options = '<option value="0">Show all dates</option>
+				<option value="201010">October 2010</option>';
+	return $media_type_list_items;
+}
+
+
+
+?>
+<script type="text/javascript">	
+	function send_back_to_wp(x)
+	{
+		jQuery('#dicky').val(x);
+		tb_remove();
+		return false;
+	}
+</script>
+
+
+<ul class="subsubsub">
+	<?php print get_post_mime_type_options($args['post_mime_type']); ?>
+</ul>

@@ -3,11 +3,7 @@ Matches up to media_element.php div:
 <div id="ajax_media_selector_results_<?php print $fieldname; ?>" style="overflow:auto"></div>
 */
 var target_id = 'ajax_media_selector_results_';
-/* Listeners */
-function main()
-{
-	/*jQuery("#s").keyup(get_search_results); */
-}
+
 
 /*------------------------------------------------------------------------------
 SYNOPSIS:

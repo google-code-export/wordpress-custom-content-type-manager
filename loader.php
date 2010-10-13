@@ -5,10 +5,10 @@ with function names, class names, or constant names. With so many WP plugins
 available and so many potential conflicts out there, I've attempted to 
 avoid the resulting headaches as much as possible.
 ------------------------------------------------------------------------------*/
-define('CUSTOM_CONTENT_TYPE_MGR_PATH', dirname(__FILE__));
-define('CUSTOM_CONTENT_TYPE_MGR_URL', WP_PLUGIN_URL .'/'. basename(dirname(__FILE__) ) );
+
 
 // Required Files
+include_once('includes/constants.php');
 include_once('includes/CustomPostTypeManager.php');
 include_once('includes/FormGenerator.php');
 include_once('includes/StandardizedCustomFields.php');

@@ -154,11 +154,14 @@ class FormGenerator
 	{
 		global $wpdb;
 		
+		$content = '<input type="text" id="dicky" name="Choose..." value="" /><br/><a href="'.CUSTOM_CONTENT_TYPE_MGR_URL.'/test.php?" class="thickbox">Test...</a>';
+//		$content = '<input type="text" id="dicky" value="" /><br/><a href="'.CUSTOM_CONTENT_TYPE_MGR_URL.'/ajax-media-selector.php?" class="thickbox">Test...</a>';
+		return $content;
 		$content = '';
 		$content .= sprintf('<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_%s">%s</span>', $data['name'], $data['label']);
 		$content .= sprintf('<input id="%s" name="%s" type="hidden" value="%s"/>'
 			, $data['name'], $data['name'] ,$data['value']);
-		$content .= sprintf('<div id="%s_media">', $data['id']); 
+		$content .= sprintf('<div id="%s_preview">', $data['id']); 
 		if ( !empty($data['value']) )
 		{
 			$content .= wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
