@@ -1,0 +1,11 @@
+/* This is the button used in the manager to choose a new image */
+.choose_media_button{
+	display: hidden;
+}
+.attachment-thumbnail{
+	padding: 10px;
+}
+/* Used by all labels */
+.formgenerator_label{
+
+}
