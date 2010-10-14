@@ -44,7 +44,7 @@ class CustomPostTypeManager
 			'label'			=> 'Name *',
 			'value'			=> '',
 			'extra'			=> '',
-			'description'	=> 'Unique singular name to identify this post type in the database, e.g. "movie","book". Should be lowercase with only letters and underscores.',	
+			'description'	=> 'Unique singular name to identify this post type in the database, e.g. "movie","book". This may show up in your URLs, e.g. ?movie=star-wars. Should be lowercase with only letters and underscores. This name cannot be changed!',	
 			'type'			=> 'text',
 			'sort_param'	=> 1,
 		),
@@ -1430,7 +1430,9 @@ return
 			case 1: // create new custom post type
 				self::_page_create_new_post_type();
 				break;
-			case 2: // update existing custom post type
+			case 2: // update existing custom post type. Override form def.
+				self::$post_type_form_definition['post_type']['type'] = 'readonly';
+				self::$post_type_form_definition['post_type']['description'] = '';
 				self::_page_edit_post_type($post_type);
 				break;
 			case 3: // delete existing custom post type
