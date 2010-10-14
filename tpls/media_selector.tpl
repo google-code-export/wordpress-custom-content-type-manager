@@ -82,7 +82,7 @@
 <div id="[+div_id+]">
 	<p id="media-search-term-box" class="search-box">
 		<input type="text" id="media_search_term" name="s" value="" />
-		<span class="button" onclick="javascript:search_media('all');">[+search_label+]</span>
+		<span class="button" onclick="javascript:search_media('[+default_mime_type+]');">[+search_label+]</span>
 		<span class="button" onclick="javascript:clear_search();">[+clear_label+]</span>
 	</p>
 	
@@ -93,7 +93,7 @@
 
 	<div class="tablenav">			
 		<div class="alignleft actions">
-			<select name="m">
+			<select name="m" onchange="javascript:search_media('[+default_mime_type+]');">
 				[+date_options+]
 			</select>
 		</div>	

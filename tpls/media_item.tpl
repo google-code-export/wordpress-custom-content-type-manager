@@ -2,11 +2,10 @@
 
 	<div width="400px">
 		<span class="button" onclick="javascript:send_back_to_wp('[+attachment_id+]','[+preview_html+]')">[+select_label+]</span>
-		<label for="media-option-[+attachment_id+]">
-			[+thumbnail_html+]		
-			<span class="title">[+post_title+]</span>
-		</label>
+		[+thumbnail_html+]		
+		<span class="title">[+post_title+]</span>
 		<span class="toggler" onclick="javascript:toggle_image_detail('media-detail-[+attachment_id+]');">[+show_hide_label+]</span>
+
 	</div>
 	
 	<div id="media-detail-[+attachment_id+]" class="media_detail">
