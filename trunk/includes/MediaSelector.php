@@ -16,21 +16,21 @@ class MediaSelector
 
 	private $taxonomies = array(); // taxonomies assigned to 'attachment' post_type
 	private $results_per_page = 10;
+
+	private $SQL; // store the query here for debugging.
 		
 	// Unfortunately, this isn't EXACTLy what's in the db... but the wp_posts.post_mime_type *begins* with these
 	private $valid_post_mime_types = array( 'image','video','audio','all');
 	
 	
-	private $media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'[+mime_type+]\');">[+mime_type_label+] <span class="mime_type_count">([+count+])</span></li>';
+	private $media_type_option_tpl = '<li><span onclick="javascript:search_media(\'[+mime_type+]\');">[+mime_type_label+] <span class="mime_type_count">([+count+])</span></li>';
 	
 	/*------------------------------------------------------------------------------
 	
 	------------------------------------------------------------------------------*/
 	public function __construct()
 	{
-		print_r( $this->_get_search_results() ); exit;
-		$this->_read_inputs(); // sets values.	
-	//	print_r( get_defined_constants() ); exit;
+		$this->_read_inputs(); // sets values from URL	
 		$output = '';
 		if ( $this->mode )
 		{
@@ -40,6 +40,8 @@ class MediaSelector
 		{
 			$output = $this->return_iFrame();
 		}
+	//	print $this->SQL; exit;
+
 		print $output;
 	}
 
@@ -71,11 +73,71 @@ class MediaSelector
 	/*------------------------------------------------------------------------------
 	
 	------------------------------------------------------------------------------*/
-	private function _format_search_results($data)
+	private function _format_search_results($results)
 	{
-		$hash = array();
+		$output = '';
+		
 		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/media_item.tpl');
+		foreach ( $results as $r )
+		{
+			if (preg_match('/^image/', $r['post_mime_type']) )
+			{
+				list($src, $w, $h) = wp_get_attachment_image_src( $r['attachment_id'], 'thumbnail');
+				$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
+					, $src);
+				$r['medium_html'] = wp_get_attachment_image( $r['attachment_id'], 'medium' );
+				$preview_html = wp_get_attachment_image( $r['attachment_id'], 'thumbnail' );
+				list($src, $full_w, $full_h) = wp_get_attachment_image_src( $r['attachment_id'], 'full');
+				$r['dimensions'] = '<strong>'.__('Dimensions').':</strong> <span id="media-dims-'. $r['attachment_id'] .'">'.$full_w.'&nbsp;&times;&nbsp;'.$full_h.'</span><br/>';
+				}
+			// It's not an image
+			else
+			{
+				list($src, $w, $h) = wp_get_attachment_image_src( $r['attachment_id'], 'thumbnail', TRUE);
+				$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
+					, $src);
+				$r['medium_html'] = wp_get_attachment_image( $r['attachment_id'], 'medium', TRUE );
+				$preview_html = wp_get_attachment_image($r['attachment_id'], 'thumbnail', TRUE );
+			}
+
+			# Passed via JS, so we gotta prep it.
+			$preview_html .= '<span class="formgenerator_label">'.$r['post_title'].'</span>';
+			$preview_html = preg_replace('/"/', "'", $preview_html); 
+			$preview_html = preg_replace("/'/", "\'", $preview_html);
+			$r['preview_html'] = $preview_html;
+			
+			preg_match('#.*/(.*)$#', $r['attachment_url'], $matches);
+			
+			$r['filename'] = $matches[1];
+		
+			$r['select_label'] 		= __('Select');
+			$r['show_hide_label'] 	= __('Show / Hide');
+			
+			$r['filename_label'] 	= __('Filename');
+			$r['mime_type_label'] 	= __('File Type');
+			$r['view_original_label'] = __('View Original');
+			$r['upload_date_label']	= __('Date Uploaded');
+
+			$output .= $this->parse($tpl, $r);
+		}
+		
+		return $output;
 	}
+	
+	
+	/*------------------------------------------------------------------------------
+	
+	------------------------------------------------------------------------------*/
+	private function _format_yearmonth($results)
+	{
+		$output = '<option value="0">'.__('Choose Date').'</option>';
+		foreach ( $results as $r )
+		{
+			$output .= '<option value="'.$r['yyyymm'].'">'.__($r['month']).' '.$r['year'].'</option>';	
+		}
+		return $output;
+	}
+	
 	
 	/*------------------------------------------------------------------------------
 	How many do we want to display? This is either all of them, or we just show the
@@ -101,54 +163,10 @@ class MediaSelector
 	------------------------------------------------------------------------------*/
 	private function _get_pagination_links()
 	{
-		return '<p>Pagination links go here...</p>';
+		return ''; // <p>Pagination links go here...</p>';
+		$results = $this->query_count_results();
 	}
-
-	/*------------------------------------------------------------------------------
-	Son of a bitch... you can't use query_posts here because the global $wp_the_query
-	isn't defined yet.  get_posts() works, however.  Jeezus H. Christ. Crufty ill-defined
-	API functions.
-	http://shibashake.com/wordpress-theme/wordpress-query_posts-and-get_posts
-	
-	Options: 
-		$mime_type
-		$searchterm
-		$limit
-		$offset
 		
-	------------------------------------------------------------------------------*/
-	private function _get_search_results()
-	{
-/*
-		$args = array(
-			'post_type' => 'attachment',
-			'posts_per_page' => 5,
-		); 
-		$posts = query_posts('post_type=attachment&post_status=publish&orderby=title&order=ASC');
-*/
-		
-		global $wpdb; 
-		
-		$query = "SELECT 
-				{$wpdb->posts}.ID, 
-				{$wpdb->posts}.post_title, 
-				{$wpdb->posts}.post_content, 
-				{$wpdb->posts}.post_mime_type, 
-				{$wpdb->posts}.post_modified, 
-				{$wpdb->posts}.guid
-			FROM {$wpdb->posts} 
-			WHERE 
-				{$wpdb->posts}.post_type = 'attachment' "
-				. $this->_sql_get_searchterm()
-				. $this->_sql_get_post_mime_type()
-			. "LIMIT " 
-			. $this->results_per_page 
-			. $this->_sql_get_offset();
-		$results = $wpdb->get_results( $query, ARRAY_A );
-		
-		return $results;
-	}
-	
 	
 	/*------------------------------------------------------------------------------
 	Read inputs from the $_GET array.
@@ -157,7 +175,7 @@ class MediaSelector
 	{
 		if ( isset($_GET['post_mime_type']) && !empty($_GET['post_mime_type']) )
 		{
-			if ( !in_array( $_GET['post_mime_type'],  $valid_post_mime_types ) )
+			if ( !in_array( $_GET['post_mime_type'],  $this->valid_post_mime_types ) )
 			{
 				wp_die(__('Invalid post_mime_type.')); 
 			}
@@ -185,7 +203,7 @@ class MediaSelector
 		// Search term
 		if ( isset($_GET['s']) && !empty($_GET['s']) )
 		{
-			$this->search_term = $_GET['s'];
+			$this->s = $_GET['s'];
 		}
 		
 		// TO-DO: pagination
@@ -207,16 +225,58 @@ class MediaSelector
 		}
 	}
 
+
+	/*------------------------------------------------------------------------------
+	Son of a bitch... you can't use query_posts here because the global $wp_the_query
+	isn't defined yet.  get_posts() works, however.  Jeezus H. Christ. Crufty ill-defined
+	API functions.
+	http://shibashake.com/wordpress-theme/wordpress-query_posts-and-get_posts
+	
+	This is the main SQL query constructor. Home rolled...
+	It's meant to be called by the various querying functions:
+		query_search()
+		query_count()
+		query_distinct_dates()
+		
+	Options: 
+		$mime_type
+		$searchterm
+		$limit
+		$offset
+		
+	------------------------------------------------------------------------------*/
+	private function _sql($select, $limit=0,$use_offset=FALSE)
+	{
+		global $wpdb; 
+		
+		$query = "SELECT "
+			. $select
+			. " FROM {$wpdb->posts} 
+			WHERE 
+				{$wpdb->posts}.post_type = 'attachment' "
+				. $this->_sql_filter_searchterm()
+				. $this->_sql_filter_post_mime_type()
+			. $this->_sql_filter_limit($limit)  
+			. $this->_sql_filter_offset($use_offset);
+		$results = $wpdb->get_results( $query, ARRAY_A );
+		
+		$this->SQL = $query;
+		
+		return $results;
+	}
+
+
+
 	/*------------------------------------------------------------------------------
 	SELECT * from wp_posts where DATE_FORMAT(post_modified, '%Y%m') = '201009';
 	SELECT DISTINCT DATE_FORMAT(post_modified, '%Y%m') FROM wp_posts;
 	------------------------------------------------------------------------------*/
-	private function _sql_get_datestuff()
+	private function _sql_filter_yearmonth()
 	{
 		global $wpdb;
 		if ( $this->m )
 		{
-			$query = " AND {$wpdb->posts}.post_mime_type LIKE %s";
+			$query = " AND DATE_FORMAT({$wpdb->posts}.post_modified, '%Y%m') = %s";
 			return $wpdb->prepare( $query, $this->post_mime_type.'%' );
 		}
 		else
@@ -226,14 +286,32 @@ class MediaSelector
 	}
 
 
+	/*------------------------------------------------------------------------------
+	$limit should be passed in as $this->results_per_page; (like when you're selecting
+	rows) or as zero (like when you're counting rows).
+	------------------------------------------------------------------------------*/
+	private function _sql_filter_limit($limit=0)
+	{
+		global $wpdb;
+		if ( $limit )
+		{
+			$query = ' LIMIT ' . $limit;
+			return $query;
+		}
+		else
+		{
+			return '';
+		}
+	}
+
 
 	/*------------------------------------------------------------------------------
 	
 	------------------------------------------------------------------------------*/
-	private function _sql_get_offset()
+	private function _sql_filter_offset($use_offset)
 	{
 		global $wpdb;
-		if ( $this->page )
+		if ( $use_offset && $this->page )
 		{
 			$offset = $this->page * $this->results_per_page;
 			$query = ' OFFSET ' . (int) $offset;
@@ -248,7 +326,7 @@ class MediaSelector
 	/*------------------------------------------------------------------------------
 	Construct the part of the query for searching by mime type
 	------------------------------------------------------------------------------*/
-	private function _sql_get_post_mime_type()
+	private function _sql_filter_post_mime_type()
 	{
 		global $wpdb;
 		if ( $this->post_mime_type != 'all' )
@@ -265,9 +343,10 @@ class MediaSelector
 	/*------------------------------------------------------------------------------
 	Construct the part of the query for searching by name.
 	------------------------------------------------------------------------------*/
-	private function _sql_get_searchterm()
+	private function _sql_filter_searchterm()
 	{
 		global $wpdb;
+		
 		if ( !empty($this->s) )
 		{
 			$query = " AND ( 
@@ -282,19 +361,49 @@ class MediaSelector
 			return '';
 		}
 	}	
-	
-	
-	//! Public Functions
+
 	/*------------------------------------------------------------------------------
-	
+	SELECT DISTINCT DATE_FORMAT(post_modified, '%Y%m') FROM wp_posts;
 	------------------------------------------------------------------------------*/
-	public function get_date_options()
+	private function _sql_select_count()
 	{
-		$date_options = '<option value="0">Show all dates</option>
-				<option value="201010">October 2010</option>';
+		return ' COUNT(*) as cnt';
+	}
+	
+	/*------------------------------------------------------------------------------
+	Which columns do we normally return?
+	------------------------------------------------------------------------------*/
+	private function _sql_select_columns()
+	{
+		global $wpdb;
+		
+		return " {$wpdb->posts}.ID as 'attachment_id', 
+			{$wpdb->posts}.post_title, 
+			{$wpdb->posts}.post_content, 
+			{$wpdb->posts}.post_mime_type, 
+			{$wpdb->posts}.post_modified, 
+			{$wpdb->posts}.guid as 'attachment_url'";
 	}
 	
 	
+	/*------------------------------------------------------------------------------
+	SELECT DISTINCT DATE_FORMAT(post_modified, '%Y%m') FROM wp_posts;
+	http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html#function_date-format
+	------------------------------------------------------------------------------*/
+	private function _sql_select_yearmonth()
+	{
+		global $wpdb;
+		return " DISTINCT DATE_FORMAT({$wpdb->posts}.post_modified, '%Y%m') as 'yyyymm',
+			YEAR({$wpdb->posts}.post_modified) as 'year',
+			DATE_FORMAT({$wpdb->posts}.post_modified, '%M') as 'month'";
+	}
+	
+	
+	
+
+	
+	
+	//! Public Functions
 	/*------------------------------------------------------------------------------
 	private $media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'[+mime_type+]\');">[+mime_type_label+] <span class="count">(<span class="mime_type_count">[+count+]</span>)</span></li>
 	------------------------------------------------------------------------------*/
@@ -303,16 +412,9 @@ class MediaSelector
 		global $wpdb;
 		
 		$avail_post_mime_types = $this->_get_mime_types_for_listing($filter);
-	
-		$hash = array(
-			'mime_type' => '',
-			'mime_type_label' => '',
-			'count' => '',
-			'offset' => '',
-		);
 		
-		$media_type_list_items = sprintf($media_type_option_tpl,'all',__('All Types'),$separator);
-				
+		$output = '';				
+		
 		// Format the list items for menu...
 		foreach ( $avail_post_mime_types as $mt )
 		{
@@ -320,11 +422,10 @@ class MediaSelector
 			$hash['mime_type'] 			= preg_replace('#/.*$#', '', $mt);
 			$hash['mime_type_label']	= __(ucfirst($hash['mime_type']));
 			$hash['count'] 				= $this->_count_posts_this_mime_type($mt);
-			$hash['offset']				= $this->_get_offset();			
+			$output .= $this->parse($this->media_type_option_tpl, $hash);
 		}
-	
 
-		return $media_type_list_items;
+		return $output;
 	}
 	
 	/*------------------------------------------------------------------------------
@@ -379,6 +480,62 @@ class MediaSelector
 	    
 	    return $tpl;
 	}	
+
+	/*------------------------------------------------------------------------------
+	OUTPUT: integer
+	------------------------------------------------------------------------------*/
+	public function query_count_results()
+	{
+		$results = $this->_sql( $this->_sql_select_count(), FALSE, FALSE);
+		if ( !empty($results) )
+		{
+			return $results[0]['cnt'];
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+
+	/*------------------------------------------------------------------------------
+	Get distinct year-month combos
+	------------------------------------------------------------------------------*/
+	public function query_distinct_yearmonth()
+	{
+		$results = $this->_sql( $this->_sql_select_yearmonth(), FALSE, FALSE);
+		$output = $this->_format_yearmonth($results);
+		return $output;
+	}
+
+
+	/*------------------------------------------------------------------------------
+	Son of a bitch... you can't use query_posts here because the global $wp_the_query
+	isn't defined yet.  get_posts() works, however.  Jeezus H. Christ. Crufty ill-defined
+	API functions.
+	http://shibashake.com/wordpress-theme/wordpress-query_posts-and-get_posts
+	
+	Options: 
+		$mime_type
+		$searchterm
+		$limit
+		$offset
+		
+	------------------------------------------------------------------------------*/
+	public function query_results()
+	{
+
+		$results = $this->_sql( $this->_sql_select_columns(), $this->results_per_page, TRUE);
+
+		if ( empty($results) )
+		{
+			return '<p>'. __('Sorry, no results found.').'</p>';
+		}
+
+		$output = $this->_format_search_results($results);
+		return $output;		
+	}
+
 	
 	
 	/*------------------------------------------------------------------------------
@@ -388,9 +545,9 @@ class MediaSelector
 	public function return_Ajax()
 	{
 		$hash = array();
-		$hash['content'] = $this->_get_search_results();
+		$hash['content'] = $this->query_results();
 		$hash['pagination_links'] = $this->_get_pagination_links();
-		
+
 		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/items_wrapper.tpl');
 		return $this->parse($tpl, $hash);
 	}
@@ -409,6 +566,11 @@ class MediaSelector
 		$hash['media_selector_stylesheet'] = CUSTOM_CONTENT_TYPE_MGR_URL . '/css/media_selector.css';
 		$hash['fieldname'] = $this->fieldname;
 		$hash['default_results'] = $this->return_Ajax(); // Default results
+		$hash['default_mime_type'] = $this->post_mime_type;
+		$hash['search_label'] = __('Search');
+		$hash['clear_label'] = __('Reset');
+		$hash['media_type_list_items'] = $this->get_post_mime_type_options($this->post_mime_type);
+		$hash['date_options'] = $this->query_distinct_yearmonth();
 		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/media_selector.tpl');
 		return $this->parse($tpl, $hash);
 	}

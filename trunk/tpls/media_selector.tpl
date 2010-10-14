@@ -7,25 +7,46 @@
 	<link href="[+media_selector_stylesheet+]" rel="stylesheet" type="text/css">
 	
 
-</head>
-<body onload="javascript:search_media();">
-
-	<script type="text/javascript">	
+	<script type="text/javascript">
+	
+		/*------------------------------------------------------------------------------
+		Clears the search form
+		------------------------------------------------------------------------------*/
+		function clear_search()
+		{
+			jQuery("#media_search_term").val(''); 
+			search_media("[+default_mime_type+]");
+		}
+	
+		/*------------------------------------------------------------------------------
+		Where the magic happens: this sends our selection back to WordPress
+		------------------------------------------------------------------------------*/
 		function send_back_to_wp( attachment_id, thumbnail_html )
 		{
 			jQuery('#[+fieldname+]').val(attachment_id);
-			jQuery('#[+fieldname+]_media').html(attachment_id);
+			jQuery('#[+fieldname+]_media').html(thumbnail_html);
 			tb_remove();
 			return false;
 		}
 		
 		/*------------------------------------------------------------------------------
-		
+		Main AJAX function to kick off the query.
 		------------------------------------------------------------------------------*/
-		function search_media()
+		function search_media(mime_type)
 		{
-			jQuery.get("[+ajax_controller_url+]", { "mode":"query", "s":"search_query","fieldname":"[+fieldname+]" }, write_results_to_page);
+			var search_term = jQuery("#media_search_term").val();
+			var yyyymm = jQuery("#m").val();
+			jQuery.get("[+ajax_controller_url+]", { "mode":"query", "s":search_term,"fieldname":"[+fieldname+]","post_mime_type":mime_type,"m":yyyymm }, write_results_to_page);
 			console.log('[+fieldname+]');
+		}
+
+		/*------------------------------------------------------------------------------
+		Show / Hide 
+		------------------------------------------------------------------------------*/
+		function toggle_image_detail(css_id)
+		{
+			jQuery('#'+css_id).slideToggle(400);
+	    	return false;
 		}
 
 
@@ -41,7 +62,6 @@
 		------------------------------------------------------------------------------*/
 		function write_results_to_page(data,status, xhr) 
 		{
-			console.log('in here...'); 
 			if (status == "error") {
 				var msg = "Sorry but there was an error: ";
 		    	console.error(msg + xhr.status + " " + xhr.statusText);
@@ -54,29 +74,36 @@
 		
 	</script>
 
-<h1>I'm the Media SelectoRRRR</h1>
+
+
+</head>
+<body>
+
 <div id="[+div_id+]">
-	<!-- p id="media-search-term-box" class="search-box">
+	<p id="media-search-term-box" class="search-box">
 		<input type="text" id="media_search_term" name="s" value="" />
-		<span class="button" onclick="javascript:get_search_results('all','<?php print $fieldname; ?>','<?php print CUSTOM_CONTENT_TYPE_MGR_URL; ?>/media-selector.php');"><?php _e('Search Media'); ?></span>
-	</p -->
+		<span class="button" onclick="javascript:search_media('all');">[+search_label+]</span>
+		<span class="button" onclick="javascript:clear_search();">[+clear_label+]</span>
+	</p>
 	
+	<h2>Narrow Results</h2>
 	<ul class="subsubsub">
 		[+media_type_list_items+]
 	</ul>
 
-	<!-- div class="tablenav">			
+	<div class="tablenav">			
 		<div class="alignleft actions">
 			<select name="m">
-				<?php print $date_options; ?>
+				[+date_options+]
 			</select>
 		</div>	
-	</div -->
+	</div>
 
 </div>
-<span onclick="javascript:search_media();">Testing...</span>
+
 <br class="clear" />
-<div id="ajax_search_results_go_here" style="overflow:auto">[+default_results+]</div>
+<!-- style="overflow:auto" -->
+<div id="ajax_search_results_go_here">[+default_results+]</div>
 
 </body>
 </html>

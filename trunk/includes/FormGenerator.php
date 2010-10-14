@@ -157,22 +157,28 @@ class FormGenerator
 		$media_html = '';
 
 		// It's an image
-		if (preg_match('/^image/', $post->post_mime_type) )
+//		if (preg_match('/^image/', $post->post_mime_type) )
+		if ( !empty($data['value']) )
 		{
-			$data['media_html'] = wp_get_attachment_image( $post->ID, 'thumbnail' );
+			$data['media_html'] = wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
 		}
 		// It's not an image
 		else
 		{
-			$data['media_html'] = wp_get_attachment_image( $post->ID, 'thumbnail', TRUE );
+//			$data['media_html'] = wp_get_attachment_image( $post->ID, 'thumbnail', TRUE );
+			$data['media_html'] = '';
 		}
 		
 //		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/test.php';
 		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/ajax-media-selector.php';
 		$data['click_label'] = __('Choose Media');
-		$tpl = '<input type="text" id="[+id+]" name="[+name+]" value="[+value+]" />
+		$tpl = '
+			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
+			<input type="text" id="[+id+]" name="[+name+]" value="[+value+]" />
 			<div id="[+id+]_media">[+media_html+]</div>
-			<a href="[+controller_url+]?fieldname=[+id+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a><br/><br/>';
+			<br class="clear" />
+			<a href="[+controller_url+]?fieldname=[+id+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
+			<br class="clear" />';
 		return self::parse($tpl, $data);
 	}
 
