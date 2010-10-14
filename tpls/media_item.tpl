@@ -1,11 +1,12 @@
 <div id="media-item-[+attachment_id+]">
 
 	<div width="400px">
-		<label for="media-option-[+attachment_id+]">		
-			<span class="title">[+title+]</span>
+		<span class="button" onclick="javascript:send_back_to_wp('[+attachment_id+]','[+preview_html+]')">[+select_label+]</span>
+		<label for="media-option-[+attachment_id+]">
+			[+thumbnail_html+]		
+			<span class="title">[+post_title+]</span>
 		</label>
-		<span class="button" onclick="javascript:update_selection('[+attachment_id+]','[+preview_html+]')">[+select_label+]</span>
-		<span class="toggler" onclick="javascript:toggle_image_detail('media-detail-[+attachment_id+]');">[+show_hide+]</span>
+		<span class="toggler" onclick="javascript:toggle_image_detail('media-detail-[+attachment_id+]');">[+show_hide_label+]</span>
 	</div>
 	
 	<div id="media-detail-[+attachment_id+]" class="media_detail">
@@ -18,10 +19,11 @@
 						</p>
 					</td>
 					<td class="media_info">
-						<p><strong>[+filename_label+]:</strong> [+filename+]</p>
-						<p><strong>[+mime_type_label+]:</strong> [+mime_type+]</p>	
-						<p><strong>[+upload_date_label+]:</strong> [+upload_date+]</p>
+						<p><strong>[+filename_label+]:</strong> [+filename+]<br/>
+						<strong>[+mime_type_label+]:</strong> [+post_mime_type+]<br/>
+						<strong>[+upload_date_label+]:</strong> [+post_modified+]<br/>
 						[+dimensions+]
+						</p>
 						<p><a href='[+attachment_url+]' target="_blank">[+view_original_label+]</a></p>
 					</td>
 				</tr>
