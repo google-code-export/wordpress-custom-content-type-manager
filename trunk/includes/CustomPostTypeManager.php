@@ -6,7 +6,7 @@ in order to function.
 ------------------------------------------------------------------------------*/
 class CustomPostTypeManager
 {	
-	const name = 'Custom Post Type Manager';
+	const name = 'Custom Content Type Manager';
 	
 	// For testing
 	const wp_req_ver = '3.0.1';
@@ -839,7 +839,7 @@ Default: value of public argument',
 			else
 			{
 				$data[$post_type]['custom_fields'] = $_POST['custom_fields'];
-			}					
+			}	
 			update_option( self::db_key, $data );
 			$msg = '<div class="updated">Custom fields for <em>'
 				.$post_type.'</em> have been <strong>updated</strong></p></div>';

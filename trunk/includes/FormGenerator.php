@@ -161,6 +161,8 @@ class FormGenerator
 		if ( !empty($data['value']) )
 		{
 			$data['media_html'] = wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
+			$attachment_obj = get_post($data['value']);
+			$data['media_html'] .= '<span class="formgenerator_label">'.$attachment_obj->post_title.'</span><br/>';
 		}
 		// It's not an image
 		else
@@ -174,11 +176,11 @@ class FormGenerator
 		$data['click_label'] = __('Choose Media');
 		$tpl = '
 			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
-			<input type="text" id="[+id+]" name="[+name+]" value="[+value+]" />
+			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" />
 			<div id="[+id+]_media">[+media_html+]</div>
 			<br class="clear" />
 			<a href="[+controller_url+]?fieldname=[+id+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
-			<br class="clear" />';
+			<br class="clear" /><br/>';
 		return self::parse($tpl, $data);
 	}
 
