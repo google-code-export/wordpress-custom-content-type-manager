@@ -101,7 +101,7 @@ class MediaSelector
 			}
 
 			# Passed via JS, so we gotta prep it.
-			$preview_html .= '<span class="formgenerator_label">'.$r['post_title'].'</span>';
+			$preview_html .= '<span class="formgenerator_label">'.$r['post_title'].'</span><br/>';
 			$preview_html = preg_replace('/"/', "'", $preview_html); 
 			$preview_html = preg_replace("/'/", "\'", $preview_html);
 			$r['preview_html'] = $preview_html;
