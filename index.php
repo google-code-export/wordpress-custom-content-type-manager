@@ -48,8 +48,8 @@ $function_names_used -- add any function names that this plugin declares in the
 $class_names_used -- add any class names that are declared by this plugin.
 ------------------------------------------------------------------------------*/
 $function_names_used = array('print_custom_field');
-$class_names_used = array('CustomPostTypeManager','FormGenerator','StandardizedCustomFields'
-	,'CCTMtests');
+$class_names_used = array('CustomPostTypeManager','FormGenerator'
+	,'StandardizedCustomFields','CCTMtests','MediaSelector');
 $constants_used = array('CUSTOM_CONTENT_TYPE_MGR_PATH','CUSTOM_CONTENT_TYPE_MGR_URL');
 
 $error_items = '';

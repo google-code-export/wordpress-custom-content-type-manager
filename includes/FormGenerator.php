@@ -151,69 +151,37 @@ class FormGenerator
 	a post.
 	------------------------------------------------------------------------------*/
 	private static function _get_media_element($data)
+	{	
+		global $post;
+		
+		$media_html = '';
+
+		// It's an image
+		if (preg_match('/^image/', $post->post_mime_type) )
+		{
+			$data['media_html'] = wp_get_attachment_image( $post->ID, 'thumbnail' );
+		}
+		// It's not an image
+		else
+		{
+			$data['media_html'] = wp_get_attachment_image( $post->ID, 'thumbnail', TRUE );
+		}
+		
+//		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/test.php';
+		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/ajax-media-selector.php';
+		$data['click_label'] = __('Choose Media');
+		$tpl = '<input type="text" id="[+id+]" name="[+name+]" value="[+value+]" />
+			<div id="[+id+]_media">[+media_html+]</div>
+			<a href="[+controller_url+]?fieldname=[+id+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a><br/><br/>';
+		return self::parse($tpl, $data);
+	}
+
+	//------------------------------------------------------------------------------
+	private static function _get_readonly_element($data)
 	{
-		global $wpdb;
-		
-		$content = '<input type="text" id="dicky" name="Choose..." value="" /><br/><a href="'.CUSTOM_CONTENT_TYPE_MGR_URL.'/test.php?" class="thickbox">Test...</a>';
-//		$content = '<input type="text" id="dicky" value="" /><br/><a href="'.CUSTOM_CONTENT_TYPE_MGR_URL.'/ajax-media-selector.php?" class="thickbox">Test...</a>';
-		return $content;
-		$content = '';
-		$content .= sprintf('<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_%s">%s</span>', $data['name'], $data['label']);
-		$content .= sprintf('<input id="%s" name="%s" type="hidden" value="%s"/>'
-			, $data['name'], $data['name'] ,$data['value']);
-		$content .= sprintf('<div id="%s_preview">', $data['id']); 
-		if ( !empty($data['value']) )
-		{
-			$content .= wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
-		}
-		$content .= '</div>';
-
-		$fieldname = $data['name'];
-
-		$avail_post_mime_types = get_available_post_mime_types('attachment');
-		$avail_post_mime_types_cnt = count($avail_post_mime_types);
-		$media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'%s\',\''.$fieldname.'\',\''. CUSTOM_CONTENT_TYPE_MGR_URL.'/media-selector.php\')">%s</span> 
-		%s </li>';
-		$separator = '|';
-		$media_type_list_items = sprintf($media_type_option_tpl,'all',__('All Types'),$separator);
-		
-		$media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'%s\',\''.$fieldname.'\',\''. CUSTOM_CONTENT_TYPE_MGR_URL.'/media-selector.php\')">%s <span class="count">(<span id="image-counter">%s</span>)</span> 
-		%s </li>';
-		
-		$i = 1;
-		// Format the list items for menu...
-		foreach ( $avail_post_mime_types as $mt )
-		{
-			$mt_for_js = preg_replace('#/.*$#', '', $mt);
-			//print $mt_for_js; exit;
-			if ( $i == $avail_post_mime_types_cnt)
-			{
-				$separator = ''; // Special for last one.
-			}
-
-			$query = "SELECT post_status, COUNT( * ) AS num_posts FROM {$wpdb->posts} 
-				WHERE post_type = 'attachment'
-				AND post_mime_type = %s  GROUP BY post_status";
-			$raw_cnt = $wpdb->get_results( $wpdb->prepare( $query, $mt ), ARRAY_A );
-
-			$cnt = $raw_cnt[0]['num_posts'];
-
-			$media_type_list_items .= sprintf($media_type_option_tpl
-				, $mt_for_js
-				, __(ucfirst($mt_for_js))
-				, $cnt
-				, $separator);
-			$i++;
-		}
-
-		$date_options = '<option value="0">Show all dates</option>
-				<option value="201010">October 2010</option>';
-		ob_start();
-    	    include('media_element.php');
-			$content .= ob_get_contents();
-		ob_end_clean();
-
-		return $content;
+		$tpl = '
+		<input type="hidden" name="[+name+]" class="formgenerator_readonly" id="[+name+]" value="[+value+]"[+extra+]/>';
+		return self::parse($tpl, $data);
 	}
 	
 	/*------------------------------------------------------------------------------
@@ -322,6 +290,9 @@ class FormGenerator
 					break;
 				case 'media':
 					$output_this_field .= self::_get_media_element($field_def);
+					break;
+				case 'readonly':
+					$output_this_field .= self::_get_readonly_element($field_def);
 					break;
 				case 'textarea':
 					$output_this_field .= self::_get_textarea_element($field_def);

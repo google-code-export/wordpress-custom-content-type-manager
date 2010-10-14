@@ -15,7 +15,7 @@ include_once('includes/StandardizedCustomFields.php');
 include_once('includes/functions.php');
 include_once('tests/CCTMtests.php');
 
-// Run Tests. TO-DO: rewrite and put these into an admin notice
+// Run Tests.
 CCTMtests::wp_version_gt(CustomPostTypeManager::wp_req_ver);
 CCTMtests::php_version_gt(CustomPostTypeManager::php_req_ver);
 
