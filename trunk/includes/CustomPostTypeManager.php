@@ -832,6 +832,7 @@ Default: value of public argument',
 		// Save data if it was properly submitted
 		if ( !empty($_POST) && check_admin_referer($action_name,$nonce_name) )
 		{
+			$error_flag = FALSE;
 			if (!isset($_POST['custom_fields']))
 			{
 				$data[$post_type]['custom_fields'] = array(); // all custom fields were deleted
@@ -839,10 +840,25 @@ Default: value of public argument',
 			else
 			{
 				$data[$post_type]['custom_fields'] = $_POST['custom_fields'];
-			}	
-			update_option( self::db_key, $data );
-			$msg = '<div class="updated">Custom fields for <em>'
-				.$post_type.'</em> have been <strong>updated</strong></p></div>';
+				foreach ( $data[$post_type]['custom_fields'] as &$cf )
+				{
+					if ( preg_match('/[^a-z_]/i', $cf['name']))
+					{
+						$cf['name'] = preg_replace('/[^a-z_]/','',$cf['name']);
+						$error_flag = TRUE;
+					}
+				}
+			}
+			if ($error_flag)
+			{
+				$msg = '<div class="error">Field names must be URL friendly. A-Z and underscores only! Please review the suggested changes below.</div>';
+			}
+			else
+			{
+				update_option( self::db_key, $data );
+				$msg = '<div class="updated">Custom fields for <em>'
+					.$post_type.'</em> have been <strong>updated</strong></p></div>';			
+			}
 		}	
 	
 		// We want to extract a $def for only THIS content_type's custom_fields
