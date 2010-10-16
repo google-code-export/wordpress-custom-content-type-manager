@@ -1,12 +1,14 @@
 <?php
 /*------------------------------------------------------------------------------
-This is the motor under the hood for the ajax-media-selector.  
+This is the motor under the hood for the post-selector.  
 I'm kinda drawing a blank on what documentation to write here... but that 1989 film
 "Akira" is really one of the best films I've ever seen.  You should check it out.
 ------------------------------------------------------------------------------*/
 class MediaSelector
 {
 
+	// Incoming URL parameters
+	public $post_type;
 	public $post_mime_type;
 	public $fieldname;
 	public $s; // search term
@@ -14,23 +16,34 @@ class MediaSelector
 	public $m;
 	public $mode; // if set, then we cough up AJAX results, otherwise, we cough up a whole page
 
-	private $taxonomies = array(); // taxonomies assigned to 'attachment' post_type
-	private $results_per_page = 10;
 
+	private $Pagination; // Pagination object. See Pagination.php
+	private $taxonomies = array(); // taxonomies assigned to this post_type
+	private $results_per_page = 6;
+
+	private $cnt; // number of search results
 	private $SQL; // store the query here for debugging.
 		
 	// Unfortunately, this isn't EXACTLy what's in the db... but the wp_posts.post_mime_type *begins* with these
 	private $valid_post_mime_types = array( 'image','video','audio','all');
 	
 	
-	private $media_type_option_tpl = '<li><span onclick="javascript:search_media(\'[+mime_type+]\');">[+mime_type_label+] <span class="mime_type_count">([+count+])</span></li>';
+	private $media_type_option_tpl = '<li><span onclick="javascript:search_media(\'[+mime_type+]\');">[+mime_type_label+] <span class="mime_type_count">([+count+])</span> &nbsp;</li>';
 	
 	/*------------------------------------------------------------------------------
 	
 	------------------------------------------------------------------------------*/
 	public function __construct()
 	{
+		
 		$this->_read_inputs(); // sets values from URL	
+
+		$this->Pagination = new Pagination();
+		$offset = $this->Pagination->page_to_offset( $this->page,$this->results_per_page );
+		$this->Pagination->set_offset($offset);
+		$this->Pagination->set_results_per_page( $this->results_per_page );
+
+
 		$output = '';
 		if ( $this->mode )
 		{
@@ -157,16 +170,7 @@ class MediaSelector
 		}
 		return $avail_post_mime_types;
 	}
-
-	/*------------------------------------------------------------------------------
 	
-	------------------------------------------------------------------------------*/
-	private function _get_pagination_links()
-	{
-		return ''; // <p>Pagination links go here...</p>';
-		$results = $this->query_count_results();
-	}
-		
 	
 	/*------------------------------------------------------------------------------
 	Read inputs from the $_GET array.
@@ -313,7 +317,7 @@ class MediaSelector
 		global $wpdb;
 		if ( $use_offset && $this->page )
 		{
-			$offset = $this->page * $this->results_per_page;
+			$offset = ($this->page - 1) * $this->results_per_page;
 			$query = ' OFFSET ' . (int) $offset;
 			return $query;
 		}
@@ -412,7 +416,7 @@ class MediaSelector
 		global $wpdb;
 		
 		$avail_post_mime_types = $this->_get_mime_types_for_listing($filter);
-		
+/* 		print_r($avail_post_mime_types); exit; */
 		$output = '';				
 		
 		// Format the list items for menu...
@@ -539,14 +543,16 @@ class MediaSelector
 	
 	
 	/*------------------------------------------------------------------------------
-	Called if the ajax-media-selector.php page is called via AJAX. Returns options
+	Called if the post-selector.php page is called via AJAX, AND also called manually
+	via PHP the first time the return_iFrame function runs. Returns options
 	for selecting a specific media item
 	------------------------------------------------------------------------------*/
 	public function return_Ajax()
 	{
 		$hash = array();
 		$hash['content'] = $this->query_results();
-		$hash['pagination_links'] = $this->_get_pagination_links();
+		$this->cnt = $this->query_count_results();
+		$hash['pagination_links'] = $this->Pagination->paginate($this->cnt);
 
 		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/items_wrapper.tpl');
 		return $this->parse($tpl, $hash);
@@ -554,24 +560,27 @@ class MediaSelector
 	
 	
 	/*------------------------------------------------------------------------------
-	Called if the ajax-media-selector.php page is loaded in a Thickbox iFrame.
+	Called if the post-selector.php page is loaded in a Thickbox iFrame.
 	------------------------------------------------------------------------------*/
 	public function return_iFrame()
 	{
-
 		$hash = array();
-		$hash['jquery_path'] = '../../../../../wp-includes/js/jquery/jquery.js';
-		$hash['url'] = CUSTOM_CONTENT_TYPE_MGR_URL;
-		$hash['ajax_controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL . '/ajax-media-selector.php';
-		$hash['media_selector_stylesheet'] = CUSTOM_CONTENT_TYPE_MGR_URL . '/css/media_selector.css';
-		$hash['fieldname'] = $this->fieldname;
-		$hash['default_results'] = $this->return_Ajax(); // Default results
-		$hash['default_mime_type'] = $this->post_mime_type;
-		$hash['search_label'] = __('Search');
-		$hash['clear_label'] = __('Reset');
-		$hash['media_type_list_items'] = $this->get_post_mime_type_options($this->post_mime_type);
-		$hash['date_options'] = $this->query_distinct_yearmonth();
+
+		$hash['jquery_path'] 				= '../../../../../wp-includes/js/jquery/jquery.js';
+		$hash['url'] 						= CUSTOM_CONTENT_TYPE_MGR_URL;
+		$hash['ajax_controller_url'] 		= CUSTOM_CONTENT_TYPE_MGR_URL . '/post-selector.php';
+		$hash['media_selector_stylesheet'] 	= CUSTOM_CONTENT_TYPE_MGR_URL . '/css/media_selector.css';
+		$hash['fieldname'] 					= $this->fieldname;
+		$hash['page']						= $this->page;
+		$hash['default_results'] 			= $this->return_Ajax(); // Default results
+		$hash['default_mime_type'] 			= $this->post_mime_type;
+		$hash['search_label'] 				= __('Search');
+		$hash['clear_label'] 				= __('Reset');
+		$hash['media_type_list_items'] 		= $this->get_post_mime_type_options($this->post_mime_type);
+		$hash['date_options'] 				= $this->query_distinct_yearmonth();
+		
 		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/media_selector.tpl');
+
 		return $this->parse($tpl, $hash);
 	}
 	

@@ -3,8 +3,8 @@
 	<div width="400px">
 		<span class="button" onclick="javascript:send_back_to_wp('[+attachment_id+]','[+preview_html+]')">[+select_label+]</span>
 		[+thumbnail_html+]		
-		<span class="title">[+post_title+]</span>
-		<span class="toggler" onclick="javascript:toggle_image_detail('media-detail-[+attachment_id+]');">[+show_hide_label+]</span>
+		<span class="post_selector_title">[+post_title+]</span>
+		<span class="post_selector_toggler" onclick="javascript:toggle_image_detail('media-detail-[+attachment_id+]');">[+show_hide_label+]</span>
 
 	</div>
 	
