@@ -24,6 +24,9 @@ http://xplus3.net/2010/05/20/wp3-custom-post-type-permalinks/
 Attachments in Custom Post Types:
 http://xplus3.net/2010/08/08/archives-for-custom-post-types-in-wordpress/
 
+Taxonomies:
+http://net.tutsplus.com/tutorials/wordpress/introducing-wordpress-3-custom-taxonomies/
+
 Bummer. Trying to use the Media Upload Modal window is tricky:
 http://core.trac.wordpress.org/ticket/11705
 
@@ -32,6 +35,20 @@ http://xplus3.net/2008/11/17/custom-thumbnails-wordpress-plugin/
 
 Error messaging could fail if the user is using pre WP 2.0.11. Unlikely, but possible.
 Not really worth fielding that case though...
+
+TO-DO:
+1. Allow users to add additional custom fields beyond the standardized fields.
+2. Allow "list" fields -- e.g. you define a custom field that's a media type, if 
+you check a box specifying that it's a list, it would allow you to add multiple 
+instances of that field to your post.  That's a LOT trickier than what I'm doing 
+now, but I think my architecture is sensible enough to support it.
+3. Enable the taxonomy filtering in the media browser... I could also do an 
+author filter and any other way you might want to sort image results.
+4. Oh yeah... pagination.  I built a spot for that, but haven't plugged it in 
+yet.
+5. Additional tests
+6. Complete internationalization / localization
+
 ------------------------------------------------------------------------------*/
 
 
@@ -47,7 +64,7 @@ $function_names_used -- add any function names that this plugin declares in the
 
 $class_names_used -- add any class names that are declared by this plugin.
 ------------------------------------------------------------------------------*/
-$function_names_used = array('print_custom_field');
+$function_names_used = array('get_custom_field','print_custom_field');
 $class_names_used = array('CustomPostTypeManager','FormGenerator'
 	,'StandardizedCustomFields','CCTMtests','MediaSelector');
 $constants_used = array('CUSTOM_CONTENT_TYPE_MGR_PATH','CUSTOM_CONTENT_TYPE_MGR_URL');

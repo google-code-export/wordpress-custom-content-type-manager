@@ -8,6 +8,12 @@
 	
 
 	<script type="text/javascript">
+
+		function change_page(new_page)
+		{
+			jQuery("#post_selector_page").val(new_page);
+			search_media("[+default_mime_type+]");
+		}
 	
 		/*------------------------------------------------------------------------------
 		Clears the search form
@@ -36,7 +42,8 @@
 		{
 			var search_term = jQuery("#media_search_term").val();
 			var yyyymm = jQuery("#m").val();
-			jQuery.get("[+ajax_controller_url+]", { "mode":"query", "s":search_term,"fieldname":"[+fieldname+]","post_mime_type":mime_type,"m":yyyymm }, write_results_to_page);
+			var page = jQuery("#post_selector_page").val();
+			jQuery.get("[+ajax_controller_url+]", { "mode":"query", "s":search_term,"fieldname":"[+fieldname+]","post_mime_type":mime_type,"m":yyyymm,"page":page }, write_results_to_page);
 			console.log('[+fieldname+]');
 		}
 
@@ -78,6 +85,8 @@
 
 </head>
 <body>
+<!-- Global variables, used by search_media JS function for persistent storage -->
+<input type="hidden" id="post_selector_page" value="[+page+]" />
 
 <div id="[+div_id+]">
 	<p id="media-search-term-box" class="search-box">
@@ -86,7 +95,7 @@
 		<span class="button" onclick="javascript:clear_search();">[+clear_label+]</span>
 	</p>
 	
-	<h2>Narrow Results</h2>
+	<h3>Narrow Results</h3>
 	<ul class="subsubsub">
 		[+media_type_list_items+]
 	</ul>

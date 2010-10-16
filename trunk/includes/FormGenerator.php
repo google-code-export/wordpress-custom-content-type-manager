@@ -172,7 +172,7 @@ class FormGenerator
 		}
 		
 //		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/test.php';
-		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/ajax-media-selector.php';
+		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';
 		$data['click_label'] = __('Choose Media');
 		$tpl = '
 			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
