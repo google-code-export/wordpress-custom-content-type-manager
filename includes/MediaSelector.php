@@ -417,13 +417,19 @@ class MediaSelector
 		
 		$avail_post_mime_types = $this->_get_mime_types_for_listing($filter);
 /* 		print_r($avail_post_mime_types); exit; */
+		// Change complex mime_types (e.g. image/tiff) to simple, e.g. "image"
+		foreach ( $avail_post_mime_types as &$mt)
+		{
+			$mt = preg_replace('#/.*$#', '', $mt);
+		}
+		$avail_post_mime_types = array_unique($avail_post_mime_types);
+/* 		print_r($avail_post_mime_types); exit;		 */
 		$output = '';				
 		
 		// Format the list items for menu...
 		foreach ( $avail_post_mime_types as $mt )
 		{
-			// Change complex mime_types (e.g. image/tiff) to simple, e.g. "image"
-			$hash['mime_type'] 			= preg_replace('#/.*$#', '', $mt);
+			$hash['mime_type'] 			= $mt;
 			$hash['mime_type_label']	= __(ucfirst($hash['mime_type']));
 			$hash['count'] 				= $this->_count_posts_this_mime_type($mt);
 			$output .= $this->parse($this->media_type_option_tpl, $hash);

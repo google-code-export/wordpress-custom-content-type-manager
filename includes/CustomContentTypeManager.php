@@ -4,14 +4,15 @@ This class handles the creation and management of custom post types.  It
 requires the FormGenerator.php and the StandardizedCustomFields.php files
 in order to function.
 ------------------------------------------------------------------------------*/
-class CustomPostTypeManager
+class CustomContentTypeManager
 {	
 	const name = 'Custom Content Type Manager';
 	
-	// For testing
-	const wp_req_ver = '3.0.1';
-	const php_req_ver = '5.2.6';
-	
+	// Required versions.
+	const wp_req_ver 	= '3.0.1';
+	const php_req_ver 	= '5.2.6';
+	const mysql_req_ver = '5.0.41';
+
 	// Used to uniquely identify an option_name in the wp_options table 
 	// ALL data describing the post types and their custom fields lives there.
 	const db_key 	= 'custom_content_types_mgr_data';
@@ -53,7 +54,7 @@ class CustomPostTypeManager
 			'label'			=> 'Singular Label',
 			'value'			=> '',
 			'extra'			=> '',
-			'description'	=> 'Human readable single instance of this post type, e.g. "Post"',	
+			'description'	=> 'Human readable single instance of this content type, e.g. "Post"',	
 			'type'			=> 'text',
 			'sort_param'	=> 2,
 		),
@@ -581,11 +582,11 @@ Default: value of public argument',
 			. file_get_contents( self::get_basepath() .'/css/create_or_edit_post_type.css' ) 
 			. '</style>';
 
-		$page_header 	= __('Create Custom Post Type');
+		$page_header 	= __('Create Custom Content Type');
 		$fields			= '';
 		$action_name 	= 'custom_content_type_mgr_create_new_content_type';
 		$nonce_name 	= 'custom_content_type_mgr_create_new_content_type_nonce';
-		$submit 		= __('Create New Post Type');
+		$submit 		= __('Create New Content Type');
 		$msg 			= ''; 	
 		
 		$def = self::$post_type_form_definition;
@@ -601,7 +602,7 @@ Default: value of public argument',
 				self::_save_post_type_settings($sanitized_vals);
 				$msg = '
 				<div class="updated">
-					<p>The post type <em>'.$sanitized_vals['post_type'].'</em> has been created</p>
+					<p>The content type <em>'.$sanitized_vals['post_type'].'</em> has been created</p>
 				</div>';
 				self::_page_show_all_post_types($msg);
 				return;
@@ -638,7 +639,7 @@ Default: value of public argument',
 		}
 		// Variables for our template
 		$style			= '';
-		$page_header = __('Deactivate Post Type') . ' '. $post_type;
+		$page_header = __('Deactivate Content Type') . ' '. $post_type;
 		$fields			= '';
 		$action_name 	= 'custom_content_type_mgr_deactivate_content_type';
 		$nonce_name 	= 'custom_content_type_mgr_deactivate_content_type_nonce';
@@ -699,7 +700,7 @@ Default: value of public argument',
 
 		// Variables for our template
 		$style			= '';
-		$page_header = __('Delete Post Type: ') . ' '. $post_type;
+		$page_header = __('Delete Content Type: ') . ' '. $post_type;
 		$fields			= '';
 		$action_name = 'custom_content_type_mgr_delete_content_type';
 		$nonce_name = 'custom_content_type_mgr_delete_content_type_nonce';
@@ -760,7 +761,7 @@ Default: value of public argument',
 		$style			= '<style>'
 			. file_get_contents( self::get_basepath() .'/css/create_or_edit_post_type_class.css' ) 
 			. '</style>';
-		$page_header 	= __('Edit Post Type: ') . $post_type;
+		$page_header 	= __('Edit Content Type: ') . $post_type;
 		$fields			= '';
 		$action_name = 'custom_content_type_mgr_edit_content_type';
 		$nonce_name = 'custom_content_type_mgr_edit_content_type_nonce';
@@ -1279,15 +1280,15 @@ Default: value of public argument',
 		// $E = new WP_Error();
 		// include('errors.php');
 		// self::$Errors = $E;
-		wp_register_script('CustomPostTypeManager_js'
+		wp_register_script('CustomContentTypeManager_js'
 			, CUSTOM_CONTENT_TYPE_MGR_URL .'/js/admin.js');
-		wp_register_style('CustomPostTypeManager_class'
+		wp_register_style('CustomContentTypeManager_class'
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type_class.css');
-		wp_register_style('CustomPostTypeManager_gui'
+		wp_register_style('CustomContentTypeManager_gui'
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type.css');
-		wp_enqueue_script('CustomPostTypeManager_js');
-		wp_enqueue_style('CustomPostTypeManager_class');
-		wp_enqueue_style('CustomPostTypeManager_gui');		
+		wp_enqueue_script('CustomContentTypeManager_js');
+		wp_enqueue_style('CustomContentTypeManager_class');
+		wp_enqueue_style('CustomContentTypeManager_gui');		
 	}
 	
 	/*------------------------------------------------------------------------------
@@ -1328,11 +1329,11 @@ Default: value of public argument',
 	public static function create_admin_menu()
 	 {
 		add_options_page(
-			'Custom Post Types',					// page title
-			'Custom Post Types',	 				// menu title
+			'Custom Content Types',					// page title
+			'Custom Content Types',	 				// menu title
 			'manage_options', 						// capability
 			self::admin_menu_slug, 					// menu-slug (should be unique)
-			'CustomPostTypeManager::page_main_controller'	// callback function
+			'CustomContentTypeManager::page_main_controller'	// callback function
 		);
 	}
 	
@@ -1352,7 +1353,7 @@ Default: value of public argument',
 				$error_items .= "<li>$e</li>";
 			}
 			print '<div id="custom-post-type-manager-warning" class="error"><p><strong>'
-			.__('The &quot;Custom Post Type Manager&quot; plugin encountered errors! It cannot load!')
+			.__('The &quot;Custom Content Type Manager&quot; plugin encountered errors! It cannot load!')
 			.'</strong> '
 			."<ul style='margin-left:30px;'>$error_items</ul>"
 			.'</p>'
@@ -1389,7 +1390,7 @@ $def = Array
     'menu_position' => '10',
     'menu_icon' => '', 
     'custom_content_type_mgr_create_new_content_type_nonce' => 'd385da6ba3',
-    'Submit' => 'Create New Post Type',
+    'Submit' => 'Create New Content Type',
     'show_in_nav_menus' => '', 
     'can_export' => '', 
     'is_active' => 1,

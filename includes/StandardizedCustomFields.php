@@ -148,7 +148,7 @@ class StandardizedCustomFields
 	------------------------------------------------------------------------------*/
 	private static function _get_active_content_types()
 	{
-		$data = get_option( CustomPostTypeManager::db_key );
+		$data = get_option( CustomContentTypeManager::db_key );
 		if ( !empty($data) && is_array($data) )
 		{
 			$known_post_types = array_keys($data);
@@ -177,7 +177,7 @@ class StandardizedCustomFields
 	------------------------------------------------------------------------------*/
 	private static function _get_custom_fields($content_type)
 	{
-		$data = get_option( CustomPostTypeManager::db_key );
+		$data = get_option( CustomContentTypeManager::db_key );
 		if (isset($data[$content_type]['custom_fields']))
 		{
 			return $data[$content_type]['custom_fields'];
@@ -249,10 +249,10 @@ class StandardizedCustomFields
 		{
 			global $post;
 			$post_type = $post->post_type;
-			print '<p>Custom fields can be added and configured using the '.CustomPostTypeManager::name . ' <a href="options-general.php?page='
-			.CustomPostTypeManager::admin_menu_slug.'&'
-			.CustomPostTypeManager::action_param.'=4&'
-			.CustomPostTypeManager::post_type_param.'='.$post_type.'">Settings Page</a></p>';
+			print '<p>Custom fields can be added and configured using the '.CustomContentTypeManager::name . ' <a href="options-general.php?page='
+			.CustomContentTypeManager::admin_menu_slug.'&'
+			.CustomContentTypeManager::action_param.'=4&'
+			.CustomContentTypeManager::post_type_param.'='.$post_type.'">Settings Page</a></p>';
 			return;
 		}
 		
