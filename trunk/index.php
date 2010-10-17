@@ -1,54 +1,11 @@
 <?php
 /*------------------------------------------------------------------------------
 Plugin Name: Custom Content Type Manager
-Description: Allows WordPress 3.x users to create, extend, and manage custom content types (a.k.a. post types) like a true CMS. You can define and standardize custom fields for any content type, including checkboxes, textareas, dropdowns, WYSIWYG editor fields, and media fields (allowing you to add an image, video, or audio clip).
+Description: Allows users to create custom content types (also known as post types) and standardize custom fields for each content type, including dropdowns, checkboxes, and images. This gives WordPress CMS functionality making it easier to use WP for eCommerce or content-driven sites.
 Author: Everett Griffiths
 Version: 0.7.9
 Author URI: http://www.fireproofsocks.com/
 Plugin URI: http://tipsfor.us/plugins/custom-content-type-manager/
-
-About:
-This plugin is similar to the "Custom-Post Type UI" plugin written by Brad Williams:
-http://wordpress.org/extend/plugins/custom-post-type-ui/
-but this plugin stores data differently in the database and allows for different input types 
-(e.g. checkboxes and dropdowns).
-
-See also:
-http://kovshenin.com/archives/extending-custom-post-types-in-wordpress-3-0/
-http://axcoto.com/blog/article/307
-
-TO-DO items:
-Permalinks in Custom Post Types:
-http://xplus3.net/2010/05/20/wp3-custom-post-type-permalinks/
-
-Attachments in Custom Post Types:
-http://xplus3.net/2010/08/08/archives-for-custom-post-types-in-wordpress/
-
-Taxonomies:
-http://net.tutsplus.com/tutorials/wordpress/introducing-wordpress-3-custom-taxonomies/
-
-Bummer. Trying to use the Media Upload Modal window is tricky:
-http://core.trac.wordpress.org/ticket/11705
-
-Editing Attachments
-http://xplus3.net/2008/11/17/custom-thumbnails-wordpress-plugin/
-
-Error messaging could fail if the user is using pre WP 2.0.11. Unlikely, but possible.
-Not really worth fielding that case though...
-
-TO-DO:
-1. Allow users to add additional custom fields beyond the standardized fields.
-2. Allow "list" fields -- e.g. you define a custom field that's a media type, if 
-you check a box specifying that it's a list, it would allow you to add multiple 
-instances of that field to your post.  That's a LOT trickier than what I'm doing 
-now, but I think my architecture is sensible enough to support it.
-3. Enable the taxonomy filtering in the media browser... I could also do an 
-author filter and any other way you might want to sort image results.
-4. Oh yeah... pagination.  I built a spot for that, but haven't plugged it in 
-yet.
-5. Additional tests
-6. Complete internationalization / localization
-
 ------------------------------------------------------------------------------*/
 
 
