@@ -17,6 +17,9 @@ INPUT:
 		Manage Custom Fields area for a particular content type.
 OUTPUT:
 	The contents of that custom field for the current post.
+
+See also 	
+http://codex.wordpress.org/Function_Reference/get_post_custom_values
 ------------------------------------------------------------------------------*/
 function get_custom_field($fieldname)
 {
@@ -25,24 +28,6 @@ function get_custom_field($fieldname)
 	return get_post_meta($post_id, $fieldname, true);
 }
 
-
-/*------------------------------------------------------------------------------
-SYNOPSIS: Used inside theme files, e.g. single.php or single-my_post_type.php
-where you need to print out the value of a specific custom field.
-
-This prints the 1st instance of the meta_key identified by $fieldname 
-associated with the current post. See get_post_meta() for more details.
-
-INPUT: 
-	$fieldname (str) the name of the custom field as defined inside the 
-		Manage Custom Fields area for a particular content type.
-OUTPUT:
-	The contents of that custom field for the current post.
-------------------------------------------------------------------------------*/
-function print_custom_field($fieldname)
-{
-	print get_custom_field($fieldname);
-}
 
 
 /*------------------------------------------------------------------------------
@@ -86,7 +71,7 @@ function get_all_fields_of_type($type)
 		}		
 	}
 	
-	print_r($values);
+	return $values;
 
 }
 
@@ -159,4 +144,142 @@ function get_posts_by_taxonomy_term($taxonomy, $slug, $limit = FALSE)
 //	$results = query_posts( array( $taxonomy => $slug, 'posts_per_page' => $limit ) );
 	return $results;
 }
+
+/*------------------------------------------------------------------------------
+Retrieves a complete post object, including all meta fields.
+Ah... get_post_custom() will treat each custom field as an array, because in WP
+you can tie multiple rows of data to the same fieldname.
+
+At the end of this, I want a post object that can work like this:
+
+print $post->post_title;
+print $post->my_custom_field; // no $post->my_custom_fields[0];
+
+and if the custom field *is* a list of items, then attach it as such.
+------------------------------------------------------------------------------*/
+function get_post_complete($id)
+{
+	$complete_post = get_post($id, OBJECT);
+	if ( empty($complete_post) )
+	{
+		return array();
+	}
+	$custom_fields = get_post_custom($id);
+	if (empty($custom_fields))
+	{
+		return $complete_post;
+	}
+	foreach ( $custom_fields as $fieldname => $value )
+	{
+		if ( count($value) == 1 )
+		{
+			$complete_post->$fieldname = $value[0];
+		}
+		else
+		{
+			$complete_post->$fieldname = $value[0];		
+		}
+	}
+	
+	return $complete_post;	
+}
+
+
+/*------------------------------------------------------------------------------
+Returns an array of post "complete" objects (including all custom fields)
+where the custom fieldname = $fieldname and the value of that field is $value.
+
+USAGE:
+	One example:
+	$posts = get_posts_sharing_custom_field_value('genre', 'comedy');
+	
+	foreach ($posts as $p)
+	{
+		print $p->post_title;
+	}
+
+This is a hefty, db-intensive function... (bummer).
+------------------------------------------------------------------------------*/
+function get_posts_sharing_custom_field_value($fieldname, $value)
+{
+	global $wpdb;
+	$query = "SELECT DISTINCT {$wpdb->posts}.ID 
+		FROM {$wpdb->posts} JOIN {$wpdb->postmeta} ON {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id  
+		WHERE 
+		{$wpdb->posts}.post_status = 'publish'
+		AND {$wpdb->postmeta}.meta_key=%s AND {$wpdb->postmeta}.meta_value=%s";
+	$results = $wpdb->get_results( $wpdb->prepare( $query, $fieldname, $value ), OBJECT );
+	
+	$completes = array();
+	foreach ( $results as $p )
+	{
+		$completes[] = get_post_complete($p->ID);
+	}
+	return $completes;
+}
+
+
+/*------------------------------------------------------------------------------
+A relation field stores a post ID, so given a fieldname, this returns the complete
+post object for that 
+------------------------------------------------------------------------------*/
+function get_relation($fieldname)
+{
+	return get_post_complete( get_custom_field($fieldname) );
+}
+
+/*------------------------------------------------------------------------------
+Given a specific custom field name ($fieldname), return an array of all unique
+values contained in this field. This does not account for random custom fields
+not defined as a "standardized" custom field. Likewise, it does not care which 
+post types are making use of a particular custom field name so long as the
+posts are published.
+
+This filters out empty values ('' or null). 
+
+USAGE:
+	$array = get_unique_values_this_custom_field('favorite_cartoon');
+	print_r($array);
+		Array ( 'Family Guy', 'South Park' );
+------------------------------------------------------------------------------*/
+function get_unique_values_this_custom_field($fieldname)
+{
+	global $wpdb;
+	$query = "SELECT DISTINCT {$wpdb->postmeta}.meta_value 
+		FROM {$wpdb->postmeta} JOIN {$wpdb->posts} ON {$wpdb->postmeta}.post_id = {$wpdb->posts}.ID
+		WHERE {$wpdb->postmeta}.meta_key=%s 
+		AND {$wpdb->postmeta}.meta_value !=''
+		AND {$wpdb->posts}.post_status = 'publish'";
+	$results = $wpdb->get_results( $wpdb->prepare($query, $fieldname), ARRAY_N );	
+	// Repackage
+	$uniques = array();
+	foreach ($results as $r )
+	{
+		$uniques[] = $r[0];
+	}
+	
+	return $uniques;
+}
+
+
+
+/*------------------------------------------------------------------------------
+SYNOPSIS: Used inside theme files, e.g. single.php or single-my_post_type.php
+where you need to print out the value of a specific custom field.
+
+This prints the 1st instance of the meta_key identified by $fieldname 
+associated with the current post. See get_post_meta() for more details.
+
+INPUT: 
+	$fieldname (str) the name of the custom field as defined inside the 
+		Manage Custom Fields area for a particular content type.
+OUTPUT:
+	The contents of that custom field for the current post.
+------------------------------------------------------------------------------*/
+function print_custom_field($fieldname)
+{
+	print get_custom_field($fieldname);
+}
+
+
 /*EOF*/
