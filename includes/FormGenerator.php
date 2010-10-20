@@ -208,7 +208,7 @@ class FormGenerator
 		{
 			$query = "SELECT * FROM {$wpdb->posts} WHERE ID = %s";
 			$relation_post = $wpdb->get_results( $wpdb->prepare( $query, $data['value'] ), OBJECT );
-			$data['preview_html'] .= '<span class="formgenerator_label">'.$relation_post->post_title.'</span><br/>';
+			$data['preview_html'] = '<span class="formgenerator_label">'.$relation_post[0]->post_title.'</span><br/>';
 		}
 		
 		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';

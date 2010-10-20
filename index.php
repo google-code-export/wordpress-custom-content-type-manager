@@ -21,7 +21,9 @@ $function_names_used -- add any function names that this plugin declares in the
 
 $class_names_used -- add any class names that are declared by this plugin.
 ------------------------------------------------------------------------------*/
-$function_names_used = array('get_custom_field','print_custom_field');
+$function_names_used = array('get_custom_field','get_all_fields_of_type'
+	,'get_posts_by_taxonomy_term','get_post_complete','get_posts_sharing_custom_field_value'
+	,'get_relation','get_unique_values_this_custom_field','print_custom_field');
 $class_names_used = array('CustomPostTypeManager','FormGenerator'
 	,'StandardizedCustomFields','CCTMtests','MediaSelector');
 $constants_used = array('CUSTOM_CONTENT_TYPE_MGR_PATH','CUSTOM_CONTENT_TYPE_MGR_URL');
