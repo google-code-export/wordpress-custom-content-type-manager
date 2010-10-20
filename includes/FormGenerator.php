@@ -194,6 +194,7 @@ class FormGenerator
 	A "relation" stores a post ID (i.e. a relation to wp_posts.ID).  In that sense,
 	it is exactly the same as the media element, except instead of querying wp_posts
 	where post_type='attachment', this lets you query any post_type.
+	The $data['option'] value stores the post_type to use for this relation.
 	------------------------------------------------------------------------------*/
 	private static function _get_relation_element($data)
 	{
@@ -217,7 +218,7 @@ class FormGenerator
 			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" />
 			<div id="[+id+]_media">[+preview_html+]</div>
 			<br class="clear" />
-			<a href="[+controller_url+]?fieldname=[+id+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
+			<a href="[+controller_url+]?fieldname=[+id+]&post_type=[+option+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
 			<br class="clear" /><br/>';
 		return self::parse($tpl, $data);
 	}

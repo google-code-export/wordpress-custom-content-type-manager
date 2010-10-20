@@ -431,7 +431,7 @@ Default: value of public argument',
 			<div id="generated_form_number_'.self::$def_i.'">';
 			
 			FormGenerator::$after_elements = '
-				<span class="button custom_content_type_mgr_remove" onClick="javascript:removeDiv(this.parentNode.id);">Remove This Field</span>
+				<span class="button custom_content_type_mgr_remove" onClick="javascript:removeDiv(this.parentNode.id);">'.__('Remove This Field').'</span>
 				<hr/>
 			</div>';
 			
@@ -464,7 +464,7 @@ Default: value of public argument',
 		
 		FormGenerator::$before_elements = '<div id="generated_form_number_\'+def_i+\'">';
 		FormGenerator::$after_elements = '
-			<a class="button" href="#" onClick="javascript:removeDiv(this.parentNode.id);">Remove This Field</a>
+			<a class="button" href="#" onClick="javascript:removeDiv(this.parentNode.id);">'.__('Remove This Field').'</a>
 			<hr/>
 		</div>';
 		
@@ -853,6 +853,7 @@ Default: value of public argument',
 					}
 					if ( strlen($cf['name']) > 20 )
 					{
+						$cf['name'] = substr($cf['name'], 0 , 20);
 						$error_flag = TRUE;
 					}
 				}
@@ -885,11 +886,11 @@ Default: value of public argument',
 		
 		if (!$def_cnt)
 		{
-			$msg .= '<div class="updated">The <em>'.$post_type.'</em> post type does not have any custom fields yet. Click the button above to add a custom field.</p></div>';
+			$msg .= '<div class="updated">The <em>'.$post_type.'</em> post type does not have any custom fields yet. Click the button above to add a custom field.</div>';
 		}
 
 		$fields = self::_get_html_field_defs($def);
-
+		//print_r($def); exit; 
 		// Gets a form definition ready for use inside of a JS variable
 		$new_field_def_js = self::_get_javascript_field_defs();
 		
@@ -1337,13 +1338,10 @@ Default: value of public argument',
 		// $E = new WP_Error();
 		// include('errors.php');
 		// self::$Errors = $E;
-//		wp_register_script('CustomContentTypeManager_js'
-//			, CUSTOM_CONTENT_TYPE_MGR_URL .'/js/admin.js');
 		wp_register_style('CustomContentTypeManager_class'
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type_class.css');
 		wp_register_style('CustomContentTypeManager_gui'
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type.css');
-//		wp_enqueue_script('CustomContentTypeManager_js');
 		wp_enqueue_style('CustomContentTypeManager_class');
 		wp_enqueue_style('CustomContentTypeManager_gui');	
 		// Hand-holding

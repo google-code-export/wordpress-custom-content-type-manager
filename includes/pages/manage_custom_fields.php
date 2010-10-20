@@ -65,21 +65,33 @@
 		- If any other input type is selected, the options div is removed (deleted). 
 	------------------------------------------------------------------------------*/
 	function addRemoveDropdown(container_id,inputType, i)
-	{
+	{	
+		var specialDivId = container_id + '_extraspecial';
+	
 		if ( inputType == 'dropdown' )
 		{
-			var dropdownDivId = container_id + '_dropdown';
-			var dropdownHtml = '<div id="'+dropdownDivId+'">' + 
+			
+			var dropdownHtml = '<div id="'+specialDivId+'">' + 
 				'<strong>Dropdown Options</strong> ' +
 				'<span class="button" onclick="javascript:addDropdownOption(this.parentNode.id, '+i+')">Add Option</span>' +
 				'</div>';
 			jQuery('#'+ container_id).append(dropdownHtml);
-			addDropdownOption(dropdownDivId, i);
-
+			addDropdownOption(specialDivId, i);
 		}
+/*
+		else if ( inputType == 'relation' )
+		{
+			jQuery('#'+ specialDivId).remove();
+			var specialDivId = container_id + '_extraspecial';
+			var relationHtml = '<div id="'+specialDivId+'">' + 
+				'Post Type: <input type="text" name="custom_fields['+i+'][options][]" value="" /><br/><p><em>Leave blank if you want to search through all post_types</em></p>' +
+				'</div>';
+			jQuery('#'+ container_id).append(relationHtml);
+		}
+*/
 		else
 		{
-			jQuery('#'+ container_id + '_dropdown').remove();
+			jQuery('#'+ specialDivId).remove();
 		}
 	}
 	
@@ -114,7 +126,7 @@
 
 <div class="wrap">
 	<?php screen_icon(); ?>
-	<h2><?php print $post_type; ?>: Custom Fields <a href="#" class="button" onClick="javascript:addFieldDefinition();">Add Custom Field</a></h2>
+	<h2><?php print $post_type; ?>: <?php _e('Custom Fields');?> <a href="#" class="button" onClick="javascript:addFieldDefinition();"><?php _e('Add Custom Field'); ?></a></h2>
 	
 	<?php print $msg; ?>
 
@@ -129,8 +141,8 @@
 <br/>
 
 		<div class="custom_content_type_mgr_form_controls">
-			<input type="submit" name="Submit" class="button-primary" value="Save Changes" />  
-			<a class="button" href="?page=<?php print self::admin_menu_slug;?>">Done</a> 
+			<input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes'); ?>" />  
+			<a class="button" href="?page=<?php print self::admin_menu_slug;?>"><?php _e('Done'); ?></a> 
 		</div>
 	</form>
 </div>
