@@ -4,7 +4,7 @@ This is the motor under the hood for the post-selector.
 I'm kinda drawing a blank on what documentation to write here... but that 1989 film
 "Akira" is really one of the best films I've ever seen.  You should check it out.
 ------------------------------------------------------------------------------*/
-class MediaSelector
+class PostSelector
 {
 
 	// Incoming URL parameters
@@ -82,61 +82,127 @@ class MediaSelector
 			return (int) $raw_cnt[0]['num_posts'];
 		}
 	}
-	
+
+
 	/*------------------------------------------------------------------------------
-	
+	This formats all post-types (no image previews, just title and stuff).
+	$hash['post_id'] = '';
+	$hash['preview_html'] = '';
+	$hash['select_label'] = '';
+	$hash['thumbnail_html'] = '';
+	$hash['post_title'] = '';
+	$hash['show_hide_label'] = '';
+	$hash['detail_image'] = '';
+	$hash['details'] = '';
+	$hash['original_post_url'] = '';
+	$hash['view_original_label'] = '';
 	------------------------------------------------------------------------------*/
-	private function _format_search_results($results)
+	private function _format_results($results)
 	{
 		$output = '';
 		
-		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/media_item.tpl');
+		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/single_item.tpl');
+
 		foreach ( $results as $r )
 		{
-			if (preg_match('/^image/', $r['post_mime_type']) )
+			if ( $r['post_type'] == 'attachment' )
 			{
-				list($src, $w, $h) = wp_get_attachment_image_src( $r['attachment_id'], 'thumbnail');
-				$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
-					, $src);
-				$r['medium_html'] = wp_get_attachment_image( $r['attachment_id'], 'medium' );
-				$preview_html = wp_get_attachment_image( $r['attachment_id'], 'thumbnail' );
-				list($src, $full_w, $full_h) = wp_get_attachment_image_src( $r['attachment_id'], 'full');
-				$r['dimensions'] = '<strong>'.__('Dimensions').':</strong> <span id="media-dims-'. $r['attachment_id'] .'">'.$full_w.'&nbsp;&times;&nbsp;'.$full_h.'</span><br/>';
-				}
-			// It's not an image
+				$r = $this->_format_attachment_result($r);
+			}
 			else
 			{
-				list($src, $w, $h) = wp_get_attachment_image_src( $r['attachment_id'], 'thumbnail', TRUE);
-				$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
-					, $src);
-				$r['medium_html'] = wp_get_attachment_image( $r['attachment_id'], 'medium', TRUE );
-				$preview_html = wp_get_attachment_image($r['attachment_id'], 'thumbnail', TRUE );
+				$r = $this->_format_result($r);			
 			}
-
-			# Passed via JS, so we gotta prep it.
-			$preview_html .= '<span class="formgenerator_label">'.$r['post_title'].'</span><br/>';
-			$preview_html = preg_replace('/"/', "'", $preview_html); 
-			$preview_html = preg_replace("/'/", "\'", $preview_html);
-			$r['preview_html'] = $preview_html;
-			
-			preg_match('#.*/(.*)$#', $r['attachment_url'], $matches);
-			
-			$r['filename'] = $matches[1];
-		
-			$r['select_label'] 		= __('Select');
-			$r['show_hide_label'] 	= __('Show / Hide');
-			
-			$r['filename_label'] 	= __('Filename');
-			$r['mime_type_label'] 	= __('File Type');
-			$r['view_original_label'] = __('View Original');
-			$r['upload_date_label']	= __('Date Uploaded');
 
 			$output .= $this->parse($tpl, $r);
 		}
 		
 		return $output;
 	}
+
+
+	/*------------------------------------------------------------------------------
+	Formats attachment posts
+	------------------------------------------------------------------------------*/
+	private function _format_attachment_result($r)
+	{
+		if (preg_match('/^image/', $r['post_mime_type']) )
+		{
+			list($src, $w, $h) = wp_get_attachment_image_src( $r['post_id'], 'thumbnail');
+			$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
+				, $src);
+			$r['detail_image'] = wp_get_attachment_image( $r['post_id'], 'medium' );
+			$preview_html = wp_get_attachment_image( $r['post_id'], 'thumbnail' );
+			list($src, $full_w, $full_h) = wp_get_attachment_image_src( $r['post_id'], 'full');
+			$r['dimensions'] = '<strong>'.__('Dimensions').':</strong> <span id="media-dims-'. $r['post_id'] .'">'.$full_w.'&nbsp;&times;&nbsp;'.$full_h.'</span><br/>';
+			}
+		// It's not an image
+		else
+		{
+			list($src, $w, $h) = wp_get_attachment_image_src( $r['post_id'], 'thumbnail', TRUE);
+			$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
+				, $src);
+			$r['detail_image'] = wp_get_attachment_image( $r['post_id'], 'medium', TRUE );
+			$preview_html = wp_get_attachment_image($r['post_id'], 'thumbnail', TRUE );
+			$r['dimensions'] = '';
+		}
+
+		# Passed via JS, so we gotta prep it.
+		$preview_html .= '<span class="formgenerator_label">'.$r['post_title'].'</span><br/>';
+		$preview_html = preg_replace('/"/', "'", $preview_html); 
+		$preview_html = preg_replace("/'/", "\'", $preview_html);
+		$r['preview_html'] = $preview_html;
+		
+		preg_match('#.*/(.*)$#', $r['original_post_url'], $matches);
+		
+		
+		
+		$r['filename'] = $matches[1];
+				
+		$r['select_label'] 		= __('Select');
+		$r['show_hide_label'] 	= __('Show / Hide');			
+
+		$r['view_original_label'] = __('View Original');
+
+
+		$r['details'] = '<strong>'.__('Filename').':</strong> '.$r['filename'].'<br/>
+					<strong>'.__('File Type').':</strong> '.$r['post_mime_type'].'<br/>
+					<strong>'.__('Date Uploaded').':</strong> '.$r['post_modified'].'<br/>'
+					. $r['dimensions'];
+
+		return $r;
+
+	}
 	
+	/*------------------------------------------------------------------------------
+	Formats individual posts (all but attachments)
+	------------------------------------------------------------------------------*/
+	private function _format_result($r)
+	{
+		list($src, $w, $h) = wp_get_attachment_image_src( $r['post_id'], 'thumbnail', TRUE);
+		$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
+				, $src);
+		$r['detail_image'] = wp_get_attachment_image( $r['post_id'], 'medium' );
+
+		# Passed via JS, so we gotta prep it.
+		$preview_html = '<span class="formgenerator_label">'.$r['post_title'].'</span><br/>';
+		$preview_html = preg_replace('/"/', "'", $preview_html); 
+		$preview_html = preg_replace("/'/", "\'", $preview_html);
+		$r['preview_html'] = $preview_html;
+				
+		$r['select_label'] 		= __('Select');
+		$r['show_hide_label'] 	= __('Show / Hide');			
+
+		$r['mime_type_label'] 	= __('File Type');
+		$r['view_original_label'] = __('View Original');
+		$r['upload_date_label']	= __('Date Uploaded');
+
+		$r['details'] = '<strong>'.__('Title').':</strong> '.$r['post_title'].'<br/>
+					<strong>'.__('Excerpt').':</strong> '.$r['post_excerpt'].'<br/>
+					<strong>'.__('Modified').':</strong> '.$r['post_modified'];
+		return $r;
+	
+	}
 	
 	/*------------------------------------------------------------------------------
 	
@@ -177,6 +243,16 @@ class MediaSelector
 	------------------------------------------------------------------------------*/
 	private function _read_inputs()
 	{
+		// Which post types will we be searching for?
+		if ( isset($_GET['post_type']) && !empty($_GET['post_type']) )
+		{
+			if ( preg_match('/[^a-z_\-]/i', $_GET['post_type']) )
+			{
+				wp_die(__('Invalid post_type.'));   // Only a-z, _, - is allowed.
+			}
+			$this->post_type = $_GET['post_type'];
+		}
+	
 		if ( isset($_GET['post_mime_type']) && !empty($_GET['post_mime_type']) )
 		{
 			if ( !in_array( $_GET['post_mime_type'],  $this->valid_post_mime_types ) )
@@ -257,15 +333,18 @@ class MediaSelector
 			. $select
 			. " FROM {$wpdb->posts} 
 			WHERE 
-				{$wpdb->posts}.post_type = 'attachment' "
+				1"
+				. $this->_sql_filter_post_type()
 				. $this->_sql_filter_searchterm()
 				. $this->_sql_filter_post_mime_type()
+				. $this->_sql_filter_post_status()
 			. $this->_sql_filter_limit($limit)  
 			. $this->_sql_filter_offset($use_offset);
+			
 		$results = $wpdb->get_results( $query, ARRAY_A );
 		
 		$this->SQL = $query;
-		
+//		print $query; exit;
 		return $results;
 	}
 
@@ -345,6 +424,35 @@ class MediaSelector
 	}
 	
 	/*------------------------------------------------------------------------------
+	Post status
+	------------------------------------------------------------------------------*/
+	private function _sql_filter_post_status()
+	{
+		global $wpdb;
+		return " AND {$wpdb->posts}.post_status IN ('publish','inherit')";
+	}
+	
+	
+	/*------------------------------------------------------------------------------
+	Filters based on post_type
+	------------------------------------------------------------------------------*/
+	private function _sql_filter_post_type()
+	{
+		global $wpdb;
+		if ( !empty($this->post_type) )
+		{
+			$query = " AND {$wpdb->posts}.post_type = %s";
+			return $wpdb->prepare( $query, $this->post_type );			
+		}
+		else
+		{
+			return '';
+		}	
+	
+	}
+	
+	
+	/*------------------------------------------------------------------------------
 	Construct the part of the query for searching by name.
 	------------------------------------------------------------------------------*/
 	private function _sql_filter_searchterm()
@@ -381,12 +489,9 @@ class MediaSelector
 	{
 		global $wpdb;
 		
-		return " {$wpdb->posts}.ID as 'attachment_id', 
-			{$wpdb->posts}.post_title, 
-			{$wpdb->posts}.post_content, 
-			{$wpdb->posts}.post_mime_type, 
-			{$wpdb->posts}.post_modified, 
-			{$wpdb->posts}.guid as 'attachment_url'";
+		return " {$wpdb->posts}.ID as 'post_id', 
+			{$wpdb->posts}.guid as 'original_post_url',
+			{$wpdb->posts}.*";
 	}
 	
 	
@@ -413,6 +518,11 @@ class MediaSelector
 	------------------------------------------------------------------------------*/
 	public function get_post_mime_type_options($filter='all')
 	{
+		if ( empty($this->post_type) || $this->post_type != 'attachment' )
+		{
+			return '';
+		}
+		
 		global $wpdb;
 		
 		$avail_post_mime_types = $this->_get_mime_types_for_listing($filter);
@@ -437,6 +547,16 @@ class MediaSelector
 
 		return $output;
 	}
+
+
+	/*------------------------------------------------------------------------------
+	TO-DO: if empty, then we gotta provide filtering for this
+	------------------------------------------------------------------------------*/
+	public function get_post_type_options($post_type)
+	{
+		return '';
+	}
+	
 	
 	/*------------------------------------------------------------------------------
 	TO-DO.
@@ -464,6 +584,13 @@ class MediaSelector
 		$this->taxonomies = $attachment_taxonomies;
 	}
 	
+	/*------------------------------------------------------------------------------
+	
+	------------------------------------------------------------------------------*/
+	public function get_post($post_id)
+	{
+	
+	}
 	
 	/*------------------------------------------------------------------------------
 	SYNOPSIS: a simple parsing function for basic templating.
@@ -542,7 +669,9 @@ class MediaSelector
 			return '<p>'. __('Sorry, no results found.').'</p>';
 		}
 
-		$output = $this->_format_search_results($results);
+		$output = '';
+		$output = $this->_format_results($results);
+
 		return $output;		
 	}
 
@@ -582,10 +711,11 @@ class MediaSelector
 		$hash['default_mime_type'] 			= $this->post_mime_type;
 		$hash['search_label'] 				= __('Search');
 		$hash['clear_label'] 				= __('Reset');
+		$hash['post_type_list_items']		= $this->get_post_type_options($this->post_type);
 		$hash['media_type_list_items'] 		= $this->get_post_mime_type_options($this->post_mime_type);
 		$hash['date_options'] 				= $this->query_distinct_yearmonth();
 		
-		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/media_selector.tpl');
+		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/main.tpl');
 
 		return $this->parse($tpl, $hash);
 	}

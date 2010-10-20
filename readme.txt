@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: cms, content management, custom post types, custom content types, custom fields, images, image fields, ecommerce
 Requires at least: 3.0.1
 Tested up to: 3.0.1
-Stable tag: 4.3
+Stable tag: 0.8.0
 
 Create custom content types (aka post types), standardize custom fields for each type, including dropdowns and images. Gives WP CMS functionality.
 
@@ -80,6 +80,9 @@ Content and templates must go hand in hand.
 
 There are many ways to structure a site depending on what you are selling. For an example, let's say you are selling both T-shirts and Hats. You could create a single "product" content type, or you could create two different content types: "shirt" and "hat".
 
+== Bugs ==
+
+Known bug: you shouldn't name a post-type the same as a taxonomy or vice-versa.  In particular, this seems to jinx the Appearance --> Menus page. 
 
 == Screenshots ==
 
@@ -123,8 +126,9 @@ The architecture for this plugin was also inspired by [MODx](http://modxcms.com/
 
 == Future TO-DO == 
 
-If you are eager to see one of these features implemented in a future release, please vote for it!
+If you are eager to see one of these features implemented in a future release, please share your feedback!
 
+* Improve UI (there are some monstrous forms in there... sorry!)
 * Optionally allow users to add additional custom fields beyond the standardized fields.
 * Wrap the "media" type fields with media specific input-types: "image", "audio", "video".
 That will make more sense to the end users who are setting up custom fields for their
