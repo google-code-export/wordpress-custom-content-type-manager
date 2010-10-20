@@ -3,7 +3,9 @@ media item (e.g. a new image) */
 .mini-thumbnail {
 	vertical-align:middle;
 }
-.media_detail {
+
+.media_detail 
+{
 	display:none;
 	margin-left:40px;
 }
