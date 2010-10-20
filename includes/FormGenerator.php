@@ -157,27 +157,24 @@ class FormGenerator
 		$media_html = '';
 
 		// It's an image
-//		if (preg_match('/^image/', $post->post_mime_type) )
 		if ( !empty($data['value']) )
 		{
-			$data['media_html'] = wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
+			$data['preview_html'] = wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
 			$attachment_obj = get_post($data['value']);
-			$data['media_html'] .= '<span class="formgenerator_label">'.$attachment_obj->post_title.'</span><br/>';
+			$data['preview_html'] .= '<span class="formgenerator_label">'.$attachment_obj->post_title.'</span><br/>';
 		}
 		// It's not an image
 		else
 		{
-//			$data['media_html'] = wp_get_attachment_image( $post->ID, 'thumbnail', TRUE );
 			$data['media_html'] = '';
 		}
 		
-//		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/test.php';
 		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';
 		$data['click_label'] = __('Choose Media');
 		$tpl = '
 			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
 			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" />
-			<div id="[+id+]_media">[+media_html+]</div>
+			<div id="[+id+]_media">[+preview_html+]</div>
 			<br class="clear" />
 			<a href="[+controller_url+]?fieldname=[+id+]&post_type=attachment" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
 			<br class="clear" /><br/>';
@@ -210,18 +207,17 @@ class FormGenerator
 		{
 			$query = "SELECT * FROM {$wpdb->posts} WHERE ID = %s";
 			$reference_post = $wpdb->get_results( $wpdb->prepare( $query, $data['value'] ), OBJECT );
-			$data['media_html'] .= '<span class="formgenerator_label">'.$reference_post->post_title.'</span><br/>';
+			$data['preview_html'] .= '<span class="formgenerator_label">'.$reference_post->post_title.'</span><br/>';
 		}
 		
-//		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/test.php';
 		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';
 		$data['click_label'] = __('Choose Reference');
 		$tpl = '
 			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
 			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" />
-			<div id="[+id+]_media">[+media_html+]</div>
+			<div id="[+id+]_media">[+preview_html+]</div>
 			<br class="clear" />
-			<a href="[+controller_url+]?fieldname=[+id+]&post_type=post" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
+			<a href="[+controller_url+]?fieldname=[+id+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
 			<br class="clear" /><br/>';
 		return self::parse($tpl, $data);
 	}

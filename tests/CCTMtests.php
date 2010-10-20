@@ -1,6 +1,9 @@
 <?php
 /*------------------------------------------------------------------------------
-Make sure we're cleared to launch
+Make sure we're cleared to launch.  Test the following
+
+When you add a dropdown custom field, does the JS fire to let you create options?
+When you deselect the dropdown as the field type, do the options clear?
 ------------------------------------------------------------------------------*/
 class CCTMtests
 {

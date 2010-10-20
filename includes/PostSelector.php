@@ -105,6 +105,7 @@ class PostSelector
 
 		foreach ( $results as $r )
 		{
+
 			if ( $r['post_type'] == 'attachment' )
 			{
 				$r = $this->_format_attachment_result($r);
@@ -669,7 +670,7 @@ class PostSelector
 			return '<p>'. __('Sorry, no results found.').'</p>';
 		}
 
-		$output = '';
+//		print_r($results); exit;
 		$output = $this->_format_results($results);
 
 		return $output;		
@@ -705,6 +706,7 @@ class PostSelector
 		$hash['url'] 						= CUSTOM_CONTENT_TYPE_MGR_URL;
 		$hash['ajax_controller_url'] 		= CUSTOM_CONTENT_TYPE_MGR_URL . '/post-selector.php';
 		$hash['media_selector_stylesheet'] 	= CUSTOM_CONTENT_TYPE_MGR_URL . '/css/media_selector.css';
+		$hash['media_selector_css'] 		= file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH . '/css/media_selector.css');
 		$hash['fieldname'] 					= $this->fieldname;
 		$hash['page']						= $this->page;
 		$hash['default_results'] 			= $this->return_Ajax(); // Default results

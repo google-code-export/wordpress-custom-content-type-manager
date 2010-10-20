@@ -3,10 +3,14 @@
 	<title>Ajax Post Selector</title>
 	<!-- This is loaded via a thickbox iFrame from the WP manager when a post-selection field is generated-->
 	<script type="text/javascript" src="../../../../wp-includes/js/jquery/jquery.js"></script>
-
-	<link href="[+media_selector_stylesheet+]" rel="stylesheet" type="text/css">
-	
-
+</head>
+<body>
+<!-- Global variables, used by search_media JS function for persistent storage -->
+<input type="hidden" id="post_selector_page" value="[+page+]" />
+	<!-- Safari seems to need the CSS and JS inside the body when loaded via WP. Standalone, it works fine. -->
+	<style>	
+		[+media_selector_css+]
+	</style>
 	<script type="text/javascript">
 
 		function change_page(new_page)
@@ -81,14 +85,7 @@
 		
 	</script>
 
-
-
-</head>
-<body>
-<!-- Global variables, used by search_media JS function for persistent storage -->
-<input type="hidden" id="post_selector_page" value="[+page+]" />
-
-<div id="[+div_id+]">
+<div id="[+fieldname+]_post_selector_wrapper">
 	<p id="media-search-term-box" class="search-box">
 		<input type="text" id="media_search_term" name="s" value="" />
 		<span class="button" onclick="javascript:search_media('[+default_mime_type+]');">[+search_label+]</span>

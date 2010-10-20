@@ -79,7 +79,7 @@
 		}
 		else
 		{
-			jQuery('#'+ container_id + '_dropdown_opt'+option_i).remove();
+			jQuery('#'+ container_id + '_dropdown').remove();
 		}
 	}
 	
