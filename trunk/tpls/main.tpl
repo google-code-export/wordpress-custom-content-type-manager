@@ -108,7 +108,7 @@
 </div>
 
 <br class="clear" />
-<!-- style="overflow:auto" -->
+
 <div id="ajax_search_results_go_here">[+default_results+]</div>
 
 </body>

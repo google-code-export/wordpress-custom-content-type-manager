@@ -191,11 +191,11 @@ class FormGenerator
 
 	/*------------------------------------------------------------------------------
 	Closely related to the media elements: ties into the post-selector Ajax controller.
-	A "reference" stores a post ID (i.e. a reference to wp_posts.ID).  In that sense,
+	A "relation" stores a post ID (i.e. a relation to wp_posts.ID).  In that sense,
 	it is exactly the same as the media element, except instead of querying wp_posts
 	where post_type='attachment', this lets you query any post_type.
 	------------------------------------------------------------------------------*/
-	private static function _get_reference_element($data)
+	private static function _get_relation_element($data)
 	{
 		global $post;
 		global $wpdb;
@@ -206,8 +206,8 @@ class FormGenerator
 		if ( !empty($data['value']) )
 		{
 			$query = "SELECT * FROM {$wpdb->posts} WHERE ID = %s";
-			$reference_post = $wpdb->get_results( $wpdb->prepare( $query, $data['value'] ), OBJECT );
-			$data['preview_html'] .= '<span class="formgenerator_label">'.$reference_post->post_title.'</span><br/>';
+			$relation_post = $wpdb->get_results( $wpdb->prepare( $query, $data['value'] ), OBJECT );
+			$data['preview_html'] .= '<span class="formgenerator_label">'.$relation_post->post_title.'</span><br/>';
 		}
 		
 		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';
@@ -332,8 +332,8 @@ class FormGenerator
 				case 'readonly':
 					$output_this_field .= self::_get_readonly_element($field_def);
 					break;
-				case 'reference':
-					$output_this_field .= self::_get_reference_element($field_def);
+				case 'relation':
+					$output_this_field .= self::_get_relation_element($field_def);
 					break;
 				case 'textarea':
 					$output_this_field .= self::_get_textarea_element($field_def);
