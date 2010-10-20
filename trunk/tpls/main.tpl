@@ -1,7 +1,7 @@
 <html>
 <head>
-	<title>Ajax Media Selector</title>
-	<!-- This is loaded via a thickbox iFrame from the WP manager when a media field is generated-->
+	<title>Ajax Post Selector</title>
+	<!-- This is loaded via a thickbox iFrame from the WP manager when a post-selection field is generated-->
 	<script type="text/javascript" src="../../../../wp-includes/js/jquery/jquery.js"></script>
 
 	<link href="[+media_selector_stylesheet+]" rel="stylesheet" type="text/css">
@@ -23,18 +23,7 @@
 			jQuery("#media_search_term").val(''); 
 			search_media("[+default_mime_type+]");
 		}
-	
-		/*------------------------------------------------------------------------------
-		Where the magic happens: this sends our selection back to WordPress
-		------------------------------------------------------------------------------*/
-		function send_back_to_wp( attachment_id, thumbnail_html )
-		{
-			jQuery('#[+fieldname+]').val(attachment_id);
-			jQuery('#[+fieldname+]_media').html(thumbnail_html);
-			tb_remove();
-			return false;
-		}
-		
+
 		/*------------------------------------------------------------------------------
 		Main AJAX function to kick off the query.
 		------------------------------------------------------------------------------*/
@@ -43,8 +32,19 @@
 			var search_term = jQuery("#media_search_term").val();
 			var yyyymm = jQuery("#m").val();
 			var page = jQuery("#post_selector_page").val();
-			jQuery.get("[+ajax_controller_url+]", { "mode":"query", "s":search_term,"fieldname":"[+fieldname+]","post_mime_type":mime_type,"m":yyyymm,"page":page }, write_results_to_page);
+			jQuery.get("[+ajax_controller_url+]", { "mode":"query", "s":search_term,"fieldname":"[+fieldname+]","post_mime_type":mime_type,"m":yyyymm,"page":page,"post_type":"[+post_type+]" }, write_results_to_page);
 			console.log('[+fieldname+]');
+		}
+	
+		/*------------------------------------------------------------------------------
+		Where the magic happens: this sends our selection back to WordPress
+		------------------------------------------------------------------------------*/
+		function send_back_to_wp( post_id, thumbnail_html )
+		{
+			jQuery('#[+fieldname+]').val(post_id);
+			jQuery('#[+fieldname+]_media').html(thumbnail_html);
+			tb_remove();
+			return false;
 		}
 
 		/*------------------------------------------------------------------------------

@@ -15,6 +15,8 @@ class CustomContentTypeManager
 
 	// Used to uniquely identify an option_name in the wp_options table 
 	// ALL data describing the post types and their custom fields lives there.
+	// DELETE FROM `wp_options` WHERE option_name='custom_content_types_mgr_data'; 
+	// would clean out everything this plugin knows.
 	const db_key 	= 'custom_content_types_mgr_data';
 	
 	// Used to uniquely identify this plugin's menu page
@@ -45,7 +47,7 @@ class CustomContentTypeManager
 			'label'			=> 'Name *',
 			'value'			=> '',
 			'extra'			=> '',
-			'description'	=> 'Unique singular name to identify this post type in the database, e.g. "movie","book". This may show up in your URLs, e.g. ?movie=star-wars. Should be lowercase with only letters and underscores. This name cannot be changed!',	
+			'description'	=> 'Unique singular name to identify this post type in the database, e.g. "movie","book". This may show up in your URLs, e.g. ?movie=star-wars. This will also make a new theme file available, starting with prefix named "single-", e.g. <strong>single-movie.php</strong>. The name should be lowercase with only letters and underscores. This name cannot be changed!',	
 			'type'			=> 'text',
 			'sort_param'	=> 1,
 		),
@@ -370,7 +372,7 @@ Default: value of public argument',
 			'extra'			=> ' onchange="javascript:addRemoveDropdown(this.parentNode.id,this.value, [+def_i+])"',
 			'description'	=> '',
 			'type'			=> 'dropdown',
-			'options'		=> array('checkbox','dropdown','media','text','textarea','wysiwyg'),
+			'options'		=> array('checkbox','dropdown','media','reference','text','textarea','wysiwyg'),
 			'sort_param'	=> 4,
 		),
 		'sort_param' => array(
@@ -1449,7 +1451,7 @@ return
 				break;
 			case 2: // update existing custom post type. Override form def.
 				self::$post_type_form_definition['post_type']['type'] = 'readonly';
-				self::$post_type_form_definition['post_type']['description'] = '';
+				self::$post_type_form_definition['post_type']['description'] = 'The name of the post-type cannot be changed. The name may show up in your URLs, e.g. ?movie=star-wars. This will also make a new theme file available, starting with prefix named "single-", e.g. <strong>single-movie.php</strong>.';
 				self::_page_edit_post_type($post_type);
 				break;
 			case 3: // delete existing custom post type

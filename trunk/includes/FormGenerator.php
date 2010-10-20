@@ -179,7 +179,7 @@ class FormGenerator
 			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" />
 			<div id="[+id+]_media">[+media_html+]</div>
 			<br class="clear" />
-			<a href="[+controller_url+]?fieldname=[+id+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
+			<a href="[+controller_url+]?fieldname=[+id+]&post_type=attachment" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
 			<br class="clear" /><br/>';
 		return self::parse($tpl, $data);
 	}
@@ -189,6 +189,40 @@ class FormGenerator
 	{
 		$tpl = '
 		<input type="hidden" name="[+name+]" class="formgenerator_readonly" id="[+name+]" value="[+value+]"[+extra+]/>';
+		return self::parse($tpl, $data);
+	}
+
+	/*------------------------------------------------------------------------------
+	Closely related to the media elements: ties into the post-selector Ajax controller.
+	A "reference" stores a post ID (i.e. a reference to wp_posts.ID).  In that sense,
+	it is exactly the same as the media element, except instead of querying wp_posts
+	where post_type='attachment', this lets you query any post_type.
+	------------------------------------------------------------------------------*/
+	private static function _get_reference_element($data)
+	{
+		global $post;
+		global $wpdb;
+		
+		$media_html = '';
+
+		// How do we format the current field value? 
+		if ( !empty($data['value']) )
+		{
+			$query = "SELECT * FROM {$wpdb->posts} WHERE ID = %s";
+			$reference_post = $wpdb->get_results( $wpdb->prepare( $query, $data['value'] ), OBJECT );
+			$data['media_html'] .= '<span class="formgenerator_label">'.$reference_post->post_title.'</span><br/>';
+		}
+		
+//		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/test.php';
+		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';
+		$data['click_label'] = __('Choose Reference');
+		$tpl = '
+			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
+			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" />
+			<div id="[+id+]_media">[+media_html+]</div>
+			<br class="clear" />
+			<a href="[+controller_url+]?fieldname=[+id+]&post_type=post" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
+			<br class="clear" /><br/>';
 		return self::parse($tpl, $data);
 	}
 	
@@ -301,6 +335,9 @@ class FormGenerator
 					break;
 				case 'readonly':
 					$output_this_field .= self::_get_readonly_element($field_def);
+					break;
+				case 'reference':
+					$output_this_field .= self::_get_reference_element($field_def);
 					break;
 				case 'textarea':
 					$output_this_field .= self::_get_textarea_element($field_def);
