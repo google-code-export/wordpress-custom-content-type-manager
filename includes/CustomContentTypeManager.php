@@ -372,7 +372,7 @@ Default: value of public argument',
 			'extra'			=> ' onchange="javascript:addRemoveDropdown(this.parentNode.id,this.value, [+def_i+])"',
 			'description'	=> '',
 			'type'			=> 'dropdown',
-			'options'		=> array('checkbox','dropdown','media','reference','text','textarea','wysiwyg'),
+			'options'		=> array('checkbox','dropdown','media','relation','text','textarea','wysiwyg'),
 			'sort_param'	=> 4,
 		),
 		'sort_param' => array(
@@ -851,11 +851,15 @@ Default: value of public argument',
 						$cf['name'] = preg_replace('/[^a-z_]/','',$cf['name']);
 						$error_flag = TRUE;
 					}
+					if ( strlen($cf['name']) > 20 )
+					{
+						$error_flag = TRUE;
+					}
 				}
 			}
 			if ($error_flag)
 			{
-				$msg = '<div class="error">Field names must be URL friendly. A-Z and underscores only! Please review the suggested changes below.</div>';
+				$msg = '<div class="error">Field names must be URL friendly. A-Z and underscores only! And 20 characters or less. Please review the suggested changes below.</div>';
 			}
 			else
 			{
@@ -952,7 +956,6 @@ Default: value of public argument',
 	{
 		foreach ($def as $node_id => $tmp)
 		{
-//				print "NODE: $node_id\n\n"; print_r($def[$node_id]);
 			if ( $node_id == 'supports_title' )
 			{			
 				if ( !empty($pt_data['supports']) && in_array('title', $pt_data['supports']) )
@@ -1250,7 +1253,7 @@ Default: value of public argument',
 
 	/*------------------------------------------------------------------------------
 	The custom_fields array consists of form element definitions that are used when
-	editing or creating a new post.  But when we want to edit that definition, 
+	editing or creating a new post.  But when we want to *edit* that definition, 
 	we have to create new form elements that allow us to edit each part of the 
 	original definition, e.g. we need a text element to allow us to edit 
 	the "label", we need a textarea element to allow us to edit the "description",
@@ -1334,13 +1337,13 @@ Default: value of public argument',
 		// $E = new WP_Error();
 		// include('errors.php');
 		// self::$Errors = $E;
-		wp_register_script('CustomContentTypeManager_js'
-			, CUSTOM_CONTENT_TYPE_MGR_URL .'/js/admin.js');
+//		wp_register_script('CustomContentTypeManager_js'
+//			, CUSTOM_CONTENT_TYPE_MGR_URL .'/js/admin.js');
 		wp_register_style('CustomContentTypeManager_class'
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type_class.css');
 		wp_register_style('CustomContentTypeManager_gui'
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type.css');
-		wp_enqueue_script('CustomContentTypeManager_js');
+//		wp_enqueue_script('CustomContentTypeManager_js');
 		wp_enqueue_style('CustomContentTypeManager_class');
 		wp_enqueue_style('CustomContentTypeManager_gui');	
 		// Hand-holding
@@ -1425,37 +1428,46 @@ Default: value of public argument',
 	in a structure that matches exactly what the register_post_type() function
 	expectes as arguments. 
 	See wp-includes/posts.php for examples of how WP registers the default post types
+	
+	$def = Array
+	(
+	    'supports' => Array
+	        (
+	            'title',
+	            'editor'
+	        ),
+	
+	    'post_type' => 'book',
+	    'singular_label' => 'Book',
+	    'label' => 'Books',
+	    'description' => 'What I&#039;m reading',
+	    'show_ui' => 1,
+	    'capability_type' => 'post',
+	    'public' => 1,
+	    'menu_position' => '10',
+	    'menu_icon' => '', 
+	    'custom_content_type_mgr_create_new_content_type_nonce' => 'd385da6ba3',
+	    'Submit' => 'Create New Content Type',
+	    'show_in_nav_menus' => '', 
+	    'can_export' => '', 
+	    'is_active' => 1,
+	);
+
+	FUTURE:
+		register_taxonomy( $post_type,
+			$cpt_post_types,
+			array( 'hierarchical' => get_disp_boolean($cpt_tax_type["hierarchical"]),
+			'label' => $cpt_label,
+			'show_ui' => get_disp_boolean($cpt_tax_type["show_ui"]),
+			'query_var' => get_disp_boolean($cpt_tax_type["query_var"]),
+			'rewrite' => array('slug' => $cpt_rewrite_slug),
+			'singular_label' => $cpt_singular_label,
+			'labels' => $cpt_labels
+		) );
 	------------------------------------------------------------------------------*/
 	public static function register_custom_post_types() 
 	{	
 
-/*
-$def = Array
-(
-    'supports' => Array
-        (
-            'title',
-            'editor'
-        ),
-
-    'post_type' => 'book',
-    'singular_label' => 'Book',
-    'label' => 'Books',
-    'description' => 'What I&#039;m reading',
-    'show_ui' => 1,
-    'capability_type' => 'post',
-    'public' => 1,
-    'menu_position' => '10',
-    'menu_icon' => '', 
-    'custom_content_type_mgr_create_new_content_type_nonce' => 'd385da6ba3',
-    'Submit' => 'Create New Content Type',
-    'show_in_nav_menus' => '', 
-    'can_export' => '', 
-    'is_active' => 1,
-);
-register_post_type( 'book', $def );
-return
-*/
 		$data = get_option( self::db_key, array() );
 		foreach ($data as $post_type => $def) 
 		{
@@ -1463,24 +1475,7 @@ return
 				&& !empty($def['is_active']) 
 				&& !in_array($post_type, self::$built_in_post_types)) 
 			{	
-//				print_r($def); 
 				register_post_type( $post_type, $def );
-				
-							//register our custom taxonomies
-/*
-				if ( isset($def['']
-				register_taxonomy( $post_type,
-					$cpt_post_types,
-					array( 'hierarchical' => get_disp_boolean($cpt_tax_type["hierarchical"]),
-					'label' => $cpt_label,
-					'show_ui' => get_disp_boolean($cpt_tax_type["show_ui"]),
-					'query_var' => get_disp_boolean($cpt_tax_type["query_var"]),
-					'rewrite' => array('slug' => $cpt_rewrite_slug),
-					'singular_label' => $cpt_singular_label,
-					'labels' => $cpt_labels
-				) );
-*/
-				
 			}
 		}
 	

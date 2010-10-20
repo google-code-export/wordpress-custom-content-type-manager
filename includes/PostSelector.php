@@ -19,7 +19,7 @@ class PostSelector
 
 	private $Pagination; // Pagination object. See Pagination.php
 	private $taxonomies = array(); // taxonomies assigned to this post_type
-	private $results_per_page = 6;
+	private $results_per_page = 7;
 
 	private $cnt; // number of search results
 	private $SQL; // store the query here for debugging.
@@ -186,7 +186,7 @@ class PostSelector
 		$r['detail_image'] = wp_get_attachment_image( $r['post_id'], 'medium' );
 
 		# Passed via JS, so we gotta prep it.
-		$preview_html = '<span class="formgenerator_label">'.$r['post_title'].'</span><br/>';
+		$preview_html = '<span class="formgenerator_regular>'.$r['post_title'].'</span><br/>';
 		$preview_html = preg_replace('/"/', "'", $preview_html); 
 		$preview_html = preg_replace("/'/", "\'", $preview_html);
 		$r['preview_html'] = $preview_html;
@@ -425,12 +425,12 @@ class PostSelector
 	}
 	
 	/*------------------------------------------------------------------------------
-	Post status
+	Post status... wondering about this inherit thing... revisions
 	------------------------------------------------------------------------------*/
 	private function _sql_filter_post_status()
 	{
 		global $wpdb;
-		return " AND {$wpdb->posts}.post_status IN ('publish','inherit')";
+		return " AND IF ( {$wpdb->posts}.post_type='attachment', {$wpdb->posts}.post_status IN ('publish','inherit'), {$wpdb->posts}.post_status IN ('publish') )";
 	}
 	
 	
@@ -716,6 +716,7 @@ class PostSelector
 		$hash['post_type_list_items']		= $this->get_post_type_options($this->post_type);
 		$hash['media_type_list_items'] 		= $this->get_post_mime_type_options($this->post_mime_type);
 		$hash['date_options'] 				= $this->query_distinct_yearmonth();
+		$hash['post_type']					= $this->post_type;
 		
 		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/main.tpl');
 
