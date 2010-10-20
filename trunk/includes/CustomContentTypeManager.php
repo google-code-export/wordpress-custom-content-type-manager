@@ -802,6 +802,7 @@ Default: value of public argument',
 
 		// get current values from database
 		$data = get_option( self::db_key, array() );
+		
 		// Populate the form $def with values from the database
 		$def = self::_populate_form_def_from_data($def, $data[$post_type]);
 		$fields = FormGenerator::generate($def);
@@ -958,12 +959,20 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'title';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}
 			}
 			elseif ( $node_id == 'supports_editor' )
 			{			
 				if ( !empty($pt_data['supports']) && in_array('editor', $pt_data['supports']) )
 				{
 					$def[$node_id]['value'] = 'editor';
+				}
+				else
+				{
+					$def[$node_id]['value'] = '';
 				}
 			}
 			elseif ( $node_id == 'supports_author' )
@@ -972,6 +981,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'author';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}
 			elseif ( $node_id == 'supports_excerpt' )
 			{			
@@ -979,6 +992,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'excerpt';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}
 			elseif ( $node_id == 'supports_thumbnail' )
 			{			
@@ -986,6 +1003,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'thumbnail';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}
 			elseif ( $node_id == 'supports_trackbacks' )
 			{			
@@ -993,6 +1014,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'trackbacks';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}		
 			elseif ( $node_id == 'supports_custom-fields' )
 			{			
@@ -1000,6 +1025,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'custom-fields';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}			
 			elseif ( $node_id == 'supports_comments' )
 			{			
@@ -1007,6 +1036,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'comments';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}
 			elseif ( $node_id == 'supports_revisions' )
 			{			
@@ -1014,6 +1047,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'revisions';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}
 			elseif ( $node_id == 'supports_page-attributes' )
 			{			
@@ -1021,6 +1058,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = 'page-attributes';
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}
 			elseif ( $node_id == 'rewrite_slug' )
 			{			
@@ -1028,6 +1069,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = $pt_data['rewrite']['slug'];
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}
 			elseif ( $node_id == 'rewrite_with_front' )
 			{			
@@ -1035,6 +1080,10 @@ Default: value of public argument',
 				{
 					$def[$node_id]['value'] = $pt_data['rewrite']['with_front'];
 				}
+				else
+				{
+					$def[$node_id]['value'] = '';
+				}				
 			}
 			else
 			{
@@ -1274,7 +1323,10 @@ Default: value of public argument',
 	
 	//! Public Functions
 	/*------------------------------------------------------------------------------
-	Load CSS and JS for admin folks in the manager
+	Load CSS and JS for admin folks in the manager.  Note that we have to verbosely 
+	ensure that thickbox css and js are loaded: normally they are tied to the 
+	"main content" area of the content type, so thickbox would otherwise fail
+	if your custom post_type doesn't use the main content type.
 	Errors: TO-DO. 
 	------------------------------------------------------------------------------*/
 	public static function admin_init()
@@ -1290,7 +1342,11 @@ Default: value of public argument',
 			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type.css');
 		wp_enqueue_script('CustomContentTypeManager_js');
 		wp_enqueue_style('CustomContentTypeManager_class');
-		wp_enqueue_style('CustomContentTypeManager_gui');		
+		wp_enqueue_style('CustomContentTypeManager_gui');	
+		// Hand-holding
+		wp_enqueue_script( 'thickbox' );
+		wp_enqueue_style( 'thickbox' );
+			
 	}
 	
 	/*------------------------------------------------------------------------------
