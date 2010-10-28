@@ -20,70 +20,6 @@ class StandardizedCustomFields
 	// Which types of content do we want to standardize?
 	public static $content_types_array = array('post');
 	
-	/*------------------------------------------------------------------------------
-	The array of custom fields should have the following structure:
-	$custom_fields =	array(
-		array(
-			// name and id of the form element & as the meta_key in the wp_postmeta table. 
-			// Should contain lowercase letters, "-", and "_" only. Names beginning with "_"
-			// will be hidden from built-in WP functions, e.g. the_meta()
-			'name'			=> 'my_name', 
-			
-			// used in the element's <label>
-			'title'			=> 'This is the bold Text that appears above the Form Element!', 
-			
-			// optional text will be wrapped in a <p> and appear below the element
-			'description'	=> 'Shh... this is extra italic text...',	
-			
-			// one of the supported element types: checkbox, dropdown,text,textarea,wysiwyg
-			'type'			=> 'dropbox', 
-			
-			// Ignored unless type = dropdown!! 
-			'options'		=> array('one','two','three'), 
-			
-			// Smaller numbered fields will float to the top
-			'sort_param'	=> 1,
-		),
-	);
-	------------------------------------------------------------------------------*/
-	public static $custom_fields_for_posts =	array(
-		array(
-			'name'			=> 'my_text', 
-			'title'			=> 'Simple text input',
-			'description'	=> '',	
-			'type'			=> 'text',
-			'sort_param'	=> 1,
-		),
-		array(
-			'name'			=> 'short_text',
-			'title'			=> 'A short bit of text',
-			'description'	=> 'This is a textarea, without any formatting controls.',
-			'type'			=> 'textarea',
-			'sort_param'	=> 2,
-		),
-		array(
-			'name'			=> 'gender',
-			'title'			=> 'Gender',
-			'description'	=> 'Sample dropdown menu',
-			'type'			=> 'dropdown',
-			'options'		=> array('Male','Female'),
-			'sort_param'	=> 3,
-		),
-		array(
-			'name'			=> 'formatted_text',
-			'title'			=> 'Formatted Text',
-			'description'	=> 'This uses jQuery to add the formatting controls.',
-			'type'			=> 'wysiwyg',
-			'sort_param'	=> 4,
-		),
-		array(
-			'name'			=> 'my_checkbox',
-			'title'			=> 'Do You Like This Checkbox?',
-			'description'	=> 'Checkboxes are tricky... they either have a value, or they are null.',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 5,
-		)
-	);
 
 	/*------------------------------------------------------------------------------
 	This array acts as a template for all new field definitions created in the WP
@@ -186,7 +122,6 @@ class StandardizedCustomFields
 		{
 			return array();
 		}
-//		return self::$custom_fields_for_posts;	//UPDATED
 	}
 
 
@@ -249,10 +184,12 @@ class StandardizedCustomFields
 		{
 			global $post;
 			$post_type = $post->post_type;
-			print '<p>Custom fields can be added and configured using the '.CustomContentTypeManager::name . ' <a href="options-general.php?page='
+			print '<p>';
+			printf ( 'Custom fields can be added and configured using the '.CustomContentTypeManager::name . ' <a href="options-general.php?page='
 			.CustomContentTypeManager::admin_menu_slug.'&'
 			.CustomContentTypeManager::action_param.'=4&'
-			.CustomContentTypeManager::post_type_param.'='.$post_type.'">Settings Page</a></p>';
+			.CustomContentTypeManager::post_type_param.'='.$post_type.'">%s</a>', __('Settings Page', 'cctm') );
+			print '</p>';
 			return;
 		}
 		

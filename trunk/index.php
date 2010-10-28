@@ -34,12 +34,12 @@ function custom_content_type_manager_cannot_load()
 {
 	global $error_items;
 	print '<div id="custom-post-type-manager-warning" class="error fade"><p><strong>'
-	.__('The Custom Post Type Manager plugin cannot load correctly!')
+	.__('The Custom Post Type Manager plugin cannot load correctly!', 'cctm')
 	.'</strong> '
-	.__('Another plugin has declared conflicting class, function, or constant names:')
+	.__('Another plugin has declared conflicting class, function, or constant names:', 'cctm')
 	."<ul style='margin-left:30px;'>$error_items</ul>"
 	.'</p>'
-	.'<p>'.__('You must deactivate the plugins that are using these conflicting names.').'</p>'
+	.'<p>'.__('You must deactivate the plugins that are using these conflicting names.', 'cctm').'</p>'
 	.'</div>';
 	
 }

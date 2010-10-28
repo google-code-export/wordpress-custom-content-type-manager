@@ -112,7 +112,7 @@ INPUT:
 		default, all posts will be returned.
 OUTPUT: array of post objects or empty array.
 ------------------------------------------------------------------------------*/
-function get_posts_by_taxonomy_term($taxonomy, $slug, $limit = FALSE)
+function get_posts_by_taxonomy_term($taxonomy, $slug, $limit = false)
 {
 	global $wpdb; 
 	

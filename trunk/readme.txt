@@ -153,8 +153,14 @@ now, but I think my architecture is sensible enough to support it. Those data pa
 start looking a lot like taxonomies though, so it's gonna require rock-solid explanations
 to avoid confusing people.
 * Supply more template functions, perhaps via a static class, e.g. CCTM::image('move_poster'); It might also be possible to spin this off to function names that are more familiar to WP template authors, e.g. "CCTM::the_movie_poster()". 
-* Optionally define whether a content type shows up in the normal site archive menus.
+* Archive Support: optionally define whether a content type shows up in the normal site archive menus.
 
+* Include ID's and field names in the manager labels.  For example, if you select an image or a relation, it should display the title and the (123) id, just like MODx.  
+* Each custom field should include its name in the label, e.g. *My Field (myfield)* -- that'd make it really clear to the template tweakers what they had to work with.  I kept on having to go back to the manage custom fields page for each content type.
+* Pimp out the search box, INCLUDING the ability to specify a post_type when you create a relation field, e.g. for the products referencing a look, I should prime the form so that it only displays look type posts.  The architecture is there and already can do this, but I was having problems piping that stuff through javascript when fields are created dynamically.
+* Sample template: Include a link in the manager somewhere for each content type that would generate a sample template for that content type, e.g. it could generate the contents of single-look.php including all custom fields. 
+* Show-hide options for each custom field -- the custom field manager is way crowded.
+* Permissions on editing custom content types -- lock it down! You don't want 2 people editing the same thing at the same time.
 
 == See also and References ==
 * http://kovshenin.com/archives/extending-custom-post-types-in-wordpress-3-0/
