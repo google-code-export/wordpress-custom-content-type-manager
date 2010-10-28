@@ -159,9 +159,9 @@ class FormGenerator
 		// It's an image
 		if ( !empty($data['value']) )
 		{
-			$data['preview_html'] = wp_get_attachment_image( $data['value'], 'thumbnail', TRUE );
+			$data['preview_html'] = wp_get_attachment_image( $data['value'], 'thumbnail', true );
 			$attachment_obj = get_post($data['value']);
-			$data['preview_html'] .= '<span class="formgenerator_label">'.$attachment_obj->post_title.'</span><br/>';
+			$data['preview_html'] .= '<span class="formgenerator_label">'.$attachment_obj->post_title.'</span><br />';
 		}
 		// It's not an image
 		else
@@ -177,7 +177,7 @@ class FormGenerator
 			<div id="[+id+]_media">[+preview_html+]</div>
 			<br class="clear" />
 			<a href="[+controller_url+]?fieldname=[+id+]&post_type=attachment" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
-			<br class="clear" /><br/>';
+			<br class="clear" /><br />';
 		return self::parse($tpl, $data);
 	}
 
@@ -208,7 +208,7 @@ class FormGenerator
 		{
 			$query = "SELECT * FROM {$wpdb->posts} WHERE ID = %s";
 			$relation_post = $wpdb->get_results( $wpdb->prepare( $query, $data['value'] ), OBJECT );
-			$data['preview_html'] = '<span class="formgenerator_label">'.$relation_post[0]->post_title.'</span><br/>';
+			$data['preview_html'] = '<span class="formgenerator_label">'.$relation_post[0]->post_title.'</span><br />';
 		}
 		
 		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';
@@ -219,7 +219,7 @@ class FormGenerator
 			<div id="[+id+]_media">[+preview_html+]</div>
 			<br class="clear" />
 			<a href="[+controller_url+]?fieldname=[+id+]&post_type=[+option+]" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
-			<br class="clear" /><br/>';
+			<br class="clear" /><br />';
 		return self::parse($tpl, $data);
 	}
 	

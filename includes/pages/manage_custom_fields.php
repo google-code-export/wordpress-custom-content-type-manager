@@ -8,7 +8,7 @@
 	
 	// This is used to identify individual options for the dropdown input type.
 	var option_i = 0;
-
+	
 	/*------------------------------------------------------------------------------
 	Adds a set of form elements which together are known as a "definition" and which
 	together describe a custom field. Note the use of the "global" def_i integer:
@@ -41,7 +41,7 @@
 	{		
 		var newOption = '<div id="'+dropdownDivId+'_opt'+option_i+'">' +
 			'<input type="text" class="" name="custom_fields['+i+'][options][]" value=""/> ' +
-			'<span class="button" onclick="javascript:removeDiv(this.parentNode.id)">Remove</span>' +
+			'<span class="button" onclick="javascript:removeDiv(this.parentNode.id)"><?php _e('Remove','cctm'); ?></span>' +
 			'</div>'; 
 		jQuery('#'+dropdownDivId).append(newOption); 
 		option_i++;
@@ -73,7 +73,7 @@
 			
 			var dropdownHtml = '<div id="'+specialDivId+'">' + 
 				'<strong>Dropdown Options</strong> ' +
-				'<span class="button" onclick="javascript:addDropdownOption(this.parentNode.id, '+i+')">Add Option</span>' +
+				'<span class="button" onclick="javascript:addDropdownOption(this.parentNode.id, '+i+')"><?php _e('Add Option','cctm'); ?></span>' +
 				'</div>';
 			jQuery('#'+ container_id).append(dropdownHtml);
 			addDropdownOption(specialDivId, i);
@@ -84,7 +84,7 @@
 			jQuery('#'+ specialDivId).remove();
 			var specialDivId = container_id + '_extraspecial';
 			var relationHtml = '<div id="'+specialDivId+'">' + 
-				'Post Type: <input type="text" name="custom_fields['+i+'][options][]" value="" /><br/><p><em>Leave blank if you want to search through all post_types</em></p>' +
+				'Post Type: <input type="text" name="custom_fields['+i+'][options][]" value="" /><br /><p><em>Leave blank if you want to search through all post_types</em></p>' +
 				'</div>';
 			jQuery('#'+ container_id).append(relationHtml);
 		}
@@ -138,7 +138,7 @@
 		</div>
 		
 
-<br/>
+<br />
 
 		<div class="custom_content_type_mgr_form_controls">
 			<input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes'); ?>" />  

@@ -232,7 +232,7 @@ Default: "post"',
 			'label'			=> 'Menu Position',
 			'value'			=> '',
 			'extra'			=> '',
-			'description'	=> 'Determines where this post type should appear in the left hand admin menu.<br/>
+			'description'	=> 'Determines where this post type should appear in the left hand admin menu.<br />
 							Default: null - defaults to below Comments.
 							<ul style="margin-left:40px;">
 							<li><strong>5</strong> - below Posts</li>
@@ -288,7 +288,7 @@ Default: "post"',
 			'value'			=> 'Off',
 			'options'		=> array('Off','/%postname%/'), // ,'Custom'),
 			'extra'			=> '',
-			'description'	=> "Use permalink rewrites for this post_type? Default: Off<br/>
+			'description'	=> "Use permalink rewrites for this post_type? Default: Off<br />
 						<ul style='margin-left:20px;'>
 							<li><strong>Off</strong> - URLs for custom post_types will always look like: http://site.com/?post_type=book&p=39 even if the rest of the site is using a different permalink structure.</li>
 							<li><strong>/%postname%/</strong> - You MUST use the custom permalink structure: '/%postname%/'. Other formats are <strong>not</strong> supported.  Your URLs will look like http://site.com/movie/star-wars/</li>
@@ -303,8 +303,8 @@ Default: "post"',
 			'label'			=> 'Query Variable',
 			'value'			=> '',
 			'extra'			=> '',
-			'description'	=> '(optional) Name of the query var to use for this post type.<br/>
-				E.g. "movie" would make for URLs like http://site.com/?movie=star-wars<br/>
+			'description'	=> '(optional) Name of the query var to use for this post type.<br />
+				E.g. "movie" would make for URLs like http://site.com/?movie=star-wars<br />
 				If blank, the default structure is http://site.com/?post_type=movie&p=18',
 			'type'			=> 'text',
 			'sort_param'	=> 38,
@@ -514,9 +514,9 @@ Default: value of public argument',
 		$search_built_ins (boolean) whether or not to search inside the 
 			$built_in_post_types array. 
 			
-	OUTPUT: boolean TRUE | FALSE indicating whether this is a valid post-type
+	OUTPUT: boolean true | false indicating whether this is a valid post-type
 	------------------------------------------------------------------------------*/
-	private static function _is_existing_post_type($post_type, $search_built_ins=TRUE)
+	private static function _is_existing_post_type($post_type, $search_built_ins=true)
 	{
 		$data = get_option( self::db_key );
 		
@@ -528,21 +528,21 @@ Default: value of public argument',
 		// If there's no existing $data and we omit the built-ins...
 		elseif ( empty($data) && !$search_built_ins )
 		{
-			return FALSE;
+			return false;
 		}
 		// Check to see if we've stored this $post_type before
 		elseif ( array_key_exists($post_type, $data) )
 		{
-			return TRUE;
+			return true;
 		}
 		// Check the built-ins
 		elseif ( $search_built_ins && in_array($post_type, self::$built_in_post_types) )
 		{
-			return TRUE;
+			return true;
 		}
 		else
 		{
-			return FALSE;
+			return false;
 		}
 	}
 		
@@ -694,7 +694,7 @@ Default: value of public argument',
 	private static function _page_delete_post_type($post_type)
 	{
 		// We can't delete built-in post types
-		if (!self::_is_existing_post_type($post_type, FALSE ) )
+		if (!self::_is_existing_post_type($post_type, false ) )
 		{
 			self::_page_display_error();
 			return;
@@ -753,7 +753,7 @@ Default: value of public argument',
 	private static function _page_edit_post_type($post_type)
 	{
 		// We can't edit built-in post types
-		if (!self::_is_existing_post_type($post_type, FALSE ) )
+		if (!self::_is_existing_post_type($post_type, false ) )
 		{
 			self::_page_display_error();
 			return;
@@ -836,7 +836,7 @@ Default: value of public argument',
 		// Save data if it was properly submitted
 		if ( !empty($_POST) && check_admin_referer($action_name,$nonce_name) )
 		{
-			$error_flag = FALSE;
+			$error_flag = false;
 			if (!isset($_POST['custom_fields']))
 			{
 				$data[$post_type]['custom_fields'] = array(); // all custom fields were deleted
@@ -849,12 +849,12 @@ Default: value of public argument',
 					if ( preg_match('/[^a-z_]/i', $cf['name']))
 					{
 						$cf['name'] = preg_replace('/[^a-z_]/','',$cf['name']);
-						$error_flag = TRUE;
+						$error_flag = true;
 					}
 					if ( strlen($cf['name']) > 20 )
 					{
 						$cf['name'] = substr($cf['name'], 0 , 20);
-						$error_flag = TRUE;
+						$error_flag = true;
 					}
 				}
 			}
@@ -913,12 +913,12 @@ Default: value of public argument',
 			if ( isset($data[$post_type]['is_active']) && !empty($data[$post_type]['is_active']) )
 			{
 				$class = 'active';
-				$is_active = TRUE;
+				$is_active = true;
 			}
 			else
 			{
 				$class = 'inactive';
-				$is_active = FALSE;
+				$is_active = false;
 			}
 
 			// Built-in post types use a canned description.
@@ -1209,13 +1209,13 @@ Default: value of public argument',
 		
 		if (empty($sanitized['query_var']))
 		{
-			$sanitized['query_var'] = FALSE;
+			$sanitized['query_var'] = false;
 		}
 		// Rewrites
 		switch ($sanitized['permalink_action'])
 		{
 			case '/%postname%/':
-				$sanitized['rewrite'] = TRUE;
+				$sanitized['rewrite'] = true;
 				break;
 			case 'Custom':
 				$sanitized['rewrite']['slug'] = $raw['rewrite_slug'];
@@ -1223,7 +1223,7 @@ Default: value of public argument',
 				break;
 			case 'Off':
 			default:
-				$sanitized['rewrite'] = FALSE;
+				$sanitized['rewrite'] = false;
 		}
 
 		//print_r($sanitized); exit;
@@ -1520,6 +1520,6 @@ Default: value of public argument',
 			default: // List all post types	
 				self::_page_show_all_post_types();
 		}
-	}
+	}	
 }
 /*EOF*/
