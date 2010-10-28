@@ -84,7 +84,7 @@ class StandardizedCustomFields
 	------------------------------------------------------------------------------*/
 	private static function _get_active_content_types()
 	{
-		$data = get_option( CustomContentTypeManager::db_key );
+		$data = get_option( CCTM::db_key );
 		if ( !empty($data) && is_array($data) )
 		{
 			$known_post_types = array_keys($data);
@@ -113,7 +113,7 @@ class StandardizedCustomFields
 	------------------------------------------------------------------------------*/
 	private static function _get_custom_fields($content_type)
 	{
-		$data = get_option( CustomContentTypeManager::db_key );
+		$data = get_option( CCTM::db_key );
 		if (isset($data[$content_type]['custom_fields']))
 		{
 			return $data[$content_type]['custom_fields'];
@@ -177,18 +177,16 @@ class StandardizedCustomFields
 		$custom_fields = self::_get_custom_fields($content_type);
 		$output = '';		
 		
-//		print_r( get_defined_vars() ); exit;
-		// options-general.php?page=custom_content_type_mgr&a=4&pt=$post_type
-		//print_r($custom_fields); exit;
-		if (	empty($custom_fields) )
+		if ( empty($custom_fields) )
 		{
 			global $post;
 			$post_type = $post->post_type;
+			$url = sprintf( '<a href="options-general.php?page='
+				.CCTM::admin_menu_slug.'&'
+				.CCTM::action_param.'=4&'
+				.CCTM::post_type_param.'='.$post_type.'">%s</a>', __('Settings Page', CCTM::txtdomain ) );
 			print '<p>';
-			printf ( 'Custom fields can be added and configured using the '.CustomContentTypeManager::name . ' <a href="options-general.php?page='
-			.CustomContentTypeManager::admin_menu_slug.'&'
-			.CustomContentTypeManager::action_param.'=4&'
-			.CustomContentTypeManager::post_type_param.'='.$post_type.'">%s</a>', __('Settings Page', 'cctm') );
+			printf ( __('Custom fields can be added and configured using the %1$s %2$s', CCTM::txtdomain), CCTM::name, $url );
 			print '</p>';
 			return;
 		}

@@ -169,7 +169,7 @@ class FormGenerator
 			$data['media_html'] = '';
 		}
 		
-		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';
+		$data['controller_url'] = CCTM_URL.'/post-selector.php';
 		$data['click_label'] = __('Choose Media');
 		$tpl = '
 			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
@@ -211,7 +211,7 @@ class FormGenerator
 			$data['preview_html'] = '<span class="formgenerator_label">'.$relation_post[0]->post_title.'</span><br />';
 		}
 		
-		$data['controller_url'] = CUSTOM_CONTENT_TYPE_MGR_URL.'/post-selector.php';
+		$data['controller_url'] = CCTM_URL.'/post-selector.php';
 		$data['click_label'] = __('Choose Reference');
 		$tpl = '
 			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
