@@ -41,7 +41,7 @@
 	{		
 		var newOption = '<div id="'+dropdownDivId+'_opt'+option_i+'">' +
 			'<input type="text" class="" name="custom_fields['+i+'][options][]" value=""/> ' +
-			'<span class="button" onclick="javascript:removeDiv(this.parentNode.id)"><?php _e('Remove','cctm'); ?></span>' +
+			'<span class="button" onclick="javascript:removeDiv(this.parentNode.id)"><?php _e('Remove',CCTM::txtdomain); ?></span>' +
 			'</div>'; 
 		jQuery('#'+dropdownDivId).append(newOption); 
 		option_i++;
@@ -73,7 +73,7 @@
 			
 			var dropdownHtml = '<div id="'+specialDivId+'">' + 
 				'<strong>Dropdown Options</strong> ' +
-				'<span class="button" onclick="javascript:addDropdownOption(this.parentNode.id, '+i+')"><?php _e('Add Option','cctm'); ?></span>' +
+				'<span class="button" onclick="javascript:addDropdownOption(this.parentNode.id, '+i+')"><?php _e('Add Option',CCTM::txtdomain); ?></span>' +
 				'</div>';
 			jQuery('#'+ container_id).append(dropdownHtml);
 			addDropdownOption(specialDivId, i);
@@ -126,7 +126,7 @@
 
 <div class="wrap">
 	<?php screen_icon(); ?>
-	<h2><?php print $post_type; ?>: <?php _e('Custom Fields');?> <a href="#" class="button" onClick="javascript:addFieldDefinition();"><?php _e('Add Custom Field'); ?></a></h2>
+	<h2><?php print $post_type; ?>: <?php _e('Custom Fields');?> <a href="#" class="button" onClick="javascript:addFieldDefinition();"><?php _e('Add Custom Field', CCTM::txtdomain); ?></a></h2>
 	
 	<?php print $msg; ?>
 
@@ -141,8 +141,8 @@
 <br />
 
 		<div class="custom_content_type_mgr_form_controls">
-			<input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes'); ?>" />  
-			<a class="button" href="?page=<?php print self::admin_menu_slug;?>"><?php _e('Done'); ?></a> 
+			<input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes', CCTM::txtdomain); ?>" />  
+			<a class="button" href="?page=<?php print self::admin_menu_slug;?>"><?php _e('Done', CCTM::txtdomain); ?></a> 
 		</div>
 	</form>
 </div>

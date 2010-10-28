@@ -101,7 +101,7 @@ class PostSelector
 	{
 		$output = '';
 		
-		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/single_item.tpl');
+		$tpl = file_get_contents( CCTM_PATH.'/tpls/single_item.tpl');
 
 		foreach ( $results as $r )
 		{
@@ -140,11 +140,11 @@ class PostSelector
 		// It's not an image
 		else
 		{
-			list($src, $w, $h) = wp_get_attachment_image_src( $r['post_id'], 'thumbnail', TRUE);
+			list($src, $w, $h) = wp_get_attachment_image_src( $r['post_id'], 'thumbnail', true);
 			$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
 				, $src);
-			$r['detail_image'] = wp_get_attachment_image( $r['post_id'], 'medium', TRUE );
-			$preview_html = wp_get_attachment_image($r['post_id'], 'thumbnail', TRUE );
+			$r['detail_image'] = wp_get_attachment_image( $r['post_id'], 'medium', true );
+			$preview_html = wp_get_attachment_image($r['post_id'], 'thumbnail', true );
 			$r['dimensions'] = '';
 		}
 
@@ -180,7 +180,7 @@ class PostSelector
 	------------------------------------------------------------------------------*/
 	private function _format_result($r)
 	{
-		list($src, $w, $h) = wp_get_attachment_image_src( $r['post_id'], 'thumbnail', TRUE);
+		list($src, $w, $h) = wp_get_attachment_image_src( $r['post_id'], 'thumbnail', true);
 		$r['thumbnail_html'] = sprintf('<img class="mini-thumbnail" src="%s" height="30" width="30" alt="" />'
 				, $src);
 		$r['detail_image'] = wp_get_attachment_image( $r['post_id'], 'medium' );
@@ -302,7 +302,7 @@ class PostSelector
 		// Determines if this is an AJAX request or an iFrame
 		if ( isset($_GET['mode']) )
 		{
-			$this->mode = TRUE;
+			$this->mode = true;
 		}
 	}
 
@@ -326,7 +326,7 @@ class PostSelector
 		$offset
 		
 	------------------------------------------------------------------------------*/
-	private function _sql($select, $limit=0,$use_offset=FALSE)
+	private function _sql($select, $limit=0,$use_offset=false)
 	{
 		global $wpdb; 
 		
@@ -624,7 +624,7 @@ class PostSelector
 	------------------------------------------------------------------------------*/
 	public function query_count_results()
 	{
-		$results = $this->_sql( $this->_sql_select_count(), FALSE, FALSE);
+		$results = $this->_sql( $this->_sql_select_count(), false, false);
 		if ( !empty($results) )
 		{
 			return $results[0]['cnt'];
@@ -641,7 +641,7 @@ class PostSelector
 	------------------------------------------------------------------------------*/
 	public function query_distinct_yearmonth()
 	{
-		$results = $this->_sql( $this->_sql_select_yearmonth(), FALSE, FALSE);
+		$results = $this->_sql( $this->_sql_select_yearmonth(), false, false);
 		$output = $this->_format_yearmonth($results);
 		return $output;
 	}
@@ -663,7 +663,7 @@ class PostSelector
 	public function query_results()
 	{
 
-		$results = $this->_sql( $this->_sql_select_columns(), $this->results_per_page, TRUE);
+		$results = $this->_sql( $this->_sql_select_columns(), $this->results_per_page, true);
 
 		if ( empty($results) )
 		{
@@ -690,7 +690,7 @@ class PostSelector
 		$this->cnt = $this->query_count_results();
 		$hash['pagination_links'] = $this->Pagination->paginate($this->cnt);
 
-		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/items_wrapper.tpl');
+		$tpl = file_get_contents( CCTM_PATH.'/tpls/items_wrapper.tpl');
 		return $this->parse($tpl, $hash);
 	}
 	
@@ -703,10 +703,10 @@ class PostSelector
 		$hash = array();
 
 		$hash['jquery_path'] 				= '../../../../../wp-includes/js/jquery/jquery.js';
-		$hash['url'] 						= CUSTOM_CONTENT_TYPE_MGR_URL;
-		$hash['ajax_controller_url'] 		= CUSTOM_CONTENT_TYPE_MGR_URL . '/post-selector.php';
-		$hash['media_selector_stylesheet'] 	= CUSTOM_CONTENT_TYPE_MGR_URL . '/css/media_selector.css';
-		$hash['media_selector_css'] 		= file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH . '/css/media_selector.css');
+		$hash['url'] 						= CCTM_URL;
+		$hash['ajax_controller_url'] 		= CCTM_URL . '/post-selector.php';
+		$hash['media_selector_stylesheet'] 	= CCTM_URL . '/css/media_selector.css';
+		$hash['media_selector_css'] 		= file_get_contents( CCTM_PATH . '/css/media_selector.css');
 		$hash['fieldname'] 					= $this->fieldname;
 		$hash['page']						= $this->page;
 		$hash['default_results'] 			= $this->return_Ajax(); // Default results
@@ -718,7 +718,7 @@ class PostSelector
 		$hash['date_options'] 				= $this->query_distinct_yearmonth();
 		$hash['post_type']					= $this->post_type;
 		
-		$tpl = file_get_contents( CUSTOM_CONTENT_TYPE_MGR_PATH.'/tpls/main.tpl');
+		$tpl = file_get_contents( CCTM_PATH.'/tpls/main.tpl');
 
 		return $this->parse($tpl, $hash);
 	}

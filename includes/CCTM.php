@@ -4,9 +4,10 @@ This class handles the creation and management of custom post types.  It
 requires the FormGenerator.php and the StandardizedCustomFields.php files
 in order to function.
 ------------------------------------------------------------------------------*/
-class CustomContentTypeManager
+class CCTM
 {	
-	const name = 'Custom Content Type Manager';
+	const name 		= 'Custom Content Type Manager';
+	const txtdomain = 'custom-content-type-mgr'; // used for localization
 	
 	// Required versions.
 	const wp_req_ver 	= '3.0.1';
@@ -1338,12 +1339,12 @@ Default: value of public argument',
 		// $E = new WP_Error();
 		// include('errors.php');
 		// self::$Errors = $E;
-		wp_register_style('CustomContentTypeManager_class'
-			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type_class.css');
-		wp_register_style('CustomContentTypeManager_gui'
-			, CUSTOM_CONTENT_TYPE_MGR_URL . '/css/create_or_edit_post_type.css');
-		wp_enqueue_style('CustomContentTypeManager_class');
-		wp_enqueue_style('CustomContentTypeManager_gui');	
+		wp_register_style('CCTM_class'
+			, CCTM_URL . '/css/create_or_edit_post_type_class.css');
+		wp_register_style('CCTM_gui'
+			, CCTM_URL . '/css/create_or_edit_post_type.css');
+		wp_enqueue_style('CCTM_class');
+		wp_enqueue_style('CCTM_gui');	
 		// Hand-holding
 		wp_enqueue_script( 'thickbox' );
 		wp_enqueue_style( 'thickbox' );
@@ -1392,7 +1393,7 @@ Default: value of public argument',
 			'Custom Content Types',	 				// menu title
 			'manage_options', 						// capability
 			self::admin_menu_slug, 					// menu-slug (should be unique)
-			'CustomContentTypeManager::page_main_controller'	// callback function
+			'CCTM::page_main_controller'	// callback function
 		);
 	}
 	
@@ -1411,12 +1412,15 @@ Default: value of public argument',
 			{
 				$error_items .= "<li>$e</li>";
 			}
-			print '<div id="custom-post-type-manager-warning" class="error"><p><strong>'
-			.__('The &quot;Custom Content Type Manager&quot; plugin encountered errors! It cannot load!')
-			.'</strong> '
-			."<ul style='margin-left:30px;'>$error_items</ul>"
-			.'</p>'
-			.'</div>';
+			$msg = sprintf( __('The %s plugin encountered errors! It cannot load!', CCTM::txtdomain)
+				, CCTM::name);
+			printf('<div id="custom-post-type-manager-warning" class="error">
+				<p><strong>%$1s</strong>
+				<ul style="margin-left:30px;">%2$s</ul>
+				</p>
+				</div>'
+				, $msg
+				, $error_items);
 		}
 	}
 	
@@ -1500,7 +1504,7 @@ Default: value of public argument',
 				break;
 			case 2: // update existing custom post type. Override form def.
 				self::$post_type_form_definition['post_type']['type'] = 'readonly';
-				self::$post_type_form_definition['post_type']['description'] = 'The name of the post-type cannot be changed. The name may show up in your URLs, e.g. ?movie=star-wars. This will also make a new theme file available, starting with prefix named "single-", e.g. <strong>single-movie.php</strong>.';
+				self::$post_type_form_definition['post_type']['description'] = __('The name of the post-type cannot be changed. The name may show up in your URLs, e.g. ?movie=star-wars. This will also make a new theme file available, starting with prefix named "single-", e.g. <strong>single-movie.php</strong>.',CCTM::txtdomain);
 				self::_page_edit_post_type($post_type);
 				break;
 			case 3: // delete existing custom post type

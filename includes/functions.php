@@ -55,12 +55,12 @@ function get_all_fields_of_type($type)
 
 #	return get_post_meta($post_id, $fieldname, true);
 	
-	$data = get_option( CustomContentTypeManager::db_key );
+	$data = get_option( CCTM::db_key );
 	
 	$post_type = $post->post_type;
 	if ( !isset($data[$post_type]['custom_fields']) )
 	{
-		return "No custom fields defined for $fieldname field.";
+		return  sprintf( __('No custom fields defined for %1$s field.', CCTM::txtdomain), $fieldname );
 	}
 	
 	foreach ( $data[$post_type]['custom_fields'] as $def )
