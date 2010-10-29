@@ -9,31 +9,31 @@ avoid the resulting headaches as much as possible.
 
 // Required Files
 include_once('includes/constants.php');
-include_once('includes/CustomContentTypeManager.php');
+include_once('includes/CCTM.php');
 include_once('includes/FormGenerator.php');
 include_once('includes/StandardizedCustomFields.php');
 include_once('includes/functions.php');
 include_once('tests/CCTMtests.php');
 
 // Run Tests.
-CCTMtests::wp_version_gt(CustomContentTypeManager::wp_req_ver);
-CCTMtests::php_version_gt(CustomContentTypeManager::php_req_ver);
-CCTMtests::mysql_version_gt(CustomContentTypeManager::mysql_req_ver);
+CCTMtests::wp_version_gt(CCTM::wp_req_ver);
+CCTMtests::php_version_gt(CCTM::php_req_ver);
+CCTMtests::mysql_version_gt(CCTM::mysql_req_ver);
 
 // Get admin ready, show any 'hard' errors, if any.
-add_action( 'admin_notices', 'CustomContentTypeManager::print_notices');
+add_action( 'admin_notices', 'CCTM::print_notices');
 
 
 if ( empty(CCTMtests::$errors) )
 {
-	add_action( 'admin_init', 'CustomContentTypeManager::admin_init');	
+	add_action( 'admin_init', 'CCTM::admin_init');	
 	
 	// Register any custom post-types
-	add_action( 'init', 'CustomContentTypeManager::register_custom_post_types', 0 );
+	add_action( 'init', 'CCTM::register_custom_post_types', 0 );
 	
 	// create custom plugin settings menu
-	add_action('admin_menu', 'CustomContentTypeManager::create_admin_menu');
-	add_filter('plugin_action_links', 'CustomContentTypeManager::add_plugin_settings_link', 10, 2 );
+	add_action('admin_menu', 'CCTM::create_admin_menu');
+	add_filter('plugin_action_links', 'CCTM::add_plugin_settings_link', 10, 2 );
 	
 	
 	// Standardize Fields

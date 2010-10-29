@@ -34,310 +34,35 @@ class CCTM
 	// Names that are off-limits for custom post types
 	public static $reserved_post_types = array('post','page','attachment','revision'
 		,'nav_menu','nav_menu_item');
-		
-	// Future-proofing: post-type names cannot begin with this:
-	// See: http://codex.wordpress.org/Custom_Post_Types	
-	public static $reserved_prefix = 'wp_';
-
-	public static $Errors;	// used to store WP_Error object
 	
-	// Used when creating or editing Post Types
-	public static $post_type_form_definition =	array(
-		'post_type' => array(
-			'name'			=> 'post_type', 
-			'label'			=> 'Name *',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> 'Unique singular name to identify this post type in the database, e.g. "movie","book". This may show up in your URLs, e.g. ?movie=star-wars. This will also make a new theme file available, starting with prefix named "single-", e.g. <strong>single-movie.php</strong>. The name should be lowercase with only letters and underscores. This name cannot be changed!',	
-			'type'			=> 'text',
-			'sort_param'	=> 1,
-		),
-		'singular_label' => array(
-			'name'			=> 'singular_label', 
-			'label'			=> 'Singular Label',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> 'Human readable single instance of this content type, e.g. "Post"',	
-			'type'			=> 'text',
-			'sort_param'	=> 2,
-		),
-		'label' => array(
-			'name'			=> 'label', 
-			'label'			=> 'Menu Label (Plural)',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> 'Plural name used in the admin menu, e.g. "Posts"',	
-			'type'			=> 'text',
-			'sort_param'	=> 3,
-		),		
-		'description' => array(
-			'name'			=> 'description', 
-			'label'			=> 'Description',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> '',	
-			'type'			=> 'textarea',
-			'sort_param'	=> 4,
-		),
-		'show_ui' =>array(
-			'name'			=> 'show_ui',
-			'label'			=> 'Show Admin User Interface',
-			'value'			=> '1',
-			'extra'			=> '',
-			'description'	=> 'Should this post type be visible on the back-end?',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 5,
-		),
-		'capability_type' => array(
-			'name'			=> 'capability_type',
-			'label'			=> 'Capability Type',
-			'value'			=> 'post',
-			'extra'			=> '',
-			'description'	=> ' The post type to use for checking read, edit, and delete capabilities.
-Default: "post"',
-			'type'			=> 'text',
-			'sort_param'	=> 6,
-		),
-		'public' => array(
-			'name'			=> 'public',
-			'label'			=> 'Public',
-			'value'			=> '1',
-			'extra'			=> '',
-			'description'	=> 'Should these posts be visible on the front-end?',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 7,
-		),
+	// Custom field names are not allowed to use the same names as any column in wp_posts
+	public static $reserved_field_names	= array('ID','post_author','post_date','post_date_gmt',
+		'post_content','post_title','post_excerpt','post_status','comment_status','ping_status',
+		'post_password','post_name','to_ping','pinged','post_modified','post_modified_gmt',
+		'post_content_filtered','post_parent','guid','menu_order','post_type','post_mime_type',
+		'comment_count');
+	
+	// Future-proofing: post-type names cannot begin with 'wp_'
+	// See: http://codex.wordpress.org/Custom_Post_Types	
+	// List any other reserved prefixes here.
+	public static $reserved_prefixes = array('wp_');
 
-		'hierarchical' => array(
-			'name'			=> 'hierarchical',
-			'label'			=> 'Hierarchical',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> 'Allows parent to be specified (Page Attributes should be checked)',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 8,
-		),
-		'supports_title' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_title',
-			'label'			=> 'Title',
-			'value'			=> 'title',
-			'checked_value' => 'title',
-			'extra'			=> '',
-			'description'	=> 'Post Title',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 20,
-		),
-		'supports_editor' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_editor',
-			'label'			=> 'Content',
-			'value'			=> 'editor',
-			'checked_value' => 'editor',
-			'extra'			=> '',
-			'description'	=> 'Main content block.',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 21,
-		),
-		'supports_author' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_author',
-			'label'			=> 'Author',
-			'value'			=> '',
-			'checked_value' => 'author',
-			'extra'			=> '',
-			'description'	=> 'Track the author.',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 22,
-		),
-		'supports_thumbnail' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_thumbnail',
-			'label'			=> 'Thumbnail',
-			'value'			=> '',
-			'checked_value' => 'thumbnail',
-			'extra'			=> '',
-			'description'	=> 'featured image (current theme must also support post-thumbnails)',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 23,
-		),
-		'supports_excerpt' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_excerpt',
-			'label'			=> 'Excerpt',
-			'value'			=> '',
-			'checked_value' => 'excerpt',
-			'extra'			=> '',
-			'description'	=> 'Small summary field.',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 24,
-		),
-		'supports_trackbacks' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_trackbacks',
-			'label'			=> 'Trackbacks',
-			'value'			=> '',
-			'checked_value' => 'trackbacks',
-			'extra'			=> '',
-			'description'	=> '',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 25,
-		),
-		'supports_custom-fields' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_custom-fields',
-			'label'			=> 'Supports Custom Fields',
-			'value'			=> '',
-			'checked_value' => 'custom-fields',
-			'extra'			=> '',
-			'description'	=> '',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 26,
-		),
-		'supports_comments' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_comments',
-			'label'			=> 'Enable Comments',
-			'value'			=> '',
-			'checked_value' => 'comments',
-			'extra'			=> '',
-			'description'	=> '',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 27,
-		),
-		'supports_revisions' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_revisions',
-			'label'			=> 'Store Revisions',
-			'value'			=> '',
-			'checked_value' => 'revisions',
-			'extra'			=> '',
-			'description'	=> '',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 28,
-		),
-		'supports_page-attributes' => array(
-			'name'			=> 'supports[]',
-			'id'			=> 'supports_page-attributes',
-			'label'			=> 'Enable Page Attributes',
-			'value'			=> '',
-			'checked_value' => 'page-attributes',
-			'extra'			=> '',
-			'description'	=> '(template and menu order; hierarchical must be checked)',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 29,
-		),
-		
-		'menu_position' => array(
-			'name'			=> 'menu_position',
-			'label'			=> 'Menu Position',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> 'Determines where this post type should appear in the left hand admin menu.<br />
-							Default: null - defaults to below Comments.
-							<ul style="margin-left:40px;">
-							<li><strong>5</strong> - below Posts</li>
-							<li><strong>10</strong> - below Media</li>
-							<li><strong>20</strong> - below Pages</li>
-							<li><strong>60</strong> - below first separator</li>
-							<li><strong>100</strong> - below second separator</li>
-							</ul>',
-			'type'			=> 'text',
-			'sort_param'	=> 30,
-		),
-		
-		'menu_icon' => array(
-			'name'			=> 'menu_icon',
-			'label'			=> 'Menu Icon',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> 'The url to the icon to be used for this menu.',
-			'type'			=> 'text',
-			'sort_param'	=> 31,
-		),
-		'use_default_menu_icon' => array(
-			'name'			=> 'use_default_menu_icon',
-			'label'			=> 'Use Default Menu Icon',
-			'value'			=> '1',
-			'extra'			=> '',
-			'description'	=> 'If checked, your post type will use the posts icon',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 32,
-		),
-
-		'rewrite_slug' => array(
-			'name'			=> 'rewrite_slug',
-			'label'			=> 'Rewrite Slug',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> "Prepend posts with this slug - defaults to post type's name",
-			'type'			=> 'text',
-			'sort_param'	=> 35,
-		),
-		'rewrite_with_front' => array(
-			'name'			=> 'rewrite_with_front',
-			'label'			=> 'Rewrite with Permalink Front',
-			'value'			=> '1',
-			'extra'			=> '',
-			'description'	=> "Allow permalinks to be prepended with front base - defaults to checked",
-			'type'			=> 'checkbox',
-			'sort_param'	=> 35,
-		),
-		'rewrite' => array(
-			'name'			=> 'permalink_action',
-			'label'			=> 'Permalink Action',
-			'value'			=> 'Off',
-			'options'		=> array('Off','/%postname%/'), // ,'Custom'),
-			'extra'			=> '',
-			'description'	=> "Use permalink rewrites for this post_type? Default: Off<br />
-						<ul style='margin-left:20px;'>
-							<li><strong>Off</strong> - URLs for custom post_types will always look like: http://site.com/?post_type=book&p=39 even if the rest of the site is using a different permalink structure.</li>
-							<li><strong>/%postname%/</strong> - You MUST use the custom permalink structure: '/%postname%/'. Other formats are <strong>not</strong> supported.  Your URLs will look like http://site.com/movie/star-wars/</li>
-							<!--li><strong>Custom</strong> - Evaluate the contents of slug</li-->
-						<ul>",
-			'type'			=> 'dropdown',
-			'sort_param'	=> 37,
-		),		
-
-		'query_var' => array(
-			'name'			=> 'query_var',
-			'label'			=> 'Query Variable',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> '(optional) Name of the query var to use for this post type.<br />
-				E.g. "movie" would make for URLs like http://site.com/?movie=star-wars<br />
-				If blank, the default structure is http://site.com/?post_type=movie&p=18',
-			'type'			=> 'text',
-			'sort_param'	=> 38,
-		),
-
-
-		'can_export' => array(
-			'name'			=> 'can_export',
-			'label'			=> 'Can Export',
-			'value'			=> '1',
-			'extra'			=> '',
-			'description'	=> 'Can this post_type be exported.',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 40,
-		),		
-
-		'show_in_nav_menus' => array(
-			'name'			=> 'show_in_nav_menus',
-			'label'			=> 'Show in Nav Menus',
-			'value'			=> '1',
-			'extra'			=> '',
-			'description'	=> 'Whether post_type is available for selection in navigation menus.
-Default: value of public argument',
-			'type'			=> 'checkbox',
-			'sort_param'	=> 40,
-		),		
-	);
-
+	public static $Errors;	// used to store WP_Error object (FUTURE)
+	
+	/*------------------------------------------------------------------------------
+	We have a setter here, but not a getter: we use a setter so 
+	we can localize the message strings as the array is created.
+	Stores the BIG form definition in a format so when it is posted, it can by easily 
+	passed to WP's register_post_type() function.
+	------------------------------------------------------------------------------*/
+	public static $post_type_form_definition = array();
+	
 	/*------------------------------------------------------------------------------
 	This array acts as a template for all new field definitions.
 	See the _page_manage_custom_fields() function for when and how this occurs.
 	------------------------------------------------------------------------------*/
+	public static $custom_field_def_template = array();
+/*
 	public static $custom_field_def_template = array(
 		'label' => array(
 			'name'			=> "custom_fields[[+def_i+]][label]",
@@ -386,6 +111,7 @@ Default: value of public argument',
 			'sort_param'	=> 5,
 		)
 	);
+*/
 	
 	//! Private Functions
 	/*------------------------------------------------------------------------------
@@ -473,8 +199,7 @@ Default: value of public argument',
 		// Javascript chokes on newlines...
 		return str_replace( array("\r\n", "\r", "\n", "\t"), ' ', $output);
 	}
-	
-	
+		
 	/*------------------------------------------------------------------------------
 	Designed to safely retrieve scalar elements out of a hash. Don't use this 
 	if you have a more deeply nested object (e.g. an array of arrays).
@@ -834,10 +559,11 @@ Default: value of public argument',
 		$fields = '';
 		
 		$data = get_option( self::db_key, array() );
-		// Save data if it was properly submitted
+		
+		// Validate/Save data if it was properly submitted
 		if ( !empty($_POST) && check_admin_referer($action_name,$nonce_name) )
 		{
-			$error_flag = false;
+			$error_msg = array(); // used as a flag
 			if (!isset($_POST['custom_fields']))
 			{
 				$data[$post_type]['custom_fields'] = array(); // all custom fields were deleted
@@ -849,25 +575,55 @@ Default: value of public argument',
 				{
 					if ( preg_match('/[^a-z_]/i', $cf['name']))
 					{
+						$error_msg[] = sprintf(
+							__('%s contains invalid characters.',CCTM::txtdomain)
+							, '<strong>'.$cf['name'].'</strong>');
 						$cf['name'] = preg_replace('/[^a-z_]/','',$cf['name']);
-						$error_flag = true;
 					}
 					if ( strlen($cf['name']) > 20 )
 					{
 						$cf['name'] = substr($cf['name'], 0 , 20);
-						$error_flag = true;
+						$error_msg[] = sprintf(
+							__('%s is too long.',CCTM::txtdomain)
+							, '<strong>'.$cf['name'].'</strong>');
+					}
+					if ( in_array($cf['name'], self::$reserved_field_names ) )
+					{
+						$error_msg[] = sprintf(
+							__('%s is a reserved name.',CCTM::txtdomain)
+							, '<strong>'.$cf['name'].'</strong>');						
 					}
 				}
 			}
-			if ($error_flag)
+			if ($error_msg)
 			{
-				$msg = '<div class="error">Field names must be URL friendly. A-Z and underscores only! And 20 characters or less. Please review the suggested changes below.</div>';
+				foreach ( $error_msg as &$e )
+				{
+					$e = '<li>'.$e.'</li>';
+				}
+				
+				$msg = sprintf('<div class="error">
+					<h3>%1$s</h3>
+					%2$s %3$s %4$s
+					<ul style="margin-left:30px">
+						%5$s
+					</ul>
+					</div>'
+					, __('There were errors in the names of your custom fields.', CCTM::txtdomain)
+					, __('Names must not exceed 20 characters in length.', CCTM::txtdomain)
+					, __('Names may contain the letters a-z and underscores only.', CCTM::txtdomain)
+					, __('You cannot name your field using any reserved name.', CCTM::txtdomain)
+					, implode("\n", $error_msg)
+				);
 			}
 			else
 			{
 				update_option( self::db_key, $data );
-				$msg = '<div class="updated">Custom fields for <em>'
-					.$post_type.'</em> have been <strong>updated</strong></p></div>';			
+				$msg = sprintf('<div class="updated">%s</p></div>'
+						, sprintf(__('Custom fields for %1$s have been <strong>updated</strong>', CCTM::txtdomain)
+							, '<em>'.$post_type.'</em>'
+						)
+					);
 			}
 		}	
 	
@@ -884,10 +640,13 @@ Default: value of public argument',
 		// that is sufficiently high so that the ids of Javascript-created elements
 		// do not conflict with the ids of PHP-created elements.
 		$element_cnt = count($def, COUNT_RECURSIVE);
-		
+
 		if (!$def_cnt)
 		{
-			$msg .= '<div class="updated">The <em>'.$post_type.'</em> post type does not have any custom fields yet. Click the button above to add a custom field.</div>';
+			$x = sprintf( __('The %s post type does not have any custom fields yet.', CCTM::txtdomain)
+				, '<em>'.$post_type.'</em>' );
+			$y = __('Click the button above to add a custom field.', CCTM::txtdomain );
+			$msg .= sprintf('<div class="updated">%s %s</div>', $x, $y);
 		}
 
 		$fields = self::_get_html_field_defs($def);
@@ -1114,19 +873,46 @@ Default: value of public argument',
 	private static function _post_type_name_has_errors($post_type, $previous_name='')
 	{
 		$errors = null;
+		
+		$taxonomy_names_array = get_taxonomies('','names');
+
 		if ( empty($post_type) )
 		{
-			return __('Name is required.');
+			return __('Name is required.', CCTM::txtdomain);
 		}
-		// Is reserved name?
-		elseif ( in_array($post_type, self::$reserved_post_types) )
+
+		foreach ( self::$reserved_prefixes as $rp )
 		{
-			return __('Please choose another name. The name you have chosen is reserved.');
+			if ( preg_match('/^'.preg_quote($rp).'.*/', $post_type) )
+			{
+				return sprintf( __('The post type name cannot begin with %s because that is a reserved prefix.', CCTM::txtdomain)
+					, $rp);
+			}		
+		}
+
+		
+		// Is reserved name?
+		if ( in_array($post_type, self::$reserved_post_types) )
+		{
+			$msg = __('Please choose another name.', CCTM::txtdomain );
+			$msg .= ' ';
+			$msg .= sprintf( __('%$1s is a reserved name.', CCTM::txtdomain )
+				, $post_type );
+			return $msg;
 		}
 		// Reserved prefix 
 		elseif ( preg_match('/^'.preg_quote(self::$reserved_prefix).'.*/', $post_type) )
 		{
-			return __('The post type name cannot begin with ') . self::$reserved_prefix;
+			return sprintf( __('The post type name cannot begin with %s', CCTM::txtdomain)
+				, self::$reserved_prefix);
+		}
+		// Make sure the post-type name does not conflict with any registered taxonomies
+		elseif ( in_array( $post_type, $taxonomy_names_array) )
+		{
+			$msg = __('Please choose another name.', CCTM::txtdomain );
+			$msg .= ' ';
+			$msg .= sprintf( __('%$1s is already in use as a registered taxonomy name.', CCTM::txtdomain)
+				, $post_type );
 		}
 		// If this is a new post_type or if the $post_type name has been changed, 
 		// ensure that it is not going to overwrite an existing post type name.
@@ -1252,6 +1038,341 @@ Default: value of public argument',
 		update_option( self::db_key, $all_post_types );
 	}
 
+	/*------------------------------------------------------------------------------
+	This is sorta a reflexive form definition: it defines the form required to 
+	define a form. Not that names imply arrays, e.g. name="custom_fields[3][label]".
+	This is intentional: since all custom field definitions are stored as a serialized
+	array in the wp_options table, we have to treat all defs as a kind of recordset
+	(i.e. an array of similar hashes).
+	 
+	[+def_i+] gets used by Javascript for on-the-fly adding of form fields (where
+	def_i is a Javascript variable indicating the definition number (or i for integer).
+	------------------------------------------------------------------------------*/
+	private static function _set_custom_field_def_template()
+	{
+		$def['label']['name']			= 'custom_fields[[+def_i+]][label]';
+		$def['label']['label']			= __('Label', CCTM::txtdomain);
+		$def['label']['value']			= '';
+		$def['label']['extra']			= '';			
+		$def['label']['description']	= '';
+		$def['label']['type']			= 'text';
+		$def['label']['sort_param']		= 1;
+
+		$def['name']['name']			= 'custom_fields[[+def_i+]][name]';
+		$def['name']['label']			= __('Name', CCTM::txtdomain);
+		$def['name']['value']			= '';
+		$def['name']['extra']			= '';			
+		$def['name']['description']		= __('The name identifies the <em>option_name</em> in the <em>wp_postmeta</em> database table. You will use this name in your template functions to identify this custom field.', CCTM::txtdomain);
+		$def['name']['type']			= 'text';
+		$def['name']['sort_param']		= 2;
+
+		$def['description']['name']			= 'custom_fields[[+def_i+]][description]';
+		$def['description']['label']		= __('Description',CCTM::txtdomain);
+		$def['description']['value']		= '';
+		$def['description']['extra']		= '';
+		$def['description']['description']	= '';
+		$def['description']['type']			= 'textarea';
+		$def['description']['sort_param']	= 3;
+
+		$def['type']['name']		= 'custom_fields[[+def_i+]][type]';
+		$def['type']['label']		= __('Input Type', CCTM::txtdomain);
+		$def['type']['value']		= '';
+		$def['type']['extra']		= ' onchange="javascript:addRemoveDropdown(this.parentNode.id,this.value, [+def_i+])"';
+		$def['type']['description']	= '';
+		$def['type']['type']		= 'dropdown';
+		$def['type']['options']		= array('checkbox','dropdown','media','relation','text','textarea','wysiwyg');
+		$def['type']['sort_param']	= 4;
+
+		$def['sort_param']['name']			= 'custom_fields[[+def_i+]][sort_param]';
+		$def['sort_param']['label']			= __('Sort Order',CCTM::txtdomain);
+		$def['sort_param']['value']			= '';
+		$def['sort_param']['extra']			= ' size="2" maxlength="4"';
+		$def['sort_param']['description']	= __('This controls where this field will appear on the page. Fields with smaller numbers will appear higher on the page.',CCTM::txtdomain);
+		$def['sort_param']['type']			= 'text';
+		$def['sort_param']['sort_param']	= 5;
+
+
+		self::$custom_field_def_template = $def;
+	}
+
+	/*------------------------------------------------------------------------------
+	Used when creating or editing Post Types	
+	------------------------------------------------------------------------------*/
+	private static function _set_post_type_form_definition()
+	{
+		$def =	array();
+		
+		$def['post_type']['name'] 			= 'post_type';
+		$def['post_type']['label'] 			= __('Name', CCTM::txtdomain). ' *';
+		$def['post_type']['value'] 			= '';
+		$def['post_type']['extra'] 			= '';
+		$def['post_type']['description'] 	= __('Unique singular name to identify this post type in the database, e.g. "movie","book". This may show up in your URLs, e.g. ?movie=star-wars. This will also make a new theme file available, starting with prefix named "single-", e.g. <strong>single-movie.php</strong>. The name should be lowercase with only letters and underscores. This name cannot be changed!', CCTM::txtdomain);
+		$def['post_type']['type'] 			= 'text';
+		$def['post_type']['sort_param'] 	= 1;
+			
+		$def['singular_label']['name']			= 'singular_label';
+		$def['singular_label']['label']			= __('Singular Label', CCTM::txtdomain);
+		$def['singular_label']['value']			= '';
+		$def['singular_label']['extra']			= '';
+		$def['singular_label']['description']	= __('Human readable single instance of this content type, e.g. "Post"', CCTM::txtdomain);
+		$def['singular_label']['type']			= 'text';
+		$def['singular_label']['sort_param']	= 2;
+
+		$def['label']['name']			= 'label';
+		$def['label']['label']			= __('Menu Label (Plural)', CCTM::txtdomain);
+		$def['label']['value']			= '';
+		$def['label']['extra']			= '';
+		$def['label']['description']	= __('Plural name used in the admin menu, e.g. "Posts"', CCTM::txtdomain);
+		$def['label']['type']			= 'text';
+		$def['label']['sort_param']		= 3;
+
+		$def['description']['name']			= 'description';
+		$def['description']['label']		= __('Description', CCTM::txtdomain);
+		$def['description']['value']		= '';
+		$def['description']['extra']		= '';
+		$def['description']['description']	= '';	
+		$def['description']['type']			= 'textarea';
+		$def['description']['sort_param']	= 4;
+
+		$def['show_ui']['name']			= 'show_ui';
+		$def['show_ui']['label']			= __('Show Admin User Interface', CCTM::txtdomain);
+		$def['show_ui']['value']			= '1';
+		$def['show_ui']['extra']			= '';
+		$def['show_ui']['description']	= __('Should this post type be visible on the back-end?', CCTM::txtdomain);
+		$def['show_ui']['type']			= 'checkbox';
+		$def['show_ui']['sort_param']	= 5;
+
+		$def['capability_type']['name']			= 'capability_type';
+		$def['capability_type']['label']		= __('Capability Type', CCTM::txtdomain);
+		$def['capability_type']['value']		= 'post';
+		$def['capability_type']['extra']		= '';
+		$def['capability_type']['description']	= __('The post type to use for checking read, edit, and delete capabilities. Default: "post"', CCTM::txtdomain);
+		$def['capability_type']['type']			= 'text';
+		$def['capability_type']['sort_param']	= 6;
+
+		$def['public']['name']			= 'public';
+		$def['public']['label']			= __('Public', CCTM::txtdomain);
+		$def['public']['value']			= '1';
+		$def['public']['extra']			= '';
+		$def['public']['description']	= __('Should these posts be visible on the front-end?', CCTM::txtdomain);
+		$def['public']['type']			= 'checkbox';
+		$def['public']['sort_param']	= 7;
+	
+		$def['hierarchical']['name']		= 'hierarchical';
+		$def['hierarchical']['label']		= __('Hierarchical', CCTM::txtdomain);
+		$def['hierarchical']['value']		= '';
+		$def['hierarchical']['extra']		= '';
+		$def['hierarchical']['description']	= __('Allows parent to be specified (Page Attributes should be checked)', CCTM::txtdomain);
+		$def['hierarchical']['type']		= 'checkbox';
+		$def['hierarchical']['sort_param']	= 8;
+		
+		$def['supports_title']['name']			= 'supports[]';
+		$def['supports_title']['id']			= 'supports_title';
+		$def['supports_title']['label']			= __('Title', CCTM::txtdomain);
+		$def['supports_title']['value']			= 'title';
+		$def['supports_title']['checked_value'] = 'title';
+		$def['supports_title']['extra']			= '';
+		$def['supports_title']['description']	= __('Post Title', CCTM::txtdomain);
+		$def['supports_title']['type']			= 'checkbox';
+		$def['supports_title']['sort_param']	= 20;
+
+		$def['supports_editor']['name']			= 'supports[]';
+		$def['supports_editor']['id']			= 'supports_editor';
+		$def['supports_editor']['label']		= __('Content', CCTM::txtdomain);
+		$def['supports_editor']['value']		= 'editor';
+		$def['supports_editor']['checked_value'] = 'editor';
+		$def['supports_editor']['extra']		= '';
+		$def['supports_editor']['description']	= __('Main content block.', CCTM::txtdomain);
+		$def['supports_editor']['type']			= 'checkbox';
+		$def['supports_editor']['sort_param']	= 21;
+
+		$def['supports_author']['name']			= 'supports[]';
+		$def['supports_author']['id']			= 'supports_author';
+		$def['supports_author']['label']		= __('Author', CCTM::txtdomain);
+		$def['supports_author']['value']		= '';
+		$def['supports_author']['checked_value'] = 'author';
+		$def['supports_author']['extra']		= '';
+		$def['supports_author']['description']	= __('Track the author.', CCTM::txtdomain);
+		$def['supports_author']['type']			= 'checkbox';
+		$def['supports_author']['sort_param']	= 22;
+
+		$def['supports_thumbnail']['name']		= 'supports[]';
+		$def['supports_thumbnail']['id'] 		= 'supports_thumbnail';
+		$def['supports_thumbnail']['label'] 	= __('Thumbnail', CCTM::txtdomain);
+		$def['supports_thumbnail']['value'] 	= '';
+		$def['supports_thumbnail']['checked_value' ] = 'thumbnail';
+		$def['supports_thumbnail']['extra'] 		= '';
+		$def['supports_thumbnail']['description'] 	= __('Featured image (the activetheme must also support post-thumbnails)', CCTM::txtdomain);
+		$def['supports_thumbnail']['type'] 			= 'checkbox';
+		$def['supports_thumbnail']['sort_param'] 	= 23;
+
+		$def['supports_excerpt']['name']			= 'supports[]';
+		$def['supports_excerpt']['id']				= 'supports_excerpt';
+		$def['supports_excerpt']['label']			= __('Excerpt', CCTM::txtdomain);
+		$def['supports_excerpt']['value']			= '';
+		$def['supports_excerpt']['checked_value'] = 'excerpt';
+		$def['supports_excerpt']['extra']			= '';
+		$def['supports_excerpt']['description']		= __('Small summary field.', CCTM::txtdomain);
+		$def['supports_excerpt']['type']			= 'checkbox';
+		$def['supports_excerpt']['sort_param']	= 24;
+
+		$def['supports_trackbacks']['name']				= 'supports[]';
+		$def['supports_trackbacks']['id']				= 'supports_trackbacks';
+		$def['supports_trackbacks']['label']			= __('Trackbacks', CCTM::txtdomain);
+		$def['supports_trackbacks']['value']			= '';
+		$def['supports_trackbacks']['checked_value']	= 'trackbacks';
+		$def['supports_trackbacks']['extra']			= '';
+		$def['supports_trackbacks']['description']		= '';
+		$def['supports_trackbacks']['type']				= 'checkbox';
+		$def['supports_trackbacks']['sort_param']		= 25;
+
+		$def['supports_custom-fields']['name']			= 'supports[]';
+		$def['supports_custom-fields']['id']			= 'supports_custom-fields';
+		$def['supports_custom-fields']['label']			= __('Supports Custom Fields', CCTM::txtdomain);
+		$def['supports_custom-fields']['value']			= '';
+		$def['supports_custom-fields']['checked_value'] = 'custom-fields';
+		$def['supports_custom-fields']['extra']			= '';
+		$def['supports_custom-fields']['description']	= '';
+		$def['supports_custom-fields']['type']			= 'checkbox';
+		$def['supports_custom-fields']['sort_param']	= 26;
+
+		$def['supports_comments']['name']			= 'supports[]';
+		$def['supports_comments']['id']				= 'supports_comments';
+		$def['supports_comments']['label']			= __('Enable Comments', CCTM::txtdomain);
+		$def['supports_comments']['value']			= '';
+		$def['supports_comments']['checked_value'] 	= 'comments';
+		$def['supports_comments']['extra']			= '';
+		$def['supports_comments']['description']	= '';
+		$def['supports_comments']['type']			= 'checkbox';
+		$def['supports_comments']['sort_param']		= 27;
+
+		$def['supports_revisions']['name']			= 'supports[]';
+		$def['supports_revisions']['id']			= 'supports_revisions';
+		$def['supports_revisions']['label']			= __('Store Revisions', CCTM::txtdomain);
+		$def['supports_revisions']['value']			= '';
+		$def['supports_revisions']['checked_value'] = 'revisions';
+		$def['supports_revisions']['extra']			= '';
+		$def['supports_revisions']['description']	= '';
+		$def['supports_revisions']['type']			= 'checkbox';
+		$def['supports_revisions']['sort_param']	= 28;
+
+		$def['supports_page-attributes']['name']			= 'supports[]';
+		$def['supports_page-attributes']['id']				= 'supports_page-attributes';
+		$def['supports_page-attributes']['label']			= __('Enable Page Attributes', CCTM::txtdomain);
+		$def['supports_page-attributes']['value']			= '';
+		$def['supports_page-attributes']['checked_value'] 	= 'page-attributes';
+		$def['supports_page-attributes']['extra']			= '';
+		$def['supports_page-attributes']['description']		= __('(template and menu order; hierarchical must be checked)', CCTM::txtdomain);
+		$def['supports_page-attributes']['type']			= 'checkbox';
+		$def['supports_page-attributes']['sort_param']		= 29;
+
+			
+		$def['menu_position']['name']			= 'menu_position';
+		$def['menu_position']['label']			= __('Menu Position', CCTM::txtdomain);
+		$def['menu_position']['value']			= '';
+		$def['menu_position']['extra']			= '';
+		$def['menu_position']['description']	= 
+			sprintf('%1$s 
+				<ul style="margin-left:40px;">
+					<li><strong>5</strong> - %2$s</li>
+					<li><strong>10</strong> - %3$s</li>
+					<li><strong>20</strong> - %4$s</li>
+					<li><strong>60</strong> - %5$s</li>
+					<li><strong>100</strong> - %6$s</li>
+				</ul>'
+				, __('This setting determines where this post type should appear in the left-hand admin menu. Default: null (below Comments)', CCTM::txtdomain)
+				, __('below Posts', CCTM::txtdomain)
+				, __('below Media', CCTM::txtdomain)
+				, __('below Posts', CCTM::txtdomain)
+				, __('below Pages', CCTM::txtdomain)
+				, __('below first separator', CCTM::txtdomain)
+				, __('below second separator', CCTM::txtdomain)
+			);
+		$def['menu_position']['type']			= 'text';
+		$def['menu_position']['sort_param']		= 30;
+
+			
+		$def['menu_icon']['name']			= 'menu_icon';
+		$def['menu_icon']['label']			= __('Menu Icon', CCTM::txtdomain);
+		$def['menu_icon']['value']			= '';
+		$def['menu_icon']['extra']			= '';
+		$def['menu_icon']['description']	= __('Menu icon URL.', CCTM::txtdomain);
+		$def['menu_icon']['type']			= 'text';
+		$def['menu_icon']['sort_param']		= 31;
+
+		$def['use_default_menu_icon']['name']			= 'use_default_menu_icon';
+		$def['use_default_menu_icon']['label']			= __('Use Default Menu Icon', CCTM::txtdomain);
+		$def['use_default_menu_icon']['value']			= '1';
+		$def['use_default_menu_icon']['extra']			= '';
+		$def['use_default_menu_icon']['description']	= __('If checked, your post type will use the posts icon', CCTM::txtdomain);
+		$def['use_default_menu_icon']['type']			= 'checkbox';
+		$def['use_default_menu_icon']['sort_param']		= 32;
+
+		$def['rewrite_slug']['name']		= 'rewrite_slug';
+		$def['rewrite_slug']['label']		= __('Rewrite Slug', CCTM::txtdomain);
+		$def['rewrite_slug']['value']		= '';
+		$def['rewrite_slug']['extra']		= '';
+		$def['rewrite_slug']['description']	= __("Prepend posts with this slug - defaults to post type's name", CCTM::txtdomain);
+		$def['rewrite_slug']['type']		= 'text';
+		$def['rewrite_slug']['sort_param']	= 35;
+
+		$def['rewrite_with_front']['name']			= 'rewrite_with_front';
+		$def['rewrite_with_front']['label']			= __('Rewrite with Permalink Front', CCTM::txtdomain);
+		$def['rewrite_with_front']['value']			= '1';
+		$def['rewrite_with_front']['extra']			= '';
+		$def['rewrite_with_front']['description']	= __("Allow permalinks to be prepended with front base - defaults to checked", CCTM::txtdomain);
+		$def['rewrite_with_front']['type']			= 'checkbox';
+		$def['rewrite_with_front']['sort_param']	= 35;
+
+		$def['rewrite']['name']			= 'permalink_action';
+		$def['rewrite']['label']		= __('Permalink Action', CCTM::txtdomain);
+		$def['rewrite']['value']		= 'Off';
+		$def['rewrite']['options']		= array('Off','/%postname%/'); // ,'Custom'),
+		$def['rewrite']['extra']		= '';
+		$def['rewrite']['description']	= sprintf(
+			'%1$s
+			<ul style="margin-left:20px;">
+				<li><strong>Off</strong> - %2$s</li>
+				<li><strong>/%postname%/</strong> - %3$s</li>
+				<!--li><strong>Custom</strong> - Evaluate the contents of slug</li-->
+			<ul>'
+				, __('Use permalink rewrites for this post_type? Default: Off', CCTM::txtdomain)
+				, __('URLs for custom post_types will always look like: http://site.com/?post_type=book&p=39 even if the rest of the site is using a different permalink structure.', CCTM::txtdomain)
+				, __('You MUST use the custom permalink structure: "/%postname%/". Other formats are <strong>not</strong> supported.  Your URLs will look like http://site.com/movie/star-wars/', CCTM::txtdomain)
+			);
+		$def['rewrite']['type']			= 'dropdown';
+		$def['rewrite']['sort_param']	= 37;
+
+
+		$def['query_var']['name']			= 'query_var';
+		$def['query_var']['label']			= __('Query Variable', CCTM::txtdomain);
+		$def['query_var']['value']			= '';
+		$def['query_var']['extra']			= '';
+		$def['query_var']['description']	= __('(optional) Name of the query var to use for this post type.
+			E.g. "movie" would make for URLs like http://site.com/?movie=star-wars. 
+			If blank, the default structure is http://site.com/?post_type=movie&p=18', CCTM::txtdomain);
+		$def['query_var']['type']			= 'text';
+		$def['query_var']['sort_param']	= 38;
+
+		$def['can_export']['name']			= 'can_export';
+		$def['can_export']['label']			= __('Can Export', CCTM::txtdomain);
+		$def['can_export']['value']			= '1';
+		$def['can_export']['extra']			= '';
+		$def['can_export']['description']	= __('Can this post_type be exported.', CCTM::txtdomain);
+		$def['can_export']['type']			= 'checkbox';
+		$def['can_export']['sort_param']		= 40;
+
+		$def['show_in_nav_menus']['name']			= 'show_in_nav_menus';
+		$def['show_in_nav_menus']['label']			= __('Show in Nav Menus', CCTM::txtdomain);
+		$def['show_in_nav_menus']['value']			= '1';
+		$def['show_in_nav_menus']['extra']			= '';
+		$def['show_in_nav_menus']['description']	= __('Whether post_type is available for selection in navigation menus. Default: value of public argument', CCTM::txtdomain);
+		$def['show_in_nav_menus']['type']			= 'checkbox';
+		$def['show_in_nav_menus']['sort_param']	= 40;
+	
+		self::$post_type_form_definition = $def;
+	}
+
 
 	/*------------------------------------------------------------------------------
 	The custom_fields array consists of form element definitions that are used when
@@ -1336,6 +1457,12 @@ Default: value of public argument',
 	------------------------------------------------------------------------------*/
 	public static function admin_init()
 	{
+    	load_plugin_textdomain( CCTM::txtdomain, '', CCTM_PATH );
+	
+		// Set our form defs in this, our makeshift constructor.
+		self::_set_post_type_form_definition();
+		self::_set_custom_field_def_template();
+		
 		// $E = new WP_Error();
 		// include('errors.php');
 		// self::$Errors = $E;
@@ -1345,7 +1472,8 @@ Default: value of public argument',
 			, CCTM_URL . '/css/create_or_edit_post_type.css');
 		wp_enqueue_style('CCTM_class');
 		wp_enqueue_style('CCTM_gui');	
-		// Hand-holding
+		// Hand-holding: If your custom post-types omit the main content block, 
+		// then thickbox will not be queued.
 		wp_enqueue_script( 'thickbox' );
 		wp_enqueue_style( 'thickbox' );
 			
@@ -1415,8 +1543,11 @@ Default: value of public argument',
 			$msg = sprintf( __('The %s plugin encountered errors! It cannot load!', CCTM::txtdomain)
 				, CCTM::name);
 			printf('<div id="custom-post-type-manager-warning" class="error">
-				<p><strong>%$1s</strong>
-				<ul style="margin-left:30px;">%2$s</ul>
+				<p>
+					<strong>%$1s</strong>
+					<ul style="margin-left:30px;">
+						%2$s
+					</ul>
 				</p>
 				</div>'
 				, $msg

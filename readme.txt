@@ -80,9 +80,10 @@ Content and templates must go hand in hand.
 
 There are many ways to structure a site depending on what you are selling. For an example, let's say you are selling both T-shirts and Hats. You could create a single "product" content type, or you could create two different content types: "shirt" and "hat".
 
-== Bugs ==
+== Known Bugs ==
 
-Known bug: you shouldn't name a post-type the same as a taxonomy or vice-versa.  In particular, this seems to jinx the Appearance --> Menus page. 
+* You cannot add menu items to navigation menus when this plugin is enabled. The Ajax call to wp-admin/admin-ajax.php encounters a 403 error: "Are you sure you want to do this?".  I don't know if this is a WordPress bug or a bug with this plugin.
+* Possible bug? Don't use the same name for a taxonomy and a content-type (post-type). Saving a content-type now against registered taxonomies, but nothing prevents you from registering other taxonomies with other plugins.
 
 == Screenshots ==
 
@@ -92,20 +93,8 @@ the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
-
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
+= 0.8.0 =
+* Initial public release
 
 == Requirements ==
 
@@ -113,16 +102,16 @@ This version fixes a security related bug.  Upgrade immediately.
 * PHP 5.2.6 or greater
 * MySQL 5.0.41 or greater
 
-These requirements are tested on load; the plugin will not load if these requirements are not met. Error messaging will fail if the user is using pre WP 2.0.11. 
+These requirements are tested during WordPress initialization; the plugin will not load if these requirements are not met. Error messaging will fail if the user is using pre WP 2.0.11. 
 
 
 == About ==
 
-This plugin was written for the forthcoming book "Beginning WordPress Plugin Development" published by Packt. It was inspired by the [Custom-Post Type UI](http://wordpress.org/extend/plugins/custom-post-type-ui/) plugin written by Brad Williams. The Custom-Post Type UI plugin offers some of the same features, but I felt that its architecture was flawed: it stores data as taxonomical terms, which is conceptually awkward at a development level, and more importantly, it limits the amount of data of each field to 200 characters. 
+This plugin was written in part for the forthcoming book "Beginning WordPress Plugin Development" published by Packt. It was inspired by the [Custom-Post Type UI](http://wordpress.org/extend/plugins/custom-post-type-ui/) plugin written by Brad Williams. The Custom-Post Type UI plugin offers some of the same features, but I felt that its architecture was flawed: it stores data as taxonomical terms, which is conceptually awkward at a development level, and more importantly, it limits the each custom field to 200 characters of data.
 
-On the surface, this plugin is similar, but this plugin stores custom field "correctly" as post meta data, which allows allows for different input types (e.g. checkboxes, dropdowns, and images) and the custom fields offered by this plugin can support data of virtually unlimited size. For example, you could define a WYSIWYG custom field for your custom content type and it could hold many pages of data.
+On the surface, this plugin is similar, but this plugin stores "correctly" custom field data as post meta data, which allows allows for different input types (e.g. checkboxes, dropdowns, and images) and the custom fields offered by this plugin can support data of virtually unlimited size. For example, you could define a WYSIWYG custom field for your custom content type and it could hold many pages of data.
 
-The architecture for this plugin was also inspired by [MODx](http://modxcms.com/). WordPress is making progress as a viable content management system, but even after the thousands of lines of code in this plugin, it still does not support all the features in a system like MODx; WordPress templates are particularly limited by comparison.
+The architecture for this plugin was also inspired by [MODx](http://modxcms.com/). WordPress is making progress as a viable content management system, but even after the thousands of lines of code in this plugin, it still does not support all the features in a system like MODx. WordPress templates are particularly limited by comparison. WordPress is great system for many scenarios, but if you're feeling that WordPress is starting to tear apart at the seams when it comes to custom content, it may be worth a look at some of the other available systems. 
 
 == Future TO-DO == 
 

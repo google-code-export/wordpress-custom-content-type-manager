@@ -126,7 +126,7 @@
 
 <div class="wrap">
 	<?php screen_icon(); ?>
-	<h2><?php print $post_type; ?>: <?php _e('Custom Fields');?> <a href="#" class="button" onClick="javascript:addFieldDefinition();"><?php _e('Add Custom Field', CCTM::txtdomain); ?></a></h2>
+	<h2><?php print $post_type; ?>: <?php _e('Custom Fields', CCTM::txtdomain);?> <a href="#" class="button" onClick="javascript:addFieldDefinition();"><?php _e('Add Custom Field', CCTM::txtdomain); ?></a></h2>
 	
 	<?php print $msg; ?>
 
