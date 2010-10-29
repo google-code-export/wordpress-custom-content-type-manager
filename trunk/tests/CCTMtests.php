@@ -14,12 +14,15 @@ class CCTMtests
 	{
 		global $wpdb;
 		
-		$exit_msg = CustomContentTypeManager::name . __( " requires MySQL $ver or newer. 
-			Talk to your system administrator about upgrading");
 		$result = $wpdb->get_results( 'SELECT VERSION() as ver' );
 
 		if ( version_compare( $result[0]->ver, $ver, '<') ) 
-		{
+		{	
+			$exit_msg = sprintf( __( '%1$s requires MySQL %2$s or newer.', CCTM::txtdomain)
+			, CCTM::name, $ver );
+			$exit_msg .= ' ';
+			$exit_msg .= __('Talk to your system administrator about upgrading.', CCTM::txtdomain);	
+
 			self::$errors[] = $exit_msg;
 		}
 	}
@@ -60,29 +63,27 @@ class CCTMtests
 				{
 					if (version_compare($all_plugins_reindexed[$name]['Version'],$version,'<'))
 					{
-						self::$errors[] = CustomContentTypeManager::name . __(" requires version $version of the $name plugin.");			
+						self::$errors[] = sprintf( __('%1$s requires version %$2% of the %3$s plugin.', CCTM::txtdomain )
+							, CCTM::name
+							, $version
+							, $name );			
 					}
 				}
 			}
 			else
 			{
-				self::$errors[] = CustomContentTypeManager::name . __(" requires version $version of the $name plugin. $name is not installed.");			
+				$msg = sprintf( __('%1$s requires version %$2% of the %3$s plugin.', CCTM::txtdomain )
+							, CCTM::name
+							, $version
+							, $name );
+							
+				 $msg .= ' ';
+				 $msg .=  sprintf( 
+					__('The %1$s plugin is not installed.', CCTM::txtdomain)
+					, $name
+				);
+				self::$errors[] = $msg;
 			}
-		}
-	}
-
-	//------------------------------------------------------------------------------
-	private static function _test()
-	{
-		$error_flag = FALSE;
-		
-		if ( $all_plugins[$plugin_path]['Name'] == $name )
-		{
-			if (version_compare($all_plugins[$plugin_path]['Version'],$version,'<'))
-			{
-				self::$errors[] = 'Plugin version too old.';
-			}
-		
 		}
 	}
 	
@@ -90,13 +91,12 @@ class CCTMtests
 	public static function wp_version_gt($ver)
 	{
 		global $wp_version;
-	
-		$exit_msg = CustomContentTypeManager::name . __(" requires WordPress $ver or newer. 
-			<a href='http://codex.wordpress.org/Upgrading_WordPress'>Please update!</a>");
 		
 		if (version_compare($wp_version,$ver,'<'))
 		{
-			self::$errors[] = $exit_msg;
+			self::$errors[] = sprintf( __('%1$s requires WordPress %2$s or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update!</a>', CCTM::txtdomain)
+			, CCTM::name
+			, $ver );
 		}
 
 	}
@@ -104,11 +104,13 @@ class CCTMtests
 	//------------------------------------------------------------------------------
 	public static function php_version_gt($ver)
 	{
-		$exit_msg = CustomContentTypeManager::name . __(" requires PHP $ver or newer. 
-			Talk to your system administrator about upgrading");
 		
 		if ( version_compare( phpversion(), $ver, '<') ) 
 		{
+			$exit_msg = sprintf( __('%1$s requires PHP %2$s or newer', CCTM::txtdomain )
+				,  CCTM::name
+				, $ver );
+			$exit_msg .= __('Talk to your system administrator about upgrading.', CCTM::txtdomain);	
 			self::$errors[] = $exit_msg;
 		}
 	}
@@ -132,8 +134,13 @@ class CCTMtests
 		{
 			if ( !in_array($req, $loaded ) )
 			{
-				self::$errors[] = CustomContentTypeManager::name . __(" requires the $req PHP extension.
-			Talk to your system administrator about reconfiguring PHP.");
+				$msg =  sprintf( __('%1$s requires the %2$s PHP extension.', CCTM::txtdomain)
+					, CCTM::name
+					, $req
+				);
+				
+				$msg .= __('Talk to your system administrator about reconfiguring PHP.', CCTM::txtdomain);
+				self::$errors[] = $msg;
 			}
 		}
 	

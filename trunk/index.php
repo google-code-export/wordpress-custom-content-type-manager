@@ -24,22 +24,23 @@ $class_names_used -- add any class names that are declared by this plugin.
 $function_names_used = array('get_custom_field','get_all_fields_of_type'
 	,'get_posts_by_taxonomy_term','get_post_complete','get_posts_sharing_custom_field_value'
 	,'get_relation','get_unique_values_this_custom_field','print_custom_field');
-$class_names_used = array('CustomPostTypeManager','FormGenerator'
+$class_names_used = array('CCTM','FormGenerator'
 	,'StandardizedCustomFields','CCTMtests','MediaSelector');
-$constants_used = array('CUSTOM_CONTENT_TYPE_MGR_PATH','CUSTOM_CONTENT_TYPE_MGR_URL');
+$constants_used = array('CCTM_PATH','CCTM_URL');
 
 $error_items = '';
 
+// No point in localizing this.
 function custom_content_type_manager_cannot_load()
 {
 	global $error_items;
 	print '<div id="custom-post-type-manager-warning" class="error fade"><p><strong>'
-	.__('The Custom Post Type Manager plugin cannot load correctly!', 'cctm')
+	.'The Custom Post Type Manager plugin cannot load correctly!'
 	.'</strong> '
-	.__('Another plugin has declared conflicting class, function, or constant names:', 'cctm')
-	."<ul style='margin-left:30px;'>$error_items</ul>"
+	.'Another plugin has declared conflicting class, function, or constant names:'
+	.'<ul style="margin-left:30px;">'.$error_items.'</ul>'
 	.'</p>'
-	.'<p>'.__('You must deactivate the plugins that are using these conflicting names.', 'cctm').'</p>'
+	.'<p>You must deactivate the plugins that are using these conflicting names.</p>'
 	.'</div>';
 	
 }
@@ -54,7 +55,8 @@ foreach ($function_names_used as $f_name )
 {
 	if ( function_exists($f_name) )
 	{
-		$error_items .= '<li>'.__('Function: ') . $f_name .'</li>';
+		/* translators: This refers to a PHP function e.g. my_function() { ... } */
+		$error_items .= sprintf('<li>%1$s: %2$s</li>', __('Function', CCTM::txtdomain), $f_name );
 	}
 }
 // Check for conflicting Class names
@@ -62,7 +64,8 @@ foreach ($class_names_used as $cl_name )
 {
 	if ( class_exists($cl_name) )
 	{
-		$error_items .= '<li>'.__('Class: ') . $cl_name .'</li>';
+		/* translators: This refers to a PHP class e.g. class MyClass { ... } */
+		$error_items .= sprintf('<li>%1$s: %2$s</li>', __('Class', CCTM::txtdomain), $f_name );
 	}
 }
 // Check for conflicting Constants
@@ -70,7 +73,8 @@ foreach ($constants_used as $c_name )
 {
 	if ( defined($c_name) )
 	{
-		$error_items .= '<li>'.__('Constant: ') . $c_name .'</li>';
+		/* translators: This refers to a PHP constant as defined by the define() function */
+		$error_items .= sprintf('<li>%1$s: %2$s</li>', __('Constant', CCTM::txtdomain), $f_name );
 	}
 }
 
