@@ -186,6 +186,7 @@ class FormGenerator
 	private static function _get_readonly_element($data)
 	{
 		$tpl = '
+		<p><strong>[+name+]:</strong> [+value+]</p>
 		<input type="hidden" name="[+name+]" class="formgenerator_readonly" id="[+name+]" value="[+value+]"[+extra+]/>';
 		return self::parse($tpl, $data);
 	}

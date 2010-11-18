@@ -1,12 +1,17 @@
 <?php
 /*------------------------------------------------------------------------------
-This is the motor under the hood for the post-selector.php contoller file.  
-It handles searching for posts based on post_type or mime_type in a controller
-that can be accessed via an Ajax thickbox.
+This class handles searching and prints search results for searching posts 
+based on post_type or mime_type in a controller that can be accessed via 
+an Ajax thickbox.
 
-I'm kinda drawing a blank on what else to write for documentation here... but that 
-1989 film "Akira" is really one of the best films I've ever seen.  You should check 
-it out.
+This is the motor under the hood for the post-selector.php contoller file.  
+(See that file for usage example).
+
+I've constructed a custom MySQL query that does the searching because I ran into
+weird and whacky restrictions with the WP db API functions.
+
+TODO: the internationalization functions here don't have a valid text-domain
+because the name of the text domain is stored in the CCTM class.
 ------------------------------------------------------------------------------*/
 class PostSelector
 {
@@ -27,11 +32,12 @@ class PostSelector
 
 	private $cnt; // number of search results
 	private $SQL; // store the query here for debugging.
-		
-	// Unfortunately, this isn't EXACTLy what's in the db... but the wp_posts.post_mime_type *begins* with these
+	
+	// Simplified mime-types. It's not EXACTLY what's in the db... 
+	// but the wp_posts.post_mime_type *begins* with these:
 	private $valid_post_mime_types = array( 'image','video','audio','all');
 	
-	
+	// Formats a link for each media type available to the current query. 
 	private $media_type_option_tpl = '<li><span onclick="javascript:search_media(\'[+mime_type+]\');">[+mime_type_label+] <span class="mime_type_count">([+count+])</span> &nbsp;</li>';
 	
 	/*------------------------------------------------------------------------------
@@ -40,7 +46,7 @@ class PostSelector
 	public function __construct()
 	{
 		
-		$this->_read_inputs(); // sets values from URL	
+		$this->_read_inputs(); // sets values read from URL	
 
 		$this->Pagination = new Pagination();
 		$offset = $this->Pagination->page_to_offset( $this->page,$this->results_per_page );
@@ -57,21 +63,23 @@ class PostSelector
 		{
 			$output = $this->return_iFrame();
 		}
-	//	print $this->SQL; exit;
 
 		print $output;
 	}
 
 	//! Private Functions
 	/*------------------------------------------------------------------------------
-	Count the # of posts avail. for this particular mime-type. 
-	INPUT: simplified, e.g. 'image' (not image/tiff)
+	Count the # of attachment posts available for this particular mime-type. 
+	INPUT: $mime_type (str) simplified mime-type as they appear in the
+		 wp_posts.post_mime_type column, e.g. 'image' (not image/tiff)
 	OUTPUT: integer
 	------------------------------------------------------------------------------*/
 	private function _count_posts_this_mime_type($mime_type)
 	{
 		global $wpdb; 
 		
+		// Renders to something like: 
+		// ... post_mime_type LIKE 'image%' ...
 		$query = "SELECT post_status, COUNT(*) AS num_posts FROM {$wpdb->posts} 
 			WHERE post_type = 'attachment'
 			AND post_mime_type LIKE %s  GROUP BY post_status";
@@ -90,21 +98,22 @@ class PostSelector
 
 	/*------------------------------------------------------------------------------
 	This formats all post-types for listing (no image previews, just title and stuff).
-	$hash['post_id'] = '';
-	$hash['preview_html'] = '';
-	$hash['select_label'] = '';
-	$hash['thumbnail_html'] = '';
-	$hash['post_title'] = '';
-	$hash['show_hide_label'] = '';
-	$hash['detail_image'] = '';
-	$hash['details'] = '';
-	$hash['original_post_url'] = '';
-	$hash['view_original_label'] = '';
+		$hash['post_id'] = '';
+		$hash['preview_html'] = '';
+		$hash['select_label'] = '';
+		$hash['thumbnail_html'] = '';
+		$hash['post_title'] = '';
+		$hash['show_hide_label'] = '';
+		$hash['detail_image'] = '';
+		$hash['details'] = '';
+		$hash['original_post_url'] = '';
+		$hash['view_original_label'] = '';
 	------------------------------------------------------------------------------*/
 	private function _format_results($results)
 	{
 		$output = '';
 		
+		// load formatting template
 		$tpl = file_get_contents( CCTM_PATH.'/tpls/single_item.tpl');
 
 		foreach ( $results as $r )
@@ -127,7 +136,10 @@ class PostSelector
 
 
 	/*------------------------------------------------------------------------------
-	Formats attachment posts
+	Formats attachment posts (i.e. rows from the wp_posts table 
+	where post_type='attachment'
+	INPUT: $r (array) represents a single row of data
+	OUTPUT: augmented $r array, with some filtered and added key/values.
 	------------------------------------------------------------------------------*/
 	private function _format_attachment_result($r)
 	{
@@ -152,17 +164,15 @@ class PostSelector
 			$r['dimensions'] = '';
 		}
 
-		# Passed via JS, so we gotta prep it. 
-		# Make sure this HTML matches what's generated by PHP in the FormGenerator
+		// Passed via JS, so we gotta prep it. 
+		// Make sure this HTML matches what's generated by PHP in the FormGenerator
 		$preview_html .= '<span class="formgenerator_label">'.$r['post_title'].' <span class="formgenerator_id_label">('.$r['post_id'].')</span></span><br />';
 		$preview_html = preg_replace('/"/', "'", $preview_html); 
 		$preview_html = preg_replace("/'/", "\'", $preview_html);
 		$r['preview_html'] = $preview_html;
 		
 		preg_match('#.*/(.*)$#', $r['original_post_url'], $matches);
-		
-		
-		
+			
 		$r['filename'] = $matches[1];
 				
 		$r['select_label'] 		= __('Select');
@@ -181,7 +191,10 @@ class PostSelector
 	}
 	
 	/*------------------------------------------------------------------------------
-	Formats individual posts (all but attachments)
+	Formats individual non-attachment posts (e.g. pages, posts, or any custom 
+	post-type that's been defined.)
+	INPUT: $r (array) represents one row of data from wp_posts
+	
 	------------------------------------------------------------------------------*/
 	private function _format_result($r)
 	{
@@ -190,9 +203,8 @@ class PostSelector
 				, $src);
 		$r['detail_image'] = wp_get_attachment_image( $r['post_id'], 'medium' );
 
-		# Passed via JS, so we gotta prep it.
+		# Passed via JS, so we gotta prep it. TODO: move this to its own function.
 		# Make sure this HTML matches what's generated by PHP in the FormGenerator
-//		print_r($r); exit;
 		$preview_html = '<span class="formgenerator_regular">'.$r['post_title'].' <span class="formgenerator_id_label">('.$r['post_id'].')</span></span><br />';
 		$preview_html = preg_replace('/"/', "'", $preview_html); 
 		$preview_html = preg_replace("/'/", "\'", $preview_html);
@@ -213,7 +225,9 @@ class PostSelector
 	}
 	
 	/*------------------------------------------------------------------------------
-	
+	OUTPUT: a list of HTML options used in a <select> dropdown, where each option
+	represents a unique year/month combo in yyyymm format, e.g. 201012 for December
+	2010.
 	------------------------------------------------------------------------------*/
 	private function _format_yearmonth($results)
 	{
@@ -228,8 +242,13 @@ class PostSelector
 	
 	/*------------------------------------------------------------------------------
 	How many do we want to display? This is either all of them, or we just show the
-	one passed to us.
-	OUTPUT: HTML
+	one passed to us. Relies on a handy, but undocumented WP function:
+	get_available_post_mime_types(), found in /wp-admin/includes/post.php
+	That function returns the result of this query:
+		SELECT DISTINCT post_mime_type FROM wp_posts WHERE post_type = %s
+		
+	INPUT: $filter (str)
+	OUTPUT: array of simplified mime-types (e.g. 'image' instead of 'image/jpeg')
 	------------------------------------------------------------------------------*/
 	private function _get_mime_types_for_listing($filter='all')
 	{
@@ -294,19 +313,19 @@ class PostSelector
 			$this->s = $_GET['s'];
 		}
 		
-		// TO-DO: pagination
+		// used for pagination
 		if ( isset($_GET['page']))
 		{
 			$this->page = (int) $_GET['page'];
 		}
 		
-		// TO-DO: monthly archives
+		// get month 
 		if ( isset($_GET['m']))
 		{
 			$this->m = (int) $_GET['m'];
 		}
 		
-		// Determines if this is an AJAX request or an iFrame
+		// Determines if this is an AJAX request or an iFramed thickbox
 		if ( isset($_GET['mode']) )
 		{
 			$this->mode = true;
@@ -314,12 +333,7 @@ class PostSelector
 	}
 
 
-	/*------------------------------------------------------------------------------
-	Son of a bitch... you can't use query_posts here because the global $wp_the_query
-	isn't defined yet.  get_posts() works, however.  Jeezus H. Christ. Crufty ill-defined
-	API functions.
-	http://shibashake.com/wordpress-theme/wordpress-query_posts-and-get_posts
-	
+	/*------------------------------------------------------------------------------	
 	This is the main SQL query constructor. Home rolled...
 	It's meant to be called by the various querying functions:
 		query_search()
@@ -331,7 +345,12 @@ class PostSelector
 		$searchterm
 		$limit
 		$offset
-		
+	
+	You can't use the WP query_posts() function here because the global $wp_the_query
+	isn't defined yet.  get_posts() works, however, but its format is kinda whack.  
+	Jeezus H. Christ. Crufty ill-defined API functions.
+	http://shibashake.com/wordpress-theme/wordpress-query_posts-and-get_posts
+	
 	------------------------------------------------------------------------------*/
 	private function _sql($select, $limit=0,$use_offset=false)
 	{
@@ -352,13 +371,14 @@ class PostSelector
 		$results = $wpdb->get_results( $query, ARRAY_A );
 		
 		$this->SQL = $query;
-//		print $query; exit;
+
 		return $results;
 	}
 
 
 
 	/*------------------------------------------------------------------------------
+	OUTPUT: string to be used in *the* main SQL query's LIMIT/OFFSET clause
 	SELECT * from wp_posts where DATE_FORMAT(post_modified, '%Y%m') = '201009';
 	SELECT DISTINCT DATE_FORMAT(post_modified, '%Y%m') FROM wp_posts;
 	------------------------------------------------------------------------------*/
@@ -378,6 +398,7 @@ class PostSelector
 
 
 	/*------------------------------------------------------------------------------
+	OUTPUT: string to be used in *the* main SQL query's LIMIT/OFFSET clause
 	$limit should be passed in as $this->results_per_page; (like when you're selecting
 	rows) or as zero (like when you're counting rows).
 	------------------------------------------------------------------------------*/
@@ -397,7 +418,7 @@ class PostSelector
 
 
 	/*------------------------------------------------------------------------------
-	
+	OUTPUT: string to be used in *the* main SQL query's LIMIT/OFFSET clause
 	------------------------------------------------------------------------------*/
 	private function _sql_filter_offset($use_offset)
 	{
@@ -415,6 +436,7 @@ class PostSelector
 	}
 	
 	/*------------------------------------------------------------------------------
+	OUTPUT: string to be used in *the* main SQL query's WHERE clause.
 	Construct the part of the query for searching by mime type
 	------------------------------------------------------------------------------*/
 	private function _sql_filter_post_mime_type()
@@ -432,7 +454,11 @@ class PostSelector
 	}
 	
 	/*------------------------------------------------------------------------------
-	Post status... wondering about this inherit thing... revisions
+	OUTPUT: string to be used in *the* main SQL query's WHERE clause.
+	Post status... wondering about this inherit thing... revisions. WP's grouping of
+	rows here is awkward.  They probably should have used 2 columns to classify posts
+	but instead they used one column, so this requires the use of a SQL IF statement
+	(eeeeeek!)
 	------------------------------------------------------------------------------*/
 	private function _sql_filter_post_status()
 	{
@@ -442,6 +468,7 @@ class PostSelector
 	
 	
 	/*------------------------------------------------------------------------------
+	OUTPUT: string to be used in *the* main SQL query's WHERE clause.
 	Filters based on post_type
 	------------------------------------------------------------------------------*/
 	private function _sql_filter_post_type()
@@ -461,6 +488,7 @@ class PostSelector
 	
 	
 	/*------------------------------------------------------------------------------
+	OUTPUT: string to be used in *the* main SQL query's WHERE clause.
 	Construct the part of the query for searching by name.
 	------------------------------------------------------------------------------*/
 	private function _sql_filter_searchterm()
@@ -483,7 +511,9 @@ class PostSelector
 	}	
 
 	/*------------------------------------------------------------------------------
-	SELECT DISTINCT DATE_FORMAT(post_modified, '%Y%m') FROM wp_posts;
+	OUTPUT: string to be used in *the* main SQL query.  This function is called 
+	in distinction to the _sql_select_columns() when the purpose of the query is
+	to count available rows (e.g. for paginating results).
 	------------------------------------------------------------------------------*/
 	private function _sql_select_count()
 	{
@@ -491,7 +521,9 @@ class PostSelector
 	}
 	
 	/*------------------------------------------------------------------------------
-	Which columns do we normally return?
+	Which columns do we normally return? 
+	OUTPUT: string to be used in *the* main SQL query: this string defines which
+	columns we will select.
 	------------------------------------------------------------------------------*/
 	private function _sql_select_columns()
 	{
@@ -504,6 +536,11 @@ class PostSelector
 	
 	
 	/*------------------------------------------------------------------------------
+	OUTPUT: string to be used in *the* main SQL query.  This function is called 
+	in distinction to the _sql_select_columns() when the purpose of the query is
+	to return distinct year-months of posts for the purposes of offering the user
+	simple date-based groups of posts. 
+	
 	SELECT DISTINCT DATE_FORMAT(post_modified, '%Y%m') FROM wp_posts;
 	http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html#function_date-format
 	------------------------------------------------------------------------------*/
@@ -522,7 +559,10 @@ class PostSelector
 	
 	//! Public Functions
 	/*------------------------------------------------------------------------------
-	private $media_type_option_tpl = '<li><span onclick="javascript:get_search_results(\'[+mime_type+]\');">[+mime_type_label+] <span class="count">(<span class="mime_type_count">[+count+]</span>)</span></li>
+	INPUT: $filter (str) representing a simplified mime-type (e.g. image, not image/jpeg)
+		or 'all' to represent all mime-types.
+	OUTPUT: HTML list items intended to be used in an unordered list. See the
+		tpls/main.tpl file and the [+post_mime_type_options+] placeholder.
 	------------------------------------------------------------------------------*/
 	public function get_post_mime_type_options($filter='all')
 	{
@@ -534,21 +574,21 @@ class PostSelector
 		global $wpdb;
 		
 		$avail_post_mime_types = $this->_get_mime_types_for_listing($filter);
-/* 		print_r($avail_post_mime_types); exit; */
+
 		// Change complex mime_types (e.g. image/tiff) to simple, e.g. "image"
 		foreach ( $avail_post_mime_types as &$mt)
 		{
 			$mt = preg_replace('#/.*$#', '', $mt);
 		}
 		$avail_post_mime_types = array_unique($avail_post_mime_types);
-/* 		print_r($avail_post_mime_types); exit;		 */
+
 		$output = '';				
 		
 		// Format the list items for menu...
 		foreach ( $avail_post_mime_types as $mt )
 		{
 			$hash['mime_type'] 			= $mt;
-			$hash['mime_type_label']	= __(ucfirst($hash['mime_type']));
+			$hash['mime_type_label']	= __(ucfirst($hash['mime_type'])); // cheap trick.
 			$hash['count'] 				= $this->_count_posts_this_mime_type($mt);
 			$output .= $this->parse($this->media_type_option_tpl, $hash);
 		}
@@ -567,9 +607,9 @@ class PostSelector
 	
 	
 	/*------------------------------------------------------------------------------
-	TO-DO.
+	TO-DO:
 	Which taxonomies are assigned to 'attachments'? 
-	GD'it... every time you need something serious, the architecture lets you down.
+	WTF?!?... every time you need something serious, the WP architecture lets you down.
 	http://old.nabble.com/query_posts-with-custom-taxonomy-and-custom-post-type-td28258047.html
 	SELECT wp_terms.name 
 	FROM wp_terms 
@@ -620,7 +660,7 @@ class PostSelector
 	}	
 
 	/*------------------------------------------------------------------------------
-	OUTPUT: integer
+	OUTPUT: integer: the number of results for this particular query
 	------------------------------------------------------------------------------*/
 	public function query_count_results()
 	{
@@ -637,7 +677,7 @@ class PostSelector
 
 
 	/*------------------------------------------------------------------------------
-	Get distinct year-month combos
+	Get distinct year-month combos.
 	------------------------------------------------------------------------------*/
 	public function query_distinct_yearmonth()
 	{
@@ -714,7 +754,7 @@ class PostSelector
 		$hash['search_label'] 				= __('Search');
 		$hash['clear_label'] 				= __('Reset');
 		$hash['post_type_list_items']		= $this->get_post_type_options($this->post_type);
-		$hash['media_type_list_items'] 		= $this->get_post_mime_type_options($this->post_mime_type);
+		$hash['post_mime_type_options'] 		= $this->get_post_mime_type_options($this->post_mime_type);
 		$hash['date_options'] 				= $this->query_distinct_yearmonth();
 		$hash['post_type']					= $this->post_type;
 		

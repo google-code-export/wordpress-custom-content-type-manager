@@ -94,7 +94,7 @@
 	
 	<h3>Narrow Results</h3>
 	<ul class="subsubsub">
-		[+media_type_list_items+]
+		[+post_mime_type_options+]
 	</ul>
 
 	<div class="tablenav">			

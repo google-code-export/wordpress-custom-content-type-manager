@@ -2,6 +2,8 @@
 Placeholders
 ====================================================================================
 post_id			: id of the post, sent back to WP. THIS is the value that is stored
+				when you save a media or reference in a custom field. It represents 
+				a database foreign key.
 preview_html	: sent back to WP to give a preview of this selection
 select_label	: label of the button/link clicked to "choose" or "select" this item
 thumbnail_html	: any html used as a tiny preview of the post
