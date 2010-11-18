@@ -20,62 +20,6 @@ class StandardizedCustomFields
 	// Which types of content do we want to standardize?
 	public static $content_types_array = array('post');
 	
-
-	/*------------------------------------------------------------------------------
-	This array acts as a template for all new field definitions created in the WP
-	manager.
-	------------------------------------------------------------------------------*/
-/*
-	public static $custom_field_form_def_template = array(
-		array(
-			'name'			=> 'name', 
-			'label'			=> 'Name',
-			'value'			=> '',
-			'extra'			=> '',			
-			'description'	=> 'The name identifies the <em>option_name</em> in the <em>wp_options</em> database table. You will use this name in your template functions to identify this field.  If the name begins with an underscore, it will be hidden from <em>the_meta()</em> function and from the default WordPress manager.',	
-			'type'			=> 'text',
-			'sort_param'	=> 2,
-		),
-		array(
-			'name'			=> 'label',
-			'label'			=> 'Label',
-			'value'			=> '',
-			'extra'			=> '',			
-			'description'	=> '',
-			'type'			=> 'text',
-			'sort_param'	=> 1,
-		),
-		array(
-			'name'			=> 'description',
-			'label'			=> 'Description',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> '',
-			'type'			=> 'textarea',
-			'sort_param'	=> 3,
-		),
-		array(
-			'name'			=> 'type',
-			'label'			=> 'Input Type',
-			'value'			=> '',
-			'extra'			=> '',
-			'description'	=> '',
-			'type'			=> 'dropdown',
-			'options'		=> array('checkbox','dropdown','media','text','textarea','wysiwyg'),
-			'sort_param'	=> 4,
-		),
-		array(
-			'name'			=> 'sort_param',
-			'label'			=> 'Sort Order',
-			'value'			=> '',
-			'extra'			=> ' size="2" maxlength="4"',
-			'description'	=> 'Fields with smaller numbers will appear higher on the page.',
-			'type'			=> 'text',
-			'sort_param'	=> 5,
-		)
-	);
-*/
-
 	//! Private Functions
 	/*------------------------------------------------------------------------------
 	This plugin is meant to be configured so it acts on a specified list of content
@@ -132,8 +76,8 @@ class StandardizedCustomFields
 	public static function create_meta_box() {
 		$content_types_array = self::_get_active_content_types();
 		foreach ( $content_types_array as $content_type ) {
-			add_meta_box( 'my-custom-fields'
-				, 'Custom Fields'
+			add_meta_box( 'custom-content-type-mgr-custom-fields'
+				, __('Custom Fields', CCTM::txtdomain )
 				, 'StandardizedCustomFields::print_custom_fields'
 				, $content_type
 				, 'normal'
@@ -173,10 +117,12 @@ class StandardizedCustomFields
 	------------------------------------------------------------------------------*/
 	public static function print_custom_fields($post, $callback_args='') 
 	{
+		//return;
 		$content_type = $callback_args['args']; // the 7th arg from add_meta_box()
 		$custom_fields = self::_get_custom_fields($content_type);
 		$output = '';		
 		
+		// If no custom content fields are defined...
 		if ( empty($custom_fields) )
 		{
 			global $post;
@@ -194,9 +140,10 @@ class StandardizedCustomFields
 		foreach ( $custom_fields as $def_i => &$field ) {
 
 			$output_this_field = '';			
-			
+			$field['label'] = $field['label'] . ' ('.$field['name'].')'; // to display the name used in templates			
 			$field['value'] = htmlspecialchars( get_post_meta( $post->ID, $field['name'], true ) );
 			$field['name'] = self::$prefix . $field['name']; // this ensures unique keys in $_POST
+
 
 		}
 		$output = FormGenerator::generate($custom_fields);

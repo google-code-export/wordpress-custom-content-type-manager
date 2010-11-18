@@ -1,7 +1,14 @@
 <?php
 /*------------------------------------------------------------------------------
-These are functions in the main namespace, primarilyy reserved for use in 
+These are functions in the main namespace, primarily reserved for use in 
 theme files.
+
+WARNING: some of these functions are in development, so their inputs/outputs
+may change with future versions of this plugin.
+
+The only 2 functions here that are guaranteed not to change are:
+	get_custom_field()
+	print_custom_field()
 ------------------------------------------------------------------------------*/
 
 
@@ -46,6 +53,10 @@ A $def looks something like this:
     [type] => text
     [sort_param] => 
 )
+
+INPUT: one of the defined field types , currently:
+	'checkbox','dropdown','media','relation','text','textarea','wysiwyg'
+OUTPUT: an array of values from each field of the type specified
 ------------------------------------------------------------------------------*/
 function get_all_fields_of_type($type)
 {
@@ -87,7 +98,8 @@ SAMPLE QUERY:
 	SELECT * 
 	FROM wp_terms 
 	JOIN wp_term_taxonomy ON wp_terms.term_id = wp_term_taxonomy.term_id
-	JOIN wp_term_relationships ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
+	JOIN wp_term_relationships 
+		ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
 	JOIN wp_posts ON wp_posts.ID = wp_term_relationships.object_id
 	WHERE wp_terms.slug = 'bear' 
 	AND wp_term_taxonomy.taxonomy = 'post_tag';
@@ -106,8 +118,9 @@ OR Using a custom taxonomy:
 
 	
 INPUT:
-	$taxonomy (str). Built in taxonomies include 'post_type','category', and 'link_category'
-	$slug (str)
+	$taxonomy (str). Name of a taxonomy, either custom, or built-in. Built in taxonomies 
+		include 'post_type','category', and 'link_category'
+	$slug (str). The slug value of the taxonomy term you're looking for.
 	$limit (int) optionallyi limit the posts returned to the given number. By 
 		default, all posts will be returned.
 OUTPUT: array of post objects or empty array.
@@ -148,7 +161,8 @@ function get_posts_by_taxonomy_term($taxonomy, $slug, $limit = false)
 /*------------------------------------------------------------------------------
 Retrieves a complete post object, including all meta fields.
 Ah... get_post_custom() will treat each custom field as an array, because in WP
-you can tie multiple rows of data to the same fieldname.
+you can tie multiple rows of data to the same fieldname (which can cause some
+architectural related headaches).
 
 At the end of this, I want a post object that can work like this:
 
@@ -156,6 +170,8 @@ print $post->post_title;
 print $post->my_custom_field; // no $post->my_custom_fields[0];
 
 and if the custom field *is* a list of items, then attach it as such.
+INPUT: $id (int) valid ID of a post (regardless of post_type).
+OUTPUT: post object with all attributes, including custom fields.
 ------------------------------------------------------------------------------*/
 function get_post_complete($id)
 {
@@ -188,6 +204,15 @@ function get_post_complete($id)
 /*------------------------------------------------------------------------------
 Returns an array of post "complete" objects (including all custom fields)
 where the custom fieldname = $fieldname and the value of that field is $value.
+This is used to find a bunch of related posts in the same way you would with 
+a taxonomy, but this uses custom field values instead of taxonomical labels.
+
+INPUT: 
+	$fieldname (str) name of the custom field
+	$value (mixed) the value that you are searching for.
+
+OUTPUT:
+	array of post objects (complete post objects, with all attributes).
 
 USAGE:
 	One example:
@@ -220,8 +245,14 @@ function get_posts_sharing_custom_field_value($fieldname, $value)
 
 
 /*------------------------------------------------------------------------------
-A relation field stores a post ID, so given a fieldname, this returns the complete
-post object for that 
+A relation field stores a post ID, and that ID identifies another post.  So given 
+a fieldname, this returns the complete post object for that was referenced by
+the custom field.  You can see it's a wrapper function which relies on 
+get_post_complete() and get_custom_field().
+INPUT: 
+	$fieldname (str) name of a custom field
+OUTPUT:
+	post object
 ------------------------------------------------------------------------------*/
 function get_relation($fieldname)
 {
@@ -230,17 +261,26 @@ function get_relation($fieldname)
 
 /*------------------------------------------------------------------------------
 Given a specific custom field name ($fieldname), return an array of all unique
-values contained in this field. This does not account for random custom fields
-not defined as a "standardized" custom field. Likewise, it does not care which 
-post types are making use of a particular custom field name so long as the
-posts are published.
+values contained in this field by *any* published posts which use a custom field 
+of that name, regardless of post_type, and regardless of whether or not the custom 
+field is defined as a "standardized" custom field. 
 
 This filters out empty values ('' or null). 
 
+INPUT:
+	$fieldname (str) name of a custom field
+OUTPUT:
+	array of unique values.
+
 USAGE:
+Imagine a custom post_type that profiles you and your friends. There is a custom 
+field that defines your favorite cartoon named 'favorite_cartoon':
+
 	$array = get_unique_values_this_custom_field('favorite_cartoon');
+	
 	print_r($array);
-		Array ( 'Family Guy', 'South Park' );
+		Array ( 'Family Guy', 'South Park', 'The Simpsons' );
+
 ------------------------------------------------------------------------------*/
 function get_unique_values_this_custom_field($fieldname)
 {
@@ -257,8 +297,8 @@ function get_unique_values_this_custom_field($fieldname)
 	{
 		$uniques[] = $r[0];
 	}
-	
-	return $uniques;
+
+	return array_unique($uniques);
 }
 
 

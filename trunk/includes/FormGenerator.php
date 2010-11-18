@@ -156,24 +156,25 @@ class FormGenerator
 		
 		$media_html = '';
 
-		// It's an image
+		// It got a value
 		if ( !empty($data['value']) )
 		{
 			$data['preview_html'] = wp_get_attachment_image( $data['value'], 'thumbnail', true );
 			$attachment_obj = get_post($data['value']);
-			$data['preview_html'] .= '<span class="formgenerator_label">'.$attachment_obj->post_title.'</span><br />';
+			$data['preview_html'] .= '<span class="formgenerator_label">'.$attachment_obj->post_title.' <span class="formgenerator_id_label">('.$data['value'].')</span></span><br />';
+			
 		}
-		// It's not an image
+		// It's not set yet
 		else
 		{
-			$data['media_html'] = '';
+			$data['preview_html'] = '';
 		}
 		
 		$data['controller_url'] = CCTM_URL.'/post-selector.php';
 		$data['click_label'] = __('Choose Media');
 		$tpl = '
 			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
-			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" />
+			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" /><br />
 			<div id="[+id+]_media">[+preview_html+]</div>
 			<br class="clear" />
 			<a href="[+controller_url+]?fieldname=[+id+]&post_type=attachment" name="[+click_label+]" class="thickbox button">[+click_label+]</a>
@@ -207,14 +208,15 @@ class FormGenerator
 		if ( !empty($data['value']) )
 		{
 			$query = "SELECT * FROM {$wpdb->posts} WHERE ID = %s";
+
 			$relation_post = $wpdb->get_results( $wpdb->prepare( $query, $data['value'] ), OBJECT );
-			$data['preview_html'] = '<span class="formgenerator_label">'.$relation_post[0]->post_title.'</span><br />';
+			$data['preview_html'] = '<span class="formgenerator_label">'.$relation_post[0]->post_title.' <span class="formgenerator_id_label">('.$data['value'].')</span></span> <br/>';
 		}
 		
 		$data['controller_url'] = CCTM_URL.'/post-selector.php';
 		$data['click_label'] = __('Choose Reference');
 		$tpl = '
-			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span>
+			<span class="formgenerator_label formgenerator_media_label" id="formgenerator_label_[+name+]">[+label+]</span><br />
 			<input type="hidden" id="[+id+]" name="[+name+]" value="[+value+]" />
 			<div id="[+id+]_media">[+preview_html+]</div>
 			<br class="clear" />
