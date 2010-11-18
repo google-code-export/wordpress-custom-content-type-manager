@@ -105,11 +105,12 @@
 		</div>	
 	</div>
 
-</div>
 
+</div>
 <br class="clear" />
 
 <div id="ajax_search_results_go_here">[+default_results+]</div>
+
 
 </body>
 </html>
