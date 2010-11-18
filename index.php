@@ -8,13 +8,12 @@ Author URI: http://www.fireproofsocks.com/
 Plugin URI: http://tipsfor.us/plugins/custom-content-type-manager/
 ------------------------------------------------------------------------------*/
 
-
-
 /*------------------------------------------------------------------------------
 CONFIGURATION: 
 
-Define the names of functions and classes uses by this plugin so we can test 
-for conflicts prior to loading the plugin and message the WP admins.
+Define the names of functions and classes used by this plugin so we can test 
+for conflicts prior to loading the plugin and message the WP admins if there are
+any conflicts.
 
 $function_names_used -- add any function names that this plugin declares in the 
 	main namespace (e.g. utility functions or theme functions).
@@ -30,7 +29,7 @@ $constants_used = array('CCTM_PATH','CCTM_URL');
 
 $error_items = '';
 
-// No point in localizing this.
+// No point in localizing this, because we haven't loaded the textdomain yet.
 function custom_content_type_manager_cannot_load()
 {
 	global $error_items;
