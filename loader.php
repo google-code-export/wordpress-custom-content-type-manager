@@ -39,6 +39,9 @@ if ( empty(CCTMtests::$errors) )
 	add_action( 'do_meta_boxes', 'StandardizedCustomFields::remove_default_custom_fields', 10, 3 );
 	add_action( 'admin_menu', 'StandardizedCustomFields::create_meta_box' );
 	add_action( 'save_post', 'StandardizedCustomFields::save_custom_fields', 1, 2 );
+	
+	// The uninstall action for tidy cleanup
+	add_action ( 'uninstall.php', 'uninstall_cctm');
 }
 
 /*EOF*/

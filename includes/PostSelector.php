@@ -23,7 +23,6 @@ class PostSelector
 	public $s; // search term
 	public $page;
 	public $m;
-	public $mode; // if set, then we cough up AJAX results, otherwise, we cough up a whole page
 
 
 	private $Pagination; // Pagination object. See Pagination.php
@@ -38,7 +37,9 @@ class PostSelector
 	private $valid_post_mime_types = array( 'image','video','audio','all');
 	
 	// Formats a link for each media type available to the current query. 
-	private $media_type_option_tpl = '<li><span onclick="javascript:search_media(\'[+mime_type+]\');">[+mime_type_label+] <span class="mime_type_count">([+count+])</span> &nbsp;</li>';
+//	private $media_type_option_tpl = '<li><span onclick="javascript:search_media(\'[+mime_type+]\');">[+mime_type_label+] <span class="mime_type_count">([+count+])</span> &nbsp;</li>';
+	// Loaded from tpls/media_type_option.tpl
+	private $media_type_option_tpl;
 	
 	/*------------------------------------------------------------------------------
 	
@@ -52,19 +53,7 @@ class PostSelector
 		$offset = $this->Pagination->page_to_offset( $this->page,$this->results_per_page );
 		$this->Pagination->set_offset($offset);
 		$this->Pagination->set_results_per_page( $this->results_per_page );
-
-
-		$output = '';
-		if ( $this->mode )
-		{
-			$output = $this->return_Ajax();
-		}
-		else
-		{
-			$output = $this->return_iFrame();
-		}
-
-		print $output;
+		$this->media_type_option_tpl = file_get_contents( CCTM_PATH.'/tpls/media_type_option.tpl');
 	}
 
 	//! Private Functions
@@ -194,7 +183,6 @@ class PostSelector
 	Formats individual non-attachment posts (e.g. pages, posts, or any custom 
 	post-type that's been defined.)
 	INPUT: $r (array) represents one row of data from wp_posts
-	
 	------------------------------------------------------------------------------*/
 	private function _format_result($r)
 	{
@@ -324,21 +312,15 @@ class PostSelector
 		{
 			$this->m = (int) $_GET['m'];
 		}
-		
-		// Determines if this is an AJAX request or an iFramed thickbox
-		if ( isset($_GET['mode']) )
-		{
-			$this->mode = true;
-		}
 	}
 
 
 	/*------------------------------------------------------------------------------	
 	This is the main SQL query constructor. Home rolled...
 	It's meant to be called by the various querying functions:
-		query_search()
-		query_count()
-		query_distinct_dates()
+		query_results()
+		query_count_results()
+		query_distinct_yearmonth()
 		
 	Options: 
 		$mime_type
@@ -710,7 +692,6 @@ class PostSelector
 			return '<p>'. __('Sorry, no results found.').'</p>';
 		}
 
-//		print_r($results); exit;
 		$output = $this->_format_results($results);
 
 		return $output;		
@@ -719,9 +700,10 @@ class PostSelector
 	
 	
 	/*------------------------------------------------------------------------------
+	Returns options for selecting a specific media item without an HTML 
+	head/body wrapper.
 	Called if the post-selector.php page is called via AJAX, AND also called manually
-	via PHP the first time the return_iFrame function runs. Returns options
-	for selecting a specific media item without the normal HTML head/body wrapper
+	via PHP the first time the return_iFrame function runs. 
 	------------------------------------------------------------------------------*/
 	public function return_Ajax()
 	{
