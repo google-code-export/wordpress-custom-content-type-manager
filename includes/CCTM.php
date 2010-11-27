@@ -375,24 +375,21 @@ class CCTM
 		}
 		
 		$msg = '<div class="error"><p>'
-			. sprintf( __('You are about to deactivate the %s 
-			post type. Deactivation does not delete anything.', CCTM::txtdomain ), "<em>$post_type</em>")
+			. sprintf( __('You are about to deactivate the %s post type. Deactivation does not delete anything.', CCTM::txtdomain ), "<em>$post_type</em>")
 			.'</p>';		
 		
 		// If it's a custom post type, we include some additional info.
 		if ( !in_array($post_type, self::$built_in_post_types) )
 		{
 			$msg .= '<p>'
-			. sprintf( __('After deactivation, %s posts will be unavailable to the outside world. 
-			%s will be removed from the administration menus and you will no longer be able to edit them
-			using the WordPress manager.', CCTM::txtdomain), $post_type, "<strong>$post_type</strong>" )
+			. sprintf( __('After deactivation, %s posts will be unavailable to the outside world. %s will be removed from the administration menus and you will no longer be able to edit them using the WordPress manager.', CCTM::txtdomain), $post_type, "<strong>$post_type</strong>" )
 			.'</p>';
 		}
 		
 		$post_cnt_obj = wp_count_posts($post_type);
 		$msg .= '<p>'
-			. sprintf( __('This would affect %1$s published
-				 %2$s sposts.',CCTM::txtdomain), '<strong>'.$post_cnt_obj->publish.'</strong>'
+			. sprintf( __('This would affect %1$s published %2$s sposts.'
+			,CCTM::txtdomain), '<strong>'.$post_cnt_obj->publish.'</strong>'
 				 , "<em>$post_type</em>")
 				.'</p>';
 		$msg .= '<p>'.__('Are you sure you want to do this?',CCTM::txtdomain).'</p>
@@ -437,10 +434,7 @@ class CCTM
 		}
 		
 		$msg = '<div class="error"><p>'
-			. sprintf( __('You are about to delete the %s 
-			post type. This will remove all of its settings from the database, but this will NOT
-			delete any rows from the wp_posts table. However, without a custom post
-			type defined for those rows, they will be essentially invisible to WordPress.', CCTM::txtdomain), "<em>$post_type</em>" )
+			. sprintf( __('You are about to delete the %s post type. This will remove all of its settings from the database, but this will NOT delete any rows from the wp_posts table. However, without a custom post type defined for those rows, they will be essentially invisible to WordPress.', CCTM::txtdomain), "<em>$post_type</em>" )
 			.'</p>'
 			. '<p>'.__('Are you sure you want to do this?',CCTM::txtdomain).'</p>';
 
