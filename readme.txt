@@ -12,7 +12,7 @@ Create custom content types (aka post types), standardize custom fields for each
 
 The Custom Content Type Manager plugin allows users to create custom content types (also known as post types) and standardize custom fields for each content type, including dropdowns, checkboxes, and images. This gives WordPress CMS functionality making it easier to use WP for eCommerce or content-driven sites.
 
-One of the problems with WordPress' custom fields is that they are not standardized: users must add them one at a time each time they create a new post. Furthermore, by default, WordPress' custom fields supports only text fields. This plugin lets user define a list of custom fields for each content type so that they always appear on each new post. 
+One of the problems with WordPress' custom fields is that they are not standardized: users must add them one at a time each time they create a new post. Furthermore, by default, WordPress' custom fields supports only text fields. This plugin lets users define a list of custom fields for each content type so that the same custom fields appear on each new post in a uniform way. 
 
 For example, you can define a custom content type for "movie", then add a textarea field for "Plot Summary", an image field for "Poster Image", and a dropdown field for "Rating". All of these fields are available in the template's `single-movie.php` template file by using the included print_custom_field() function, e.g. `<?php print_custom_field('rating'); ?>`
 
@@ -42,7 +42,7 @@ Custom content types get their own link in the admin menus and their own URL str
 
 When you activate a custom content type, you ensure that it gets registered with WordPress. Once the content type is registered, a menu item will get created (so long as you checked the "Show Admin User Interface" box) and you ensure that its custom fields become standardized. If the "Public" box was checked for this content type, then the general public can access posts created under this content type using the URL structure defined by the "Permalink Action" and "Query Var" settings, e.g. http://site.com/?post_type=book&p=39
 
-"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized. If you do not intended to standardize the custom fields for pages or posts, then there is no reason for you to activate them. 
+"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized. If you do not intend to standardize the custom fields for pages or posts, then there is no reason for you to activate them. 
 
 = What does deactivating a custom content type do? =
 
@@ -61,19 +61,19 @@ Content and templates must go hand in hand. If you have defined custom fields, y
 * get_custom_field() -- gets the value
 * print_custom_field() -- prints the value
 
-In this plugin's settings area, each content-type has a link to "View Sample Template" -- this page gives you a fully customized example showing you how to create a custom theme file for your custom content type.
+In this plugin's settings area, each content-type has a link to "View Sample Template" -- this page gives you a fully customized example showing demonstrating a custom theme file for your custom content type.
 
 See the includes/functions.php file in this plugin's directory for some other theme functions that are in development.
 
 
 = How can I use this plugin to support an eCommerce site? =
 
-There are many ways to structure a site depending on what you are selling. For an example, let's say you are selling both T-shirts. You could create a "shirt" content type, then you could define custom fields for size, color, and perhaps several image fields. Once you had defined the custom content type, you could simply create several "shirt" posts for each shirt design that you are selling.
+There are many ways to structure a site depending on what you are selling. For an example, let's say you are selling T-shirts. You could create a "shirt" content type, then you could define custom fields for size, color, and perhaps several image fields. Once you had defined the custom content type, you could simply create several "shirt" posts for each shirt design that you are selling.
 
 == Known Bugs ==
 
 * You cannot add menu items to navigation menus when this plugin is enabled. The Ajax call to wp-admin/admin-ajax.php encounters a 403 error: "Are you sure you want to do this?".  I don't know if this is a WordPress bug or a bug with this plugin.
-* Possible bug? Don't use the same name for a taxonomy and a content-type (post-type). Saving a content-type now against registered taxonomies, but nothing prevents you from registering other taxonomies with other plugins.
+* Don't use the same name for a taxonomy and a content-type (post-type) -- this isn't a bug per se, but it's just good advice. Saving a content-type now checks names against registered taxonomies, but nothing prevents you from registering other taxonomies with other plugins.
 
 == Screenshots ==
 
@@ -87,7 +87,7 @@ There are many ways to structure a site depending on what you are selling. For a
 == Changelog ==
 
 = 0.8.0 =
-* Initial public release
+* Initial public release. Collaborators can check out code at http://code.google.com/p/wordpress-custom-content-type-manager/
 
 == Requirements ==
 
@@ -95,7 +95,7 @@ There are many ways to structure a site depending on what you are selling. For a
 * PHP 5.2.6 or greater
 * MySQL 5.0.41 or greater
 
-These requirements are tested during WordPress initialization; the plugin will not load if these requirements are not met. Error messaging will fail if the user is using pre WP 2.0.11. 
+These requirements are tested during WordPress initialization; the plugin will not load if these requirements are not met. Error messaging will fail if the user is using a version of WordPress older than version 2.0.11. 
 
 
 == About ==
@@ -112,11 +112,9 @@ If you are eager to see one of these features implemented in a future release, p
 
 * Improve UI (there are some monstrous forms in there... sorry!)
 * Optionally allow users to add additional custom fields beyond the standardized fields.
-* Wrap the "media" type fields with media specific input-types: "image", "audio", "video".
-That will make more sense to the end users who are setting up custom fields for their
-content types.
-* Enable additional filters media browser (post-selector.php), including a post-type filter. At the end of the day, the post-selector.php coughs up a ID from wp_posts. You could have a field for "link" or "related item" or "next page" in a chain -- all you'd do is use the post-selector.php to select a post or page post_type instead of an attachment.
-* Crack into the attribute meta box so you can optionally select a parent post that is a post_type other than the child. E.g. imagine a post_type of "Theater" with children with a post_type of "Movie" -- currently WP prevents that type of relationship in the page attribute meta box because they are 2 different content types. However, attatchment post_types *can* have a parent_id that is a post or page.
+* Add more custom field types, including media specific input-types: "image", "audio", "video" -- all of these are currently handled generically by the "media" custom field type.  Also on the menu: date and time fields.
+* Enable additional filters media browser (post-selector.php), including a post-type filter. 
+* Crack into the attribute meta box so you can optionally select a parent post that is a post_type other than the child. E.g. imagine a post_type of "Theater" with children with a post_type of "Movie" -- currently WP prevents that type of relationship in the page attribute meta box because they are 2 different content types with the exceptions of attachment post_types, which *can* have a parent_id that is a post or page.
 * Full permalink support.  WP does not make this easy with custom post types, but ideally I'd like more options under the "Permalink Action" dropdown:
 	* Off -- URLs will be simple GET style params
 	* Inherit -- use the same permalink structure used by the rest of the site
@@ -124,13 +122,17 @@ content types.
 		for each custom content type that mirrors the built-in permalink options.
 http://xplus3.net/2010/05/20/wp3-custom-post-type-permalinks/ has some good info on this.
 * Integrated taxonomy manager. So far, the "Simple Taxonomy" plugin is the only taxonomy plugin that I've found that is relatively few of bugs and is sensibly architected: http://redmine.beapi.fr/projects/show/simple-taxonomy
-* (questionably architecturally) Allow "list" fields -- e.g. you define a custom field that's a media type, if you check a box specifying that it's a list, it would allow you to add multiple instances of that field to your post.  That's a lot trickier than what I'm doing now, but I think my architecture is sensible enough to support it. Those data patterns start looking a lot like taxonomies though, so it's gonna require rock-solid explanations to avoid confusing people (including myself).
+* Allow "list" fields (questionably architecturally) -- e.g. you define a custom field that's a media type, if you check a box specifying that it's a list, it would allow you to add multiple instances of that field to your post.  That's a lot trickier than what I'm doing now, but I think my architecture is sensible enough to support it. Those data patterns start looking a lot like taxonomies though, so it's gonna require rock-solid explanations to avoid confusing users.
 * Supply more template functions, perhaps via a static class, e.g. CCTM::image('move_poster'); It might also be possible to spin this off to function names that are more familiar to WP template authors, e.g. "CCTM::the_movie_poster()". See includes/functions.php for some functions in development.
 * Archive Support: optionally define whether a content type shows up in the normal site archive menus.
 * Pimp out the search box, INCLUDING the ability to specify a post_type when you create a relation field, e.g. for the products referencing a look, I should prime the form so that it only displays look type posts.  The architecture is there and already can do this, but I was having problems piping that stuff through javascript when fields are created dynamically.
-* Sample template: Include a link in the manager somewhere for each content type that would generate a sample template for that content type, e.g. it could generate the contents of single-look.php including all custom fields. 
-* Show-hide options for each custom field -- the custom field manager is way crowded.
+* Show-hide options for each custom field to cut down on crowding in the custom field manager screen.
 * Permissions on editing custom content types -- lock it down! You don't want 2 people editing the same thing at the same time.
+
+== Upgrade Notice ==
+
+= 0.8.0 =
+Initial public release.
 
 == See also and References ==
 * http://kovshenin.com/archives/extending-custom-post-types-in-wordpress-3-0/
