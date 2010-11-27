@@ -248,7 +248,7 @@ class CCTM
 	}
 		
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	Activating a post type will cause it to show up in the WP menus and its custom 
 	fields will be managed.
 	------------------------------------------------------------------------------*/
@@ -279,7 +279,7 @@ class CCTM
 	}
 	
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	Create a new post type
 	------------------------------------------------------------------------------*/
 	private static function _page_create_new_post_type()
@@ -336,7 +336,7 @@ class CCTM
 	
 	
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	Deactivate a post type. This will remove custom post types from the WP menus;
 	deactivation stops custom fields from being standardized in built-in and custom 
 	post types
@@ -402,7 +402,7 @@ class CCTM
 	}
 	
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	This is only a valid page for custom post types.
 	------------------------------------------------------------------------------*/
 	private static function _page_delete_post_type($post_type)
@@ -449,7 +449,7 @@ class CCTM
 	}
 	
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	Returned on errors. Future: accept an argument identifying an error
 	------------------------------------------------------------------------------*/
 	private static function _page_display_error()
@@ -462,7 +462,7 @@ class CCTM
 
 
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	Edit an existing post type. Changing the unique post-type identifier (i.e. name)
 	is not allowed. 
 	------------------------------------------------------------------------------*/
@@ -527,7 +527,7 @@ class CCTM
 	}
 	
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	Manage custom fields for any post type, built-in or custom.
 	------------------------------------------------------------------------------*/
 	private static function _page_manage_custom_fields($post_type)
@@ -649,7 +649,7 @@ class CCTM
 	}
 	
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	Show what a single page for this custom post-type might look like.  This is 
 	me throwing a bone to template editors and creators.
 	
@@ -672,7 +672,7 @@ class CCTM
 		$data = get_option( self::db_key, array() );
 		$tpl = file_get_contents( CCTM_PATH.'/tpls/sample_template_code.tpl');
 		$tpl = htmlentities($tpl);
-//		print '<textarea width="80">'.$tpl.'</textarea>'; exit;
+
 		$msg = sprintf( __('WordPress supports a custom theme file for each registered post-type (content-type). Copy the text below into a file named <strong>%s</strong> and save it into your active theme.', CCTM::txtdomain)
 			, 'single-'.$post_type.'.php'
 		);
@@ -680,15 +680,29 @@ class CCTM
 			, '<strong>'.$current_theme_name.'</strong>'
 			, '<strong>'.$current_theme_path.'</strong>'
 		);
+		
+		$data = get_option( self::db_key, array() );
+		$def = array();
+		if ( isset($data[$post_type]['custom_fields']) )
+		{
+			$def = $data[$post_type]['custom_fields'];
+		}
+		//print_r($def); exit;
+		$custom_fields_str = '';
+		foreach ( $def as $d )
+		{
+			$custom_fields_str .= sprintf("\t\t<strong>%s:</strong> <?php print_custom_field('%s'); ?><br />\n", $d['label'], $d['name']);
+		}
+		// Populate placeholders
+		$hash['post_type'] = $post_type;
+		$hash['custom_fields'] = $custom_fields_str;
+		
 		$sample_code = StandardizedCustomFields::parse($tpl, $hash);
-		//$sampe_code = htmlentities($sample_code);
-		//$sampe_code = htmlspecialchars_decode($sample_code);
-
 		include('pages/sample_template.php');
 	}
 	
 	/*------------------------------------------------------------------------------
-	Manager Page (called by page_main_controller() )
+	Manager Page -- called by page_main_controller()
 	List all post types (default page)
 	------------------------------------------------------------------------------*/
 	private static function _page_show_all_post_types($msg='')

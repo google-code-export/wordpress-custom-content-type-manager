@@ -41,6 +41,20 @@ if ( !current_user_can('edit_posts') )
 	wp_die(__('You do not have permission to edit posts.'));
 }
 
-$MS = new PostSelector();
+$PS = new PostSelector();
+
+$output = '';
+
+// Determines if this is an AJAX request or an iFramed thickbox		
+if ( isset($_GET['mode']) )
+{
+	$output = $PS->return_Ajax();
+}
+else
+{
+	$output = $PS->return_iFrame();
+}
+
+print $output;
 
 /*EOF*/
