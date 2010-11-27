@@ -1,0 +1,15 @@
+/* This is the button used in the manager to choose a new image */
+.choose_media_button{
+	display: hidden;
+}
+.attachment-thumbnail{
+	padding: 10px;
+}
+/* Used by all labels */
+.formgenerator_label{
+
+}
+/* Used to wrap the post id's, e.g. 'Preview HTML (4)'*/
+.formgenerator_id_label{
+
+}
