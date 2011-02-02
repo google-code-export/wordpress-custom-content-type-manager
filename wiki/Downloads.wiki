@@ -1,0 +1,7 @@
+#summary Where to download this plugin
+
+= Where to Download =
+
+This plugin can be downloaded from the WordPress.org site:
+
+[http://wordpress.org/extend/plugins/custom-content-type-manager/ http://wordpress.org/extend/plugins/custom-content-type-manager/]
