@@ -1,0 +1,15 @@
+#summary Where to Find Help
+
+= Introduction =
+
+This is an open-source project, so the documentation, the tutorials, and even the code itself is a labor of love.  We know that it is not perfect, but we have strived to make this code that is worthwhile to use.
+
+= Bugs and Feature Requests =
+
+If you think you've found a bug, or there's a feature that you'd like to see, please be so kind as to fill out a
+[http://code.google.com/p/wordpress-custom-content-type-manager/issues/list Create an Issue]. 
+
+
+= Wiki Documentation =
+
+= Tutorials =
