@@ -1,4 +1,5 @@
 #summary One-sentence summary of this page.
+#labels Featured
 
 = Donations =
 
@@ -6,3 +7,5 @@ Developing a plugin like this one takes a lot of time.  Thankfully, I've been ab
 
 If you have found this plugin helpful and you're using it on your site, please consider thanking me financially by
 [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=355ULXBFXYL8N Making a Donation].
+
+Thank you!
