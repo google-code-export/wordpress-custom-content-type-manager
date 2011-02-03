@@ -2,14 +2,16 @@
 
 = Source Code =
 
-WordPress houses the SVN repository for this project. 
+!WordPress houses the SVN repository for this project. 
 
 ==SVN Repo==
 http://plugins.svn.wordpress.org/custom-content-type-manager/trunk
+
+If you are interested in helping translate this wiki, then please contact me for SVN access to the local repository here at google code.
 
 ==Download==
 [http://wordpress.org/extend/plugins/custom-content-type-manager/ http://wordpress.org/extend/plugins/custom-content-type-manager/]
 
 ==Commit Privileges==
 
-Commit access is granted via the WordPress system.
+Commit access is granted via the !WordPress system.
