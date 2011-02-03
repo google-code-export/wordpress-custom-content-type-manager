@@ -28,10 +28,20 @@ In functionality, this field type essentially stores a foreign key to a post ID 
 
 == Media ==
 
+Use a media field to store a link to a generic media item (image, mp3, video).
+
 == Relation ==
+
+Use a relation field to store a link to another page or post.  Just like a page can have a parent, this allows your posts to have other relations, e.g. "Next Page", or "Related Item". 
 
 == Text ==
 
+This is the simplest of custom fields.  
+
 == Textarea ==
 
+Like the text field, but a text area, allowing more room to type.
+
 == WYSIWYG ==
+
+A WYSIWYG field is what !WordPress uses for its main "content" field: it's a textarea with Javascript formatting controls.
