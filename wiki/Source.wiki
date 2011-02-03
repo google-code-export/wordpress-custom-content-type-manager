@@ -18,4 +18,8 @@ Commit access is granted via the !WordPress system.
 
 = Latest Development =
 
-<wiki:gadget url="http://google-code-feed-gadget.googlecode.com/svn/trunk/gadget.xml" up_feeds="http://plugins.trac.wordpress.org/log/custom-content-type-manager?format=rss&amp;limit=100&amp;mode=stop_on_copy" width="600" height="600" border="0"/>
+You can see incremental changes here: http://plugins.trac.wordpress.org/log/custom-content-type-manager/
+
+And if the widget below works, you can see them summarized as an RSS feed:
+
+<wiki:gadget url="http://google-code-feed-gadget.googlecode.com/svn/trunk/gadget.xml" up_feeds="http://plugins.trac.wordpress.org/log/custom-content-type-manager?format=rss&limit=100&mode=stop_on_copy" width="600" height="600" border="0"/>
