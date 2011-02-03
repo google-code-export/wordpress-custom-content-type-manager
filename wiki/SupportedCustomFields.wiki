@@ -1,0 +1,37 @@
+#summary Custom Fields currently supported
+
+= Supported Custom Fields =
+
+By default, WordPress supports only text custom fields.  This plugin allows you to define multiple types of custom fields to include inside your posts.  There are some feature requests to add new types of fields.
+
+== Checkbox ==
+
+A simple checkbox that stores 1 (checked) or 0 (unchecked). You can define whether it is checked by default by setting the default value to "1". 
+
+== Dropdown ==
+
+You can define a list of items to appear in a dropbox. You can define a specific item to be checked by default by entering its value in the "Default Value" field.
+
+Currently, the value displayed to the users is exactly the value that is stored:
+
+{{{
+<option value="My Example">My Example</option>
+}}}
+
+In the future, this may support the ability to display one value and store another.
+
+== Image ==
+
+This allows users to select a valid image _from the wp_posts table_.  Any image that has been added via the standard WordPress Media menu shows up as a possible image to choose.
+
+In functionality, this field type essentially stores a foreign key to a post ID (just like the media or relation fields), however this is focused on image posts.
+
+== Media ==
+
+== Relation ==
+
+== Text ==
+
+== Textarea ==
+
+== WYSIWYG ==
