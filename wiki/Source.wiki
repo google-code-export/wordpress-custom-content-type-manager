@@ -1,6 +1,5 @@
 #summary Where to find this project's source code
-
-<wiki:gadget url="http://google-code-feed-gadget.googlecode.com/svn/trunk/gadget.xml" up_feeds="http://plugins.trac.wordpress.org/log/custom-content-type-manager?format=rss&limit=100&mode=stop_on_copy" width="600" height="600" border="0"/>
+#labels Featured
 
 = Source Code =
 
@@ -23,3 +22,5 @@ Commit access is granted via the !WordPress system.
 You can see incremental changes here: http://plugins.trac.wordpress.org/log/custom-content-type-manager/
 
 And if the widget below works, you can see them summarized as an RSS feed:
+
+<wiki:gadget url="http://google-code-feed-gadget.googlecode.com/svn/trunk/gadget.xml" up_feeds="http://plugins.trac.wordpress.org/log/custom-content-type-manager?format=rss&limit=100&mode=stop_on_copy" width="600" height="600" border="0"/>
