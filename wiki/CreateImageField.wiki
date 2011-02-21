@@ -39,6 +39,7 @@ Instead, we _get_ the the custom field (instead of printing it), and we pass it 
 
 ===wp_get_attachment_image_src()===
 {{{
+<?php $image_id = get_custom_field('my_image_field'); ?>
 <?php list($src, $w, $h) = wp_get_attachment_image_src($image_id, 'full'); ?>
 <img src="<?php print $src; ?>" width="<?php print $w; ?>" height="<?php print $h; ?>" />
 }}}
