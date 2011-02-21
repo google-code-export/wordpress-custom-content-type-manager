@@ -13,8 +13,8 @@ You'll notice that the *print_custom_field()* function will only print out an in
 So instead of directly _printing_ the contents of the custom field, your theme files will make use of the Custom Content Type Manager *get_custom_field()* function in combination with one of !WordPress' dedicated theme functions.
 
 !WordPress Image Functions
-* [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image] 
-* [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src]
+ * [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image] 
+ * [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src]
 
 
 = Examples = 
