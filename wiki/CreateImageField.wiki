@@ -1,0 +1,42 @@
+#How do I use a Custom Image Field
+
+= Introduction =
+
+Now that you have a custom image field, what do you do with it?
+
+
+= Overview =
+
+You'll notice that the *print_custom_field()* function will only print out an integer.  This is the expected behavior! This plugin stores a [http://en.wikipedia.org/wiki/Foreign_key foreign key] as the value for the image custom fields. The key is technically a post ID in the *wp_posts* table where post_type is "attachment*. 
+
+So instead of directly _printing_ the contents of the custom field, your theme files will make use of the Custom Content Type Manager *get_custom_field()* function in combination with one of WordPress' dedicated theme functions:
+
+* *wp_get_attachment_image* - http://codex.wordpress.org/Function_Reference/wp_get_attachment_image
+* *wp_get_attachment_image_src* - http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src
+
+
+= Examples = 
+
+The following examples assume that your custom field is named "my_image_field". You can use code like this in any valid theme file, e.g. inside of your active's theme _index.php_ or in your content type's dedicated file, e.g. _single-movie.php_.
+
+== Why print_custom_field() won't Work==
+{{{
+The foreign key for this image is:
+<?php print_custom_field('my_image_field'); ?>
+}}}
+
+== Using get_custom_field() Instead ==
+
+Instead, we _get_ the the custom field (instead of printing it), and we pass it to one of !WordPress' functions.
+
+===wp_get_attachment_image()===
+{{{
+<?php $image_id = get_custom_field('my_image_field'); ?>
+<?php print wp_get_attachment_image($image_id, 'full'); ?>
+}}}
+
+===wp_get_attachment_image_src()===
+{{{
+<?php list($src, $w, $h) = wp_get_attachment_image_src($image_id, 'full'); ?>
+<img src="<?php print $src; ?>" width="<?php print $w; ?>" height="<?php print $h; ?>" />
+}}}
