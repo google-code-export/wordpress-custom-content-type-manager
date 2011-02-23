@@ -11,7 +11,7 @@ The goal is to make !WordPress a viable CMS with flexible content types while le
 
 == Guiding Design Principles ==
 
-* No database modifications are made.
-* The site should still function if the plugin is uninstalled
-* The User Interface should be intuitive
-* The plugin should be well-documented.
+ * No database modifications are made.
+ * The site should still function if the plugin is uninstalled
+ * The User Interface should be intuitive
+ * The plugin should be well-documented.
