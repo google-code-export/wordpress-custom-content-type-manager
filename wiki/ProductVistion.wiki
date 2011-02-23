@@ -1,0 +1,17 @@
+#summary The Future of the Plugin
+#labels Phase-Requirements,Featured
+
+=  The RoadMap for the Custom Content Type Manager Plugin=
+
+Where is this plugin headed?  We have big things planned for it, but it takes time to implement.
+
+== Mission Statement ==
+
+The goal is to make !WordPress a viable CMS with flexible content types while leveraging the built-in !WordPress technologies to accomplish this.  One goal is that the user should be able to uninstall this plugin at any time and still be able to use their site.  
+
+== Guiding Design Principles ==
+
+* No database modifications are made.
+* The site should still function if the plugin is uninstalled
+* The User Interface should be intuitive
+* The plugin should be well-documented.
