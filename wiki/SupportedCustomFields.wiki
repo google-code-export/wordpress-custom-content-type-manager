@@ -24,7 +24,7 @@ In the future, this may support the ability to display one value and store anoth
 
 == Image ==
 
-This allows users to select a valid image _from the wp_posts table_.  Any image that has been added via the standard WordPress Media menu shows up as a possible image to choose.
+This allows users to select a valid image _from the wp_posts table_.  Any image that has been added via the standard !WordPress Media menu shows up as a possible image to choose, or you can choose to create a new image by uploading directly from the thickbox popup window.
 
 In functionality, this field type essentially stores a foreign key to a post ID (just like the media or relation fields), however this is focused on image posts.
 
