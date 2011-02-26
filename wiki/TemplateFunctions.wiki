@@ -153,6 +153,8 @@ _array_ *get_custom_image*( string _$fieldname_ )
 
 This is a convenience function that returns an HTML image element for a custom field that stores an image.  Remember that the custom field stores the _ID_ of the image, not the actual image.  This function relies on !WordPress' [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.  See also the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function.
 
+See also the CreateImageField wiki page.
+
 === $fieldname ===         
 (string) (required) The name of the custom field whose value you want to get.
 
