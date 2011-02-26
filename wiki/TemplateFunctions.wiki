@@ -187,4 +187,4 @@ This is convenience function that simply prints the output of the [TemplateFunct
 <hr/>
 = print_custom_field_meta =
 
-This is a convenience function that simple prints the output of the _get_custom_field_meta() function.
+This is a convenience function that simple prints the output of the [TemplateFunctions#get_custom_field_meta  get_custom_field_meta()] function.
