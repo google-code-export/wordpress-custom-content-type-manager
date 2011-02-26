@@ -17,7 +17,7 @@ Gets the value of the custom field identified by _$fieldname_. This function is 
   
 = get_custom_field_meta =
 
-_mixed_ *get_custom_field_meta*( string _$fieldname_, string _$item_ [, string _$post_type_ ] ) 
+_mixed_ *get_custom_field_meta*( string _$fieldname_, string _$item_ `[`, string _$post_type_ `]` ) 
 
 This allows you to get information about the custom field's definition (i.e. its meta data). The definitions are stored in a multi-dimensional array, so we need 3 pieces of data to find the meta data: the fieldname, the name of the meta item, and the post type; the post_type is usually able to be determined automatically.
 
@@ -40,7 +40,7 @@ Examples are included in this Plugin's administration page: just click the link 
 
 = get_custom_field_def =
 
-_array_ *get_custom_field_def*( string _$fieldname_[, string _$post_type_ ] ) 
+_array_ *get_custom_field_def*( string _$fieldname_ `[`, string _$post_type_ `]` ) 
 
 Whereas the _get_custom_field_meta()_ function returns a single meta item from a field definition, the _get_custom_field_def()_ function returns the _entire_ definition array. 
 
@@ -79,7 +79,7 @@ Array
 
 = get_all_fields_of_type =
 
-_array_ *get_all_fields_of_type*( string _$type_ [, string _$prefix_ ] ) 
+_array_ *get_all_fields_of_type*( string _$type_ `[`, string _$prefix_ `]` ) 
 
 This function was originally developed to return all the images attached to a post. The output is an array of values.
 
@@ -135,8 +135,51 @@ foreach ($posts as $p)
 
 = get_relation =
 
+_object_ *get_relation*( string _$fieldname_ ) 
+
+A relation field stores a post ID, and that ID identifies another post.  So given 
+a fieldname, this returns the complete post object for that was referenced by
+the custom field.
+
+=== $fieldname ===
+(string) (required) The name of the custom field.
+
+== Example ==
+
+{{{
+<?php
+$my_related_post = get_relation('my_rel');
+print $my_related_post->post_content;
+?>
+}}}
+
+
 = get_unique_values_this_custom_field =
+
+_array_ *get_unique_values_this_custom_field*( string _$fieldname_ ) 
+
+Given a specific custom field name ($fieldname), return an array of all unique
+values contained in this field by *any* published posts which use a custom field 
+of that name, regardless of post_type, and regardless of whether or not the custom 
+field is defined as a "standardized" custom field.
+
+This function filters out empty or null values.
+
+=== $fieldname ===
+(string) (required) The name of the custom field.
+
+== Example == 
+
+{{{
+$array = get_unique_values_this_custom_field('favorite_cartoon');
+print_r($array);
+// prints something like : Array ( 'Family Guy', 'South Park', 'The Simpsons' );
+}}}
 
 = print_custom_field =
 
+This is convenience function that simply prints the output of the _get_custom_field()_ function.
+
 = print_custom_field_meta =
+
+This is a convenience function that simple prints the output of the _get_custom_field_meta() function.
