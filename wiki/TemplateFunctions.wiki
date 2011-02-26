@@ -4,6 +4,8 @@ Below are the functions available to your theme files so you can print out the v
 
 See includes/functions.php for more information.
 
+<wiki:toc max_depth="2" />
+
 = get_custom_field =
 
 _string_ *get_custom_field*( string _$fieldname_ ) 
