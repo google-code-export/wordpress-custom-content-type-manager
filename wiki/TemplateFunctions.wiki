@@ -4,7 +4,7 @@ Below are the functions available to your theme files so you can print out the v
 
 See includes/functions.php for more information.
 
-<wiki:toc max_depth="2" />
+<wiki:toc max_depth="1" />
 
 = get_custom_field =
 
@@ -15,7 +15,7 @@ Gets the value of the custom field identified by _$fieldname_. This function is 
 === $fieldname ===         
 (string) (required) The name of the custom field whose value you want to get.
   
-== get_custom_field_meta ==
+= get_custom_field_meta =
 
 _mixed_ *get_custom_field_meta*( string _$fieldname_, string _$item_ [, string _$post_type_ ] ) 
 
@@ -79,9 +79,59 @@ Array
 
 = get_all_fields_of_type =
 
+_array_ *get_all_fields_of_type*( string _$type_ [, string _$prefix_ ] ) 
+
+This function was originally developed to return all the images attached to a post. The output is an array of values.
+
+=== $type ===
+(string) (required) The type of custom field.  Possible values include checkbox, dropdown, media, relation, text, textarea, wysiwyg.
+
+=== $prefix ===
+(string) (optional) Identify a subset of fields by the beginning of their names.
+
+
 = get_post_complete =
 
+_object_ *get_post_complete*( integer _$id_ ) 
+
+This gets a _complete_ post, including all custom fields.
+
+=== $id ===
+(integer) (required) The ID of the post whose data you want.
+
+== Example ==
+
+{{{
+<?php $my_post = get_post_complete(123); ?>
+<a href="<?php print $my_post->guid; ?>"><?php print $my_post->post_title; ?></a>
+<?php print $my_post->my_custom_field; ?>
+}}}
+
+
 = get_posts_sharing_custom_field_value =
+
+_array_ *get_posts_sharing_custom_field_value*( string _$fieldname_, string _$value_ ) 
+
+Returns an array of post objects (including all custom fields).  This relies on the _get_post_complete()_ function (see this page), but it is a database intensive operation.  
+
+For a more efficient query that returns the same type of results (including more search options), please see the [http://wordpress.org/extend/plugins/summarize-posts/ SummarizePosts] plugin.
+
+=== $fieldname ===
+(string) (required) The name of the custom field.
+
+=== $value ===
+(string) (required) The value being searched for.
+
+== Example ==
+
+{{{
+$posts = get_posts_sharing_custom_field_value('genre', 'comedy');	
+foreach ($posts as $p)
+{
+	print $p->post_title;
+}
+
+}}}
 
 = get_relation =
 
