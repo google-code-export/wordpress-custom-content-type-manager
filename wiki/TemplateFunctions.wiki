@@ -6,6 +6,7 @@ See includes/functions.php for more information.
 
 <wiki:toc max_depth="1" />
 
+<hr/>
 = get_custom_field =
 
 _string_ *get_custom_field*( string _$fieldname_ ) 
@@ -14,7 +15,8 @@ Gets the value of the custom field identified by _$fieldname_. This function is 
 
 === $fieldname ===         
 (string) (required) The name of the custom field whose value you want to get.
-  
+ 
+<hr/>
 = get_custom_field_meta =
 
 _mixed_ *get_custom_field_meta*( string _$fieldname_, string _$item_ `[`, string _$post_type_ `]` ) 
@@ -37,7 +39,7 @@ Examples are included in this Plugin's administration page: just click the link 
 `<?php print get_custom_field('my_custom_field'); ?>`
 
 
-
+<hr/>
 = get_custom_field_def =
 
 _array_ *get_custom_field_def*( string _$fieldname_ `[`, string _$post_type_ `]` ) 
@@ -76,7 +78,7 @@ Array
 }}}
 
 
-
+<hr/>
 = get_all_fields_of_type =
 
 _array_ *get_all_fields_of_type*( string _$type_ `[`, string _$prefix_ `]` ) 
@@ -89,7 +91,7 @@ This function was originally developed to return all the images attached to a po
 === $prefix ===
 (string) (optional) Identify a subset of fields by the beginning of their names.
 
-
+<hr/>
 = get_post_complete =
 
 _object_ *get_post_complete*( integer _$id_ ) 
@@ -107,7 +109,7 @@ This gets a _complete_ post, including all custom fields.
 <?php print $my_post->my_custom_field; ?>
 }}}
 
-
+<hr/>
 = get_posts_sharing_custom_field_value =
 
 _array_ *get_posts_sharing_custom_field_value*( string _$fieldname_, string _$value_ ) 
@@ -133,6 +135,7 @@ foreach ($posts as $p)
 
 }}}
 
+<hr/>
 = get_relation =
 
 _object_ *get_relation*( string _$fieldname_ ) 
@@ -153,7 +156,7 @@ print $my_related_post->post_content;
 ?>
 }}}
 
-
+<hr/>
 = get_unique_values_this_custom_field =
 
 _array_ *get_unique_values_this_custom_field*( string _$fieldname_ ) 
@@ -176,10 +179,12 @@ print_r($array);
 // prints something like : Array ( 'Family Guy', 'South Park', 'The Simpsons' );
 }}}
 
+<hr/>
 = print_custom_field =
 
-This is convenience function that simply prints the output of the _get_custom_field()_ function.
+This is convenience function that simply prints the output of the [TemplateFunctions#get_custom_field get_custom_field()] function.
 
+<hr/>
 = print_custom_field_meta =
 
 This is a convenience function that simple prints the output of the _get_custom_field_meta() function.
