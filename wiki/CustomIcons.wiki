@@ -1,3 +1,4 @@
+#summary Using custom menu icons for your custom content types
 
 = Introduction =
 
