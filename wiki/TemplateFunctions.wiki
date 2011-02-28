@@ -158,7 +158,7 @@ See also the CreateImageField wiki page.
 === $fieldname ===         
 (string) (required) The name of the custom field whose value you want to get.
 
-== Example
+== Example ==
 {{{
 <?php $img_html = get_custom_image('my_image_field');?>
 <div>
