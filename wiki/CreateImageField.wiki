@@ -1,5 +1,5 @@
+#summary How do I use a Custom Image Field
 #labels Featured
-#How do I use a Custom Image Field
 
 = Introduction =
 
