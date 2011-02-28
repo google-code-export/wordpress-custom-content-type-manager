@@ -1,8 +1,6 @@
 #summary Where to Find Help
 
-= Introduction =
-
-This is an open-source project, so the documentation, the tutorials, and even the code itself is a labor of love.  We know that it is not perfect, but we have strived to make this code that is worthwhile to use.
+This is an open-source project, so the documentation, the tutorials, and even the code itself is a labor of love.  We know that it is not perfect, but we have strived to make this code that is worthwhile to use.  Your financial contributions make this happen.
 
 = Bugs and Feature Requests =
 
@@ -12,4 +10,8 @@ If you think you've found a bug, or there's a feature that you'd like to see, pl
 
 = Wiki Documentation =
 
+Peruse the Wiki pages here for the official documentation.
+
 = Tutorials =
+
+Tutorial links are coming... they are slated for version 1.0.
