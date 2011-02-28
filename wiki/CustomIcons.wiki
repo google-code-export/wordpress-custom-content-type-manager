@@ -1,0 +1,12 @@
+
+= Introduction =
+
+You can select your own custom menu icons for each custom content type.
+
+To see this, click on the Custom Content Type Manager menu icon, then click the edit button on one of your custom types, then click on the Menu tab.  Deselect the checkbox to "use default icon", and you should see a list of icons available for you to choose.
+
+You can add your own icons to appear in this list by uploading them to the following folder:
+`wp-content/plugins/custom-content-type-mgr/images/icons/default`
+
+There's also a ticket for this to get a better default set.
+http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=30
