@@ -16,7 +16,7 @@ So instead of directly _printing_ the contents of the custom field, your theme f
  * [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image] 
  * [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src]
 
-You can now also use the [TemplateFunctions#get_custom_image get_custom_field()] function.
+You can now also use the [TemplateFunctions#get_custom_image get_custom_image()] function.
 
 = Examples = 
 
