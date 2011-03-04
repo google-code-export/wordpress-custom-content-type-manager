@@ -6,12 +6,26 @@
 !WordPress houses the SVN repository for this project. 
 
 ==SVN Repo==
+
+The Subversion repository for this project is at the following URL: 
+
 http://plugins.svn.wordpress.org/custom-content-type-manager/trunk
 
 If you are interested in helping translate this wiki, then please contact me for SVN access to the local repository here at google code.
 
 ==Download==
-[http://wordpress.org/extend/plugins/custom-content-type-manager/ http://wordpress.org/extend/plugins/custom-content-type-manager/]
+
+=== Stable Version ===
+The latest public version of this plugin is always available at [http://wordpress.org/extend/plugins/custom-content-type-manager/ http://wordpress.org/extend/plugins/custom-content-type-manager/]
+
+=== Development Version ===
+The latest development version of this plugin is available at http://downloads.wordpress.org/plugin/custom-content-type-manager.zip
+
+The development version is never guaranteed to be stable!  Developers only please!
+
+=== Other Versions ===
+
+Other versions of the plugin are listed at http://wordpress.org/extend/plugins/custom-content-type-manager/download/
 
 ==Commit Privileges==
 
