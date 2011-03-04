@@ -1,0 +1,7 @@
+#summary Links to similar plugins
+
+=Verve Meta Boxes= 
+
+A robust, intuitive, polished custom fields plugin provides text, textarea, image, file, date, time, datetime, select, radio, and checkbox fields.
+
+http://wordpress.org/extend/plugins/verve-meta-boxes/
