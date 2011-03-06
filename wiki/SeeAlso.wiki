@@ -5,4 +5,12 @@
 A robust, intuitive, polished custom fields plugin provides text, textarea, image, file, date, time, datetime, select, radio, and checkbox fields.
 
  * http://wordpress.org/extend/plugins/verve-meta-boxes/
+
+= pType Converter =
  * http://www.briandgoad.com/downloads/ptypeconverter/
+
+= Custom Post Type UI =
+
+http://wordpress.org/extend/plugins/custom-post-type-ui/
+
+The Custom-Post Type UI plugin offers some of the same features, but I felt that its architecture was flawed: it stores data as taxonomical terms, which is conceptually awkward at a development level, and more importantly, it limits the each custom field to 200 characters of data, making it impossible to store certain types of custom content.
