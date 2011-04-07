@@ -11,7 +11,7 @@ See includes/functions.php for more information.
 
 _array_ *get_all_fields_of_type*( string _$type_ `[`, string _$prefix_ `]` ) 
 
-This function was originally developed to return all the images attached to a post. The output is an array of values.
+This function was originally developed to return all the images attached to a post. The output is an array of names, each name is the name of a custom field of the type specified.
 
 === $type ===
 (string) (required) The type of custom field.  Possible values include checkbox, dropdown, media, relation, text, textarea, wysiwyg.
@@ -100,20 +100,7 @@ See includes/functions.php for more information.
 <wiki:toc max_depth="1" />
 
 <hr/>
-= get_all_fields_of_type =
 
-_array_ *get_all_fields_of_type*( string _$type_ `[`, string _$prefix_ `]` ) 
-
-This function was originally developed to return all the images attached to a post. The output is an array of values.
-
-=== $type ===
-(string) (required) The type of custom field.  Possible values include checkbox, dropdown, media, relation, text, textarea, wysiwyg.
-
-=== $prefix ===
-(string) (optional) Identify a subset of fields by the beginning of their names.
-
-
-<hr/>
 = get_custom_field =
 
 _string_ *get_custom_field*( string _$fieldname_ ) 
