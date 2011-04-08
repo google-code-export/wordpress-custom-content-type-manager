@@ -1,0 +1,61 @@
+#summary Frequently Asked Questions
+#labels Featured
+
+= What does activating a custom content type do? =
+
+When you activate a custom content type, you ensure that it gets registered with !WordPress. Once the content type is registered, a menu item will get created (so long as you checked the "Show Admin User Interface" box) and you ensure that its custom fields become standardized. If the "Public" box was checked for this content type, then the general public can access posts created under this content type using the URL structure defined by the "Permalink Action" and "Query Var" settings, e.g. http://site.com/?post_type=book&p=39
+
+"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized. If you do not intend to standardize the custom fields for pages or posts, then there is no reason for you to activate them. 
+
+= What does deactivating a custom content type do? =
+
+If you deactivate a custom content type, its settings remain in the database, but every other trace of it vanishes: any published posts under this content type will not be visible to the outside world, and the WordPress manager will no longer generate a link in the admin menu for you to create or edit posts in this content type.
+
+Deactivating a built-in post-type (a.k.a. content type) merely stops standardizing the custom fields; deactivating a built-in post-type has no other effect.
+
+= What types of custom fields are supported? =
+
+ * [Text] -- simple text field
+ * [Textarea] -- a simple textarea field
+ * [WYSIWYG] -- a textarea with formatting controls
+ * [Dropdown] -- you customize options and select one of them
+ * [Checkbox] -- checkboxes
+ * [Image] -- select any uploaded image
+ * [Media]  -- allow the user to select an image, video, or audio clip
+ * [Relation] -- allow the user to select another post of any type (e.g. a parent post).
+
+More field types coming...
+
+= How do I add images or video into a custom field? =
+
+The media-related custom fields tie into !WordPress' "attachment" posts, so if you have already uploaded images or video using the Media menu, they will show up for selection when edit a post using a custom image or media field.  You can also choose "Add New Image" when you browse existing images.
+
+= How do I make my custom field values show up in my templates? =
+
+Content and templates must go hand in hand. If you have defined custom fields, you have to modify your theme files to accommodate them.  There are two included theme functions intended to help you with this task:
+
+ * get_custom_field() -- gets the value
+ * print_custom_field() -- prints the value
+
+In this plugin's settings area, each content-type has a link to "View Sample Templates" -- this page gives you a fully customized example showing demonstrating a custom theme file for your custom content type.
+
+See the wiki page on [TemplateFunctions]
+
+= How do I use a Custom Image Field =
+
+The trick here is that the custom field stores a numeric foreign key, which points to the wp_posts table where the post_type is an "attachment". Assuming your custom field is named 'my_image_field':
+
+`<?php print get_custom_image('my_image_field'); ?>`
+
+This is the same as using the more verbose process:
+
+`<?php $image_id = get_custom_field('my_image_field'); ?>`
+`<?php print wp_get_attachment_image($image_id, 'full'); ?>`
+
+
+See the wiki pages about [CreateImageField] or about [TemplateFunctions]
+
+
+= How can I use this plugin to support an eCommerce site? =
+
+There are many ways to structure a site depending on what you are selling. For an example, let's say you are selling T-shirts. You could create a "shirt" content type, then you could define custom fields for size, color, and perhaps several image fields. Once you had defined the custom content type, you could simply create several "shirt" posts for each shirt design that you are selling.
