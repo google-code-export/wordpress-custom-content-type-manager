@@ -2,3 +2,7 @@
 #labels Help
 
 The explanations are coming...
+
+== Weirdness ==
+
+Because deactivating or deleting a custom content type definition does not actually delete any posts from the WordPress database, it is possible for there to be "ghost posts" that suddenly appear when you create a content type.  E.g. create a content type named "test", then create a few "test" posts, then delete the content type definition.  Those "test" posts are still in the database, so if you were to re-create a "test" content type, those posts would become visible again. 
