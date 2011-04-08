@@ -1,3 +1,4 @@
 #summary Managing your custom fields
+#labels Help
 
 Coming soon...
