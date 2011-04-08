@@ -1,0 +1,4 @@
+#summary Deactivating a content type
+#labels Help
+
+Coming soon...
