@@ -1,0 +1,4 @@
+#summary Deleting a content type
+#labels Help
+
+The consequences are coming...
