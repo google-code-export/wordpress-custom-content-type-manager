@@ -1,0 +1,4 @@
+#summary Creating a content type
+#labels Help
+
+The explanations are coming...
