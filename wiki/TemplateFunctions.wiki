@@ -91,13 +91,6 @@ Array
 )
 }}}
 
-#summary Functions available to your theme files
-
-Below are the functions available to your theme files so you can print out the values stored in your custom fields into your custom templates.  Some functions also return information _about_ the custom fields.
-
-See includes/functions.php for more information.
-
-<wiki:toc max_depth="1" />
 
 <hr/>
 
