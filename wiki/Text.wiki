@@ -1,5 +1,35 @@
 #summary Documentation for Text custom fields
 
-= Description =
+== Overview ==
 
-Coming soon...
+Custom text fields are the simplest type of custom fields.  They are meant to store arbitrary strings of data, usually no more than a few characters in length.
+
+== Field Definition ==
+
+The field definition affects how instances of this field type will display in the !WordPress manager while creating or posts that contain instances of this field type.
+
+ * *label* : 
+ * *name* : 
+ * *description* : 
+ * *class* : 
+ * *extra* : 
+ * *default_value* : 
+
+== Options ==
+
+_None_
+
+== Output in Theme Files ==
+
+_string_ *get_custom_field*( string _$fieldname_  ) 
+
+In the case of a text field, `print_custom_field('fieldname');` will return exactly the string that was was entered in the !WordPress manager and stored in the database.  The output is identical to 
+
+{{{
+global $post;
+print get_post_meta($post->ID, $fieldname, true);
+}}}
+
+== Special Behavior ==
+
+_None_
