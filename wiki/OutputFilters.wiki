@@ -12,13 +12,19 @@ The solution for this was in the docs the whole time, but the constant questioni
 
 <wiki:toc max_depth="2" />
 
+----
+
 == None ==
 
 This is the default value for many field types, and it was the _only_ option available prior to version 0.8.9 of the plugin.
 
+----
+
 == Encode Email Address ==
 
 This should be used for text field that you use to store email addresses.  When you are using this output filter and you print this field inside your theme files, the output is encrypted to help deter your email addresses from being harvested by spam bots.
+
+----
 
 == Image src ==
 
@@ -33,6 +39,8 @@ prints something like
 {{{
 http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg
 }}}
+
+----
 
 == Full `<img>` tag ==
 
@@ -58,6 +66,8 @@ Available options include the following:
  * or a 2-item array representing width and height in pixels
 
 And any option available to the *size* paramter of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.
+
+----
 
 == Array of image src, width, height ==
 
