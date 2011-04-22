@@ -23,11 +23,25 @@ This should be used for text field that you use to store email addresses.  When 
 == Image src ==
 
 This converts a relation or image field's value into the full path to the image.  Use the !Image src output filter if you want to return the full path to the image, for example for use in your own image tag or link.
- 
+
+For example, if the my_image field has the "Image src" output field enabled, 
+
+`print_custom_field('my_image');`
+
+Might return a value like:
+`http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg`
 
 == Full `<img>` tag ==
 
 Use this output filter if you want to return a full image tag for your image.
+
+For example, if the my_image field has the "Full `<img>` tag" output field enabled, 
+
+`print_custom_field('my_image');`
+
+Might return a value like:
+
+`<img width="640" height="480" src="http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg" class="attachment-" alt="IMG_1045" title="IMG_1045" />`
 
 ===Options===
 Available options include the following:
