@@ -8,6 +8,7 @@ I've gotten plenty of emails from confused users asking [CreateImageField  how t
 The solution for this was in the docs the whole time, but the constant questioning was the primary impetus for implementing the following output filters.
 
 
+*Available Output Filters*
 <wiki:toc max_depth="2" />
 
 ----
