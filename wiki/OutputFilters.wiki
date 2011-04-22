@@ -3,18 +3,18 @@
 
 = Available Output Filters =
 
-Some custom field types support !Output !Filters: these can control how data is displayed inside your themes when you use the*get_custom_field()* or *print_custom_field()* TemplateFunctions.
+Some custom field types support *Output Filters*: these can control how data is displayed inside your themes when you use the *get_custom_field()* or *print_custom_field()* TemplateFunctions.
+
+I've gotten plenty of emails from confused users asking [CreateImageField  how to get an image to appear in their theme files].  "I only see a number! WTF?!?" It's hard to explain in a few words how [http://en.wikipedia.org/wiki/Foreign_key foreign keys] work, but all you have to remember is that the only thing that's stored in your custom image fields is the _ID_ of the image you selected.  This number is how we maintain referential integrity in our database tables, but by itself (i.e. unfiltered), it doesn't do much for your theme: you want some variation of the image that is being _referenced_ by that number.
+
+The solution for this was in the docs the whole time, but the constant questioning was the primary impetus for implementing the following output filters.
+
 
 <wiki:toc max_depth="2" />
 
 == None ==
 
 This is the default value for many field types, and it was the _only_ option available prior to version 0.8.9 of the plugin.
-
-I've gotten plenty of emails from confused users asking [CreateImageField  how to get an image to appear in their theme files].  "I only see a number! WTF?!?" It's hard to explain in a few words how [http://en.wikipedia.org/wiki/Foreign_key foreign keys] work, but all you have to remember is that the only thing that's stored in your custom image fields is the _ID_ of the image you selected.  This number is how we maintain referential integrity in our database tables, but by itself (i.e. unfiltered), it doesn't do much for your theme: you want some variation of the image that is being _referenced_ by that number.
-
-The solution for this was in the docs the whole time, but the constant questioning was the primary impetus for implementing the following output filters.
-
 
 == Encode Email Address ==
 
