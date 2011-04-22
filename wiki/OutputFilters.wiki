@@ -1,7 +1,5 @@
-#summary Output Filters: how to control how data is displayed in your themes
+#summary Available Output Filters: how to control how data is displayed in your themes
 #labels Help
-
-= Available Output Filters =
 
 Some custom field types support *Output Filters*: these can control how data is displayed inside your themes when you use the *get_custom_field()* or *print_custom_field()* TemplateFunctions.
 
