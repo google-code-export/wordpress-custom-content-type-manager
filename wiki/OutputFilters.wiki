@@ -1,0 +1,66 @@
+#summary Output Filters: how to control how data is displayed in your themes
+#labels Help
+
+= Introduction =
+
+Some custom field types support !Output !Filters: these can control how data is displayed inside your themes when you use the*get_custom_field()* or *print_custom_field()* TemplateFunctions.
+
+= Available Output Filters =
+
+<wiki:toc max_depth="1" />
+
+== None ==
+
+This is the default value for many field types, and it was the _only_ option available prior to version 0.8.9 of the plugin.
+
+I've gotten plenty of emails from confused users asking [CreateImageField  how to get an image to appear in their theme files].  "I only see a number! WTF?!?" It's hard to explain in a few words how [http://en.wikipedia.org/wiki/Foreign_key foreign keys] work, but all you have to remember is that the only thing that's stored in your custom image fields is the _ID_ of the image you selected.  This number is how we maintain referential integrity in our database tables, but by itself (i.e. unfiltered), it doesn't do much for your theme: you want some variation of the image that is being _referenced_ by that number.
+
+The solution for this was in the docs the whole time, but the constant questioning was the primary impetus for implementing the following output filters.
+
+
+== Encode Email Address ==
+
+This should be used for text field that you use to store email addresses.  When you are using this output filter and you print this field inside your theme files, the output is encrypted to help deter your email addresses from being harvested by spam bots.
+
+== Image src ==
+
+This converts a relation or image field's value into the full path to the image.  Use the !Image src output filter if you want to return the full path to the image, for example for use in your own image tag or link.
+ 
+
+== Full &lt;img&gt; tag ==
+
+Use this output filter if you want to return a full image tag for your image.
+
+===Options===
+Available options include the following:
+
+ * thumbnail
+ * medium 
+ * large 
+ * full (default)
+* or a 2-item array representing width and height in pixels
+
+And any option available to the *size* paramter of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.
+
+== Array of image src, width, height ==
+
+Instead of returning a single value for the image's src or a full image tag, this option causes 3 attributes from the image to be returned from the call to *get_custom_field()*: 
+ 
+ * The image src
+ * The image width
+ * The image height
+
+You can use the PHP [http://php.net/manual/en/function.list.php list] pragma to feed this array into 3 separate variables:
+
+`<?php list($src, $w, $h) = get_custom_field('my_image'); ?>`
+
+===Options===
+Available options include the following:
+
+ * thumbnail
+ * medium 
+ * large 
+ * full (default)
+* or a 2-item array representing width and height in pixels
+
+And any option available to the *size* paramter of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.
