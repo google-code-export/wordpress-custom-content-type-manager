@@ -2,4 +2,11 @@
 
 = Description =
 
-Coming soon...
+The relation field stores an integer foreign key: it's the ID of the post you've selected as the relation.
+
+What do you do with that integer?  You probably want the _post_ that integer represents, so you'll want to use !WordPress' *get_post()* function:
+
+http://codex.wordpress.org/Function_Reference/get_post
+
+Try something like this in your template:
+`$related_post = get_pot( get_custom_field('my_relation') );` 
