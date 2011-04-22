@@ -53,7 +53,9 @@ print_custom_field('my_image');`
 }}}
 Might return a value like:
 {{{
-<img width="640" height="480" src="http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg" class="attachment-" alt="IMG_1045" title="IMG_1045" />
+<img width="640" height="480" 
+ src="http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg" 
+class="attachment-" alt="IMG_1045" title="IMG_1045" />
 }}}
 
 ===Options===
