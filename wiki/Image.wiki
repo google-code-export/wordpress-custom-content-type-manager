@@ -35,6 +35,8 @@ global $post;
 print get_post_meta($post->ID, $fieldname, true);
 }}}
 
+----
+
 ===Image src===
 
 When the *Image src* output filter is selected, the output of the `print_custom_field('fieldname');`function is the full path to to the image, ideal for use inside of an image or anchor tag.  The returned result relies on the referenced image's *guid* attribute and is identical to putting the following in your theme file:
@@ -45,6 +47,8 @@ $image_id = get_post_meta($post->ID, $fieldname, true);
 $MyImage = get_post($image_id);
 print $MyImage->guid;
 }}}
+
+----
 
 ===Full `<img>` tag===
 
@@ -65,6 +69,8 @@ Any valid option for the *size* parameter in the [http://codex.wordpress.org/Fun
 print_custom_field('my_image', 'thumbnail');
 }}}
 
+
+----
 
 ===Array of image src, width, height===
 
