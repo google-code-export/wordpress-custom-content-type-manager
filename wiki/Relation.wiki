@@ -9,4 +9,100 @@ What do you do with that integer?  You probably want the _post_ that integer rep
 http://codex.wordpress.org/Function_Reference/get_post
 
 Try something like this in your template:
-`$related_post = get_pot( get_custom_field('my_relation') );` 
+`$related_post = get_post( get_custom_field('my_relation') );` 
+
+
+== Overview ==
+
+Relation fields are used to store a foreign key reference to another post of some kind. 
+
+----
+
+== Field Definition (Meta Data)==
+
+The field definition affects how instances of this field type will display in the !WordPress manager while creating or posts that contain instances of this field type.
+
+ * *label* : the label identifies this field when you create or edit a post in the !WordPress manager
+ * *name* : the name is a unique identifier used when saving values for instances of this field; it corresponds to the *meta_key* column *wp_postmeta* table.  You will use this name when retrieving field values inside of your themes via the `print_custom_field()` or `get_custom_field()` functions.
+ * *description* : the description provides extra information to users as they create or edit a post in the !WordPress manager.
+ * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
+ * *extra* : this can be used to provide additional parameters to the text input, e.g. `size="10"` or custom javascript.. 
+ * *default_value* : This is used to determine the default value for new instances of this field type. 
+ * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files. This field type supports the following output filters: none, to_image_src, to_image_tag, to_image_array
+
+----
+
+== Output in Theme Files: Output Filters ==
+
+===None===
+
+_string_ *get_custom_field*( string _$fieldname_  ) 
+
+In the case of a text field with no output filter, `print_custom_field('fieldname');` will return exactly the string that was was entered in the !WordPress manager and stored in the database.  The output is identical to 
+
+{{{
+global $post;
+print get_post_meta($post->ID, $fieldname, true);
+}}}
+
+----
+
+===Image src===
+
+When the *Image src* output filter is selected, the output of the `print_custom_field('fieldname');`function is the full path to to the image, ideal for use inside of an image or anchor tag.  The returned result relies on the referenced image's *guid* attribute and is identical to putting the following in your theme file:
+
+{{{
+global $post;
+$image_id = get_post_meta($post->ID, $fieldname, true);
+$MyImage = get_post($image_id);
+print $MyImage->guid;
+}}}
+
+----
+
+===Full `<img>` tag===
+
+When the *Full `<img>` tag* output filter is selected, the output of the `print_custom_field('fieldname');`function is a complete `<img>` tag.  The returned result relies on the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function and is identical to putting the following in your theme file:
+
+{{{
+global $post;
+$image_id = get_post_meta($post->ID, $fieldname, true);
+print wp_get_attachment_image_src( $image_id, 'full', true);
+}}}
+
+
+*Options:*
+
+Any valid option for the *size* parameter in the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function, e.g. 
+
+{{{
+print_custom_field('my_image', 'thumbnail');
+}}}
+
+
+----
+
+===Array of image src, width, height===
+
+_array_ *get_custom_field*( string _$fieldname_  ) 
+<font color="red">_ERROR_ *print_custom_field*( string _$fieldname_  )</error>
+
+This output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height.  
+
+To achieve the same effect in your themes _without_ the use of this output filter, you would make use of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function, e.g.:
+
+{{{
+global $post;
+$image_id = get_post_meta($post->ID, $fieldname, true);
+list($src, $w, $h) = wp_get_attachment_image_src( $image_id, 'full', true);
+}}}
+
+*Options:*
+
+Any valid option for the *size* parameter in the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function, e.g. 
+
+{{{
+print_custom_field('my_image', 'thumbnail');
+}}}
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || *Using this output filter will effectively break any instances of `print_custom_field()`: use `get_custom_field()` instead.* ||
