@@ -88,5 +88,6 @@ Any valid option for the *size* parameter in the [http://codex.wordpress.org/Fun
 print_custom_field('my_image', 'thumbnail');
 }}}
 
+http://s2.postimage.org/by3ngezo/warning_icon.png
 
 *Using this output filter will effectively break any instances of `print_custom_field()`: use `get_custom_field()` instead.*
