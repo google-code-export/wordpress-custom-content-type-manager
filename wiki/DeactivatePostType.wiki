@@ -1,4 +1,4 @@
 #summary Deactivating a content type
 #labels Help
 
-WordPress must register all custom post_types using the [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function in order for WordPress to recognize them. If a post_type is not registered, it is essentially becomes invisible to the WordPress application.  All the posts and their custom fields remain in the database, but you will no longer be able to view or edit them.  Any URLs that point to pages using this custom content type will 404.
+!WordPress must register all custom post_types using the [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function in order for WordPress to recognize them. If a post_type is not registered, it is essentially becomes invisible to the !WordPress application.  All the posts and their custom fields remain in the database, but you will no longer be able to view or edit them.  Any URLs that point to pages using this custom content type will 404.
