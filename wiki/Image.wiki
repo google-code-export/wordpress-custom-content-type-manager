@@ -78,6 +78,8 @@ print_custom_field('my_image', 'thumbnail');
 
 _array_ *get_custom_field*( string _$fieldname_  ) 
 
+<font color="red">_ERROR_ *print_custom_field*( string _$fieldname_  )</font>
+
 This output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height.  
 
 To achieve the same effect in your themes _without_ the use of this output filter, you would make use of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function, e.g.:
