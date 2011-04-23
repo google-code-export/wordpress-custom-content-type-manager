@@ -64,3 +64,29 @@ Any valid option for the *size* parameter in the [http://codex.wordpress.org/Fun
 {{{
 print_custom_field('my_image', 'thumbnail');
 }}}
+
+
+===Array of image src, width, height===
+
+_array_ *get_custom_field*( string _$fieldname_  ) 
+
+This output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height.  
+
+To achieve the same effect in your themes _without_ the use of this output filter, you would make use of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function, e.g.:
+
+{{{
+global $post;
+$image_id = get_post_meta($post->ID, $fieldname, true);
+list($src, $w, $h) = wp_get_attachment_image_src( $image_id, 'full', true);
+}}}
+
+*Options:*
+
+Any valid option for the *size* parameter in the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function, e.g. 
+
+{{{
+print_custom_field('my_image', 'thumbnail');
+}}}
+
+
+*Using this output filter will effectively break any instances of `print_custom_field()`: use `get_custom_field()` instead.*
