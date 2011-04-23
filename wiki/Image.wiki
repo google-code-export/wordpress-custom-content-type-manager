@@ -1,7 +1,5 @@
 #summary Documentation for Image custom fields
 
-#summary Documentation for Text custom fields
-
 == Overview ==
 
 Custom image fields are used to store a foreign key reference to another post, specifically an "attachment" post_type representing some sort of image.  
