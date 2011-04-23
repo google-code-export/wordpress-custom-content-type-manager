@@ -1,6 +1,36 @@
 #summary Documentation for Checkbox custom fields
 #labels Custom-Fields
 
-= Description =
+== Overview ==
 
-Coming soon...
+Custom checkbox fields are meant to store one of two values; the implementation here differs slightly from the standard HTML checkbox where a value is either present, or the variable is absent altogether.
+
+----
+
+== Field Definition (Meta Data)==
+
+The field definition affects how instances of this field type will display in the !WordPress manager while creating or posts that contain instances of this field type.
+
+ * *label* : the label identifies this field when you create or edit a post in the !WordPress manager
+ * *name* : the name is a unique identifier used when saving values for instances of this field; it corresponds to the *meta_key* column *wp_postmeta* table.  You will use this name when retrieving field values inside of your themes via the `print_custom_field()` or `get_custom_field()` functions.
+ * *description* : the description provides extra information to users as they create or edit a post in the !WordPress manager.
+ * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
+ * *extra* : this can be used to provide additional parameters to the text input, e.g. custom javascript.. 
+ * *checked_by_default* : 1 | 0 representing whether or not this field will be checked by default when a new post is created in the !WordPress manager.
+ * *checked_value*: The value stored in the database when a field instance is checked.
+ * *unchecked_value*: The value stored in the database when a field instance is unchecked.
+
+----
+
+== Output in Theme Files: Output Filters ==
+
+===None===
+
+_string_ *get_custom_field*( string _$fieldname_  ) 
+
+In the case of a checkbox field with no output filter, `print_custom_field('fieldname');` will return exactly the string that was was entered in the !WordPress manager and stored in the database.  The output is identical to 
+
+{{{
+global $post;
+print get_post_meta($post->ID, $fieldname, true);
+}}}
