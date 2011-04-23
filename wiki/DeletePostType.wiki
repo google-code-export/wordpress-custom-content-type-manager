@@ -1,4 +1,24 @@
 #summary Deleting a content type
 #labels Help
 
-The consequences are coming...
+==Explanation==
+
+There is some confusion as to what happens when you delete a custom content type (a.k.a. [http://codex.wordpress.org/Post_Types post_type]).  Let's clear up that confusion by walking through a few points.
+
+Firstly, !WordPress must _register_ all custom post_types using the [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function in order for !WordPress to recognize them.  If a post_type is not registered, it is essentially becomes invisible to the !WordPress application. 
+
+When you register a custom_post type by using the Custom Content Type Manager plugin, the registration includes a lot of information about that post_type, e.g. which fields should show up in the editor, whether or not a custom menu icon is used, etc. 
+
+So when you "delete" a post_type inside of this plugin, you are actually only deleting the _definition_; all the posts you created will still live in the database, but they will essentially become invisible to !WordPress.  If you know your way around !MySQL, you can verify that the posts are still present in the database, e.g. via a query like this:
+
+{{{
+SELECT * FROM wp_posts WHERE post_type='my_post_type';
+}}}
+
+Your custom content type definitions can represent *a lot* of work! It includes all the details about that content type and all of its custom fields.  Consider [ExportDefinition exporting] the definition before deleting it.
+
+===Ghost Posts===
+
+http://s2.postimage.org/by3ngezo/warning_icon.png 
+
+If you re-create a previously defined post type then activate, !WordPress will suddenly recognize all the posts of that type that were previously created.  We call this phenomenon "Ghost Posts".  While it is possible to actually delete all related posts when you delete a post type's definition, that could make for some really unhappy users who inadvertently destroy all of their posts.
