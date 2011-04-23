@@ -43,18 +43,7 @@ See the wiki page on [TemplateFunctions]
 
 = How do I use a Custom Image Field =
 
-The trick here is that the custom field stores a numeric foreign key, which points to the wp_posts table where the post_type is an "attachment". Assuming your custom field is named 'my_image_field':
-
-`<?php print get_custom_image('my_image_field'); ?>`
-
-This is the same as using the more verbose process:
-
-`<?php $image_id = get_custom_field('my_image_field'); ?>`
-`<?php print wp_get_attachment_image($image_id, 'full'); ?>`
-
-
-See the wiki pages about [CreateImageField] or about [TemplateFunctions]
-
+Image fields are created just like any other custom field, but pay close attention to the [OutputFilters Output Filter] (added in version 0.8.9).  That's what controls how the image displays in your theme files. For more information see the page on [Image Image Custom Fields].
 
 = How can I use this plugin to support an eCommerce site? =
 
