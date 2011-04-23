@@ -85,6 +85,7 @@ print_custom_field('my_image', 'thumbnail');
 ===Array of image src, width, height===
 
 _array_ *get_custom_field*( string _$fieldname_  ) 
+
 <font color="red">_ERROR_ *print_custom_field*( string _$fieldname_  )</font>
 
 This output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height.  
