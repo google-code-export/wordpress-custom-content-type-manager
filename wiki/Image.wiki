@@ -28,14 +28,14 @@ _string_ *get_custom_field*( string _$fieldname_  )
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || In the case of an image field with no output filter, `print_custom_field('fieldname');` will return _an integer number_ representing the ID of the image post that has been referenced!  || 
 
-The output is identical to 
+The output is identical to:
 
 {{{
 global $post;
 print get_post_meta($post->ID, $fieldname, true);
 }}}
 
-This has caused some confusion and ultimately it lead to the introduction of [OutputFilters Output Filters] in version 0.8.9 because usually you don't want the numerical ID, you want some attributes from the image that it _represents_.  
+This has caused some confusion and ultimately it lead to the introduction of [OutputFilters Output Filters] in version 0.8.9 because usually you don't want the numerical ID, you want some attributes from the image that it _represents_.  The following Output Filters are here to help you.  In your custom field definition, select one of the following (available in versions 0.8.9 and greater):
 
 ----
 
