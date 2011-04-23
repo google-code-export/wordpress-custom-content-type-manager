@@ -35,7 +35,7 @@ print get_post_meta($post->ID, $fieldname, true);
 
 ===Encode Email Address===
 
-When the *Encode Email Address* output filter is selected, the output of the `print_custom_field('fieldname');`function will be an simple encoded version of your email address
+When the *Encode Email Address* output filter is selected, the output of the `print_custom_field('fieldname');`function will be an simple encoded version of the text stored in the database (an email address).  The encoding process follows what was outlined here:
 http://davidwalsh.name/php-email-encode-prevent-spam
 
 This does *not* guarantee that your email address will not be harvested by [http://en.wikipedia.org/wiki/Spambot Spambots]!  For more thorough protection, we recommend using the [http://hivelogic.com/enkoder/ Hivelogic Enkoder] then pasting the results into a textarea field.
