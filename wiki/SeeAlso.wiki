@@ -13,7 +13,13 @@ A robust, intuitive, polished custom fields plugin provides text, textarea, imag
 
 http://wordpress.org/extend/plugins/custom-post-type-ui/
 
-The Custom-Post Type UI plugin offers some of the same features, but I felt that its architecture was flawed: it stores data as taxonomical terms, which is conceptually awkward at a development level, and more importantly, it limits the each custom field to 200 characters of data, making it impossible to store certain types of custom content.
+The Custom-Post Type UI plugin offers some of the same features, but I felt that its architecture was flawed: it stores data as taxonomical terms, which is conceptually awkward at a development level, and more importantly, it limits the each custom field to 200 characters of data, making it impossible to store certain types of custom content (e.g. long text fields).
+
+= CMS Press =
+
+http://wordpress.org/extend/plugins/cms-press/
+
+CMS Press opens up the ability to create and manage custom content types and taxonomies for your WordPress site. It adds the flexibility to have more than just posts and pages for content by allowing the user to register their own post_types that can use their separate theming from the post and page template along with its own permalink structure.
 
 = Easy Custom Fields =
 
