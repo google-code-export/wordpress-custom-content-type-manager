@@ -19,7 +19,7 @@ The Custom-Post Type UI plugin offers some of the same features, but I felt that
 
 http://wordpress.org/extend/plugins/cms-press/
 
-CMS Press opens up the ability to create and manage custom content types and taxonomies for your WordPress site. It adds the flexibility to have more than just posts and pages for content by allowing the user to register their own post_types that can use their separate theming from the post and page template along with its own permalink structure.
+CMS Press offers a simple and clean implementation of custom post types.  It does include a taxonomy manager.  However, this plugin does NOT offer the ability to standardize custom fields for each post type.
 
 = Easy Custom Fields =
 
