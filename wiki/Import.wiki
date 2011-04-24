@@ -1,0 +1,19 @@
+#summary Import Custom Content Type definitions
+#labels Help
+
+Starting with version 0.8.9, you can Impor] and [Export] your content type definitions. 
+
+= Information =
+
+When you export your definitions, you are also required to provide some meta data about that definition.
+
+ * *Title* : Give a short title to your download. _(required)_
+ * *Author* : _(required)_
+ * *URL* : this is your chance
+ * *Description* : please give a brief description of your content types and custom fields _(required)_.
+
+= Import from File =
+
+Click the "Custom Content Type" --> "Import" menu item in the !WordPress manager, then click the "Upload" button.
+
+The selected file must be a compatible `.cctm.json` file that was produced via the [Export] feature. 
