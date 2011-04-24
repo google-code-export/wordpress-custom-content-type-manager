@@ -1,0 +1,18 @@
+#summary Export Custom Content Type definitions
+
+Starting with version 0.8.9, you can [Import] and Export your content type definitions. 
+
+= Information =
+
+When you export your definitions, you are also required to provide some meta data about that definition.
+
+ * *Title* : Give a short title to your download. _(required)_
+ * *Author* : _(required)_
+ * *URL* : this is your chance
+ * *Description* : please give a brief description of your content types and custom fields _(required)_.
+
+= Download to File =
+
+Click the "Custom Content Type" --> "Export" menu item in the !WordPress manager, then click the "Download" button.
+
+The resulting downloaded file will have a name based off of your *title*, and it will use the extension of `.cctm.json`.  This is a plain text file containing a [http://en.wikipedia.org/wiki/JSON JSON] array of all of your definition data.
