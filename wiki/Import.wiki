@@ -5,7 +5,7 @@ Starting with version 0.8.9, you can Import and [Export] your content type defin
 
 = Information and Warning =
 
-Importing a definition can quickly and easily include multiple content types and custom fields on your site, so it can give you a great head start for rolling out a new site.
+Importing a definition can quickly and easily include multiple content types and custom fields on your site, so it can give you a great head start for rolling out a new site.  It basically provides a template for all aspects of your site.  A definition provides your site with everything but _content_.
 
 It will also completely overwrite any existing definitions you may have created inside the Custom Content Type Manager!  Make sure you [Export] your current definition before importing a new one if you think you might need to restore any of your existing definition data.
 
@@ -20,6 +20,9 @@ A CCTM definition file contains a lot of information, including:
  * All permalink preferences for custom content types
  * All custom field definitions for the custom content types
  * All menu preferences and labels
+
+A CCTM definition contains _no post content of any kind_.
+
 
 = Import from File =
 
