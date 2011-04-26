@@ -129,22 +129,11 @@ Examples are included in this Plugin's administration page: just click the link 
 <hr/>
 = get_custom_image =
 
-_array_ *get_custom_image*( string _$fieldname_ ) 
+_Deprecated in 0.8.9_
 
-This is a convenience function that returns an HTML image element for a custom field that stores an image.  Remember that the custom field stores the _ID_ of the image, not the actual image.  This function relies on !WordPress' [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.  See also the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function.
+This was the wrong solution to the problem: update your templates to use get_custom_field() and adjust your [OutputFilters Output Filters] for the field in question.
 
-See also the CreateImageField wiki page.
-
-=== $fieldname ===         
-(string) (required) The name of the custom field whose value you want to get.
-
-== Example ==
-{{{
-<?php $img_html = get_custom_image('my_image_field');?>
-<div>
-   <?php print $img_html; ?>
-</div>
-}}}
+See also the [Image] wiki page.
 
 <hr/>
 = get_post_complete =
@@ -237,7 +226,11 @@ print_r($array);
 <hr/>
 = print_custom_field =
 
-This is convenience function that simply prints the output of the [TemplateFunctions#get_custom_field get_custom_field()] function.
+_Deprecated in 0.8.9_
+
+This was the wrong solution to the problem: update your templates to use get_custom_field() and adjust your [OutputFilters Output Filters] for the field in question.
+
+See also the [Image] wiki page.
 
 <hr/>
 = print_custom_field_meta =
