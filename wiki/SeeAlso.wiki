@@ -1,5 +1,7 @@
 #summary Links to similar plugins
 
+Here is my list of bookmarks to plugins that offer similar functionality to the Custom Content Type Manager.
+
 =Verve Meta Boxes= 
 
 A robust, intuitive, polished custom fields plugin provides text, textarea, image, file, date, time, datetime, select, radio, and checkbox fields.
