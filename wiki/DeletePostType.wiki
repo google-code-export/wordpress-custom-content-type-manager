@@ -19,10 +19,10 @@ SELECT * FROM wp_posts WHERE post_type='my_post_type';
 
 But unless you're a super geek with database skills, then deleting your definition for that post_type really makes all that information disappear.  You can make it reappear by redefining a content type of the same name, but that's a lot of work (see the section on "Ghost Posts" below).
 
+For obvious reasons, we have little desire to support functionality that would allow users to delete their content en masse.
+
 Your custom content type definitions can represent *a lot* of work! It includes all the details about that content type and all of its custom fields.  Consider [ExportDefinition exporting] the definition before deleting it.
 
 ===Ghost Posts===
 
-http://s2.postimage.org/by3ngezo/warning_icon.png 
-
-If you re-create a previously defined post type then activate, !WordPress will suddenly recognize all the posts of that type that were previously created.  We call this phenomenon "Ghost Posts".  While it is possible to actually delete all related posts when you delete a post type's definition, that could make for some really unhappy users who inadvertently destroy all of their posts.
+If you re-create a previously defined post type then activate, !WordPress will suddenly recognize all the posts of that type that were previously created.  We call this phenomenon "Ghost Posts".  
