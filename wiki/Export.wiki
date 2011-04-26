@@ -11,6 +11,13 @@ When you export your definitions, you are also required to provide some meta dat
  * *URL* : this is your chance
  * *Description* : please give a brief description of your content types and custom fields _(required)_.
 
+== What Is Exported ==
+
+All of your custom content  types and all of their custom field definitions are included in the exported definition.  This includes menu labels, URL settings, and custom menu icons.
+
+== What is Not Exported ==
+Due to how the internal references work, the default values for image-, media-, or relation-fields cannot be exported.  This because the default value is a _reference_ to a post ID on your site -- a foreign key.  There is no guarantee that the person who imports your definition will have that same post on his or her site.  So during the course of exporting your definition, the default values for those field types are zeroed out so that the definition can be "site agnostic" and be safely deployed on any site.
+
 = Download to File =
 
 Click the "Custom Content Type" --> "Export" menu item in the !WordPress manager, then click the "Download" button.
