@@ -5,7 +5,7 @@
 
 There is some confusion as to what happens when you delete a custom content type (a.k.a. [http://codex.wordpress.org/Post_Types post_type]).  Let's clear up the confusion by walking through a few points. 
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || Technically speaking, _deleting a content type does *not* delete any of your content from your site_, but for general intents and purposes, that content will become pretty much become invisible. ||
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || Technically speaking, _deleting a content type does *not* delete any of your content from your site_, but for general intents and purposes, that content will pretty much become invisible. ||
 
 Firstly, !WordPress must _register_ all custom post_types (a.k.a. content types) using the [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function in order for !WordPress to recognize them.  If a post_type is not registered, it is essentially becomes invisible to the !WordPress application.  This plugin is one of several that manages the registering of custom post types ([SeeAlso see similar plugins here]), but this plugin offers a lot more [Features].
 
