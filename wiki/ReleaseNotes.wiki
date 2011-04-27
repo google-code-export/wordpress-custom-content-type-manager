@@ -28,18 +28,18 @@
  * Reduced MySQL requirements to version 4.1.2 (same as WordPress 3.1) after feedback that the plugin is working fine in MySQL 4: [http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=28&can=1 issue 28]
  * Fixed typos in CCTMTests.php re the CCTM_TXTDOMAIN: [http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=29&can=1 issue 29].
  * Added optional prefix for template *function get_all_fields_of_type()*: [http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=26&can=1 Issue 26]
- * Three new template functions added per [Issue 25](http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=25&can=1)
+ * Three new template functions added per [http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=25&can=1 Issue 25]
  ** *get_custom_field_meta()*
  ** *print_custom_field_meta()*
  ** *get_custom_field_def()*
-See [Template Functions](http://code.google.com/p/wordpress-custom-content-type-manager/wiki/TemplateFunctions) in the wiki.
+See [TemplateFunctions Template Functions] in the wiki.
 
 
-= 0.8.7 (bad release: Jacked by WP repo =
- * Adds HTML head and body tags back to the tpls/post_selector/main.tpl to correct issue 17 (http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=17&can=1).
+= 0.8.7 (bad release: Jacked by WP repo) =
+ * Adds HTML head and body tags back to the tpls/post_selector/main.tpl to correct [http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=17&can=1 issue 17].
 
 = 0.8.6 =
- * Fixes bad CSS declaration: [issue 1](http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=1)
+ * Fixes bad CSS declaration: [http://code.google.com/p/wordpress-custom-content-type-manager/issues/detail?id=1 issue 1]
  * Fixed omission in sample template placeholders.
 
 = 0.8.5 =
