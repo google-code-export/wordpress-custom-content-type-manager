@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Color-selector fields allow users to select an HTML color code using a visual selector
 #labels Custom-Fields
 
 Coming Soon...
