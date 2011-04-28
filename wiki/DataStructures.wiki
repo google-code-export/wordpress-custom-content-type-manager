@@ -1,0 +1,40 @@
+#summary Examples of the data structures used by this plugin (technical docs)
+#labels Function-Reference
+
+= Definition data =
+
+Stored in the *wp_options* table under the key specified by the`CCTM::db_key` constant, currently *custom_content_types_mgr_data*
+
+= Settings =
+
+Stores other settings used by this plugin, stored in the *wp_options* table under the key specified by the `CCTM::db_key_settings` key, currently *custom_content_types_mgr_settings*.
+
+
+
+= register_post_type =
+
+{{{
+	$def = Array
+	(
+	    'supports' => Array
+	        (
+	            'title',
+	            'editor'
+	        ),
+
+	    'post_type' => 'book',
+	    'singular_label' => 'Book',
+	    'label' => 'Books',
+	    'description' => 'What I&#039;m reading',
+	    'show_ui' => 1,
+	    'capability_type' => 'post',
+	    'public' => 1,
+	    'menu_position' => '10',
+	    'menu_icon' => '',
+	    'custom_content_type_mgr_create_new_content_type_nonce' => 'd385da6ba3',
+	    'Submit' => 'Create New Content Type',
+	    'show_in_nav_menus' => '',
+	    'can_export' => '',
+	    'is_active' => 1,
+	);
+}}}
