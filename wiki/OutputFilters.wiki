@@ -9,6 +9,7 @@ The solution for this was in the docs the whole time, but the constant questioni
 
 
 *Available Output Filters*
+
 <wiki:toc max_depth="2" />
 
 ----
