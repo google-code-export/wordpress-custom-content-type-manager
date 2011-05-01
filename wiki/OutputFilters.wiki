@@ -18,10 +18,65 @@ The solution for this was in the docs the whole time, but the constant questioni
 This is the default value for many field types, and it was the _only_ option available prior to version 0.8.9 of the plugin.
 
 ----
+== Array ==
+This is the default output filter for [MultiSelect multi-select] fields: the raw format is a JSON string.  Selecting the "Array" output filter will convert the JSON string into a PHP array.  It is equivalent to the following:
+
+{{{ 
+$raw = get_custom_field('my_image');
+$array = json_decode($raw, true);
+}}}
+
+The `print_custom_field()` function isn't useful if you have a [MultiSelect multi-select] filed using the Array output filter: you can't simply print an array, you're going to have to do something with it. 
+
+See also the "Format List" output filter.
+
+----
 
 == Encode Email Address ==
 
 This should be used for text field that you use to store email addresses.  When you are using this output filter and you print this field inside your theme files, the output is encrypted to help deter your email addresses from being harvested by spam bots.
+
+
+----
+
+== Formatted List ==
+
+The "Formatted List" output filter takes an array and formats it formats it into a sensible string for your theme files.
+
+=== Options ===
+
+The `print_custom_field()` and `get_custom_field()` functions will accept additional arguments.
+
+*$separator*  (string) : If one additional string argument is supplied, this  value is used as separator and it will be used to join all array elements together.
+
+Example 1:
+{{{
+print_custom_field('my_multi', ', ');
+// prints a comma-separated list: man, bear, pig
+}}}
+
+*$formatting_strings* (array) : if an array of values is passed to the $options parameter, they are expected to be valid formatting strings that use `[+placeholders+]`.
+
+ # First item in array: used to format each item in the list.  Available placeholders: 
+ #* *`[+value+]`* : will be replaced with the value of the item
+ # Second item in array: used to wrap the final output.  Available placeholders:
+ #* *`[+content+]`*: will be replaced with all formatted items
+
+The 2nd array element is optional: use it for greater control.
+
+Example 2:
+{{{
+print_custom_field('my_mult', array('<li>[+value+]</li>','<ul>[+content+]</ul>') );
+/* prints a formated unordered list:
+<ul>
+  <li>man</li>
+  <li>bear</li>
+  <li>pig</li>
+</ul>
+*/
+}}}
+
+
 
 ----
 
