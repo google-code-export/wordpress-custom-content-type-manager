@@ -9,9 +9,112 @@ Stored in the *wp_options* table under the key specified by the`CCTM::db_key` co
 
 Stores other settings used by this plugin, stored in the *wp_options* table under the key specified by the `CCTM::db_key_settings` key, currently *custom_content_types_mgr_settings*.
 
+{{{
 
+Array
+(
+    [student] => Array
+        (
+            [cctm_hierarchical_custom] => 
+            [supports] => Array
+                (
+                    [0] => title
+                    [1] => editor
+                    [2] => page-attributes
+                )
+ 
+            [taxonomies] => Array
+                (
+                )
+ 
+            [post_type] => student
+            [labels] => Array
+                (
+                    [menu_name] => Students
+                    [singular_name] => student
+                    [add_new] => Add New
+                    [add_new_item] => Add New student
+                    [edit_item] => Edit student
+                    [new_item] => New student
+                    [view_item] => View student
+                    [search_items] => Search Students
+                    [not_found] => No students found
+                    [not_found_in_trash] => No students found in trash
+                    [parent_item_colon] => Parent Page
+                )
+ 
+            [description] => My students
+            [show_ui] => 1
+            [public] => 1
+            [use_default_menu_icon] => 1
+            [label] => student
+            [cctm_hierarchical_includes_drafts] => 1
+            [cctm_hierarchical_post_types] => Array
+                (
+                    [0] => post
+                    [1] => page
+                )
+ 
+            [menu_position] => 
+            [rewrite_with_front] => 1
+            [permalink_action] => Off
+            [rewrite_slug] => 
+            [query_var] => 
+            [capability_type] => post
+            [show_in_nav_menus] => 1
+            [can_export] => 1
+            [Submit] => Create New Content Type
+            [hierarchical] => 
+            [rewrite] => 
+            [is_active] => 1
+            [custom_fields] => Array
+                (
+                    [portrait] => Array
+                        (
+                            [label] => Portrait
+                            [name] => portrait
+                            [default_value] => 
+                            [description] => Mug shot
+                            [output_filter] => to_image_tag
+                            [type] => image
+                            [sort_param] => 0
+                        )
+ 
+                    [sex] => Array
+                        (
+                            [label] => Sex
+                            [name] => sex
+                            [default_value] => 
+                            [extra] => 
+                            [class] => 
+                            [options] => Array
+                                (
+                                    [0] => Male
+                                    [1] => Female
+                                )
+ 
+                            [description] => 
+                            [type] => dropdown
+                            [sort_param] => 1
+                        )
+ 
+                )
+ 
+        )
+
+)
+}}}
+
+Note that each node of this array should be passable to the `register_post_type()` function below without any modification.  The keys that are not native to !WordPress are prefaced with "cctm_", e.g.  
+
+ * *cctm_hierarchical_includes_drafts*: will cause !WordPress' parent selector to include unpublished pages
+ * *cctm_hierarchical_post_types*: this determines which post types are viable candidates for parents.
+
+ 
 
 = register_post_type =
+
+This demonstrates sample input for !WordPress' `register_post_type()` function:
 
 {{{
 	$def = Array
