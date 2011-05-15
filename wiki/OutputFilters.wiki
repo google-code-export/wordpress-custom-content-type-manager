@@ -37,6 +37,8 @@ See also the "Format List" output filter.
 
 This should be used for text field that you use to store email addresses.  When you are using this output filter and you print this field inside your theme files, the output is encrypted to help deter your email addresses from being harvested by spam bots.
 
+Warning: this is only a _deterrent_!  We can't guarantee that your email addresses won't be harvested!
+
 
 ----
 
@@ -59,9 +61,9 @@ print_custom_field('my_multi', ', ');
 *$formatting_strings* (array) : if an array of values is passed to the $options parameter, they are expected to be valid formatting strings that use `[+placeholders+]`.
 
  # First item in array: used to format each item in the list.  Available placeholders: 
- #* *`[+value+]`* : will be replaced with the value of the item
+ * *`[+value+]`* : will be replaced with the value of the item
  # Second item in array: used to wrap the final output.  Available placeholders:
- #* *`[+content+]`*: will be replaced with all formatted items
+ * *`[+content+]`*: will be replaced with all formatted items
 
 The 2nd array element is optional: use it for greater control.
 
