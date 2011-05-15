@@ -27,7 +27,7 @@ $raw = get_custom_field('my_image');
 $array = json_decode($raw, true);
 }}}
 
-The `print_custom_field()` function isn't useful if you have a [MultiSelect multi-select] filed using the Array output filter: you can't simply print an array, you're going to have to do something with it. 
+The `print_custom_field()` function isn't useful if you have a [MultiSelect multi-select] field using the Array output filter: you can't simply print an array, you're going to have to do something with it. 
 
 See also the "Format List" output filter.
 
