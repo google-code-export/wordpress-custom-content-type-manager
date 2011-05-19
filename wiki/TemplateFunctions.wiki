@@ -225,12 +225,7 @@ print_r($array);
 
 <hr/>
 = print_custom_field =
-
-_Deprecated in 0.8.9_
-
-This was the wrong solution to the problem: update your templates to use get_custom_field() and adjust your [OutputFilters Output Filters] for the field in question.
-
-See also the [Image] wiki page.
+This is a convenience function that simple prints the output of the [TemplateFunctions#get_custom_field  get_custom_field()] function.
 
 <hr/>
 = print_custom_field_meta =
@@ -238,5 +233,8 @@ See also the [Image] wiki page.
 This is a convenience function that simple prints the output of the [TemplateFunctions#get_custom_field_meta  get_custom_field_meta()] function.
 
 = print_custom_image =
+_Deprecated in 0.8.9_
 
-This is a convenience function that simple prints the output of the [TemplateFunctions#get_custom_image  get_custom_image()] function.
+This was the wrong solution to the problem: update your templates to use get_custom_field() and adjust your [OutputFilters Output Filters] for the field in question.
+
+See also the [Image] wiki page.
