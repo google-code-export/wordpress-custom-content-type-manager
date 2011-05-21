@@ -35,7 +35,7 @@ See also the "Format List" output filter.
 
 == Encode Email Address ==
 
-This should be used for text field that you use to store email addresses.  When you are using this output filter and you print this field inside your theme files, the output is encrypted to help deter your email addresses from being harvested by spam bots.
+This should be used for text fields that you use to store and display email addresses.  When you are using this output filter, the output is encrypted to help deter your email addresses from being harvested by spam bots.
 
 Warning: this is only a _deterrent_!  We can't guarantee that your email addresses won't be harvested!
 
