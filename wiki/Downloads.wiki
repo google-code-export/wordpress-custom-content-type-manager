@@ -5,3 +5,9 @@
 This plugin can be downloaded from the !WordPress.org site:
 
 [http://wordpress.org/extend/plugins/custom-content-type-manager/ http://wordpress.org/extend/plugins/custom-content-type-manager/]
+
+= Developers Download =
+
+The most current development branch of this project is available via SVN:
+
+`svn checkout http://plugins.svn.wordpress.org/custom-content-type-manager/trunk custom-content-type-manager`
