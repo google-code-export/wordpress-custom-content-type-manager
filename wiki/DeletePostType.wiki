@@ -11,7 +11,7 @@ Firstly, !WordPress must _register_ all custom post_types (a.k.a. content types)
 
 When you register a custom_post type by using the Custom Content Type Manager plugin, the registration includes a lot of information about that post_type, e.g. which fields should show up in the editor, whether or not a custom menu icon is used, and all of the custom fields that have been defined for that content type. 
 
-So when you "delete" a post_type inside of this plugin, you are actually only deleting the _definition_; all the posts you created will still live in the database, but they will essentially become invisible to !WordPress.  If you know your way around !MySQL, you can verify that the posts are still present in the database, e.g. via a query like this:
+So when you "delete" a post_type inside of this plugin, you are actually only deleting the _definition_; all the posts you created will still live in the database, but they will essentially become invisible to !WordPress.  If you know your way around MySQL, you can verify that the posts are still present in the database, e.g. via a query like this:
 
 {{{
 SELECT * FROM wp_posts WHERE post_type='my_post_type';
