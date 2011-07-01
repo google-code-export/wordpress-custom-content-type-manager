@@ -25,4 +25,4 @@ Your custom content type definitions can represent *a lot* of work! It includes 
 
 ===Ghost Posts===
 
-If you re-create a previously defined post type then activate, !WordPress will suddenly recognize all the posts of that type that were previously created.  We call this phenomenon "Ghost Posts".  
+If you re-create a previously defined post type then activate it, !WordPress will suddenly recognize all the posts of that type that were previously created.  We call this phenomenon "Ghost Posts" ... the posts existed inside your database and they were floating around hidden until you registered the post_type to which they belong.  Spooky.  
