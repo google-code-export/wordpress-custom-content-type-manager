@@ -4,7 +4,7 @@ Here is my list of bookmarks to plugins that offer similar functionality to the 
 
 = Magic Fields =
 
-Magic Fields is a !WordPress CMS plugin... I had a hard time following its UI, but many people say it's good:
+Magic Fields is a !WordPress CMS plugin... I had a hard time following its UI, and this plugin did have a few un-caught errors and warnings, but many people say it's good:
 
  * http://magicfields.org/
 
