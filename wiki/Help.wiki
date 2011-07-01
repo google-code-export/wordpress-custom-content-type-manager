@@ -7,7 +7,7 @@ We cannot guarantee a response on any issue! If you require support, I can draft
 = Bugs and Feature Requests =
 
 If you think you've found a bug, or there's a feature that you'd like to see, please be so kind as to fill out a
-[http://code.google.com/p/wordpress-custom-content-type-manager/issues/list Create an Issue]. 
+[http://code.google.com/p/wordpress-custom-content-type-manager/issues/list Create an Issue], and please, be willing to answer follow up questions about the issue. 
 
 
 = Wiki Documentation =
