@@ -2,6 +2,12 @@
 
 Here is my list of bookmarks to plugins that offer similar functionality to the Custom Content Type Manager.
 
+= Magic Fields =
+
+Magic Fields is a WordPress CMS plugin... I had a hard time following its UI and the plugin (1.5.6) had a significant number of errors and warnings, but many people say it's good:
+
+ * http://magicfields.org/
+
 =Verve Meta Boxes= 
 
 A robust, intuitive, polished custom fields plugin provides text, textarea, image, file, date, time, datetime, select, radio, and checkbox fields.
