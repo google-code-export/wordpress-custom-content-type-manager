@@ -2,7 +2,7 @@
 
 == Overview ==
 
-Custom image fields are used to store a foreign key reference to another post, specifically an "attachment" post_type representing some sort of image.  
+Custom image fields are used to store a foreign key reference to another post, specifically an "attachment" post_type representing some sort of image.  Because the raw post_id of the attachment post is not terribly useful in and of itself, image fields most often use some kind of [OutputFilters Output Filter] that will convert the ID into an image tag or the image src.
 
 ----
 
@@ -41,7 +41,14 @@ This has caused some confusion and ultimately it lead to the introduction of [Ou
 
 ===Image src===
 
-When the *Image src* output filter is selected, the output of the `print_custom_field('fieldname');`function is the full path to to the image, ideal for use inside of an image or anchor tag.  The returned result relies on the referenced image's *guid* attribute and is identical to putting the following in your theme file:
+When the *Image src* output filter is selected, the output of the `print_custom_field('fieldname');`function is the full path to to the image, ideal for use inside of an image or anchor tag, for example:
+
+{{{
+<img src="<?php print_custom_field('my_image'); ?>" />
+}}}
+
+
+The returned result relies on the referenced image's *guid* attribute and is identical to putting the following in your theme file:
 
 {{{
 global $post;
@@ -80,7 +87,23 @@ _array_ *get_custom_field*( string _$fieldname_  )
 
 <font color="red">_ERROR_ *print_custom_field*( string _$fieldname_  )</font>
 
-This output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height.  
+This output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height, for example:
+
+{{{
+<?php
+list($src, $w, $h) = get_custom_field('my_image');
+?>
+<img src="<?php print $src; ?>" width="<?php print $w; ?>" height="<?php print $h; ?>" />
+}}}
+
+Or:
+
+{{{
+<?php
+$my_array = get_custom_field('my_image');
+// print_r($my_array);
+<img src="<?php print $my_array[0]; ?>" width="<?php print my_array[1]; ?>" height="<?php print $my_array[2]; ?>" />
+}}}
 
 To achieve the same effect in your themes _without_ the use of this output filter, you would make use of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function, e.g.:
 
