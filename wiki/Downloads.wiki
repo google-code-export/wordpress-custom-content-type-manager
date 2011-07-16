@@ -8,6 +8,10 @@ This plugin can be downloaded from the !WordPress.org site:
 
 = Developers Download =
 
-The most current development branch of this project is available via SVN:
+The most current development branch of this project is available as a zip file:
+
+http://wpcctm.com/cctm-dev.zip
+
+Or it is available via SVN:
 
 `svn checkout http://plugins.svn.wordpress.org/custom-content-type-manager/trunk custom-content-type-manager`
