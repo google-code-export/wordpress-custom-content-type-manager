@@ -104,29 +104,7 @@ Gets the value of the custom field identified by _$fieldname_. This function is 
 (string) (required) The name of the custom field whose value you want to get.
  
 <hr/>
-= get_custom_field_meta =
 
-_mixed_ *get_custom_field_meta*( string _$fieldname_, string _$item_ `[`, string _$post_type_ `]` ) 
-
-This allows you to get information about the custom field's definition (i.e. its meta data). The definitions are stored in a multi-dimensional array, so we need 3 pieces of data to find the meta data: the fieldname, the name of the meta item, and the post type; the post_type is usually able to be determined automatically.
-
-=== $fieldname ===         
-(string) (required) The name of the custom field whose value you want to get.
-
-=== $item ===         
-(string) (required) The name of the definition item for this custom field whose value you want to get.
-
-=== $post_type ===         
-(string) (optional) The post_type containing the custom fields whose meta data you are trying to retrieve. Usually this can be determined automatically.
-
-== Example ==
-
-Examples are included in this Plugin's administration page: just click the link for "Show Sample Templates".
-
-`<?php print get_custom_field('my_custom_field'); ?>`
-
-
-<hr/>
 = get_custom_image =
 
 _Deprecated in 0.8.9_
