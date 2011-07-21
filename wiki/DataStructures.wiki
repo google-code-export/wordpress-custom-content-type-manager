@@ -5,10 +5,6 @@
 
 Stored in the *wp_options* table under the key specified by the`CCTM::db_key` constant, currently *custom_content_types_mgr_data*
 
-= Settings =
-
-Stores other settings used by this plugin, stored in the *wp_options* table under the key specified by the `CCTM::db_key_settings` key, currently *custom_content_types_mgr_settings*.
-
 {{{
 
 Array
@@ -111,10 +107,58 @@ Note that each node of this array should be passable to the `register_post_type(
  * *cctm_hierarchical_post_types*: this determines which post types are viable candidates for parents.
 
  
+= Settings =
+
+Stores other settings used by this plugin, stored in the *wp_options* table under the key specified by the `CCTM::db_key_settings` key, currently *custom_content_types_mgr_settings*.
+
+This is confusing and should be changed (e.g. `$candidate['candidate']` ... what?).
+
+{{{
+Array
+(
+    [export_info] => Array
+        (
+            [title] => My Students
+            [author] => Everett
+            [url] => http://www.fireproofsocks.com/
+            [description] => Example
+        )
+
+    [candidate] => Array
+        (
+            [export_info] => Array
+                (
+                    [title] => Wild and Crazy
+                    [author] => Everett
+                    [url] => http://www.fireproofsocks.com/
+                    [description] => Contains custom fields for books and authors
+                    [_timestamp_export] => 1303780421
+                    [_source_site] => http://pretasurf:8888
+                    [_charset] => UTF-8
+                    [_language] => en-US
+                    [_wp_version] => 3.1.1
+                    [_cctm_version] => 0.8.9
+                )
+
+            [candidate] => Array
+                (
+                    /* contains instance of what's in custom_content_types_mgr_data */
+                )
+
+            [payload] => Array
+                (
+                    /* contains instance of what's in custom_content_types_mgr_data */
+                )
+
+        )
+
+)
+
+}}}
 
 = register_post_type =
 
-This demonstrates sample input for !WordPress' `register_post_type()` function:
+For the record, this demonstrates sample input for !WordPress' `register_post_type()` function:
 
 {{{
 	$def = Array
@@ -134,10 +178,30 @@ This demonstrates sample input for !WordPress' `register_post_type()` function:
 	    'public' => 1,
 	    'menu_position' => '10',
 	    'menu_icon' => '',
-	    'custom_content_type_mgr_create_new_content_type_nonce' => 'd385da6ba3',
-	    'Submit' => 'Create New Content Type',
 	    'show_in_nav_menus' => '',
 	    'can_export' => '',
 	    'is_active' => 1,
 	);
+}}}
+
+
+= New Data Structure =
+
+This is the proposed data structure planned for version 1.0
+
+{{{
+Array(
+   [post_type_defs] => ... /* contains an instance of what's in custom_content_types_mgr_data, except the custom fields would contain only a list of references to the [custom_field_defs] */
+   [custom_field_defs] => ... /* unique name for each field, should also include */
+   [export_info] => Array
+        (
+            [title] => My Students
+            [author] => Everett
+            [url] => http://www.fireproofsocks.com/
+            [description] => Example
+        )
+   [cctm_version] => '0.9.3.3'  /* used to test if we need to run updating scripts */
+   [cctm_installation_timestamp] => 1303780421
+   [cctm_update_timestamp] => 1303780421
+)
 }}}
