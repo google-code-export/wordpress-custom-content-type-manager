@@ -26,7 +26,7 @@ A CCTM definition contains _no post content of any kind_.
 
 = Import from File =
 
-CCTM definition files are stored as plain text !JSON files, and they use the `.cctm.json` extension.
+CCTM definition files are stored as plain text JSON files, and they use the `.cctm.json` extension.
 
 Click the "Custom Content Type" --> "Import" menu item in the !WordPress manager, then click the "Upload" button.
 
