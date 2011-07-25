@@ -1,0 +1,7 @@
+#summary Incompatible Plugins
+
+= Introduction =
+
+The support of [http://codex.wordpress.org/Post_Types post types] requires some heavy lifting that delves deep into the core of the WordPress application.  
+
+In a nutshell, be _extremely_ careful about using multiple plugins that tap into WordPress' custom post_type functionality. There is a lot of related functionality that this plugin has to integrate in order to make this work.
