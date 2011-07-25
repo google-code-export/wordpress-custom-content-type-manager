@@ -1,7 +1,11 @@
 #summary Incompatible Plugins
 
-= Introduction =
+= Incompatibility Blues =
 
-The support of [http://codex.wordpress.org/Post_Types post types] requires some heavy lifting that delves deep into the core of the WordPress application.  
+The support of custom [http://codex.wordpress.org/Post_Types post types] requires some heavy lifting that delves deep into the core of the !WordPress application, so be _extremely_ careful about using multiple plugins that tap into WordPress' custom post_type functionality. There is a lot of related functionality that this plugin has to integrate in order to make this work and if another plugin is trying to modify that same behavior, the results can be erratic; your site may break, or certain features may become unusable.  
 
-In a nutshell, be _extremely_ careful about using multiple plugins that tap into WordPress' custom post_type functionality. There is a lot of related functionality that this plugin has to integrate in order to make this work.
+It would be a miracle if any two plugins handled the thorough customizations in the same way, so I strongly recommend that you avoid activating multiple plugins that implement custom post types.  
+
+One of the shortcomings of !WordPress is that it does not have a built-in way to list which post types should be registered via the [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function.  As a result, each plugin that utilizes this function must store its to-do list in its own custom way, and there is no way for other plugins to see which post types have been registered already.  Using multiple plugins that tap into this feature can quickly become erratic and each plugin steps on the others' toes.
+
+In an attempt to alert users to the problems that occurs in this situation, the CCTM plugin detects incompatible plugins and alerts the admin users to the potential for catastrophic problems.
