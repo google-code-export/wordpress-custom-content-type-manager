@@ -203,5 +203,10 @@ Array(
    [cctm_version] => '0.9.3.3'  /* used to test if we need to run updating scripts */
    [cctm_installation_timestamp] => 1303780421
    [cctm_update_timestamp] => 1303780421
+   /* The text of each warning is hashed to uniquely identify it */
+   [warnings] => Array(
+      '14asdfa23511fafeefa' => 1, /* 1 = viewed*/
+      '23aasdf112413afeefa' => 0, /* 0 = not viewed*/
+   )
 )
 }}}
