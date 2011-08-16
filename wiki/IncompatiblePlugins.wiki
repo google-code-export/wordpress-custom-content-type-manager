@@ -10,7 +10,12 @@ One of the shortcomings of !WordPress is that it does not have a standardized bu
 
 In an attempt to alert users to the problems that occurs in this situation, the CCTM plugin detects incompatible plugins and alerts the admin users to the potential for catastrophic problems.
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">*The use of multiple "post_type" plugins is NOT recommended!*</font>  || 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">*The use of multiple "post_type" plugins is NOT recommended! There can be only one!*</font>  || 
+
+
+<wiki:video url="http://www.youtube.com/watch?v=bv_qcgnOiGk"/>
+
+
 
 == List of potentially Incompatible Plugins ==
 
