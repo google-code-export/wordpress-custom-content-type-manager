@@ -8,7 +8,7 @@ Now that you have a custom image field, what do you do with it?
 
 = Overview =
 
-You'll notice that the *print_custom_field()* function will only print out an integer.  This is the expected behavior! This plugin stores a [http://en.wikipedia.org/wiki/Foreign_key foreign key] as the value for the image custom fields. The key is technically a post ID in the *wp_posts* table where post_type is "attachment*. 
+You'll notice that the *print_custom_field()* function will only print out an integer.  This is the expected behavior! This plugin stores a [http://en.wikipedia.org/wiki/Foreign_key foreign key] as the value for the image custom fields. The key is technically a post ID in the *wp_posts* table where post_type is "attachment". 
 
 So instead of directly _printing_ the contents of the custom field, your theme files will make use of the Custom Content Type Manager *get_custom_field()* function in combination with one of !WordPress' dedicated theme functions:
 
