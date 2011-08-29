@@ -210,5 +210,7 @@ Array(
       '14asdfa23511fafeefa' => 1, /* 1 = viewed*/
       '23aasdf112413afeefa' => 0, /* 0 = not viewed*/
    )
+   [flash] => ??? /* flash messages */
+   [locks] => ??? /* track pages and settings that are being edited */
 )
 }}}
