@@ -191,7 +191,9 @@ This is the proposed data structure planned for version 1.0
 
 {{{
 Array(
-   [post_type_defs] => ... /* contains an instance of what's in custom_content_types_mgr_data, except the custom fields would contain only a list of references to the [custom_field_defs] */
+   [post_type_defs] => ... /* contains an instance of what's in custom_content_types_mgr_data, 
+                                           except the custom fields would contain only a list of references to 
+                                           the [custom_field_defs] */
    [custom_field_defs] => ... /* unique name for each field, should also include */
    [export_info] => Array
         (
@@ -200,7 +202,7 @@ Array(
             [url] => http://www.fireproofsocks.com/
             [description] => Example
         )
-   [cctm_version] => '0.9.3.3'  /* used to test if we need to run updating scripts */
+   [cctm_version] => '0.9.3.3-dev'  /* used to test if we need to run updating scripts */
    [cctm_installation_timestamp] => 1303780421
    [cctm_update_timestamp] => 1303780421
    /* The text of each warning is hashed to uniquely identify it */
