@@ -10,5 +10,5 @@ This is a technical note outlining which menu items are supported in the CCTM !W
   * *Custom Fields*: create/edit custom fields. This is the home of the normalized field definitions
   * *Templates*: generate sample theme or view samples of individual files.
   * *Settings*: global plugin settings including MySQL max data size, OBJECT/ARRAY_A settings, enable purge ???
-  * *Import/Export*: houses import/export functionality.  Could also house an export to CSV function.
+  * *Advanced*: houses import/export functionality, an automatic post-type detector, an automatic custom-field detector.  Could also house an export to CSV function ???
   * *Store*: purchase additional custom fields and themes
