@@ -5,7 +5,7 @@
 
 This is a technical note outlining which menu items are supported in the CCTM !WordPress dashboard.
 
-  * *About*: contains pie-chart of existing post-types and a summary of plugin info in a read-only format
+  * *Info*: contains pie-chart of existing post-types and a summary of plugin info in a read-only format
   * *Content Types*: create/edit content types (aka post types)
   * *Custom Fields*: create/edit custom fields. This is the home of the normalized field definitions
   * *Templates*: generate sample theme or view samples of individual files.
