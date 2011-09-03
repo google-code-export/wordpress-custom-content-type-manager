@@ -2,4 +2,8 @@
 
 = Description =
 
-Coming soon...
+A What-you-see-is-what-you-get (WYSIWYG) field is a textarea with formatting controls like you might see in a word processor (e.g. Microsoft Word).  It allows users to format text without needing to know HTML markup codes.
+
+= Examples =
+
+The most obvious example for comparison is the main content block in standard !WordPress posts and pages.
