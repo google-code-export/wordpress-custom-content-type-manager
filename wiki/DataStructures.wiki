@@ -208,8 +208,8 @@ Array(
    [cctm_update_timestamp] => 1303780421
    /* The text of each warning is hashed to uniquely identify it */
    [warnings] => Array(
-      '14asdfa23511fafeefa' => 1, /* 1 = viewed*/
-      '23aasdf112413afeefa' => 0, /* 0 = not viewed*/
+      'There was some problem!' => 23415241, /* timestamp when it was viewed and cleared*/
+      'There was some other problem' => 0, /* 0 = still active... not cleared yet*/
    )
    /* flash messages -- per user, a random hash is set in their cookie to identify which messages are theirs*/
    [flash] => Array (
