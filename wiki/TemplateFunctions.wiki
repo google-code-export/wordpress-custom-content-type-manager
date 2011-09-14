@@ -33,9 +33,9 @@ Gets the value of the custom field identified by _$fieldname_. This function is 
 <hr/>
 = get_custom_field_meta =
 
-_mixed_ *get_custom_field_meta*( string _$fieldname_, string _$item_ `[`, string _$post_type_ `]` ) 
+_mixed_ *get_custom_field_meta*( string _$fieldname_, string _$item_ ) 
 
-This allows you to get information about the custom field's definition (i.e. its meta data). The definitions are stored in a multi-dimensional array, so we need 3 pieces of data to find the meta data: the fieldname, the name of the meta item, and the post type; the post_type is usually able to be determined automatically.
+This allows you to get information about the custom field's definition (i.e. its meta data).  Just provide the unique name of the field, which bit of data you want, and its definition data will be available to you.
 
 === $fieldname ===         
 (string) (required) The name of the custom field whose value you want to get.
@@ -43,28 +43,26 @@ This allows you to get information about the custom field's definition (i.e. its
 === $item ===         
 (string) (required) The name of the definition item for this custom field whose value you want to get.
 
-=== $post_type ===         
-(string) (optional) The post_type containing the custom fields whose meta data you are trying to retrieve. Usually this can be determined automatically.
-
 == Example ==
 
 Examples are included in this Plugin's administration page: just click the link for "Show Sample Templates".
 
-`<?php print get_custom_field('my_custom_field'); ?>`
+`<?php 
+// This might print "My Custom Field Label"
+print get_custom_field_meta('my_custom_field','label'); 
+?>`
 
 
 <hr/>
 = get_custom_field_def =
 
-_array_ *get_custom_field_def*( string _$fieldname_ `[`, string _$post_type_ `]` ) 
+_array_ *get_custom_field_def*( string _$fieldname_ ) 
 
 Whereas the _get_custom_field_meta()_ function returns a single meta item from a field definition, the _get_custom_field_def()_ function returns the _entire_ definition array. 
 
 === $fieldname ===         
 (string) (required) The name of the custom field whose value you want to get.
 
-=== $post_type ===         
-(string) (optional) The post_type containing the custom fields whose meta data you are trying to retrieve. Usually this can be determined automatically.
 
 == Example ==
 
