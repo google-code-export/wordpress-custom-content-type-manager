@@ -1,0 +1,9 @@
+#summary Displays the object structure used for .cctm.json definition files.
+
+The actual *.cctm.json* files are json encoded text files, but they can be converted back into PHP objects which are used to power the CCTM plugin.
+
+= Object Structure =
+
+{{{
+Array()
+}}}
