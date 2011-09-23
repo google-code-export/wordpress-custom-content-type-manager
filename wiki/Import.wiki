@@ -1,11 +1,11 @@
 #summary Import Custom Content Type definitions
 #labels Help
 
-Starting with version 0.8.9, you can Import and [Export] your content type definitions. 
+Starting with version 0.8.9, you can Import and [Export] your content type definitions.  Note however that the format of the definitions changed with version 0.9.4!  Unfortunately, you cannot load up pre-0.9.4 definition files into CCTM versions 0.9.4 or later.  
 
 = Information and Warning =
 
-Importing a definition can quickly and easily include multiple content types and custom fields on your site, so it can give you a great head start for rolling out a new site.  It basically provides a template for all aspects of your site.  A definition provides your site with everything but _content_.
+Importing a definition can quickly and easily include multiple content types and custom fields on your site, so it can give you a great head start for rolling out a new site.  It provides a template for all aspects of your site _except content_.
 
 It will also completely overwrite any existing definitions you may have created inside the Custom Content Type Manager!  Make sure you [Export] your current definition before importing a new one if you think you might need to restore any of your existing definition data.
 
@@ -31,3 +31,5 @@ CCTM definition files are stored as plain text JSON files, and they use the `.cc
 Click the "Custom Content Type" --> "Import" menu item in the !WordPress manager, then click the "Upload" button.
 
 The selected file must be a compatible `.cctm.json` file that was produced via the [Export] feature. 
+
+See the page on [DefinitionStructure Definition Structure] for a technical note on the data structure used by the import/export feature.
