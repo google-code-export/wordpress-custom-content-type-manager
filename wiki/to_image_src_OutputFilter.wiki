@@ -26,3 +26,8 @@ print_custom_field('my_image:to_image_src');
 // prints something like
 // http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg
 }}}
+
+= See Also =
+
+ * [to_image_array_OutputFilter to_image_array] Output Filter
+ * [to_image_tag_OutputFilter to_image_tag] Output Filter
