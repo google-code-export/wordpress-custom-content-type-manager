@@ -1,5 +1,5 @@
 #summary formatted_list Output Filter
-#labels Output-Filters
+#labels Output-Filters,Function-Reference
 #sidebar SidebarOutputFilters
 
 <wiki:toc max_depth="1" />
