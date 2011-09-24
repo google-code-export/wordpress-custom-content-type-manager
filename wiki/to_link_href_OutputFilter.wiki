@@ -16,12 +16,12 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
  * *$input*: _string_.  an integer post ID
- * *$options*: _none_. 
+ * *$options*: _string_. Default value to return if no post ID is specified. 
  * *OUTPUT*: _string_. The URL for the referenced post.
 
 = Options =
 
-_none_
+Supply a default value if there is no post ID supplied.  You can use this to supply a default href.
 
 
 == Example 1==
