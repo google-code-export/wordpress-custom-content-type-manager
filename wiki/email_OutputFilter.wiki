@@ -1,5 +1,5 @@
 #summary email Output Filter
-#labels Output-Filters
+#labels Output-Filters,Function-Reference
 
 <wiki:toc max_depth="1" />
 
