@@ -1,0 +1,36 @@
+#summary to_link_href Output Filter
+#labels Output-Filters,Function-Reference
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The *to_link_href* converts a post ID to the full link to that post (the link's [http://www.w3schools.com/tags/att_a_href.asp href] attribute.
+
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _string_.  an integer post ID
+ * *$options*: _none_. 
+ * *OUTPUT*: _string_. The URL for the referenced post.
+
+= Options =
+
+_none_
+
+
+== Example 1==
+
+Gets the full URL to the referenced post.
+
+{{{
+<a href="<?php print_custom_field('my_relation:to_link_href'); ?>">Click here!</a>
+?>
+}}}
+
+= See Also =
