@@ -45,6 +45,17 @@ print implode(', ', $my_array);
 ?>
 }}}
 
+== Example 3==
+
+The functionality here relies on PHP's [http://php.net/manual/en/function.json-decode.php json_decode] function.
+
+{{{ 
+// The raw my_multiselect value would be a JSON array, e.g. ["squid","tentacle","ink"]
+$raw = get_custom_field('my_multiselect:raw');
+$array = json_decode($raw, true);
+}}}
+
+
 = See Also =
 
 See also the "Format List" output filter.
