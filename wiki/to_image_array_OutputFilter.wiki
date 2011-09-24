@@ -1,6 +1,8 @@
 #summary to_image_array Output Filter
 #labels Output-Filters
 
+#sidebar SidebarOutputFilters
+
 <wiki:toc max_depth="1" />
 
 = Description =
