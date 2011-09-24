@@ -20,6 +20,18 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
  * *$options*: _mixed_. Size of the image shown for an image attachment: either a string keyword (thumbnail, medium, large or full) or a 2-item array representing width and height in pixels, e.g. `array(32,32)`. As of !WordPress Version 2.5, this parameter does not affect the size of media icons, which are always shown at their original size.
  * *OUTPUT*: _array_. Contains the image _src_, _width_, _height_ (in that order).
 
+= Options =
+
+Available options include the following:
+
+ * thumbnail
+ * medium 
+ * large 
+ * full (default)
+ * or a 2-item array representing width and height in pixels
+
+And any option available to the *size* paramter of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.
+
 == Example 1==
 
 The output of this filter is an array.  The items are ordered in the array as follows:
