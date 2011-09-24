@@ -62,4 +62,6 @@ print_custom_field('my_image:to_image_tag', 'thumbnail');
 
 = See Also =
 
-See !WordPress' [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.
+ * [to_image_src_OutputFilter to_image_src] Output Filter
+ * [to_image_array_OutputFilter to_image_array] Output Filter
+ * !WordPress' [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.
