@@ -3,7 +3,7 @@
 
 <wiki:toc max_depth="1" />
 
-= raw =
+= Description =
 
 This is the default output filter for most fields and it was the _only_ filter available prior to version 0.8.9 of the CCTM.  The raw filter isn't much of a filter at all: it simply returns the input, but you can use it to override the Default Output Filter set for any custom field.
 
