@@ -22,9 +22,8 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
 == Example 1==
 
 {{{
-<?php
-print get_custom_field('my_email:email');
-?>
+<p>Contact me at the following address:</p>
+<?php print_custom_field('my_email:email'); ?>
 }}}
 
 = See Also =
