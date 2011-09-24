@@ -18,6 +18,19 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
  * *$options*: _mixed_. any option available to the *size* parameter of !WordPress' [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()]. See examples below.
  * *OUTPUT*: _string_. Full path to the image
 
+= Options =
+
+Available options include the following:
+
+ * thumbnail
+ * medium 
+ * large 
+ * full (default)
+ * or a 2-item array representing width and height in pixels
+
+And any option available to the *size* paramter of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function.
+
+
 == Example 1==
 
 Basic usage requires no options:
