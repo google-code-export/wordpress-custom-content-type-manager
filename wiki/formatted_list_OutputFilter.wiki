@@ -60,3 +60,5 @@ print_custom_field('my_list:formatted_list', array('<li>[+value+]</li>','<ul>[+c
 
 
 = See Also =
+
+ * [to_array_OutputFilter to_array] Output Filter
