@@ -1,10 +1,2 @@
-#summary Sidebar displaying available output filters
-
-<wiki:comment>
-Used as a sidebar in the Output Filters section.
-</wiki:comment>
-
-== Available Output Filters ==
-
   * [email_OutputFilter email]
   * [to_image_array_OutputFilter to_image_array]
