@@ -1,0 +1,30 @@
+#summary help Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The *help* filter exists solely as an aid to template designers and developers: if used, it will print out a summary of all available output filters and a blurb on how to use them.
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _mixed_.  
+ * *$options*: _none_. 
+ * *OUTPUT*: _string_. A help message 
+
+== Example 1==
+
+Anything in the field is ignored -- a help message is returned.
+
+{{{
+<?php
+print_custom_field('any_field:help');
+// prints out a help message
+?>
+}}}
