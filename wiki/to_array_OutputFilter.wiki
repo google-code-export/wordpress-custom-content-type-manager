@@ -5,14 +5,9 @@
 
 = Description =
 
-The *to_array* filter is the default output filter for [MultiSelect multi-select] fields: the raw format is a JSON string.  Selecting the "Array" output filter will convert the JSON string into a PHP array.  It is equivalent to the following:
+The *to_array* filter is the default output filter for [MultiSelect multi-select] fields: the raw format is normally a JSON string, e.g. one stored by using a .  Selecting the "Array" output filter will convert the JSON string into a PHP array.  It is equivalent to the following:
 
-{{{ 
-$raw = get_custom_field('my_image');
-$array = json_decode($raw, true);
-}}}
-
-The `print_custom_field()` function isn't useful if you have a [MultiSelect multi-select] field using the Array output filter: you can't simply print an array, you're going to have to do something with it. 
+<font color="red">WARNING</font>: The [TemplateFunctions#print_custom_field print_custom_field()] function isn't useful if you are using the *to_array* output filter: you can't simply print an array, you're going to have to actually _do_ something with it. 
 
 = Usage =
 
