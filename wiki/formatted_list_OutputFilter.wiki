@@ -37,9 +37,12 @@ array( _string_ *item_template* `[`, _string_ *wrapper_template* `]`)
 
 The *item_template* and *wrapper_template* are expected to be valid formatting strings that use `[+placeholders+]`.
 
- # *item_template*: used to format each item in the list.  Available placeholders: 
+*item_template*: used to format each item in the list.  Available placeholders: 
+
  * *`[+value+]`* : will be replaced with the value of the item
- # *wrapper_template*: (optional) used to wrap the final output.  Available placeholders:
+
+*wrapper_template*: (optional) used to wrap the final output.  Available placeholders:
+
  * *`[+content+]`*: will be replaced with all formatted items
 
 
