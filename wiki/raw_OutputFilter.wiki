@@ -1,4 +1,5 @@
 #summary raw Output Filter
+#labels Output-Filters
 
 <wiki:toc max_depth="1" />
 
