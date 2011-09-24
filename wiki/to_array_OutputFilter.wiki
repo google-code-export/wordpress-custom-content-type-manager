@@ -1,7 +1,7 @@
 #summary to_array Output Filter
 #labels Output-Filters
 
-<wiki:toc max_depth="2" />
+<wiki:toc max_depth="1" />
 
 = to_array =
 
@@ -16,8 +16,18 @@ The `print_custom_field()` function isn't useful if you have a [MultiSelect mult
 
 = Usage =
 
- * *INPUT*: mixed.  Normally a JSON formatted string, e.g. `["dog","cat","pig"]`
- * *OUTPUT*: array. E.g. `array('dog','cat','pig')`
+*INPUT*: _mixed_.  Normally a JSON formatted string, e.g. `["dog","cat","pig"]`
+*OPTIONS*: _none_.
+*OUTPUT*: _array_. E.g. `array('dog','cat','pig')`
+
+{{{
+<?php
+$my_array = get_custom_field('my_field');
+foreach ($my_array as $item) {
+   print $item;
+}
+?>
+}}}
 
 = See Also =
 
