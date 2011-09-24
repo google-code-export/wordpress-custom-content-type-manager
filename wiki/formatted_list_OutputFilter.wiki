@@ -1,0 +1,58 @@
+#summary formatted_list Output Filter
+#labels Output-Filters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The *formatted_list* filter takes an array and formats it formats it into a sensible string for your theme files.  It offers a quick way to generate a formatted list without you having to loop over array items.
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _mixed_.  Normally a JSON formatted string, e.g. `["dog","cat","pig"]`
+ * *$options*: _mixed_. If a string is supplied, it will be used to join all array elements together. You can also supply an array of formatting strings.  See the examples below.
+ * *OUTPUT*: _string_. 
+
+== Example 1==
+
+Use a simple string to join together the array elements (just like PHP's [http://php.net/manual/en/function.implode.php implode] function):
+
+{{{
+<?php
+// my_list contains a JSON array, e.g. ["man","bear","pig"]
+print_custom_field('my_list:formatted_list', ', ');
+// prints a comma-separated list: man, bear, pig
+?>
+}}}
+
+== Example 2==
+
+For more control over the output, you can pass an array to the *$options* parameter.  The array must be in the following format:
+
+array( _string_ *item_template* `[`, _string_ *wrapper_template* `]`)
+
+The *item_template* and *wrapper_template* are expected to be valid formatting strings that use `[+placeholders+]`.
+
+ # *item_template*: used to format each item in the list.  Available placeholders: 
+ * *`[+value+]`* : will be replaced with the value of the item
+ # *wrapper_template*: (optional) used to wrap the final output.  Available placeholders:
+ * *`[+content+]`*: will be replaced with all formatted items
+
+
+{{{
+print_custom_field('my_list:formatted_list', array('<li>[+value+]</li>','<ul>[+content+]</ul>') );
+/* prints a formated unordered list:
+<ul>
+  <li>man</li>
+  <li>bear</li>
+  <li>pig</li>
+</ul>
+*/
+}}}
+
+
+= See Also =
