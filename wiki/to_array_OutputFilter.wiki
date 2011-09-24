@@ -16,16 +16,32 @@ The `print_custom_field()` function isn't useful if you have a [MultiSelect mult
 
 = Usage =
 
-*INPUT*: _mixed_.  Normally a JSON formatted string, e.g. `["dog","cat","pig"]`
-*OPTIONS*: _none_.
-*OUTPUT*: _array_. E.g. `array('dog','cat','pig')`
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
 
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _mixed_.  Normally a JSON formatted string, e.g. `["dog","cat","pig"]`
+ * *$options*: _none_.
+ * *OUTPUT*: _array_. E.g. `array('dog','cat','pig')`
+
+== Example 1==
 {{{
 <?php
 $my_array = get_custom_field('my_field');
 foreach ($my_array as $item) {
    print $item;
 }
+?>
+}}}
+
+== Example 2==
+
+If the custom field is set to use a different default Output Filter, you can force the output to use the *to_array* filter by appending _:to_array_ to the fieldname:
+
+{{{
+<?php
+$my_array = get_custom_field('my_field:to_array');
+print implode(', ', $my_array);
 ?>
 }}}
 
