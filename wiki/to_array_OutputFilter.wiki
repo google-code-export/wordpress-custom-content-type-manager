@@ -54,5 +54,5 @@ $array = json_decode($raw, true);
 
 = See Also =
 
-* [to_image_src_OutputFilter to_image_src] Output Filter
-* [to_image_tag_OutputFilter to_image_tag] Output Filter
+ * [to_image_src_OutputFilter to_image_src] Output Filter
+ * [to_image_tag_OutputFilter to_image_tag] Output Filter
