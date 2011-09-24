@@ -1,14 +1,24 @@
 #summary to_array Output Filter
 #labels Output-Filters
 
-= Introduction =
+<wiki:toc max_depth="2" />
 
-Add your content here.
+= to_array =
 
+This is the default output filter for [MultiSelect multi-select] fields: the raw format is a JSON string.  Selecting the "Array" output filter will convert the JSON string into a PHP array.  It is equivalent to the following:
 
-= Details =
+{{{ 
+$raw = get_custom_field('my_image');
+$array = json_decode($raw, true);
+}}}
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+The `print_custom_field()` function isn't useful if you have a [MultiSelect multi-select] field using the Array output filter: you can't simply print an array, you're going to have to do something with it. 
+
+= Usage =
+
+ * *INPUT*: mixed.  Normally a JSON formatted string, e.g. `["dog","cat","pig"]`
+ * *OUTPUT*: array. E.g. `array('dog','cat','pig')`
+
+= See Also =
+
+See also the "Format List" output filter.
