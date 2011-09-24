@@ -3,9 +3,9 @@
 
 <wiki:toc max_depth="1" />
 
-= to_array =
+= Description =
 
-This is the default output filter for [MultiSelect multi-select] fields: the raw format is a JSON string.  Selecting the "Array" output filter will convert the JSON string into a PHP array.  It is equivalent to the following:
+The *to_array* filter is the default output filter for [MultiSelect multi-select] fields: the raw format is a JSON string.  Selecting the "Array" output filter will convert the JSON string into a PHP array.  It is equivalent to the following:
 
 {{{ 
 $raw = get_custom_field('my_image');
