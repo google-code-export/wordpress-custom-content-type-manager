@@ -1,0 +1,28 @@
+#summary to_image_src Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The *to_image_src* converts an image field's value into the full path to the image.  Use the this filter if you want to return the full path to the image, for example for use in your own image tag or link.
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _string_ a post ID  
+ * *$options*: _none_. 
+ * *OUTPUT*: _string_. Full path to the image
+
+== Example 1==
+
+{{{ 
+print_custom_field('my_image:to_image_src');
+
+// prints something like
+// http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg
+}}}
