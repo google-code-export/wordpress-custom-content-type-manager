@@ -15,8 +15,12 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
  * *$input*: _string_ a post ID  
- * *$options*: _none_. 
+ * *$options*: _string_. src of a default image if an empty $input is supplied. 
  * *OUTPUT*: _string_. Full path to the image
+
+= Options =
+
+Supply a string as an option to specify a default image path.  See Example 2
 
 == Example 1==
 
@@ -26,6 +30,19 @@ print_custom_field('my_image:to_image_src');
 // prints something like
 // http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg
 }}}
+
+== Example 2==
+
+Here's how you can specify a default image:
+
+{{{ 
+print_custom_field('my_image:to_image_src', 'http://yoursite.com/wp-content/uploads/2011/03/default.jpg');
+
+// prints something like
+// http://yoursite.com/wp-content/uploads/2011/03/IMG_1045.jpg
+}}}
+
+Don't get confused between this method of setting a default value and specifying a default image inside of your custom field.
 
 = See Also =
 
