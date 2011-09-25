@@ -211,11 +211,24 @@ Array(
       'There was some problem!' => 23415241, /* timestamp when it was viewed and cleared*/
       'There was some other problem' => 0, /* 0 = still active... not cleared yet*/
    )
-   /* flash messages -- per user, a random hash is set in their cookie to identify which messages are theirs*/
+
+   /* We do a wee bit of caching here to avoid directory scans */
+   [cache] => Array (
+      [elements] => Array(
+         [dropdown] => '/full/path/to/dropdown.php',
+      ),
+      [filters] => Array(
+         [to_array] => '/full/path/to/to_array.php',
+      ),
+      [tpls] => Array(
+
+      ),
+   )
+   /* flash messages: keyed off user_id so we know which messages should be displayed for each user */
    [flash] => Array (
-    '3511fafeefa' => 'This is my flash message',
+    '123' => 'This is my flash message',
    ),
-   /* track pages and settings that are being edited */
+   /* FUTURE: track pages and settings that are being edited */
    [locks] => Array(
       'some_page' => user id
    ) 
