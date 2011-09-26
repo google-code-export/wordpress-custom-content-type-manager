@@ -1,0 +1,63 @@
+#summary default Output Filter
+#labels Output-Filters,Function-Reference
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The *default* filter kicks in only if the input is empty: whatever you specify as an option will be returned only if the input is empty.  This is one way to establish default values for your fields.
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _string_ a post ID  
+ * *$options*: _mixed_. Whatever you supply here will be returned if the input is empty
+ * *OUTPUT*: _string_. Full path to the image
+
+= Options =
+
+The option argument can be any data type, but most often, you probably want to return a string. 
+
+== Example 1==
+
+If your custom field is empty, the value you supplied as an option will be returned.
+
+{{{ 
+<?php
+print_custom_field('fax_number:wrapper', 'Number unavailable' );
+?>
+}}}
+
+== Example 2 ==
+
+This filter can be powerful when coupled with the [wrapper_OutputFilter wrapper] Output Filter:
+
+{{{
+<?php
+print_custom_field('fax_number:wrapper:default'
+   , '<span class="my_class"><strong>Fax:</strong> [+content+]</span>'
+   , '<em>Fax number unavailable</em>');
+?>
+}}}
+
+If the *fax_number* is set for the post being formatted, the output would be:
+
+{{{
+<span class="my_class"><strong>Fax:</strong>800-555-1212</span>
+}}}
+
+But if the *fax_number* was empty, then the default value would kick in and the output would be:
+{{{
+<em>Fax number unavailable</em>
+}}}
+
+
+
+
+= See Also =
+
+ * [wrapper_OutputFilter wrapper] Output Filter
