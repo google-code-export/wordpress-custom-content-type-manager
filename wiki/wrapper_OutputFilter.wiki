@@ -24,7 +24,7 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
 
  `<span class="my_class"><strong>Fax:</strong> [+content+]</span>`
 
-* *array*: If you supply an array, the first element in the array will be placed _before_ the content, the 2nd element in the array will be placed _after_ the content, e.g.
+ * *array*: If you supply an array, the first element in the array will be placed _before_ the content, the 2nd element in the array will be placed _after_ the content, e.g.
 
  `array('<span class="my_class"><strong>Fax:</strong> ', '</span>')`
 
