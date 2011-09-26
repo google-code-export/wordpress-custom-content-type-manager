@@ -53,7 +53,8 @@ The *phone_number* was wrapped because it had a value, but the the *fax_number* 
 You can also use a formatting string to format the output.  Simply ensure that your string contains the  `[+content+]` placeholder to designate where the input value will appear in the output:
 
 {{{
-print_custom_field('fax_number:wrapper', '<span class="my_class"><strong>Fax:</strong> [+content+]</span>') );
+<?php
+print_custom_field('fax_number:wrapper', '<span class="my_class"><strong>Fax:</strong> [+content+]</span>');
 ?>
 }}}
 
