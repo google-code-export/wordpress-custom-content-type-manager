@@ -46,7 +46,7 @@ If the record being formatted has a phone number, but no fax number, the generat
 <span class="my_class"><strong>Phone:</strong>800-555-1212</span>
 }}}
 
-The "phone_number" was wrapped, but the the fax_number didn't print anything at all because it was empty.
+The *phone_number* was wrapped because it had a value, but the the *fax_number* was _not_ wrapped because it was empty.
 
 == Example 2==
 
