@@ -23,6 +23,7 @@ A more thorough picture of the hierarchy would include multiple field instances:
 
 https://img.skitch.com/20110927-jad2cfqb2kf7b8ijcr3fff3g92.png
 
+-----
 
 == Directories ==
 
@@ -31,8 +32,9 @@ You can override the built-in tpls used to format each part of this hierarchy by
 {{{
 cctm/tpls/fields
 cctm/tpls/fieldtypes
-cctm/tpls/wrappers
-cctm/tpls/metaboxes
+cctm/tpls/wrappers/fields
+cctm/tpls/wrappers/fieldtypes
+cctm/tpls/metaboxes/post_types
 }}}
 
 === cctm/tpls/fields ===
