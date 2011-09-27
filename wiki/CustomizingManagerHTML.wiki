@@ -34,7 +34,7 @@ cctm/tpls/fields
 cctm/tpls/fieldtypes
 cctm/tpls/wrappers/fields
 cctm/tpls/wrappers/fieldtypes
-cctm/tpls/metaboxes/post_types
+cctm/tpls/metaboxes/{post_type}
 }}}
 
 === cctm/tpls/fields ===
@@ -50,10 +50,15 @@ This directory contains tpls used to format instances of a type of field, e.g. *
 
 For example, if you wanted _all_ WYSIWYG fields to use a particular bit of HTML and CSS, you can place a file named *wysiwyg.tpl* inside the *cctm/tpls/fieldtypes* directory.
 
-=== cctm/tpls/wrappers ===
+=== cctm/tpls/wrappers/fields ===
 
-This directory contains tpls that will be used to wrap the smaller tpls.  All built-in fields use the same wrapper: *_default.tpl*.  You can specify the wrapper used for any field by placing a tpl file in this directory that is named after the field, e.g. *my_field.tpl*
+This directory contains tpls that will be used to wrap the field tpls.  All built-in fields use the same wrapper: *_default.tpl*.  You can specify the wrapper used for any specific field by placing a tpl file in the  *cctm/tpls/wrappers/fields* directory and naming it after the field, e.g. *my_field.tpl*
 
-=== cctm/tpls/metaboxes ===
+=== cctm/tpls/wrappers/fieldtypes ===
 
-The directory contains tpls that are used to format the final output before it is printed inside of a metabox for a given _post_type_.  
+This directory contains tpls that will be used to wrap the field tpls.  You can specify the wrapper used for any type field by placing a tpl file in the  *cctm/tpls/wrappers/fieldtype* directory and naming it after the fieldtype, e.g. *dropdown.tpl*
+
+
+=== cctm/tpls/metaboxes/{post_type} ===
+
+The directory contains tpls that are used to format the final output before it is printed inside of a metabox for a given _post_type_.  If you want the default metabox for your *books* post type to use a specific tpl, create the directory *cctm/tpls/metaboxes/books* and create a file named *_default.tpl*.
