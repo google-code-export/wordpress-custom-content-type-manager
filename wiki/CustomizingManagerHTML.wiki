@@ -4,6 +4,8 @@
 
 With version 0.9.4, you can customize the HTML that appears in the !WordPress manager when displaying your custom fields. The overall system here seems fairly complicated, but it needs to be that way in order to work in many different use-cases.  Don't worry!  Most of the time, you won't need to delve too deeply into the system to customize things the way you want to.  See the page on [CustomizingManagerHTMLUseCases Use Cases] for quick examples of how to achieve common customization tasks.
 
+<wiki:toc max_depth="2" />
+
 == Hierarchy =
 
 Any time a custom field is generated in the !WordPress manager when you create or edit a page, the HTML that generates that form element uses 3 separate template (*.tpl*) files to generate the final output.  The hierarchy is *Field --> Wrapper --> Metabox*:
@@ -14,7 +16,7 @@ Usually, the wrapper wraps only one instance of the field, but if you are dealin
 
 The metabox will contain all fields assigned to it. Currently, only the standard "Custom Fields" meta box is supported.
 
-A more thorough picture of 
+A more thorough picture of the hierarchy would include multiple field instances:
 
 https://img.skitch.com/20110927-jad2cfqb2kf7b8ijcr3fff3g92.png
 
