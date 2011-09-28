@@ -1,0 +1,9 @@
+#summary Developing your Own Custom Field Types
+#labels Custom-Fields
+
+= Introduction =
+
+Starting with version 0.9.4, developers can create their own PHP classes that describe their own custom fields.  You can use this feature to write your own types of custom fields!
+
+
+More coming here... it's possible, but it deserves a proper tutorial...
