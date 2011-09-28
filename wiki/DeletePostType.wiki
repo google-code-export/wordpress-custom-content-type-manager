@@ -7,9 +7,7 @@ The behavior here can be configured starting with version 0.9.4 of the plugin.
 
 Starting with version 0.9.4 of the plugin, you can change the [Settings] so that when you delete a content type definition, you can actually force the deletion of any posts of that type.  Be careful about this!  It's probably better for beginners to NOT delete any posts from the database, but if you know what you're doing, you can help keep your database neat and tidy by removing cruft.
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || Even if your [Settings] will not delete posts from the database, 
-for general intents and purposes, that content will pretty much become invisible 
-if you delete the definition!  So be careful! ||
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || Even if your [Settings] will not delete posts from the database, for general intents and purposes, that content will pretty much become invisible if you delete the definition!  So be careful! ||
 
 Firstly, !WordPress must _register_ all custom post_types (a.k.a. content types) using the [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function in order for !WordPress to recognize them.  If a post_type is not registered, it is essentially becomes invisible to the !WordPress application.  This plugin is one of several that manages the registering of custom post types ([SeeAlso see similar plugins here]), but this plugin offers a lot more [Features].
 
