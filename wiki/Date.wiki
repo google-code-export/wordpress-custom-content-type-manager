@@ -1,4 +1,5 @@
 #summary Date custom fields
 #labels Custom-Fields
+#sidebar SidebarCustomFields
 
-Coming soon...
+Date fields are used to select a date.
