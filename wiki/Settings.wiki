@@ -1,0 +1,21 @@
+#summary Available Settings for the CCTM
+#labels Help
+
+= Settings =
+
+Starting with version 0.9.4 of the plugin, you can adjust various settings that affect how the plugin will behave.
+
+== Delete Posts ==
+
+== Delete Custom Fields ==
+
+== Show Custom Fields Menu ==
+
+== Show Settings Menu ==
+
+== Display Foreign Post Types ==
+
+
+= Custom Field Settings =
+
+Some custom fields may require their own settings pages (e.g. for entering an API key).  3rd party developers can create their own custom fields (instructions on that are coming), but depending on the requirements of the field, there may be settings options that appear for each type of field.
