@@ -1,25 +1,25 @@
 #summary Deleting a content type
 #labels Help
 
-==Explanation==
+==Deleting a Content Type==
 
-There is some confusion as to what happens when you delete a custom content type (a.k.a. [http://codex.wordpress.org/Post_Types post_type]).  Let's clear up the confusion by walking through a few points. 
+The behavior here can be configured starting with version 0.9.4 of the plugin.
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || Technically speaking, _deleting a content type does *not* delete any of your content from your site_, but for general intents and purposes, that content will pretty much become invisible. ||
+Starting with version 0.9.4 of the plugin, you can change the [Settings] so that when you delete a content type definition, you can actually force the deletion of any posts of that type.  Be careful about this!  It's probably better for beginners to NOT delete any posts from the database, but if you know what you're doing, you can help keep your database neat and tidy by removing cruft.
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || Even if your [Settings] will not delete posts from the database, for general intents and purposes, that content will pretty much become invisible if you delete the definition!  So be careful! ||
 
 Firstly, !WordPress must _register_ all custom post_types (a.k.a. content types) using the [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function in order for !WordPress to recognize them.  If a post_type is not registered, it is essentially becomes invisible to the !WordPress application.  This plugin is one of several that manages the registering of custom post types ([SeeAlso see similar plugins here]), but this plugin offers a lot more [Features].
 
 When you register a custom_post type by using the Custom Content Type Manager plugin, the registration includes a lot of information about that post_type, e.g. which fields should show up in the editor, whether or not a custom menu icon is used, and all of the custom fields that have been defined for that content type. 
 
-So when you "delete" a post_type inside of this plugin, you are actually only deleting the _definition_; all the posts you created will still live in the database, but they will essentially become invisible to !WordPress.  If you know your way around MySQL, you can verify that the posts are still present in the database, e.g. via a query like this:
+So when you "delete" a post_type inside of this plugin, you are actually deleting the _definition_; unless you have changed the plugin [Settings] to force a delete of database rows, all the posts you created will remain the database, but they will essentially become invisible to !WordPress.  If you know your way around MySQL, you can verify that the posts are still present in the database, e.g. via a query like this:
 
 {{{
 SELECT * FROM wp_posts WHERE post_type='my_post_type';
 }}}
 
 But unless you're a super geek with database skills, then deleting your definition for that post_type really makes all that information disappear.  You can make it reappear by redefining a content type of the same name, but that's a lot of work (see the section on "Ghost Posts" below).
-
-For obvious reasons, we have little desire to support functionality that would allow users to delete their content en masse.
 
 Your custom content type definitions can represent *a lot* of work! It includes all the details about that content type and all of its custom fields.  Consider [ExportDefinition exporting] the definition before deleting it.
 
