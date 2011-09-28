@@ -1,4 +1,5 @@
 #summary Documentation for Relation custom fields
+#sidebar SidebarCustomFields
 
 = Description =
 
