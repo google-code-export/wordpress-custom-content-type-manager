@@ -1,5 +1,7 @@
 #summary Documentation for Media custom fields
+#labels Custom-Fields
+#sidebar SidebarCustomFields
 
 = Description =
 
-Coming soon...
+Media fields are used to select an uploaded media file such as an mp3 or movie file.
