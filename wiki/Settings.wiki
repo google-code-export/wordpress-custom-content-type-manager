@@ -5,16 +5,25 @@
 
 Starting with version 0.9.4 of the plugin, you can adjust various settings that affect how the plugin will behave.
 
+<wiki:toc max_depth="2" />
+
 == Delete Posts ==
 
+If this option is checked, then [DeletePostType deleting a content type definition] will actually delete any posts of that type from your database!  If you delete the posts from the database, it cannot be undone! So please be careful if you choose to use this option!
+ 
 == Delete Custom Fields ==
 
+If this option is checked, then deleting a field definition will cause any instances of that field to be deleted from the database (from the *wp_postmeta* table).  This cannot be undone!  so be careful!
+
 == Show Custom Fields Menu ==
+
+
 
 == Show Settings Menu ==
 
 == Display Foreign Post Types ==
 
+-------------
 
 = Custom Field Settings =
 
