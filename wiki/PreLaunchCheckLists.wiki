@@ -16,7 +16,7 @@ Here's my running list of things to test before releasing a build.
  # Export the .cctm.json file for this setup.  Try importing that definition on another site.  Any errors?
  # In the template file, try using different Output Filters.  Any errors or unexpected behavior?
 
-=  WordPress Mechanics =
+=  !WordPress Mechanics =
 
  # Update includes/CCTM.php to include the updated version number
  # Update the index.php to include the correct version number
