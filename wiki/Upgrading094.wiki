@@ -7,4 +7,12 @@ Version 0.9.4 of the CCTM brings a lot of changes and improvements, so please be
 
 == Custom Fields ==
 
-Starting with 0.9.4, custom field definitions are _normalized_.  That means you define them _once_ and you can add them to any content type you want.  This provided consistency in behavior for your site, but the normalization process may play havoc on your template files!
+Starting with 0.9.4, custom field definitions are _normalized_.  That means you define them _once_ and you can add them to any content type you want.  This provided consistency in behavior for your site, but the normalization process may play havoc on your template files!  The update script should migrate your data the best it can, but it cannot easily update your template files, so instead it issues warnings!  
+
+Any duplicate field names are given a new name, e.g. *my_field* might get morphed into *my_fielg*, so your templates for a given content type might be using code that references the old field name, e.g.
+
+`print_custom_field('my_field');`   
+
+=== The Solution ===
+
+Before you update your template files, consider using the *Merge* command to merge together field definitions that may have been split up inadvertently during the upgrade.  
