@@ -1,7 +1,7 @@
 #summary Sidebar of Supported Custom Fields
 #labels Custom-Fields
 
-= Available Custom Fields =
+== Available Custom Fields ==
 
  * [Checkbox]
  * [ColorSelector]
