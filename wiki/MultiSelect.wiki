@@ -1,7 +1,6 @@
 #summary Multi-Select fields let you select more than one item.
 #labels Custom-Fields
-
-#summary Documentation for Image custom fields
+#sidebar SidebarCustomFields
 
 == Overview ==
 
