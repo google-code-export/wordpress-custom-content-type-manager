@@ -1,4 +1,7 @@
 #summary Sidebar of Supported Custom Fields
+#labels Custom-Fields
+
+= Available Custom Fields =
 
  * [Checkbox]
  * [ColorSelector]
@@ -12,3 +15,5 @@
  * [WYSIWYG]
 
 See all [SupportedCustomFields Supported Custom Fields]
+
+Or [CustomCustomFields write your own]! Starting with version 0.9.4, developers can create their own types of custom fields!
