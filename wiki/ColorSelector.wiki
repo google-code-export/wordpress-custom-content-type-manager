@@ -1,5 +1,6 @@
 #summary Color-selector fields allow users to select an HTML color code using a visual selector
 #labels Custom-Fields
+#sidebar SidebarCustomFields
 
 == Overview ==
 
