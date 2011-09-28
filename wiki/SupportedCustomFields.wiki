@@ -1,8 +1,10 @@
 #summary Custom Fields currently supported
+#labels Help
+#sidebar SidebarCustomFields
 
 = Supported Custom Fields =
 
-By default, WordPress supports only text custom fields.  This plugin allows you to define multiple types of custom fields to include inside your posts.  There are some feature requests to add new types of fields.
+By default, !WordPress supports only text custom fields.  This plugin allows you to define multiple types of custom fields to include inside your posts.  There are some feature requests to add new types of fields.
 
 <wiki:toc max_depth="2" />
 
