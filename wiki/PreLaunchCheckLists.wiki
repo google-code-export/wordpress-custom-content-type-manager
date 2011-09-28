@@ -15,6 +15,7 @@ Here's my running list of things to test before releasing a build.
  # Try re-ordering custom fields and saving the order.  Is the new order used when you edit the field?
  # Export the .cctm.json file for this setup.  Try importing that definition on another site.  Any errors?
  # In the template file, try using different Output Filters.  Any errors or unexpected behavior?
+ # Try adding custom tpls to alter the manager HTML.  Does this work as expected?
 
 =  !WordPress Mechanics =
 
