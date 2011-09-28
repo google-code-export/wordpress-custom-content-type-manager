@@ -1,6 +1,7 @@
 #summary Documentation for Dropbox custom fields
 #labels Custom-Fields
+#sidebar SidebarCustomFields
 
 = Description =
 
-Coming soon...
+Dropdown fields let you select a single option from a list of options.
