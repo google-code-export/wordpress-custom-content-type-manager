@@ -1,4 +1,6 @@
 #summary Documentation for WYSIWYG custom fields
+#labels Custom-Fields
+#sidebar SidebarCustomFields
 
 = Description =
 
