@@ -1,0 +1,14 @@
+#summary Sidebar of Supported Custom Fields
+
+ * [Checkbox]
+ * [ColorSelector]
+ * [Date]
+ * [Dropdown]
+ * [Media]
+ * [MultiSelect]
+ * [Relation]
+ * [Text]
+ * [Textarea]
+ * [WYSIWYG]
+
+See all [SupportedCustomFields Supported Custom Fields]
