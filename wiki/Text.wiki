@@ -1,4 +1,5 @@
 #summary Documentation for Text custom fields
+#sidebar SidebarCustomFields
 
 == Overview ==
 
