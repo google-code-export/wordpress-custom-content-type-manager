@@ -1,6 +1,8 @@
 #summary Examples of the data structures used by the CCTM plugin
 #labels Function-Reference
 
+<wiki:toc max_depth="2" />
+
 = Data Structure =
 
 This is the proposed data structure used in version 0.9.4 and after.
