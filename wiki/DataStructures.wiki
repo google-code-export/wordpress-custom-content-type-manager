@@ -1,4 +1,4 @@
-#summary Examples of the data structures used by this plugin (technical docs)
+#summary Examples of the data structures used by the CCTM plugin
 #labels Function-Reference
 
 = Data Structure =
