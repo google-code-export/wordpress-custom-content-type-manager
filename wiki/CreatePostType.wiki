@@ -1,8 +1,4 @@
 #summary Creating a content type
 #labels Help
 
-The explanations are coming...
-
-== Weirdness ==
-
-Because deactivating or deleting a custom content type definition does not actually delete any posts from the !WordPress database, it is possible for there to be "ghost posts" that suddenly appear when you create a content type.  E.g. create a content type named "test", then create a few "test" posts, then delete the content type definition.  Those "test" posts are still in the database, so if you were to re-create a "test" content type, those posts would become visible again. 
+Creating a new Content Type (known officially by !WordPress as [http://codex.wordpress.org/Post_Types post-types]) gives your !WordPress site CMS functionality.  The CCTM plugin allows you to create custom content types (a.k.a custom post-types) by tying into !WordPress' [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function.
