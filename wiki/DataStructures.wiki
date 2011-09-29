@@ -61,7 +61,6 @@ Array(
 	            [capability_type] => post
 	            [show_in_nav_menus] => 1
 	            [can_export] => 1
-	            [Submit] => Create New Content Type
 	            [hierarchical] => 
 	            [rewrite] => 
 	            [is_active] => 1
