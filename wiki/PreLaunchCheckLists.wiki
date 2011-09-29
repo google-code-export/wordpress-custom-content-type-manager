@@ -10,6 +10,7 @@ Here's my running list of things to test before releasing a build.
  # Create a post in this new content type, check for any errors.
  # Add a value for each field, including each custom field, check for errors.
  # Save the post, navigate away, then edit the post. Verify that all values were preserved.
+ # Verify the same behavior if your content type does NOT contain the main content block.
  # Check the sample template for the post_type: are there any errors?  Is it valid?
  # Try using the sample template: view a post you created.  Are all fields represented correctly?
  # Try re-ordering custom fields and saving the order.  Is the new order used when you edit the field?
