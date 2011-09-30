@@ -10,10 +10,14 @@ Starting with version 0.9.4 of the plugin, you can adjust various settings that 
 == Delete Posts ==
 
 If this option is checked, then [DeletePostType deleting a content type definition] will actually delete any posts of that type from your database!  If you delete the posts from the database, it cannot be undone! So please be careful if you choose to use this option!
+
+-------------
  
 == Delete Custom Fields ==
 
 If this option is checked, then deleting a field definition will cause any instances of that field to be deleted from the database (from the *wp_postmeta* table).  This cannot be undone!  so be careful!
+
+-------------
 
 == Show Custom Fields Menu ==
 
@@ -21,13 +25,15 @@ It cane be troublesome to have to navigate to the CCTM's admin menu option each 
 
 https://img.skitch.com/20110930-b5km1s23uhdc373tb8pxm64ynp.png
 
+-------------
+
 == Show Settings Menu ==
 
 It cane be troublesome to have to navigate to the CCTM's admin menu option each time you want to make a change in your post-type definition.  Check this option if you want a dedicated "Settings" link to appear in the menu for each content type.
 
 https://img.skitch.com/20110930-nfjbu966xp458x53ya5x5yjkqs.png
 
-
+-------------
 == Display Foreign Post Types ==
 
 The CCTM is not the only plugin that might be using custom post-types on your site.  Optionally, you can choose to display the foreign post-types in your CCTM manager screens.   Seeing the other post-types can help increase your awareness of what other plugins are doing on your site, or maybe you're just curious.  Enabling this option is merely a helpful "FYI" insight into your site.
