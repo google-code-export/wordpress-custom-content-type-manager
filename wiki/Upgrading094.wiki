@@ -1,4 +1,5 @@
 #summary Upgrading to version 0.9.4 from previous versions
+#labels Help
 
 = Introduction =
 
@@ -16,3 +17,7 @@ Any duplicate field names are given a new name, e.g. *my_field* might get morphe
 === The Solution ===
 
 Before you update your template files, consider using the *Merge* command to merge together field definitions that may have been split up inadvertently during the upgrade.  
+
+== Output Filters ==
+
+Version 0.9.4 brings with it some serious improvements in [OutputFilters Output Filters].  The [SampleTemplates Sample Template] for each content type now includes a full example of how to use each type of custom field.  This was done to help cut down on the confusion: many users simply did not understand how the data was stored or how to retrieve it (primarily images and arrays proved problematic).
