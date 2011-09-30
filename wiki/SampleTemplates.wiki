@@ -1,0 +1,8 @@
+#summary Sample Templates
+#labels Help
+
+= Sample Templates =
+
+Each time you create a custom content type with custom fields, you have to have a customized template to display that type of data.
+
+The sample template displayed includes examples of the `print_custom_field()` and `get_custom_field()` functions: these have to be used to get at the data you store in your custom fields.
