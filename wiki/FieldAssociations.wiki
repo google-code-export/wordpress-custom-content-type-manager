@@ -1,0 +1,13 @@
+#summary Associating Fields with Content Types
+#labels Help
+
+= Associating Fields with Content Types =
+
+As of version 0.9.4, custom field definitions are _normalized_: you define the field once and you can add it to any content type.
+
+There are 2 places where you can make this association:
+
+ * *Custom Content Types --> Custom Content Types --> {_choose a content type_} --> Manage Custom Fields*
+ * *Custom Content Types --> Custom Fields --> {_choose a field_} --> Manage Associations*
+
+If you choose the first, you can affect the order that the fields display in by dragging and dropping the fields into the order you want them.
