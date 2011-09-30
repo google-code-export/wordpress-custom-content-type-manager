@@ -5,4 +5,4 @@
 
 Each time you create a custom content type with custom fields, you have to have a customized template to display that type of data.
 
-The sample template displayed includes examples of the `print_custom_field()` and `get_custom_field()` functions: these have to be used to get at the data you store in your custom fields.
+The sample template displayed includes examples of the `print_custom_field()` and `get_custom_field()` functions: these have to be used to get at the data you store in your custom fields.  The samples include a sample view on how to use [OutputFilters Output Filters]: some types of data cannot simply be printed, so I've included examples of how to use the default Output Filter set for each custom field.
