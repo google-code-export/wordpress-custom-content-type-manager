@@ -32,6 +32,8 @@ https://img.skitch.com/20110930-nfjbu966xp458x53ya5x5yjkqs.png
 
 The CCTM is not the only plugin that might be using custom post-types on your site.  Optionally, you can choose to display the foreign post-types in your CCTM manager screens.   Seeing the other post-types can help increase your awareness of what other plugins are doing on your site, or maybe you're just curious.  Enabling this option is merely a helpful "FYI" insight into your site.
 
+https://img.skitch.com/20110930-bie5w6w563ysxd7im5bk9ryeu1.png
+
 
 -------------
 
