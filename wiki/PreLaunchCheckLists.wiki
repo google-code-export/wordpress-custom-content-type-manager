@@ -8,7 +8,7 @@ Here's my running list of things to test before releasing a build.
  # Create a custom content type, check for any errors
  # Add one of each field to it, check for any errors.
  # Create a post in this new content type, check for any errors.
- # Add a value for each field, including each custom field, check for errors.
+ # Add a value for each field, including each custom field, check for errors.  Try using foreign characters for values, like ü or ∑ as well as html tags, e.g. `<a href="#">click</a>`.
  # Save the post, navigate away, then edit the post. Verify that all values were preserved.
  # Verify the same behavior if your content type does NOT contain the main content block.
  # Check the sample template for the post_type: are there any errors?  Is it valid?
@@ -26,3 +26,4 @@ Here's my running list of things to test before releasing a build.
  # Update the index.php to include the correct version number
  # Update the readme.txt file to include release notes for the version
  # Update the readme.txt to point to the correct stable release tag
+ # Update the readme.txt to reflect the most recent version of !WordPress
