@@ -11,6 +11,18 @@ This page attempts to explain what some of those myriad settings actually do.
 = Basic =
 
 
+== Post Type ==
+
+The simplified name used in the database and URLs -- no special characters here.
+
+== Menu Name ==
+
+Specify the human-readable name for the menus.
+
+== Description ==
+
+Tell us a bit about this thing you're creating.  This will be shown if you share your definition via the Export tool.
+
 == Use Default Menu Icon ==
 
 With version 0.9.4 and later, you got a wide variety of custom icons to use.  If you use the built-in set, you'll get both the small menu icon AND a larger 32x32 icon that appears when you create or edit your pages.
