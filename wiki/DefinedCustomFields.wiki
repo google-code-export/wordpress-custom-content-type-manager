@@ -1,0 +1,15 @@
+#summary Defined Custom Fields
+#labels Help,Custom-Fields
+#sidebar SidebarCustomFields
+
+When you first install the CCTM plugin, no custom fields are defined.  By defining a custom field, you are establishing a reusable field that can appear on any content type.  
+
+The workflow goes something like this:
+
+ # Create a Custom Field (click the *Custom Content Types --> Custom Fields* menu item)
+ # Choose the type of field.  For example, are you creating a [Checkbox] or a [Dropdown]?
+ # Define the field: different types of fields have different options, but in general, you give it a name, a label, and a description, then *Save the field*.
+ # Once you've defined a field, you must choose where that field will be displayed: does it belong to one content type or another?  Or to both.  You can manage the associations in two places:
+    * Custom Content Types --> Custom Fields --> Manage Associations
+    * Custom Content Types --> Custom Content Types --> Manage Custom Fields
+
