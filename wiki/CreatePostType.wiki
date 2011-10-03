@@ -175,6 +175,6 @@ This allows posts to be summarized using !WordPress' built-in archive grouping f
 Use these features to make your site and posts more easily searchable. 
 
 
-=== Enable Categories ===
+ * Enable Categories
 
-=== Enable Tags ==
+ * Enable Tags
