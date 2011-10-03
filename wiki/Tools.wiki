@@ -1,0 +1,19 @@
+#summary Tools for the CCTM
+#labels Help
+
+Tools offer additional functionality for the CCTM plugin.  
+
+= Available Tools =
+
+== Import ==
+
+This allows you [Import] a CCTM definition file.  The definition files can be created by any other site running 0.9.4 or later of the CCTM.  The files are in the JSON format and use a `.cctm.json` extension.
+
+== Export ==
+
+Use the export tool to [Export] a CCTM definition file.  You can either save to your local library or download a copy of the definition file.
+
+-----------------
+= More to Come =
+
+There will be more tools in future versions of the CCTM... stay tuned.
