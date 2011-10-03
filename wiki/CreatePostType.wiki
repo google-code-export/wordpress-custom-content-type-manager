@@ -10,22 +10,6 @@ This page attempts to explain what some of those myriad settings actually do.
 -------------------
 = Basic =
 
-== Show Admin User Interface ==
-
-I have a _really_ hard time imagining a case where you wouldn't check this: unless you're doing some serious mad-scientist stuff, this will be checked.
-
-== Public ==
-
-If you want a URL to point to one of the pages you create in your new content type, this will be checked.  If you are doing something that only requires that the posts be available to the backend, then you might leave this unchecked, but most of the time, you'll check this.
-
-This argument is really a shortcut used to define default values for the following:
- 
- * publicly_queriable = public
- * show_ui = public
- * show_in_nav_menus = public 
- * exclude_from_search != public
-
-Confused?  Yeah, you're not alone. I'm working on ways to simplify the interface to WP's unwieldily function. Problems arise if you specify any of these options and leave the _public_ option checked.  You really should use _either_ the *public* setting OR set the above options explicitly.
 
 == Use Default Menu Icon ==
 
@@ -116,9 +100,22 @@ This area is still in development, partly due to !WordPress' inflexible and imma
 
 = Advanced =
 
-== Capability Type ==
+== Public ==
 
-This ties into !WordPress permissions... currently, this hasn't been tested much.
+The public option here isn't specifically supported: we just set the defaults of the various options it represents.  "Public" here means that the following options are checked:
+ 
+ * Show Admin User Interface
+ * Show in Nav Menus
+ * Publicly Queriable
+ * Include in Search
+ * Include in RSS feed
+
+Normally these options are set together, but feel free to customize.
+
+== Show Admin User Interface ==
+
+I have a _really_ hard time imagining a case where you wouldn't check this: unless you're doing some serious mad-scientist stuff, this will be checked.
+
 
 == Show in Nav Menus ==
 
@@ -126,7 +123,7 @@ If you want to put your posts form this type into !WordPress' menus under *Appea
 
 == Publicly Queriable == 
 
-This one overlaps with the basic "Public" argument... not really sure what the !WordPress devs were thinking on this one.
+If you want your posts visible on the front-end via a URL, you'll check this.
 
 == Include in Search ==
 
@@ -135,6 +132,11 @@ Use this to dictate whether or not your posts in this type will show up in searc
 == Include in RSS Feed ==
 
 Use this to determine whether your posts in this type will show up in your RSS feed.
+
+== Capability Type ==
+
+This ties into !WordPress permissions... currently, this hasn't been tested much.
+
 
 == Can Export == 
 
