@@ -18,7 +18,14 @@ I have a _really_ hard time imagining a case where you wouldn't check this: unle
 
 If you want a URL to point to one of the pages you create in your new content type, this will be checked.  If you are doing something that only requires that the posts be available to the backend, then you might leave this unchecked, but most of the time, you'll check this.
 
-This argument is really a shortcut used to define default values for publicly_queriable, show_ui, show_in_nav_menus and exclude_from_search.
+This argument is really a shortcut used to define default values for the following:
+ 
+ * publicly_queriable = public
+ * show_ui = public
+ * show_in_nav_menus = public 
+ * exclude_from_search != public
+
+Confused?  Yeah, you're not alone. I'm working on ways to simplify the interface to WP's unwieldily function.
 
 == Use Default Menu Icon ==
 
