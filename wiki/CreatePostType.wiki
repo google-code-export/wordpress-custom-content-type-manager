@@ -2,3 +2,156 @@
 #labels Help
 
 Creating a new Content Type (known officially by !WordPress as [http://codex.wordpress.org/Post_Types post-types]) gives your !WordPress site CMS functionality.  The CCTM plugin allows you to create custom content types (a.k.a custom post-types) by tying into !WordPress' [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function.
+
+This page attempts to explain what some of those myriad settings actually do.
+
+<wiki:toc max_depth="2" />
+
+-------------------
+= Basic =
+
+== Show Admin User Interface ==
+
+I have a _really_ hard time imagining a case where you wouldn't check this: unless you're doing some serious mad-scientist stuff, this will be checked.
+
+== Public ==
+
+If you want a URL to point to one of the pages you create in your new content type, this will be checked.  If you are doing something that only requires that the posts be available to the backend, then you might leave this unchecked, but most of the time, you'll check this.
+
+== Use Default Menu Icon ==
+
+With version 0.9.4 and later, you got a wide variety of custom icons to use.  If you use the built-in set, you'll get both the small menu icon AND a larger 32x32 icon that appears when you create or edit your pages.
+
+-------------------
+
+= Labels =
+
+I really tried to make this one as self-explanatory as possible: see the little "?" icons by each item so you can see where each label appears.
+
+-------------------
+
+= Fields =
+
+== Title ==
+
+USE THIS.  !WordPress gets really weird if you omit the post title.  Seriously, you need a name for every page, even if you don't want to show it on your final template, things are so much easier if you use the title.
+
+== Content ==
+
+You should *probably* use this too.  Certain things (notably the [WYSIWYG] fields) get really unruly if you don't have this field enabled.  Certain CSS and Javascript is tied to the main content block, so deactivating it can cause some unpredictable behavior.
+
+== Author ==
+
+Tracks the post author.
+
+== Excerpt ==
+
+A small summary field, good when you're generating menus or RSS feeds.
+
+== Supports Custom Fields ==
+
+This one is currently ignored by the CCTM because the CCTM plugin will _override_ the default behavior in order to customize and standardize the custom fields used.
+
+== Post Formats ==
+
+Some themes will take advantage of this feature... some don't.  Anything you do with Post Formats can be done without them (albeit with some more work in your templates), so this is merely a matter of convenience in design and workflow.
+
+== Page Attributes ==
+
+This opens up a metabox of various page attributes.
+
+=== Thumbnail ===
+
+Give your post a "Featured Image".
+
+=== Hierarchical === 
+
+Allows you to specify a parent page and build a hierarchy.
+
+=== Use Custom Hierarchy ===
+
+This is where !WordPress starts breaking down: it's structured as a _blog_, not as a CMS.  So if you start putting posts of one type as children of another post-type, !WordPress starts getting weird, and the built-in tools don't help you see what's going on.  All of the built-in menus in !WordPress are designed to show posts of a _single type_.  The custom hierarchy lets you break out of that mold, but once you leave the trail, you have a bit more work to do in regards to navigation.  Use carefully!  
+
+-------------
+
+= Menu =
+
+== Show in Menu ==
+
+Most often this will be a simple "Yes", but starting with version 0.9.4, you can specify a custom top-level menu.  This lets you get a bit more creative in where your administration pages are placed, but you may need to adjust your CCTM [Settings] for this to work in a sensible manner.
+
+== Menu Position ==
+
+This is a basic sorting parameter.
+
+
+-----------------
+
+= URLs =
+
+This area is still in development, partly due to !WordPress' inflexible and immature way of handling permalinks.
+
+== Rewrite with Permalink Front ==
+
+== Permalink Action ==
+
+ * Off
+ * /%postname%/
+ * Custom
+
+== Rewrite Slug ==
+
+== Query Variable ==
+
+-------------------
+
+= Advanced =
+
+== Capability Type ==
+
+This ties into !WordPress permissions... currently, this hasn't been tested much.
+
+== Show in Nav Menus ==
+
+If you want to put your posts form this type into !WordPress' menus under *Appearance --> Menus*, then check this.  If you don't, you won't be able to select your posts to build your menu.
+
+== Publicly Queriable == 
+
+This one overlaps with the basic "Public" argument... not really sure what the !WordPress devs were thinking on this one.
+
+== Include in Search ==
+
+Use this to dictate whether or not your posts in this type will show up in search results.
+
+== Include in RSS Feed ==
+
+Use this to determine whether your posts in this type will show up in your RSS feed.
+
+== Can Export == 
+
+Honestly, I've never used this feature... 
+
+== Trackbacks ==
+
+Use this to enable the cross-blog [http://codex.wordpress.org/Introduction_to_Blogging#Trackbacks trackback] feature.
+
+== Enable Comments ==
+
+If you check this, make sure your templates use the `comments_template();` code.
+
+== Store Revisions ==
+
+Revisions require more storage space in the database, but you can easily roll back your post to a previous draft.
+
+== Enable Archives ==
+
+This allows posts to be summarized using !WordPress' built-in archive grouping functions.
+
+== Taxonomies ==
+
+Use these features to make your site and posts more easily searchable. 
+
+
+=== Enable Categories ===
+
+=== Enable Tags ==
