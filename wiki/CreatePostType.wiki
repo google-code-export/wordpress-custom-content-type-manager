@@ -25,7 +25,7 @@ This argument is really a shortcut used to define default values for the followi
  * show_in_nav_menus = public 
  * exclude_from_search != public
 
-Confused?  Yeah, you're not alone. I'm working on ways to simplify the interface to WP's unwieldily function.
+Confused?  Yeah, you're not alone. I'm working on ways to simplify the interface to WP's unwieldily function. Problems arise if you specify any of these options and leave the _public_ option checked.  You really should use _either_ the *public* setting OR set the above options explicitly.
 
 == Use Default Menu Icon ==
 
