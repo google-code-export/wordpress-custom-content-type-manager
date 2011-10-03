@@ -12,7 +12,9 @@ There are 2 places where you can make this association:
 
 If you choose the first, you can affect the order that the fields display in by dragging and dropping the fields into the order you want them.
 
+<wiki:toc max_depth="2" />
 
+----------------------
 == Manage Custom Fields ==
 
 This way of managing associations is more flexible because it allows you determine the order of the fields. This lets you look at a given *content type* and choose which fields you want to be included on that content type.
@@ -23,6 +25,8 @@ https://img.skitch.com/20111003-1yp3mpyb3mutbrya358ft21ja3.png
 
 Check the fields you want to include in this content type, drag them into the order you want, then click save.
 
+
+---------------
 == Managing Associations ==
 
 This option lets you manage the associations from a slightly different standpoint: it lets you look at a given *custom field* and choose where that field should be displayed.
