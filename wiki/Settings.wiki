@@ -7,6 +7,8 @@ Starting with version 0.9.4 of the plugin, you can adjust various settings that 
 
 <wiki:toc max_depth="2" />
 
+<wiki:video url="http://www.youtube.com/watch?v=ZRq8RcJrrXM" />
+
 == Delete Posts ==
 
 If this option is checked, then [DeletePostType deleting a content type definition] will actually delete any posts of that type from your database!  If you delete the posts from the database, it cannot be undone! So please be careful if you choose to use this option!
