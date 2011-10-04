@@ -5,6 +5,8 @@ Creating a new Content Type (known officially by !WordPress as [http://codex.wor
 
 This page attempts to explain what some of those myriad settings actually do.
 
+<wiki:video url="http://www.youtube.com/watch?v=YuP8sMV4yt4" />
+
 <wiki:toc max_depth="2" />
 
 -------------------
