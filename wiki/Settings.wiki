@@ -7,7 +7,7 @@ Starting with version 0.9.4 of the plugin, you can adjust various settings that 
 
 <wiki:toc max_depth="2" />
 
-<wiki:video url="http://www.youtube.com/watch?v=ZRq8RcJrrXM" />
+<wiki:video url="http://www.youtube.com/watch?v=wdsLgy0ocpo" />
 
 == Delete Posts ==
 
