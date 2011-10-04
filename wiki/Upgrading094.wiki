@@ -6,6 +6,8 @@
 Version 0.9.4 of the CCTM brings a lot of changes and improvements, so please be careful when upgrading!
 
 
+<wiki:video url="http://www.youtube.com/watch?v=N-3TWwgeBQ0" />
+
 == Custom Fields ==
 
 Starting with 0.9.4, custom field definitions are _normalized_.  That means you define them _once_ and you can add them to any content type you want.  This provided consistency in behavior for your site, but the normalization process may play havoc on your template files!  The update script should migrate your data the best it can, but it cannot easily update your template files, so instead it issues warnings!  
