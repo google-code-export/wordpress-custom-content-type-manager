@@ -6,7 +6,7 @@
 Version 0.9.4 of the CCTM brings a lot of changes and improvements, so please be careful when upgrading!
 
 
-<wiki:video url="http://www.youtube.com/watch?v=N-3TWwgeBQ0" />
+<wiki:video url="http://www.youtube.com/watch?v= BX2eJwA4_As" />
 
 == Custom Fields ==
 
