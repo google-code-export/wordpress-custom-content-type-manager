@@ -8,7 +8,7 @@ The reason Output Filters were implemented into the plugin was due primarily to 
 
 All you have to remember is that the only thing that's stored in your custom image fields is the _ID_ of the image you selected (it's a [http://en.wikipedia.org/wiki/Foreign_key foreign key]).  Most of the time, you don't want the number itself, you want the image that is _represented_ by that number.  The solution is to use an Output Filter to convert the number into an img tag or to the src of the image.
 
-<wiki:video url="http://www.youtube.com/watch?v=L_A0nYi1F3k" />
+<wiki:video url="http://www.youtube.com/watch?v=8VKvwHncOEE" />
 
 == Default Output Filter ==
 
