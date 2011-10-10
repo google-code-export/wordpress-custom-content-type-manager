@@ -17,8 +17,10 @@ Here's my running list of things to test before releasing a build.
  # Export the .cctm.json file for this setup.  Try importing that definition on another site.  Any errors?
  # In the template file, try using different Output Filters.  Any errors or unexpected behavior?
  # Try adding custom tpls to alter the manager HTML.  Does this work as expected?
+ # Verify that custom hierarchies work
+ # Verify that Tags and Categories work
  # Try everything on PHP 5.2 AND 5.3
- # Try using the release candidate to update the last stable version on a different site than the one used for development.
+ # Try updating the previous version to the newest version on a different site than the one used for development.
 
 =  !WordPress Mechanics =
 
