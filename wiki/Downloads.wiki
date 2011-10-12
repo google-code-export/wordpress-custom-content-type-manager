@@ -8,9 +8,9 @@ This plugin can be downloaded from the !WordPress.org site:
 
 = Developers Download =
 
-The most current development branch of this project is available as a zip file:
+The most current development branch of this project is available as a zip file available at:
 
-http://wpcctm.com/cctm-dev.zip
+http://wpcctm.com/
 
 Or it is available via SVN:
 
