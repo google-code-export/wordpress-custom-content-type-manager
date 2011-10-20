@@ -1,4 +1,5 @@
 #summary Sidebar displaying available output filters
+#labels Output-Filters
 
 <wiki:comment>
 Used as a sidebar in the Output Filters section.
@@ -9,6 +10,7 @@ Used as a sidebar in the Output Filters section.
   * [email_OutputFilter email]
   * [formatted_list_OutputFilter formatted_list]
   * [help_OutputFilter help]
+  * [invisible_OutputFilter invisible]
   * [raw_OutputFilter raw]
   * [to_array_OutputFilter to_array]
   * [to_image_array_OutputFilter to_image_array]
