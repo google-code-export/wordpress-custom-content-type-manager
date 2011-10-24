@@ -144,6 +144,21 @@ This gets a _complete_ post, including all custom fields.
 <?php print $my_post->my_custom_field; ?>
 }}}
 
+== Example2 ==
+
+You can also use this function to help grab all of a post's custom fields in a loop:
+
+{{{
+$results = get_posts(array('post_type'=>'book'));
+
+foreach($results as $r) {
+	$r = get_post_complete($r->ID);
+	print $r->post_title;
+	print $r->my_custom_field;
+	print_r($r); // <-- prints out all available fields, both built-in and custom fields
+}
+}}}
+
 <hr/>
 = get_posts_sharing_custom_field_value =
 
