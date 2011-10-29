@@ -30,6 +30,8 @@ print_custom_field('my_list:formatted_list', ', ');
 ?>
 }}}
 
+Note that it is also possible to use an associative array as the input.  If you use a simple string separator to operate on an associative array, only the array _values_ will be joined.
+
 == Example 2==
 
 For more control over the output, you can pass an array to the *$options* parameter.  The array must be in the following format:
