@@ -40,7 +40,10 @@ The *item_template* and *wrapper_template* are expected to be valid formatting s
 
 *item_template*: used to format each item in the list.  Available placeholders: 
 
+ * *`[+key+]`* : will be replaced with the key of the item
  * *`[+value+]`* : will be replaced with the value of the item
+
+Note that the `[+key+]` will be an integer unless the inputted $array was an associative array.
 
 *wrapper_template*: (optional) used to wrap the final output.  Available placeholders:
 
