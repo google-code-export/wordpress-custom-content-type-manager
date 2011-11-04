@@ -3,9 +3,9 @@
 
 = Introduction =
 
-This page was created to help remind users of how to effectively report bugs.  I've gotten a lot of incomplete bug reports that don't contain enough information, and the end result is that it wastes a lot of my time trying to figure things out and often the bug end up being ignored.  That's not because I don't care -- I DO care.  I care a lot about my plugin.  But it's impossible for me to fix things if I can't see what exactly is broken.  
+This page was created to help remind users of how to effectively report bugs.  I've gotten a lot of incomplete bug reports that don't contain enough information, and the end result is that it wastes a lot of my time trying to figure things out and often the bug ends up being ignored.  That's not because I don't care -- I DO care.  I care a lot about my plugin, and I want it to help _solve_ problems, not cause them.  But it's impossible for me to fix things if I can't see what exactly is broken.  
 
-The bottom line is this: if you want the bug fixed, then please take the time to report it accurately.  If I can't reproduce the bug for myself, then I cannot possibly fix it.
+The bottom line is this: if you want the bug fixed, then please take the time to report it accurately.  *If I can't reproduce the bug for myself, then I cannot fix it.*
 
 
 = Including System Information =
@@ -23,7 +23,7 @@ One of the most effective ways to report a bug is to include a screencast of the
 
 = Where to Report =
 
-If you do discover a bug, the appropriate place to report it is in the [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list Bug Tracker].  Do not email me directly about bugs unless you want to hire me for paid support.  If you aren't sure if it's a bug or not, then it's fine to ask around in the forums, but once you've confirmed that it's a bug
+If you do discover a bug, the appropriate place to report it is in the [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list Bug Tracker].  Do not email me directly about bugs unless you want to hire me for paid support.  If you aren't sure if it's a bug or not, then it's fine to ask around in the forums, but once you've confirmed that it's a bug, create a new Issue by clicking the Issues tab and entering in the relevant info.
 
 
 = Following Up =
