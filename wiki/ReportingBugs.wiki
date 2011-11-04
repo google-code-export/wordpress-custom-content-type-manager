@@ -1,0 +1,33 @@
+#summary How to report bugs
+#labels Help
+
+= Introduction =
+
+This page was created to help remind users of how to effectively report bugs.  I've gotten a lot of incomplete bug reports that don't contain enough information, and the end result is that it wastes a lot of my time trying to figure things out and often the bug end up being ignored.  That's not because I don't care -- I DO care.  I care a lot about my plugin.  But it's impossible for me to fix things if I can't see what exactly is broken.  
+
+The bottom line is this: if you want the bug fixed, then please take the time to report it accurately.  If I can't reproduce the bug for myself, then I cannot possibly fix it.
+
+
+= Including System Information =
+
+Inside of your !WordPress site, there is a menu-item created by the Custom Content Type Manager plugin which reads _Custom Content Types_.  You can click it (or ANY of the CCTM's admin pages) and you will see a footer that contains a link to *Report a Bug*.
+
+That page was designed to help you (the user) easily include the most relevant information about your system.  Just copy and paste the info from the yellow textarea into your bug report.
+
+https://img.skitch.com/20111104-xxtg4sm225rqjf4w4k6w1radxi.jpg
+
+= Do a Screencast =
+
+One of the most effective ways to report a bug is to include a screencast of the problem.  [http://www.techsmith.com/download/jing/default.asp Jing] is free software that runs on Windows and on Macs and lets you easily capture your screen and share it via a link.  Screencast videos can save _hours_ of emailing back and forth, because no matter how hard you try, sometimes there are details that we forget to mention.
+
+
+= Where to Report =
+
+If you do discover a bug, the appropriate place to report it is in the [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list Bug Tracker].  Do not email me directly about bugs unless you want to hire me for paid support.  If you aren't sure if it's a bug or not, then it's fine to ask around in the forums, but once you've confirmed that it's a bug
+
+
+= Following Up =
+
+If you got a link to this page pasted in your bug report then it's because I require additional information, or perhaps you forgot to include the system information.  Again, if it's worth reporting, it's worth reporting correctly.  You probably aren't the only one encountering a particular error, so it helps the whole community if you take the time to correctly identify the problem and follow up with details.
+
+Thanks!
