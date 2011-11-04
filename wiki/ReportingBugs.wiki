@@ -14,7 +14,7 @@ Inside of your !WordPress site, there is a menu-item created by the Custom Conte
 
 That page was designed to help you (the user) easily include the most relevant information about your system.  Just copy and paste the info from the yellow textarea into your bug report.
 
-https://img.skitch.com/20111104-xxtg4sm225rqjf4w4k6w1radxi.jpg
+https://img.skitch.com/20111104-jwhjfqbqnhrjb6crshcscn2nhf.jpg
 
 = Do a Screencast =
 
