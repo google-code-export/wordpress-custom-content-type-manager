@@ -1,5 +1,6 @@
 #summary print_custom_field function reference.
 #labels Function-Reference
+#sidebar SidebarFunctionReference
 
 = print_custom_field =
 
