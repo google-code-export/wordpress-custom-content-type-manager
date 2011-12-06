@@ -11,7 +11,9 @@ Or [CustomCustomFields write your own]! Starting with version 0.9.4, developers 
 
 [OutputFilters Output Filters]
 
-= Function Reference =
+== Function Reference ==
+
+=== Template Functions ===
 
  * [get_custom_field]
  * [get_custom_field_meta]
