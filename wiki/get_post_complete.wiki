@@ -1,5 +1,6 @@
 #summary get_post_complete function reference
 #labels Function-Reference
+#sidebar SidebarFunctionReference
 
 = get_post_complete =
 
