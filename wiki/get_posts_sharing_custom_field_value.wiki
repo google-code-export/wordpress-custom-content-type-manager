@@ -1,5 +1,6 @@
 #summary get_posts_sharing_custom_field_value function reference
 #labels Function-Reference
+#sidebar SidebarFunctionReference
 
 = get_posts_sharing_custom_field_value =
 
