@@ -1,0 +1,22 @@
+#summary get_relation function reference
+#labels Function-Reference
+
+= get_relation =
+
+_object_ *get_relation*( string _$fieldname_ ) 
+
+A relation field stores a post ID, and that ID identifies another post.  So given 
+a fieldname, this returns the complete post object for that was referenced by
+the custom field.
+
+=== $fieldname ===
+(string) (required) The name of the custom field.
+
+== Example ==
+
+{{{
+<?php
+$my_related_post = get_relation('my_rel');
+print $my_related_post->post_content;
+?>
+}}}
