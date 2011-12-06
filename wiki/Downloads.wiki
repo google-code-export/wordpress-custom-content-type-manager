@@ -24,3 +24,5 @@ Or it is available via SVN:
 Other versions are maintained via the !WordPress repository:
 
 https://wordpress.org/extend/plugins/custom-content-type-manager/download/
+
+Keep in mind that I can't maintain older versions of the plugin.
