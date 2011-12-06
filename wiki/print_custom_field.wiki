@@ -1,0 +1,6 @@
+#summary print_custom_field function reference.
+#labels Function-Reference
+
+= print_custom_field =
+
+This is a convenience function that simple prints the output of the [TemplateFunctions#get_custom_field  get_custom_field()] function.
