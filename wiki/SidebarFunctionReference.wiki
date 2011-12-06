@@ -1,0 +1,17 @@
+#summary List of all functions available in the CCTM
+#labels Function-Reference
+
+== Custom Fields ==
+
+[CustomFields Custom Fields]
+
+Or [CustomCustomFields write your own]! Starting with version 0.9.4, developers can create their own types of custom fields!
+
+== Output Filters ==
+
+[OutputFilters Output Filters]
+
+= Function Reference =
+
+ * [get_custom_field]
+ * [print_custom_field]
