@@ -4,7 +4,7 @@
 
 == Overview ==
 
-Color-selector text fields use a bit of !JavaScript to allow users to pick a color visually ([http://blog.meta100.com/post/600571131/mcolorpicker mColorPicker]).
+||http://s9.postimage.org/la64smtfv/colorselector.png ||Color-selector text fields use a bit of !JavaScript to allow users to pick a color visually ([http://blog.meta100.com/post/600571131/mcolorpicker mColorPicker]).||
 
 ----
 
