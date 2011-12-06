@@ -2,4 +2,11 @@
 #labels Custom-Fields
 #sidebar SidebarCustomFields
 
-Date fields are used to select a date.
+== Overview ==
+
+||http://s9.postimage.org/upm05ubgr/date.png||Date fields are used to select a date.||
+
+
+----
+
+== Field Definition (Meta Data)==
