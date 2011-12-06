@@ -1,11 +1,12 @@
 #summary Documentation for Relation custom fields
+#labels Custom-Fields
 #sidebar SidebarCustomFields
 
 = Description =
 
-The relation field stores an integer foreign key: it's the ID of the post you've selected as the relation.
+||http://s12.postimage.org/bztgulut5/relation.png||The relation field stores an integer foreign key to another post of some kind: post, page, or a media attachment like an image or video.||
 
-What do you do with that integer?  You probably want the _post_ that integer represents, so you'll want to use !WordPress' *get_post()* function:
+What do you do with that integer that's stored?  You probably want the _post_ that integer represents, so you'll want to use !WordPress' *get_post()* function:
 
 http://codex.wordpress.org/Function_Reference/get_post
 
