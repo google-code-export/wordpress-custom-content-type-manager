@@ -1,6 +1,9 @@
 #summary Documentation for Image custom fields
+#labels Custom-Fields
 
 == Overview ==
+
+||http://s8.postimage.org/jqdm96etd/image.png||This allows users to select a valid image that has been uploaded into the !WordPress Media library.||
 
 Custom image fields are used to store a foreign key reference to another post, specifically an "attachment" post_type representing some sort of image.  Because the raw post_id of the attachment post is not terribly useful in and of itself, image fields most often use some kind of [OutputFilters Output Filter] that will convert the ID into an image tag or the image src.
 
