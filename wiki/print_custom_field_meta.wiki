@@ -1,5 +1,6 @@
 #summary One-sentence summary of this page.
 #labels Function-Reference
+#sidebar SidebarFunctionReference
 
 = print_custom_field_meta =
 
