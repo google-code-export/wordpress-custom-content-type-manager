@@ -1,0 +1,32 @@
+#summary get_post Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The _get_post_ filter returns an associative array for the entire post when given the post ID.
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _string_.  
+ * *$options*: _none_.
+ * *OUTPUT*: _array_.  An associative array representing the post and all of its custom fields.
+
+== Example 1==
+
+{{{
+<?php 
+
+$post = get_custom_field('my_relation:get_post'); 
+print $post['post_title'];
+print $post['my_custom_field'];
+?>
+}}}
+
+= See Also =
