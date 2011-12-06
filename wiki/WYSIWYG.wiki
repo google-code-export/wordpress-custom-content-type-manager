@@ -4,8 +4,14 @@
 
 = Description =
 
-A What-you-see-is-what-you-get (WYSIWYG) field is a textarea with formatting controls like you might see in a word processor (e.g. Microsoft Word).  It allows users to format text without needing to know HTML markup codes.
+||http://s8.postimage.org/5q2dpjybl/wysiwyg.png||A What-you-see-is-what-you-get (WYSIWYG) field is a textarea with formatting controls like you might see in a word processor (e.g. Microsoft Word).  It allows users to format text without needing to know HTML markup codes.||
 
 = Examples =
 
 The most obvious example for comparison is the main content block in standard !WordPress posts and pages.
+
+= Warnings =
+
+The way WordPress has implemented the TinyMCE rich-text-editor is not very modular, so I've encountered all kinds of errors with it.  
+
+<font color="red">RECOMMENDATION</font>: always include the main content block and the title with your post-type definitions.  WordPress gets really weird without these fields.
