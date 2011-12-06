@@ -16,6 +16,9 @@ Or it is available via SVN:
 
 `svn checkout http://plugins.svn.wordpress.org/custom-content-type-manager/trunk custom-content-type-manager`
 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING</font>: The dev version may not be entirely stable!  Please don't use it on production sites and be willing to file bug reports!||
+
+
 = Other Versions =
 
 Other versions are maintained via the !WordPress repository:
