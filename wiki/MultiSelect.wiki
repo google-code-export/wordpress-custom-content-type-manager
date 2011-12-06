@@ -4,7 +4,7 @@
 
 == Overview ==
 
-Multi-select fields are used to store a list of multiple values. The values are encoded as a JSON array, so you probably want to use either the "Array" or "Formatted List" [OutputFilters Output Filter].
+||http://s8.postimage.org/hud1ssltt/multiselect.png||Multi-select fields are used to store a list of multiple values. The values are encoded as a JSON array, so you probably want to use either the "Array" or "Formatted List" [OutputFilters Output Filter].||
 
 ----
 
