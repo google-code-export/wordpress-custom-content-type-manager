@@ -4,7 +4,7 @@
 
 == Overview ==
 
-Custom textarea fields are meant to store arbitrary strings of data up to several pages in length.
+||http://s9.postimage.org/d13g5peh7/textarea.png||Custom textarea fields are meant to store arbitrary strings of data up to several pages in length.||
 
 ----
 
