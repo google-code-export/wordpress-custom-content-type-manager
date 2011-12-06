@@ -1,0 +1,20 @@
+#summary get_custom_field function reference.
+#labels Function-Reference
+
+= get_custom_field =
+
+_mixed_ *get_custom_field*( string _$fieldname_`[`, mixed _$options_ `]` ) 
+
+This is probably the single most important function used in your template files.  This gets the value of the custom field identified by _$fieldname_ and applies the default [OutputFilters Output Filter].  The default Output Filter can be overridden  by specifying an [OutputFilters Output Filter] verbosely by appending a colon (:) and the filter name, e.g.
+
+{{{
+$my_array = get_custom_field('my_field:to_array');
+}}}
+
+In most cases, this function is a merely a convenience function that ties into !WordPress' [http://codex.wordpress.org/Function_Reference/get_post_meta get_post_meta()] function. This plugin requires that each custom field has a unique name (i.e. a key), whereas the !WordPress _get_post_meta()_ function allows for multiple rows to exist with the same key.
+
+=== $fieldname ===         
+(string) (required) The name of the custom field whose value you want to get.
+ 
+=== $options ===         
+(mixed) (optional) These are optional arguments passed to the Output Filter.
