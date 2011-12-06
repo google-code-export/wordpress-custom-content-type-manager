@@ -17,3 +17,7 @@
 See all [SupportedCustomFields Supported Custom Fields]
 
 Or [CustomCustomFields write your own]! Starting with version 0.9.4, developers can create their own types of custom fields!
+
+== Output Filters ==
+
+[OutputFilters Output Filters]
