@@ -4,4 +4,4 @@
 
 = Description =
 
-Dropdown fields let you select a single option from a list of options.
+||http://s9.postimage.org/smg6bx11n/dropdown.png||Dropdown fields let you select a single option from a list of options.||
