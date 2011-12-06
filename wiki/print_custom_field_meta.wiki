@@ -1,0 +1,6 @@
+#summary One-sentence summary of this page.
+#labels Function-Reference
+
+= print_custom_field_meta =
+
+This is a convenience function that simple prints the output of the [TemplateFunctions#get_custom_field_meta  get_custom_field_meta()] function.
