@@ -1,0 +1,34 @@
+#summary get_post_complete function reference
+#labels Function-Reference
+
+= get_post_complete =
+
+_object_ *get_post_complete*( integer _$id_ ) 
+
+This gets a _complete_ post, including all custom fields.
+
+=== $id ===
+(integer) (required) The ID of the post whose data you want.
+
+== Example ==
+
+{{{
+<?php $my_post = get_post_complete(123); ?>
+<a href="<?php print $my_post->guid; ?>"><?php print $my_post->post_title; ?></a>
+<?php print $my_post->my_custom_field; ?>
+}}}
+
+== Example2 ==
+
+You can also use this function to help grab all of a post's custom fields in a loop:
+
+{{{
+$results = get_posts(array('post_type'=>'book'));
+
+foreach($results as $r) {
+	$r = get_post_complete($r->ID);
+	print $r->post_title;
+	print $r->my_custom_field;
+	print_r($r); // <-- prints out all available fields, both built-in and custom fields
+}
+}}}
