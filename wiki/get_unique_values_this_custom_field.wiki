@@ -1,5 +1,6 @@
 #summary get_unique_values_this_custom_field function reference.
 #labels Function-Reference
+#sidebar SidebarFunctionReference
 
 = get_unique_values_this_custom_field =
 
