@@ -9,42 +9,51 @@ By default, !WordPress supports only text custom fields.  The CCTM plugin allows
 
 == Checkbox ==
 
-A simple checkbox that stores 1 (checked) or 0 (unchecked). You can define whether it is checked by default by setting the default value to "1". 
+||http://s8.postimage.org/fglxaasn5/checkbox.png||A simple checkbox that stores 1 (checked) or 0 (unchecked). You can define whether it is checked by default by setting the default value to "1". ||
+
+== Color Selector ==
+
+||http://s9.postimage.org/la64smtfv/colorselector.png ||Color-selector text fields use a bit of !JavaScript to allow users to pick a color visually ([http://blog.meta100.com/post/600571131/mcolorpicker mColorPicker]).||
+
+== Date ==
+
+||http://s9.postimage.org/upm05ubgr/date.png||Date fields are used to select a date.||
 
 == Dropdown ==
 
-You can define a list of items to appear in a dropbox. You can define a specific item to be checked by default by entering its value in the "Default Value" field.
+||http://s9.postimage.org/smg6bx11n/dropdown.png||Dropdown fields let you select a single option from a list of options.||
 
-Currently, the value displayed to the users is exactly the value that is stored:
 
-{{{
-<option value="My Example">My Example</option>
-}}}
-
-In the future, this may support the ability to display one value and store another.
 
 == Image ==
 
-This allows users to select a valid image _from the wp_posts table_.  Any image that has been added via the standard !WordPress Media menu shows up as a possible image to choose, or you can choose to create a new image by uploading directly from the thickbox popup window.
+||http://s8.postimage.org/jqdm96etd/image.png||This allows users to select a valid image that has been uploaded into the !WordPress Media library.||
 
-In functionality, this field type essentially stores a foreign key to a post ID (just like the media or relation fields), however this is focused on image posts.
 
 == Media ==
 
-Use a media field to store a link to a generic media item (image, mp3, video).
+||http://s10.postimage.org/4r95kqwpx/media.png||Media fields are used to select an uploaded media file such as an mp3 or movie file.||
+
+
+== Multi-Select ==
+
+||http://s8.postimage.org/hud1ssltt/multiselect.png||Multi-select fields are used to store a list of multiple values. The values are encoded as a JSON array, so you probably want to use either the "Array" or "Formatted List" [OutputFilters Output Filter].||
 
 == Relation ==
 
-Use a relation field to store a link to another page or post.  Just like a page can have a parent, this allows your posts to have other relations, e.g. "Next Page", or "Related Item". 
+||http://s12.postimage.org/bztgulut5/relation.png||The relation field stores an integer foreign key to another post of some kind: post, page, or a media attachment like an image or video.||
+
 
 == Text ==
 
-This is the simplest of custom fields.  
+||http://s12.postimage.org/o4dbpbx2x/text.png||Custom text fields are the simplest type of custom fields.  They are meant to store arbitrary strings of data, usually no more than a few characters in length.||
+
 
 == Textarea ==
 
-Like the text field, but a text area, allowing more room to type.
+||http://s9.postimage.org/d13g5peh7/textarea.png||Custom textarea fields are meant to store arbitrary strings of data up to several pages in length.||
+
 
 == WYSIWYG ==
 
-A WYSIWYG field is what !WordPress uses for its main "content" field: it's a textarea with Javascript formatting controls.
+||http://s8.postimage.org/5q2dpjybl/wysiwyg.png||A What-you-see-is-what-you-get (WYSIWYG) field is a textarea with formatting controls like you might see in a word processor (e.g. Microsoft Word).  It allows users to format text without needing to know HTML markup codes.||
