@@ -4,4 +4,4 @@
 
 = Description =
 
-Media fields are used to select an uploaded media file such as an mp3 or movie file.
+||http://s10.postimage.org/4r95kqwpx/media.png||Media fields are used to select an uploaded media file such as an mp3 or movie file.||
