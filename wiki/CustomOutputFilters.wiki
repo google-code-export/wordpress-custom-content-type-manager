@@ -12,6 +12,7 @@ You can see examples of the built-in Output Filters inside of *custom-content-ty
 
 Developers can save their own filters inside of *wp-content/uploads/cctm/filters*
 
+------------
 
 = The Base Class =
 
