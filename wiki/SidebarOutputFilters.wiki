@@ -23,6 +23,7 @@ Used as a sidebar in the Output Filters section.
   * [to_link_href_OutputFilter to_link_href]
   * [to_link_OutputFilter to_link]
 
+_See also:_
 
-
-_View the [OutputFilters Output Filters Overview]_
+ * _View the [OutputFilters Output Filters Overview]_
+ * [CustomOutputFilters Custom Output Filters]
