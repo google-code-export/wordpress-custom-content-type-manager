@@ -28,3 +28,9 @@ print_custom_field('any_field:help');
 // prints out a help message
 ?>
 }}}
+
+= Sample Output =
+
+The *help* filter prints out something that looks like this (exact styling may be different due to CSS conflicts):
+
+https://img.skitch.com/20111208-rqdyyaixj8np2mgt8r471h8f8s.jpg
