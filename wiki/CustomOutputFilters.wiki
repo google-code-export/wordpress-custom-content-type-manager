@@ -6,7 +6,7 @@
 
 = Description =
 
-Starting with version 0.9.5 of the CCTM, developers can write their own [OutputFilters Output Filters].  All that's required is that you write a PHP class that extends the *!CCTM_OutputFilter* class.  That class is an [http://php.net/manual/en/language.oop5.abstract.php abstract class].  If you haven't used abstract classes before, check out Aleem Bawany's helpful explanation of them: [http://aleembawany.com/2010/04/03/understanding-abstract-classes-in-php/ Abstract Classes in PHP].  In a nutshell, they allow me to define what a class should look like, then the child class must implement the necessary functions.  That means each Output Filter follows a pattern: each class has a predictable set of functions that the CCTM expects.
+Starting with version 0.9.5 of the CCTM, developers can write their own [OutputFilters Output Filters].  All that's required is that you write a PHP class that extends the !*CCTM_OutputFilter* class.  That class is an [http://php.net/manual/en/language.oop5.abstract.php abstract class].  If you haven't used abstract classes before, check out Aleem Bawany's helpful explanation of them: [http://aleembawany.com/2010/04/03/understanding-abstract-classes-in-php/ Abstract Classes in PHP].  In a nutshell, they allow me to define what a class should look like, then the child class must implement the necessary functions.  That means each Output Filter follows a pattern: each class has a predictable set of functions that the CCTM expects.
 
 You can see examples of the built-in Output Filters inside of *custom-content-type-manager/includes/filters*.
 
@@ -128,3 +128,34 @@ class CCTM_demo extends CCTM_OutputFilter {
 }}}
 
 That's it.  We didn't have to use the *$show_in_menus* variable, because we're fine with the default (true).
+
+--------
+
+= Putting it to Use =
+
+Once you've created your new Output Filter, you can access it in several places:
+
+=== Inside your Custom Field Definitions ===
+
+When you create or edit a custom field definition, your new Output Filter will be available in the dropdown of available Output Filters (unless you set *$show_in_menus* to *false*):
+
+https://img.skitch.com/20111208-b2auqm82uhciyit65bf3u8yfgp.jpg
+
+
+=== Inside your Template Files===
+
+You can now modify the output of your custom fields using your filter by specifying it by its short name.
+
+https://img.skitch.com/20111208-byt1e9wnxcky48r1q2e2jw7nns.jpg
+
+Depending on what your filter does, you may want to use [get_custom_field get_custom_field()] instead of [print_custom_field print_custom_field()].
+
+=== Listing by the help filter ===
+
+If you haven't made use of the [help_OutputFilter help] Output Filter, you can appreciate it more now that you've written your own filter.  Apply the *help* filter to _any_ instance of [get_custom_field get_custom_field()] or [print_custom_field print_custom_field()], and you'll get a full readout of all available Output Filters and how to use them.
+
+For example, adding the following to a template file produces output that includes a blurb about our new Output Filter:
+
+{{{<?php print_custom_field('my_field:help'); ?>}}}
+
+https://img.skitch.com/20111208-th28ww1cghgi786txb2rw9ppkc.jpg
