@@ -21,12 +21,6 @@ By looking at the base class inside of *wp-content/plugins/custom-content-type-m
 
 _boolean_ : whether or not the filter should be listed in the field definitions as a selectable filter.
 	
-=== public $input_type===
-
-=== public $output_type===
-
-_string: one of string|array|mixed_: What kind of data does this filter output?
-	
 === public function filter()===
 
 This is where the magic happens.  This is where you put the code that will modify (i.e. filter) the input and return the modified output.
@@ -79,27 +73,38 @@ _string_: The URL where the user can read more about the filter.
 -------------------
 
 = Sample Output Filter Class =
+
+So that's all well and good, but let's have a look at how we might actually write our own filter.  Create a file named *demo.php* inside of *wp-content/uploads/cctm/filters* (create the directories if they don't already exist.
+
+== Naming Conventions ==
+
+ * Name your files in _all lowercase_!
+ * Do not use any spaces or dashes in the name!
+ * The name of the class _must_ correspond exactly to the base name of the file.  The classname will have a prefix of "CCTM_" and it will not use the ".php" extension.  E.g. if your filter is named "my_filter", then your filename would be *my_filter.php* and your classname will be "CCTM_my_filter".
+
+== Sample Class ==
+
+Create a file named *demo.php* and save it into *wp-content/uploads/cctm/filters*.  Paste the following code:
+
 {{{
 <?php
 /**
- * @package CCTM_default
+ * @package CCTM
  * 
- * Adds a default value if the input value is empty.
+ * Just a demonstration of a custom output filter
  */
 
-class CCTM_default extends CCTM_OutputFilter {
+class CCTM_demo extends CCTM_OutputFilter {
 
 	/**
 	 * Apply the filter.
 	 *
-	 * @param 	mixed 	input
-	 * @param	mixed	optional arguments to return if the input is empty
-	 * @return mixed
+	 * @param 	string 	input
+	 * @param	 mixed	optional arguments to return if the input is empty
+	 * @return string
 	 */
 	public function filter($input, $options=null) {
-		if (empty($input)) {
-			return $options;
-		}
+		return $input . ' ZORRO WAS HERE!!!';
 	}
 
 
@@ -107,7 +112,7 @@ class CCTM_default extends CCTM_OutputFilter {
 	 * @return string	a description of what the filter is and does.
 	 */
 	public function get_description() {
-		return __('The <em>default</em> filter kicks in only if the input is empty: whatever you specify as an option will be returned only if the input is empty.  This is one way to establish default values for your fields.', CCTM_TXTDOMAIN);
+		return 'The <em>demo</em> filter appends "ZORRO WAS HERE!!!" to everything it filters.';
 	}
 
 
@@ -117,55 +122,25 @@ class CCTM_default extends CCTM_OutputFilter {
 	 * @return string 	a code sample 
 	 */
 	public function get_example($fieldname='my_field') {
-		return "<?php print_custom_field('$fieldname:default', '<em>unknown</em>'); ?>";
+		return "<?php print_custom_field('$fieldname:demo'); ?>";
 	}
-
 
 	/**
 	 * @return string	the human-readable name of the filter.
 	 */
 	public function get_name() {
-		return __('Set Default Value', CCTM_TXTDOMAIN);
+		return 'Demo';
 	}
 
 	/**
 	 * @return string	the URL where the user can read more about the filter
 	 */
 	public function get_url() {
-		return __('http://code.google.com/p/wordpress-custom-content-type-manager/wiki/default_OutputFilter', CCTM_TXTDOMAIN);
+		return 'http://code.google.com/p/wordpress-custom-content-type-manager/wiki/OutputFilters';
 	}
 }
 /*EOF*/
 
-}}
-
-= Usage =
-
-Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
-
-_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
-
- * *$input*: _string_.  an integer post ID
- * *$options*: _string_. (optional) The "click me" text. The default value is the post's title.
- * *OUTPUT*: _string_. The URL for the referenced post.
-
-= Options =
-
-You can optionally specify the "click me" text for the link.
-
-
-== Example 1==
-
-Gets a full anchor tag to the referenced post.
-
-{{{
-<?php
-print_custom_field('my_relation:to_link','Read more...'); 
-// Prints out something like:
-// <a href="http://yoursite.com/some/post/">Read more...</a>
-?>
 }}}
 
-= See Also =
-
-[to_link_OutputFilter to_link_href] Output Filter
+That's it.  We didn't have to use the *$show_in_menus* variable, because we're fine with the default (true).
