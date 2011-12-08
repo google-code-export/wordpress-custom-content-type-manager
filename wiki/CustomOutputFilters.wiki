@@ -1,0 +1,171 @@
+#summary Writing your own Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+Starting with version 0.9.5 of the CCTM, developers can write their own [OutputFilters Output Filters].  All that's required is that you write a PHP class that extends the *CCTM_OutputFilter* class.  That class is an [http://php.net/manual/en/language.oop5.abstract.php abstract class].  If you haven't used abstract classes before, check out Aleem Bawany's helpful explanation of them: [http://aleembawany.com/2010/04/03/understanding-abstract-classes-in-php/ Abstract Classes in PHP].  In a nutshell, they allow me to define what a class should look like, then the child class must implement the necessary functions.  That means each Output Filter follows a pattern: each class has a predictable set of functions that the CCTM expects.
+
+You can see examples of the built-in Output Filters inside of *custom-content-type-manager/includes/filters*.
+
+Developers can save their own filters inside of *wp-content/uploads/cctm/filters*
+
+
+= The Base Class =
+
+By looking at the base class inside of *wp-content/plugins/custom-content-type-manager/includes/CCTM_OutputFilter.php*, you can see the following variables and methods.  Here's a brief description of each variable and function.
+
+=== public $show_in_menus ===
+
+_boolean_ : whether or not the filter should be listed in the field definitions as a selectable filter.
+	
+=== public $input_type===
+
+=== public $output_type===
+
+_string: one of string|array|mixed_: What kind of data does this filter output?
+	
+=== public function filter()===
+
+This is where the magic happens.  This is where you put the code that will modify (i.e. filter) the input and return the modified output.
+
+*INPUT*
+
+*$input* _mixed_  : this is either the raw input coming from the [get_custom_field get_custom_field()] function or if you're chaining Output Filters together, the input to this function will be the output from the previous function.
+
+*options* _mixed_ (optional): if your filter takes any arguments, this is where they'll be sent.
+
+*OUTPUT*
+
+_mixed_ : the modified input.
+
+=== public function get_description()===
+
+Get the human readable description of what it is your filter does.
+
+*OUTPUT*
+
+_string_ : a text description.
+
+===public function get_example()===
+
+Show the user how to use the filter inside a template file.
+
+*INPUT*
+*$fieldname* _string_ -- the name of the field to use in displaying examples.
+
+*OUTPUT*
+
+_string_: demonstrate how to use the filter inside a template file.
+
+===public function get_name()===
+
+*INPUT*
+
+_none_
+
+*OUTPUT*
+
+_string_: The human-readable name of the filter.
+
+===public function get_url()===
+*INPUT*
+_none_
+*OUTPUT*
+_string_: The URL where the user can read more about the filter.
+
+-------------------
+
+= Sample Output Filter Class =
+{{{
+<?php
+/**
+ * @package CCTM_default
+ * 
+ * Adds a default value if the input value is empty.
+ */
+
+class CCTM_default extends CCTM_OutputFilter {
+
+	/**
+	 * Apply the filter.
+	 *
+	 * @param 	mixed 	input
+	 * @param	mixed	optional arguments to return if the input is empty
+	 * @return mixed
+	 */
+	public function filter($input, $options=null) {
+		if (empty($input)) {
+			return $options;
+		}
+	}
+
+
+	/**
+	 * @return string	a description of what the filter is and does.
+	 */
+	public function get_description() {
+		return __('The <em>default</em> filter kicks in only if the input is empty: whatever you specify as an option will be returned only if the input is empty.  This is one way to establish default values for your fields.', CCTM_TXTDOMAIN);
+	}
+
+
+	/**
+	 * Show the user how to use the filter inside a template file.
+	 *
+	 * @return string 	a code sample 
+	 */
+	public function get_example($fieldname='my_field') {
+		return "<?php print_custom_field('$fieldname:default', '<em>unknown</em>'); ?>";
+	}
+
+
+	/**
+	 * @return string	the human-readable name of the filter.
+	 */
+	public function get_name() {
+		return __('Set Default Value', CCTM_TXTDOMAIN);
+	}
+
+	/**
+	 * @return string	the URL where the user can read more about the filter
+	 */
+	public function get_url() {
+		return __('http://code.google.com/p/wordpress-custom-content-type-manager/wiki/default_OutputFilter', CCTM_TXTDOMAIN);
+	}
+}
+/*EOF*/
+
+}}
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _string_.  an integer post ID
+ * *$options*: _string_. (optional) The "click me" text. The default value is the post's title.
+ * *OUTPUT*: _string_. The URL for the referenced post.
+
+= Options =
+
+You can optionally specify the "click me" text for the link.
+
+
+== Example 1==
+
+Gets a full anchor tag to the referenced post.
+
+{{{
+<?php
+print_custom_field('my_relation:to_link','Read more...'); 
+// Prints out something like:
+// <a href="http://yoursite.com/some/post/">Read more...</a>
+?>
+}}}
+
+= See Also =
+
+[to_link_OutputFilter to_link_href] Output Filter
