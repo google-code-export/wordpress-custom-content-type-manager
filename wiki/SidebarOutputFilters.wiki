@@ -25,5 +25,5 @@ Used as a sidebar in the Output Filters section.
 
 _See also:_
 
- * _View the [OutputFilters Output Filters Overview]_
+ * [OutputFilters Output Filters Overview]
  * [CustomOutputFilters Custom Output Filters]
