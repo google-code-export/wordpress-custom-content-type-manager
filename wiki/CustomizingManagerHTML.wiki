@@ -15,7 +15,7 @@ Why is this so frickin' complicated?  Well, sorry about that, but after many sle
 
 Any time a custom field is generated in the !WordPress manager when you create or edit a page, the HTML that generates that form element uses 3 separate template (*.tpl*) files to generate the final output.  The hierarchy is *Field --> Wrapper --> Metabox*:
 
-https://img.skitch.com/20110927-mip2pscb7snftaa3eu3isgqjhx.png
+http://s7.postimage.org/vg0t7txx7/custom_field_wrapping.jpg
 
 Usually, the wrapper wraps only one instance of the field, but if you are dealing with a repeatable field, each repeated instance of the field will use the _field_ template, and collectively all instances of that repeatable field will be wrapped with the wrapper.  
 
