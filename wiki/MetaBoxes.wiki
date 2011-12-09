@@ -1,0 +1,66 @@
+#summary Creating MetaBoxes for your Custom Content Type
+
+THIS PAGE IS UNDER CONSTRUCTION!!!
+
+
+= Introduction =
+
+Starting with version 0.9.6, you can customize your manager forms by creating metaboxes.
+
+This relies on !WordPress' [http://codex.wordpress.org/Function_Reference/add_meta_box add_meta_box()] function.
+
+<wiki:toc max_depth="2" />
+
+== Hierarchy =
+
+Any time a custom field is generated in the !WordPress manager when you create or edit a page, the HTML that generates that form element uses 3 separate template (*.tpl*) files to generate the final output.  The hierarchy is *Field --> Wrapper --> Metabox*:
+
+https://img.skitch.com/20110927-mip2pscb7snftaa3eu3isgqjhx.png
+
+Usually, the wrapper wraps only one instance of the field, but if you are dealing with a repeatable field, each repeated instance of the field will use the _field_ template, and collectively all instances of that repeatable field will be wrapped with the wrapper.  
+
+The metabox will contain all fields assigned to it. Currently, only the standard "Custom Fields" meta box is supported.
+
+A more thorough picture of the hierarchy would include multiple field instances:
+
+https://img.skitch.com/20110927-jad2cfqb2kf7b8ijcr3fff3g92.png
+
+-----
+
+== Directories ==
+
+You can override the built-in tpls used to format each part of this hierarchy by creating the following directory structure inside of your !WordPress *wp-content/uploads* directory:
+
+{{{
+cctm/tpls/fields
+cctm/tpls/fieldtypes
+cctm/tpls/wrappers/fields
+cctm/tpls/wrappers/fieldtypes
+cctm/tpls/metaboxes/{post_type}
+}}}
+
+=== cctm/tpls/fields ===
+
+The *cctm/tpls/fields* contains tpls used to format instances of a specific field.  For example, if you have a field named *my_field*, you could create a file named *cctm/tpls/fields/my_field.tpl* to format its output.
+
+If there is no dedicated tpl for a given field, a generic tpl for that _type_ of field will be used.  For example, if *my_field* is a dropdown field, the droptown.tpl field located in  *cctm/tpls/fieldtypes/dropdown.tpl* will be used if there is no dedicated tpl inside of the *cctm/tpls/fields* directory.
+
+
+=== cctm/tpls/fieldtypes ===
+
+This directory contains tpls used to format instances of a type of field, e.g. *text.tpl*, *textarea.tpl*, *dropdown.tpl*, etc.  These tpls are only used if there is no dedicated tpl for a given field inside of the *cctm/tpls/fields* directory.
+
+For example, if you wanted _all_ WYSIWYG fields to use a particular bit of HTML and CSS, you can place a file named *wysiwyg.tpl* inside the *cctm/tpls/fieldtypes* directory.
+
+=== cctm/tpls/wrappers/fields ===
+
+This directory contains tpls that will be used to wrap the field tpls.  All built-in fields use the same wrapper: *_default.tpl*.  You can specify the wrapper used for any specific field by placing a tpl file in the  *cctm/tpls/wrappers/fields* directory and naming it after the field, e.g. *my_field.tpl*
+
+=== cctm/tpls/wrappers/fieldtypes ===
+
+This directory contains tpls that will be used to wrap the field tpls.  You can specify the wrapper used for any type field by placing a tpl file in the  *cctm/tpls/wrappers/fieldtype* directory and naming it after the fieldtype, e.g. *dropdown.tpl*
+
+
+=== cctm/tpls/metaboxes/{post_type} ===
+
+The directory contains tpls that are used to format the final output before it is printed inside of a metabox for a given _post_type_.  If you want the default metabox for your *books* post type to use a specific tpl, create the directory *cctm/tpls/metaboxes/books* and create a file named *_default.tpl*.
