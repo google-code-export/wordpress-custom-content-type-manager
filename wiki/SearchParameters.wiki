@@ -1,0 +1,30 @@
+#summary Configuring Search Parameters
+
+Starting with version 0.9.5, you can configure the search parameters that define which posts are available for selection in a relation, image, or media field.  
+
+= Simple Search Parameters =
+
+When you define a relation custom field, note that there is a button for "Search Parameters".  When you click it, you get a thickbox that allows you to control which posts are available for selection in your posts and pages that use that custom field.
+
+https://img.skitch.com/20111214-43kgxr8xgmugtm1jmgu27hquh.jpg
+
+When you click that button, you get the form that will define which posts are available for selection in your custom field.
+
+https://img.skitch.com/20111214-jwr7hjgpmjbhm2dhwbmj58ab75.jpg
+
+
+= Configuring the Search Parameter Form =
+
+You can override the default configurations by writing your own configuration file.
+
+Inside of your !WordPress uploads directory, the CCTM uses its own directory, e.g. `wp-uploads/cctm` -- that's where we put all of our CCTM stuff.
+
+I have to point out here that this delves into some *convention* instead of just raw *configuration*.  CCTM tries to use configuration whenever possible, but in some cases, I just had to use some tricks to make it quicker to edit. 
+
+The little secret is that any configuration file inside of *custom-content-type-manager/config/search_parameters* can be overridden by placing a file into *uploads/cctm/config/search_parameters*.  That is to say, the user-created files inside of your upload directory take precedence over the the included built-in configurations.
+
+
+
+= The levels =
+
+How to explain this... you configure a form which in turn configures the search.
