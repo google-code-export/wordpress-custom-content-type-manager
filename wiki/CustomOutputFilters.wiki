@@ -6,7 +6,7 @@
 
 = Description =
 
-Starting with version 0.9.5 of the CCTM, developers can write their own [OutputFilters Output Filters].  All that's required is that you write a PHP class that extends the CCTM_OutputFilter class.  That class is an [http://php.net/manual/en/language.oop5.abstract.php abstract class].  If you haven't used abstract classes before, check out Aleem Bawany's helpful explanation of them: [http://aleembawany.com/2010/04/03/understanding-abstract-classes-in-php/ Abstract Classes in PHP].  In a nutshell, they allow me to define what a class should look like, then the child class must implement the necessary functions.  That means each Output Filter follows a pattern: each class has a predictable set of functions that the CCTM expects.
+Starting with version 0.9.5 of the CCTM, developers can write their own [OutputFilters Output Filters].  All that's required is that you write a PHP class that extends the [CustomOutputFilters CCTM_OutputFilter] class.  That class is an [http://php.net/manual/en/language.oop5.abstract.php abstract class].  If you haven't used abstract classes before, check out Aleem Bawany's helpful explanation of them: [http://aleembawany.com/2010/04/03/understanding-abstract-classes-in-php/ Abstract Classes in PHP].  In a nutshell, they allow me to define what a class should look like, then the child class must implement the necessary functions.  That means each Output Filter follows a pattern: each class has a predictable set of functions that the CCTM expects.
 
 You can see examples of the built-in Output Filters inside of *custom-content-type-manager/includes/filters*.
 
