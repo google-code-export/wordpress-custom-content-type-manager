@@ -1,0 +1,17 @@
+#summary CCTM::filter() function reference
+#labels Function-Reference
+#sidebar SidebarFunctionReference
+
+= CCTM::filter =
+
+_mixed_ *CCTM::filter*( mixed _$value_, string _$output_filter_, `[`, mixed _$options_ `]` ) 
+
+
+=== $value ===         
+(mixed) (required) The value you want to filter.
+ 
+=== $output_filter ===         
+(string) (required) The name of any available [OutputFilters Output Filter].
+
+=== $options ===         
+(mixed) (optional) Any options to be passed to the output filter
