@@ -12,7 +12,9 @@ This is probably the single most important function used in your template files.
 $my_array = get_custom_field('my_field:to_array');
 }}}
 
-In most cases, this function is a merely a convenience function that ties into !WordPress' [http://codex.wordpress.org/Function_Reference/get_post_meta get_post_meta()] function. This plugin requires that each custom field has a unique name (i.e. a key), whereas the !WordPress _get_post_meta()_ function allows for multiple rows to exist with the same key.
+In many cases, this function is a merely a convenience function that ties into !WordPress' [http://codex.wordpress.org/Function_Reference/get_post_meta get_post_meta()] function. This plugin requires that each custom field has a unique name (i.e. a key), whereas the !WordPress _get_post_meta()_ function allows for multiple rows to exist with the same key.
+
+When you use an [OutputFilters Output Filter], this function parts ways with !WordPress` _get_post_meta()_ function: you can modify your output inline using one of the Output Filters that ships with the CCTM, or you [CustomOutputFilters write your own].
 
 === $fieldname ===         
 (string) (required) The name of the custom field whose value you want to get.
