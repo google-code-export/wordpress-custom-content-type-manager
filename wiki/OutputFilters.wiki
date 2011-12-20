@@ -61,3 +61,17 @@ $filtered_value = CCTM::filter( $value, $filtername [, $options]);
  * *$value* : the value that you want to filter
  * *$filtername* : any valid output filter
  * *$options* : some filters use options to affect their output.  See the documentation for each filter.
+
+
+=== Example ===
+
+{{{
+<?php
+$my_thumb = CCTM::filter( 123, 'to_image_tag', 'thumbnail') );
+?>
+}}}
+
+In this example, we assume that 123 is the post ID of an attachment post (i.e. an image post).
+
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || Using the standalone *CCTM::filter()* function does not allow for automatic chaining: you would have to feed the output of one instance of this function into the input of another. ||
