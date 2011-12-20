@@ -1,0 +1,45 @@
+#summary excerpt Output Filter
+#labels Output-Filters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The _excerpt_ takes a long string and returns a shorter excerpt of it, either chopping the input on the separator string or limiting it to a given number of words.
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _string_.  
+ * *$options*: _none_.
+ * *OUTPUT*: _string_.  An encoded version of the $input.
+
+== Example 1==
+
+This will split on `<!--more-->`
+
+{{{
+<?php print_custom_field('my_long_textarea:excerpt'); ?>
+}}}
+
+
+== Example 2==
+
+This will split on `===` (a custom string separator)
+
+{{{
+<?php print_custom_field('my_long_textarea:excerpt', '==='); ?>
+}}}
+
+
+
+== Example 3==
+
+This will limit the input to 100 words.
+
+{{{
+<?php print_custom_field('my_long_textarea:excerpt', 100); ?>
+}}}
