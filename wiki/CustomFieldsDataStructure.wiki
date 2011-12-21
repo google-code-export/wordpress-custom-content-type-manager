@@ -1,7 +1,7 @@
 #summary A discussion on the data structure used to store data for repeatable custom fields
 #labels Technical
 
-One of the things that I felt was a fault in the way !WordPress deals with custom fields is how it stores the data.  The database tables are related in a fairly standard way: *wp_posts* contains the primary post ID, and the *wp_postmeta* table contains the custom field names and values keyed back to that post ID.
+One of the things that I felt was at fault in the way !WordPress deals with custom fields is how it stores the data.  The database tables are related in a fairly standard way: *wp_posts* contains the primary post ID, and the *wp_postmeta* table contains the custom field names and values keyed back to that post ID.
 
 !WordPress stores an array of values in multiple rows.  In other words, the names for each custom field are not unique.  Given a single post ID and a single field name, there could be an infinite number of rows in the database.  
 
