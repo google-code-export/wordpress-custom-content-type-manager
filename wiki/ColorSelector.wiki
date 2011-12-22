@@ -23,7 +23,7 @@ The field definition affects how instances of this field type will display in th
 
 == Included Javascript/CSS files ==
 
-NONE: _Checkbox fields do not include external files._
+* /js/mColorPicker.js  (Requires jquery-ui-core) 
 
 ----
 
@@ -80,4 +80,3 @@ The first of the following tpls found will be used to wrap the output:
 
  * fields/wrappers/{fieldname}.tpl
  * fields/wrappers/_colorselector_multi.tpl
-
