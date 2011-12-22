@@ -13,6 +13,9 @@ Most custom fields use two formatting templates to generate the HTML that you se
  * *field* : the field tpl file formats the value and information
  * *wrapper* : the wrapper tpl wraps the field tpl (or field tpls)
 
+Most often, the wrapper wraps only one instance of the field, but if your field is "repeatable" and can store multiple selections, then the wrapper will wrap multiple instances of the field.
+
+http://s7.postimage.org/vg0t7txx7/custom_field_wrapping.jpg
 
 
 = File Locations = 
@@ -56,9 +59,6 @@ Checkbox fields do not have a "repeatable" option.
 
 
 
-Any time a custom field is generated in the !WordPress manager when you create or edit a page, the HTML that generates that form element uses 3 separate template (*.tpl*) files to generate the final output.  The hierarchy is *Field --> Wrapper --> Metabox*:
-
-http://s7.postimage.org/vg0t7txx7/custom_field_wrapping.jpg
 
 Usually, the wrapper wraps only one instance of the field, but if you are dealing with a repeatable field, each repeated instance of the field will use the _field_ template, and collectively all instances of that repeatable field will be wrapped with the wrapper.  
 
