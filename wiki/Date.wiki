@@ -7,6 +7,80 @@
 ||http://s9.postimage.org/upm05ubgr/date.png||Date fields are used to select a date.||
 
 
+<wiki:toc max_depth="2" />
+
 ----
 
 == Field Definition (Meta Data)==
+
+The field definition affects how instances of this field type will display in the !WordPress manager while creating or posts that contain instances of this field type.
+
+ * *label* : the label identifies this field when you create or edit a post in the !WordPress manager
+ * *name* : the name is a unique identifier used when saving values for instances of this field; it corresponds to the *meta_key* column *wp_postmeta* table.  You will use this name when retrieving field values inside of your themes via the `print_custom_field()` or `get_custom_field()` functions.
+ * *description* : the description provides extra information to users as they create or edit a post in the !WordPress manager.
+ * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
+ * *extra* : this can be used to provide additional parameters to the text input, e.g. `size="10"` or custom javascript.. 
+ * *default_value* : This is used to determine the default value for new instances of this field type. 
+
+----
+
+== Included Javascript/CSS files ==
+
+ * `/js/datepicker.js`  (Requires jquery-ui-core) 
+
+----
+
+== Example of Use  in Template File ==
+
+Usually, you would use a color-selector field to print a value into some HTML element that would actually make use of the color information.
+
+{{{
+<p>The party will be on <?php print_custom_field('my_date'); ?></p>
+}}}
+
+=== Recommended Output Filters ===
+
+ * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
+
+
+----
+
+== Customizing Manager HTML ==
+
+Date fields use the 2 standard tpls: field and wrapper.  See [CustomizingManagerHTML] for more information.
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_date.tpl
+ * fields/elements/_default.tpl'
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_date.tpl
+ * fields/wrappers/_default.tpl
+
+=== Multi ===
+
+Date fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_date_multi.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_date_multi.tpl
+ * fields/wrappers/_text_multi.tpl
