@@ -36,6 +36,10 @@ By default, !WordPress supports only text custom fields.  The CCTM plugin allows
 
 ||http://s8.postimage.org/hud1ssltt/multiselect.png|| [MultiSelect] fields are used to store a list of multiple values. The values are encoded as a JSON array, so you probably want to use either the "Array" or "Formatted List" [OutputFilters Output Filter].||
 
+== Radio ==
+
+See [SupportedCustomFields#Dropdown Dropdown] (above).
+
 == Relation ==
 
 ||http://s12.postimage.org/bztgulut5/relation.png|| A [Relation] field stores an integer foreign key(s) to another post of some kind: post, page, or a media attachment like an image or video.||
