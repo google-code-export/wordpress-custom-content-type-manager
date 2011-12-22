@@ -31,7 +31,8 @@ NONE: _Checkbox fields do not include external files._
 
 == Example of Use  in Template File ==
 
-In the case of a checkbox field with no output filter, `print_custom_field('fieldname');` will return exactly the string that was was entered in the !WordPress manager and stored in the database.  The output is identical to 
+The output of `print_custom_field()` will either be the the *unchecked_value* or the *checked_value* defined in you field definition.
+
 
 {{{
 <?php
