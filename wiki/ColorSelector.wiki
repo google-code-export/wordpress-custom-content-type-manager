@@ -50,17 +50,17 @@ Colorselector fields use the 2 standard tpls: field and wrapper.  See [Customizi
 
 The first of following tpls found will be used to format the field:
 
- * fields/elements/{fieldname}.tpl
- * fields/elements/\_colorselector.tpl
- * fields/elements/\_default.tpl'
+ * `fields/elements/{fieldname}.tpl`
+ * `fields/elements/_colorselector.tpl`
+ * `fields/elements/_default.tpl`
 
 ==== Wrapper tpl ====
 
 The first of the following tpls found will be used to wrap the output:
 
- * fields/wrappers/{fieldname}.tpl
- * fields/wrappers/\_colorselector.tpl
- * fields/wrappers/\_default.tpl
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_colorselector.tpl`
+ # `fields/wrappers/_default.tpl`
 
 === Multi ===
 
@@ -71,12 +71,12 @@ Colorselector fields can be repeatable.  If the "repeatable" option is checked, 
 
 The first of following tpls found will be used to format the field:
 
- * fields/elements/{fieldname}.tpl
- * fields/elements/\_colorselector\_multi.tpl
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_colorselector_multi.tpl`
 
 ==== Wrapper tpl ====
 
 The first of the following tpls found will be used to wrap the output:
 
- * fields/wrappers/{fieldname}.tpl
- * fields/wrappers/\_colorselector\_multi.tpl
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_colorselector_multi.tpl`
