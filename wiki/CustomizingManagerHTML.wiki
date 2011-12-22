@@ -350,7 +350,7 @@ The first of the following tpls found will be used to wrap the output:
 
 === Multi ===
 
-Image fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+Relations fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
 
 
 ==== Field tpl====
@@ -374,10 +374,131 @@ The first of the following tpls found will be used to wrap the output:
 ---------
 == text ==
 
+||http://s12.postimage.org/o4dbpbx2x/text.png||Text fields use the standard 2 tpls for field and wrapper.||
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_text.tpl
+ * fields/elements/_default.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_text.tpl
+ * fields/wrappers/_default.tpl
+
+=== Multi ===
+
+Text fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_text_multi.tpl
+ * fields/elements/_default.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_text_multi.tpl
+ * fields/wrappers/_default.tpl
+
+
+
+
 
 ---------
 == textarea ==
 
+||http://s9.postimage.org/d13g5peh7/textarea.png||Textarea fields use the standard 2 tpls for field and wrapper.||
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_textarea.tpl
+ * fields/elements/_default.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_textarea.tpl
+ * fields/wrappers/_default.tpl
+
+=== Multi ===
+
+Textarea fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_textarea_multi.tpl
+ * fields/elements/_default.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_textarea_multi.tpl
+ * fields/wrappers/_default.tpl
+
+
+
+
 
 ---------
 == wysiwyg ==
+
+||http://s8.postimage.org/5q2dpjybl/wysiwyg.png||Textarea fields use the standard 2 tpls for field and wrapper.||
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_wysiwyg.tpl
+ * fields/elements/_default.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_wysiwyg.tpl
+ * fields/wrappers/_default.tpl
+
+=== Multi ===
+
+Textarea fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_wysiwyg_multi.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_wysiwyg_multi.tpl
