@@ -56,17 +56,17 @@ Checkbox fields use the 2 standard tpls: field and wrapper.  See [CustomizingMan
 
 The first of following tpls found will be used to format the field:
 
- * fields/elements/{fieldname}.tpl
- * fields/elements/_checkbox.tpl
- * fields/elements/_default.tpl'
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_checkbox.tpl`
+ # `fields/elements/_default.tpl`
 
 ==== Wrapper tpl ====
 
 The first of the following tpls found will be used to wrap the output:
 
- * fields/wrappers/{fieldname}.tpl
- * fields/wrappers/_checkbox.tpl
- * fields/wrappers/_default.tpl
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_checkbox.tpl`
+ # `fields/wrappers/_default.tpl`
 
 
 Checkbox fields do not have a "repeatable" option, so there is not a separate set of "multi" tpls.
