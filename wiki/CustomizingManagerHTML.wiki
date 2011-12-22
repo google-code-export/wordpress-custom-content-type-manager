@@ -242,9 +242,86 @@ Dropdown fields do not have a "repeatable" option, so there is not a separate se
 ---------
 == image ==
 
+||http://s8.postimage.org/jqdm96etd/image.png||Image fields use the standard 2 tpls for field and wrapper.||
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_image.tpl
+ * fields/elements/_default.tpl'
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_image.tpl
+ * fields/wrappers/_default.tpl
+
+=== Multi ===
+
+Image fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_image_multi.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_image_multi.tpl
+
+
 
 ---------
 == media ==
+
+||http://s10.postimage.org/4r95kqwpx/media.png||Media fields use the standard 2 tpls for field and wrapper.||
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_media.tpl
+ * fields/elements/_default.tpl'
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_media.tpl
+ * fields/wrappers/_default.tpl
+
+=== Multi ===
+
+Image fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_media_multi.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_media_multi.tpl
+
+
 
 
 ---------
@@ -253,6 +330,45 @@ Dropdown fields do not have a "repeatable" option, so there is not a separate se
 
 ---------
 == relation ==
+
+
+||http://s12.postimage.org/bztgulut5/relation.png||Relation fields use the standard 2 tpls for field and wrapper.||
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_relation.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_relation.tpl
+
+=== Multi ===
+
+Image fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_relation_multi.tpl
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_relation_multi.tpl
+
+
+
 
 
 ---------
