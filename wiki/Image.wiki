@@ -22,7 +22,7 @@ The field definition affects how instances of this field type will display in th
  * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
  * *extra* : this can be used to provide additional parameters to the text input, e.g. `size="10"` or custom javascript.. 
  * *default_value* : This is used to determine the default value for new instances of this field type. 
- * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files. This field type supports the following output filters: none, to_image_src, to_image_tag, to_image_array
+ * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files. A recommended default output filter for an image field would be: to_image_src, to_image_tag, or to_image_array
 
 ----
 
