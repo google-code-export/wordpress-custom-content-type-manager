@@ -2,11 +2,13 @@
 #labels Custom-Fields
 #sidebar SidebarCustomFields
 
-== Overview ==
+
 
 ||http://s8.postimage.org/jqdm96etd/image.png||This allows users to select a valid image that has been uploaded into the !WordPress Media library.||
 
-Custom image fields are used to store a foreign key reference to another post, specifically an "attachment" post_type representing some sort of image.  Because the raw post_id of the attachment post is not terribly useful in and of itself, image fields most often use some kind of [OutputFilters Output Filter] that will convert the ID into an image tag or the image src.
+Custom image fields are used to store a foreign key reference to another post, specifically to an "attachment" post representing an image.  Because the raw post_id of the attachment post is not terribly useful in and of itself, image fields most often use some kind of [OutputFilters Output Filter] that will convert the ID into an image tag or the image src.
+
+<wiki:toc max_depth="2" />
 
 ----
 
@@ -24,78 +26,49 @@ The field definition affects how instances of this field type will display in th
 
 ----
 
-== Output in Theme Files: Output Filters ==
+== Included Javascript/CSS files ==
 
-===None===
+ * `media-upload` (built-in WordPress script)
+ * `thickbox` (built-in WordPress script);
+ * `/js/relation.js`
 
-_integer_ *get_custom_field*( string _$fieldname_  ) 
+---
+
+== Example of Use  in Template File ==
+
+
+=== Example 1: Retrieve the src of the Image ===
+
+Here we show how to use the [to_image_src_OutputFilter to_image_src] Output Filter:
+
+{{{
+<img src="<?php print_custom_field('my_image:to_image_src'); ?>" />
+}}}
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || In the case of an image field with no output filter, `print_custom_field('fieldname');` will return _an integer number_ representing the ID of the image post that has been referenced!  || 
 
-The output is identical to:
+
+===Example 2: Get the Full `<img>` tag===
+
+When the *Full `<img>` tag* output filter is selected ([to_image_tag_OutputFilter to_image_tag]), the output of the `print_custom_field('fieldname');`function is a complete `<img>` tag.  The returned result relies on the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function.
+
+Remember that you can pass as an option any valid option for the *size* parameter in the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function, e.g. 
 
 {{{
-global $post;
-print get_post_meta($post->ID, $fieldname, true);
-}}}
-
-This has caused some confusion and ultimately it lead to the introduction of [OutputFilters Output Filters] in version 0.8.9 because usually you don't want the numerical ID, you want some attributes from the image that it _represents_.  The following Output Filters are here to help you.  In your custom field definition, select one of the following (available in versions 0.8.9 and greater).
-
-----
-
-===Image src===
-
-When the *Image src* output filter is selected, the output of the `print_custom_field('fieldname');`function is the full path to to the image, ideal for use inside of an image or anchor tag, for example:
-
-{{{
-<img src="<?php print_custom_field('my_image'); ?>" />
+print_custom_field('my_image:to_image_tag', 'thumbnail');
+// Might output something like 
+// <img src="wp-content/uploads/2012/03/14/thumbnail.jpg" />
 }}}
 
 
-The returned result relies on the referenced image's *guid* attribute and is identical to putting the following in your theme file:
-
-{{{
-global $post;
-$image_id = get_post_meta($post->ID, $fieldname, true);
-$MyImage = get_post($image_id);
-print $MyImage->guid;
-}}}
-
-----
-
-===Full `<img>` tag===
-
-When the *Full `<img>` tag* output filter is selected, the output of the `print_custom_field('fieldname');`function is a complete `<img>` tag.  The returned result relies on the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function and is identical to putting the following in your theme file:
-
-{{{
-global $post;
-$image_id = get_post_meta($post->ID, $fieldname, true);
-print wp_get_attachment_image_src( $image_id, 'full', true);
-}}}
+=== Example 3: Array of image src, width, height===
 
 
-*Options:*
-
-Any valid option for the *size* parameter in the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function, e.g. 
-
-{{{
-print_custom_field('my_image', 'thumbnail');
-}}}
-
-
-----
-
-===Array of image src, width, height===
-
-_array_ *get_custom_field*( string _$fieldname_  ) 
-
-<font color="red">_ERROR_ *print_custom_field*( string _$fieldname_  )</font>
-
-This output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height, for example:
+The [to_image_array_OutputFilter to_image_array] output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height, for example:
 
 {{{
 <?php
-list($src, $w, $h) = get_custom_field('my_image');
+list($src, $w, $h) = get_custom_field('my_image:to_image_array');
 ?>
 <img src="<?php print $src; ?>" width="<?php print $w; ?>" height="<?php print $h; ?>" />
 }}}
@@ -117,12 +90,69 @@ $image_id = get_post_meta($post->ID, $fieldname, true);
 list($src, $w, $h) = wp_get_attachment_image_src( $image_id, 'full', true);
 }}}
 
-*Options:*
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || *Using this output filter will effectively break any instances of `print_custom_field()`: use `get_custom_field()` instead.*  This is merely because an _ARRAY_ is returned, so you can't simply print it; you must iterate over its contents. ||
 
-Any valid option for the *size* parameter in the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function, e.g. 
+
+=== Example 4: Retrieving Multiple Images ===
+
+Since image fields support the "repeatable" option, your field might store an array of images.  Any time you use the "repeatable" option, you'll want to use the [to_array_OutputFilter to_array] Output Filter.
+
 
 {{{
-print_custom_field('my_image', 'thumbnail');
+<?php
+$array_of_images = get_custom_field('my_images:to_array');
+
+foreach ($array_of_images as $img_id) {
+   print CCTM::filter($img_id, 'to_image_tag');
+}
 }}}
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || *Using this output filter will effectively break any instances of `print_custom_field()`: use `get_custom_field()` instead.*  This is merely because an _ARRAY_ is returned, so you can't simply print it; you must iterate over its contents. ||
+Note here that we are using a foreach loop to iterate over the array, and we're using the [CCTM_filter CCTM::filter()] function to convert each value in the array into an image tag via the [to_image_tag_OutputFilter to_image_tag] Output Filter
+
+
+=== Recommended Output Filters ===
+
+ * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
+ * [to_image_tag_OutputFilter to_array]  for converting to a full `<img>` HTML tag.
+ * [to_image_src_OutputFilter to_array]  for retrieving the src of the image being referenced.
+ * [to_image_array_OutputFilter to_array]  for retrieving the width, height, and src of the image.
+
+----
+
+== Customizing Manager HTML ==
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_image.tpl`
+ # `fields/elements/_default.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_image.tpl`
+ # `fields/wrappers/_default.tpl`
+
+=== Multi ===
+
+Image fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_image_multi.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_image_multi.tpl`
