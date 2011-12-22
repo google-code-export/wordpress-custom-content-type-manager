@@ -328,6 +328,34 @@ The first of the following tpls found will be used to wrap the output:
 == multiselect ==
 
 
+||http://s8.postimage.org/hud1ssltt/multiselect.png||Multiselect fields use 2 separate tpls: the wrapper tpl and an "option" tpl.  These are the odd-duck of the group!||
+
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_multiselect.tpl
+ * fields/wrappers/_default.tpl
+
+
+==== Option tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/options/{fieldname}.tpl
+ * fields/options/_multiselect.tpl
+ * fields/options/_checkbox.tpl
+
+
+
+
+Multiselect fields do not have a "repeatable" option since they already allow you to store multiple values..
+
+
+
+
 ---------
 == relation ==
 
