@@ -63,9 +63,7 @@ This is only used to generate sample !WordPress template files; you will probabl
 
 == checkbox ==
 
-http://s8.postimage.org/fglxaasn5/checkbox.png
-
-Checkbox fields use the 2 standard tpls: field and wrapper.
+|| http://s8.postimage.org/fglxaasn5/checkbox.png|| Checkbox fields use the 2 standard tpls: field and wrapper.||
 
 ==== Field tpl====
 
@@ -90,7 +88,8 @@ Checkbox fields do not have a "repeatable" option, so there is not a separate se
 
 == colorselector ==
 
-Color-Selector fields use the 2 standard tpls: field and wrapper.
+||http://s9.postimage.org/la64smtfv/colorselector.png ||Color-Selector fields use the 2 standard tpls: field and wrapper.||
+
 
 ==== Field tpl====
 
@@ -134,7 +133,8 @@ The first of the following tpls found will be used to wrap the output:
 ---------
 == date ==
 
-Date fields use the 2 standard tpls: field and wrapper.
+||http://s9.postimage.org/upm05ubgr/date.png||Date fields use the 2 standard tpls: field and wrapper.||
+
 
 ==== Field tpl====
 
@@ -177,6 +177,66 @@ The first of the following tpls found will be used to wrap the output:
 
 ---------
 == dropdown ==
+
+||http://s9.postimage.org/smg6bx11n/dropdown.png||Dropdown fields use 3 separate tpls: field, wrapper, and an "option" tpl, and they use different tpls depending on whether they are set to display as a dropdown or as a radio button.||
+
+=== Regular Dropdown Format ===
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_dropdown.tpl
+ * fields/elements/_default.tpl'
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_dropdown.tpl
+ * fields/wrappers/_default.tpl
+
+
+==== Option tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/options/{fieldname}.tpl
+ * fields/options/_option.tpl
+
+
+=== Radio Button Format ===
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * fields/elements/{fieldname}.tpl
+ * fields/elements/_radio.tpl
+ * fields/elements/_default.tpl'
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/wrappers/{fieldname}.tpl
+ * fields/wrappers/_radio.tpl
+ * fields/wrappers/_default.tpl
+
+
+==== Option tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ * fields/options/{fieldname}.tpl
+ * fields/options/_radio.tpl
+
+
+
+Dropdown fields do not have a "repeatable" option, so there is not a separate set of "multi" tpls.  Use a Multiselect field to achieve a "repeatable dropdown".
+
 
 
 ---------
