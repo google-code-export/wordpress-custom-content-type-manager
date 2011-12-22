@@ -32,7 +32,7 @@ The field definition affects how instances of this field type will display in th
  * `thickbox` (built-in WordPress script);
  * `/js/relation.js`
 
----
+----
 
 == Example of Use  in Template File ==
 
