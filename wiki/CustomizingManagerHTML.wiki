@@ -22,9 +22,25 @@ http://s7.postimage.org/vg0t7txx7/custom_field_wrapping.jpg
 
 To begin understanding this, have a look at the `custom-content-type-manager/tpls` directory ("tpls" here is short for "templates").  There is a series of sub-directories there, each one dedicated to formatting a different part of the CCTM's output:
 
- * *fields* : these templates are what format instances of various fields.  These are probably what you will want to customize the most.
- * *post_selector*: the post-selector is what pops up in a thickbox when you select a relation, image, or media field.
- * *samples* : this is only used to generate sample !WordPress template files; you will probably never need to modify these formatting templates.
+
+=== tpls/fields/elements ===
+
+This directory contains tpls used to format instances of a type of field, e.g. *text.tpl*, *textarea.tpl*, *_dropdown.tpl*, etc.  These tpls are only used if there is no dedicated tpl for a given field inside of the *cctm/tpls/fields/elements* directory.   These are probably what you will want to customize the most.
+
+For example, if you wanted _all_ WYSIWYG fields to use a particular bit of HTML and CSS, you can place a file named *_wysiwyg.tpl* inside the *cctm/tpls/fields/elements* directory.
+
+
+=== tpls/fields/wrappers ===
+
+These templates are what format instances of various fields. 
+
+=== tpls/post_selector ===
+
+The post-selector is what pops up in a thickbox when you select a relation, image, or media field.
+
+=== tpls/samples ===
+
+This is only used to generate sample !WordPress template files; you will probably never need to modify these formatting templates.
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING</font>: do not edit the files in the `custom-content-type-manager/tpls` directory.  Instead, copy the directory (or parts of it) to your `wp-content/uploads/cctm` directory.||
 
