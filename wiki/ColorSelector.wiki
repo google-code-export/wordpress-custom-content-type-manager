@@ -37,7 +37,7 @@ Usually, you would use a color-selector field to print a value into some HTML el
 
 === Recommended Output Filters ===
 
-NONE. 
+ * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
 
 
 ----
