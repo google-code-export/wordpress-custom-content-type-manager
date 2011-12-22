@@ -5,9 +5,18 @@ THIS PAGE IS UNDER CONSTRUCTION!! I'm still figuring out functionality here...
 
 = Introduction =
 
-With version 0.9.4, you can customize the HTML that appears in the !WordPress manager when displaying your custom fields. The overall system here seems fairly complicated, but it needs to be that way in order to work in many different use-cases.  Don't worry!  Most of the time, you won't need to delve too deeply into the system to customize things the way you want to.  See the page on [CustomizingManagerHTMLUseCases Use Cases] for quick examples of how to achieve common customization tasks.
+With version 0.9.4, you can customize the HTML that appears in the !WordPress manager when displaying your custom fields.  The system here relies on formatting strings, similar in concept to those used by PHP's [http://php.net/manual/en/function.sprintf.php sprintf] function, but instead of using nondescript `%s` instances to denote where values will be placed, we instead use `[+placeholders+]` denoted with square brackets and plus signs.
 
-Why is this so frickin' complicated?  Well, sorry about that, but after many sleepless nights, I realized the following structure would adequately support repeatable fields and future expansion for multiple metaboxes. 
+
+= File Locations = 
+
+To begin understanding this, have a look at the `custom-content-type-manager/tpls` directory ("tpls" here is short for "templates").  There is a series of sub-directories there, each one dedicated to formatting a different part of the CCTM's output:
+
+ * *fields* : these templates are what format instances of various fields.  These are probably what you will want to customize the most.
+ * *post_selector*: the post-selector is what pops up in a thickbox when you select a relation, image, or media field.
+ * *samples* : this is only used to generate sample !WordPress template files; you will probably never need to modify these formatting templates.
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING</font>: do not edit the files in the `custom-content-type-manager/tpls` directory.  Instead, copy the directory (or parts of it) to your `wp-content/uploads/cctm` directory.||
 
 <wiki:toc max_depth="2" />
 
