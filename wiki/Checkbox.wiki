@@ -6,6 +6,8 @@
 
 || http://s8.postimage.org/fglxaasn5/checkbox.png || Custom checkbox fields are meant to store one of two values; the implementation here differs slightly from the standard HTML checkbox where a value is either present, or the variable is absent altogether.||
 
+<wiki:toc max_depth="2" />
+
 ----
 
 == Field Definition (Meta Data)==
