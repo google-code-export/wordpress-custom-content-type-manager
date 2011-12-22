@@ -41,11 +41,11 @@ For example, if you wanted _all_ WYSIWYG fields to use a particular bit of HTML 
 
 === tpls/fields/wrappers ===
 
-The wrapper tpls wrap field instances.  Most importantly, this a wrapper wraps multiple field instances (as in a "repeatable" field), but sometimes they wrap individual field instances too.  The wrapper tpl is usually where you will find Javascript controls or CSS divs that encapsulate all instances of a field.   
+The wrapper tpls wrap field instances.  Most importantly, this a wrapper tpl will wrap multiple field instances (as in a "repeatable" field), but sometimes they wrap individual field instances too.  The wrapper tpl is usually where you will find Javascript controls or CSS divs that encapsulate all instances of a field.   
 
 https://img.skitch.com/20111222-bhi4js41kbsqrqm4g5h888ipj1.jpg
 
-In the example above, you can see how the wrapper tpl surrounds all instances of the field tpls.
+In the example above, you can see how the wrapper tpl surrounds all instances of the field tpls: the buttons are contained in the wrapper tpl.
 
 === tpls/post_selector ===
 
