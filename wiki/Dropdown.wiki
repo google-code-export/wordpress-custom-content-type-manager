@@ -2,6 +2,110 @@
 #labels Custom-Fields
 #sidebar SidebarCustomFields
 
-= Description =
-
 ||http://s9.postimage.org/smg6bx11n/dropdown.png||Dropdown fields let you select a single option from a list of options.||
+
+<wiki:toc max_depth="2" />
+
+----
+
+== Field Definition (Meta Data)==
+
+The field definition affects how instances of this field type will display in the !WordPress manager while creating or posts that contain instances of this field type.
+
+ * *label* : the label identifies this field when you create or edit a post in the !WordPress manager
+ * *name* : the name is a unique identifier used when saving values for instances of this field; it corresponds to the *meta_key* column *wp_postmeta* table.  You will use this name when retrieving field values inside of your themes via the `print_custom_field()` or `get_custom_field()` functions.
+ * *description* : the description provides extra information to users as they create or edit a post in the !WordPress manager.
+ * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
+ * *extra* : this can be used to provide additional parameters to the text input, e.g. custom javascript.. 
+ * *default_value* : this should correspond to one of the defined options
+ * *options* : an array of selectable options
+ * *values* : an array of values to be stored.  If _use_key_values_ is checked, these will be distinct from the _options_, otherwise this array will be exactly equal to the _options_ array.
+ * *use_key_values* : 0|1. Checkbox defining whether or not you are creating a simple dropdown (0) where the options displayed visibly match the values stored, or if you are doing something more complex (1) where the values stored are different from what's displayed to the user.
+ * *display_type* : dropdown|radio -- this defines whether or not the field will be rendered as a dropdown field or as a series of radio buttons.
+
+----
+
+== Included Javascript/CSS files ==
+
+ * `/js/dropdown.js` (Requires jQuery)
+
+----
+
+== Example of Use  in Template File ==
+
+The output of `print_custom_field()` will simply print the selected option.  Note that the exact value returned will depend on whether or not you have checked "Distinct options/values" in your definition.
+
+
+{{{
+<?php
+print_custom_field('my_dropdown'); 
+?>
+}}}
+
+=== Recommended Output Filters ===
+
+ * [default_OutputFilter default]
+ * [wrapper_OutputFilter wrapper]
+
+
+----
+
+== Customizing Manager HTML ==
+
+Dropdown fields have wrapper, field, and option formatting templates, and there are 2 sets available depending on whether you format your output as a regular dropdown or as a series of radio buttons.
+
+=== Regular Dropdown Format ===
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_dropdown.tpl`
+ # `fields/elements/_default.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_dropdown.tpl`
+ # `fields/wrappers/_default.tpl`
+
+
+==== Option tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/options/{fieldname}.tpl`
+ # `fields/options/_option.tpl`
+
+
+=== Radio Button Format ===
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_radio.tpl`
+ # `fields/elements/_default.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_radio.tpl`
+ # `fields/wrappers/_default.tpl`
+
+
+==== Option tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/options/{fieldname}.tpl`
+ # `fields/options/_radio.tpl`
+
+
+Dropdown fields do not have a "repeatable" option, so there is not a separate set of "multi" tpls.  Use a Multiselect field to achieve a "repeatable dropdown".
