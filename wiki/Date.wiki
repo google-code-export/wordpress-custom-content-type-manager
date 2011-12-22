@@ -51,17 +51,17 @@ Date fields use the 2 standard tpls: field and wrapper.  See [CustomizingManager
 
 The first of following tpls found will be used to format the field:
 
- * fields/elements/{fieldname}.tpl
- * fields/elements/_date.tpl
- * fields/elements/_default.tpl
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_date.tpl`
+ # `fields/elements/_default.tpl`
 
 ==== Wrapper tpl ====
 
 The first of the following tpls found will be used to wrap the output:
 
- * fields/wrappers/{fieldname}.tpl
- * fields/wrappers/_date.tpl
- * fields/wrappers/_default.tpl
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_date.tpl`
+ # `fields/wrappers/_default.tpl`
 
 === Multi ===
 
@@ -72,13 +72,13 @@ Date fields can be repeatable.  If the "repeatable" option is checked, the follo
 
 The first of following tpls found will be used to format the field:
 
- * fields/elements/{fieldname}.tpl
- * fields/elements/_date_multi.tpl
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_date_multi.tpl`
 
 ==== Wrapper tpl ====
 
 The first of the following tpls found will be used to wrap the output:
 
- * fields/wrappers/{fieldname}.tpl
- * fields/wrappers/_date_multi.tpl
- * fields/wrappers/_text_multi.tpl
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_date_multi.tpl`
+ # `fields/wrappers/_text_multi.tpl`
