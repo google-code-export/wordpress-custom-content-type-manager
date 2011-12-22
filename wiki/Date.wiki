@@ -55,7 +55,7 @@ The first of following tpls found will be used to format the field:
 
  * fields/elements/{fieldname}.tpl
  * fields/elements/_date.tpl
- * fields/elements/_default.tpl'
+ * fields/elements/_default.tpl
 
 ==== Wrapper tpl ====
 
