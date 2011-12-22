@@ -1,7 +1,5 @@
 #summary Customizing Manager HTML
 
-THIS PAGE IS UNDER CONSTRUCTION!! PLEASE DO NOT REFERENCE IT UNTIL THIS MESSAGE IS GONE!!!
-
 With version 0.9.4, you can customize the HTML that appears in the !WordPress manager when displaying your custom fields.  The system here relies on formatting strings, similar in concept to those used by PHP's [http://php.net/manual/en/function.sprintf.php sprintf] function, but instead of using nondescript `%s` instances to denote where values will be placed, we instead use `[+placeholders+]` denoted with square brackets and plus signs.
 
 <wiki:toc max_depth="2" />
