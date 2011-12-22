@@ -11,6 +11,7 @@ Used as a sidebar in the Output Filters section.
 
 == Output Filters ==
 
+  * [default_OutputFilter default]
   * [email_OutputFilter email]
   * [excerpt_OutputFilter excerpt]
   * [formatted_list_OutputFilter formatted_list]
@@ -23,6 +24,7 @@ Used as a sidebar in the Output Filters section.
   * [to_image_tag_OutputFilter to_image_tag]
   * [to_link_href_OutputFilter to_link_href]
   * [to_link_OutputFilter to_link]
+  * [wrapper_OutputFilter wrapper]
 
 _See also:_
 
