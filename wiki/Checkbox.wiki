@@ -41,8 +41,8 @@ print_custom_field('my_checkbox');
 
 === Recommended Output Filters ===
 
-* [default_OutputFilter default]
-* [wrapper_OutputFilter]
+ * [default_OutputFilter default]
+ * [wrapper_OutputFilter]
 
 
 ----
