@@ -23,7 +23,7 @@ The field definition affects how instances of this field type will display in th
 
 == Included Javascript/CSS files ==
 
-* /js/mColorPicker.js  (Requires jquery-ui-core) 
+ * `/js/mColorPicker.js`  (Requires jquery-ui-core) 
 
 ----
 
