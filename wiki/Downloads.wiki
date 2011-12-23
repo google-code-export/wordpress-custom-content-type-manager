@@ -18,6 +18,9 @@ Or it is available via SVN:
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING</font>: The dev version may not be entirely stable!  Please don't use it on production sites and be willing to file bug reports!||
 
+https://img.skitch.com/20111223-fiw4uhkhed4gti2iiy7m4nh7t8.jpg
+
+_"Sir, it's quite possible this development branch is not entirely stable."_
 
 = Other Versions =
 
