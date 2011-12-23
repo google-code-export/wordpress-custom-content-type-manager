@@ -25,22 +25,53 @@ The field definition affects how instances of this field type will display in th
 
 == Included Javascript/CSS files ==
 
- * `/js/mColorPicker.js`  (Requires jquery-ui-core) 
+ * `/js/dropdown.js`  (Requires jquery) 
 
 ----
 
 == Example of Use  in Template File ==
 
-Usually, you would use a color-selector field to print a value into some HTML element that would actually make use of the color information.
+MultiSelects always contain an array of data, so you always have to handle them as an array of data.
+
+=== Example 1: Simple Array ===
 
 {{{
-<div style="background-color: <?php print_custom_field('my_colorselector'); ?>;">... </div>
+<?php 
+$my_array = get_custom_field('my_multiselect:to_array'); 
+foreach ($my_array as $item) {
+    print $item . '<br/>';
+}
+?>
 }}}
+
+=== Example 2: Formatted List ===
+
+{{{
+<?php 
+print_custom_field('my_multiselect:formatted_list', ','); 
+// will join each value with a comma, e.g. "dog, cat, man"
+?>
+}}}
+
+=== Example 3: Another Formatted List ===
+
+{{{
+print_custom_field('my_multiselect:formatted_list', array('<li>[+value+]</li>','<ul>[+content+]</ul>') );
+/* prints a formated unordered list:
+<ul>
+  <li>man</li>
+  <li>bear</li>
+  <li>pig</li>
+</ul>
+*/}}}
+
+
+
 
 === Recommended Output Filters ===
 
- * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
-
+ * [to_array_OutputFilter to_array] 
+ * [formatted_list_OutputFilter formatted_list] 
 
 ----
 
