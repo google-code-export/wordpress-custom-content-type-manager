@@ -66,6 +66,8 @@ print_custom_field('my_dropdown');
 
 Dropdown fields have wrapper, field, and option formatting templates, and there are 2 sets available depending on whether you format your output as a regular dropdown or as a series of radio buttons.
 
+See [CustomizingManagerHTML] for more information on customizing the appearance of the manager HTML.
+
 === Regular Dropdown Format ===
 
 ==== Field tpl====
