@@ -27,7 +27,7 @@ Note that filenames beginning with an underscore, e.g. *_image.tpl* are intended
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING</font>: do not edit the files in the `custom-content-type-manager/tpls` directory.  Instead, copy the directory (or parts of it) to your `wp-content/uploads/cctm` directory.||
 
-== Hierarchy ==
+= Hierarchy =
 
 The basic idea of this file structure is that users can override the built-in templates contained in the `plugins` directory with their own files created in the `uploads` directory.  The user-created directory inside of `wp-content/uploads/cctm/tpls` is searched before the built-in directory inside of `custom-content-type-manager/tpls`; that way templates can be easily overridden by the user.
 
