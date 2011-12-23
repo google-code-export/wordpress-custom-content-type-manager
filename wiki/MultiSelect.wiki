@@ -63,7 +63,8 @@ print_custom_field('my_multiselect:formatted_list', array('<li>[+value+]</li>','
   <li>bear</li>
   <li>pig</li>
 </ul>
-*/}}}
+*/
+}}}
 
 
 
