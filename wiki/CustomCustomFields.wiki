@@ -1,5 +1,6 @@
 #summary Developing your Own Custom Field Types
 #labels Custom-Fields
+#sidebar SidebarCustomFields
 
 = Introduction =
 
