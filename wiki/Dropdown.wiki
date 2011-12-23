@@ -10,7 +10,13 @@
 
 == Sample Image ==
 
+=== Dropdown Format ===
+
 https://img.skitch.com/20111223-pttjqhfwnaf1691k4wp8qbwb6r.jpg
+
+=== Radio Button Format ===
+
+https://img.skitch.com/20111223-mdfrnurxrd3qfqussncakssnq1.jpg
 
 ----
 
