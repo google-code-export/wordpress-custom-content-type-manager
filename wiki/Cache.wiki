@@ -1,7 +1,9 @@
 #summary Cache
 #labels Help
 
-Starting with version 0.9.5, the CCTM caches data to ensure a speedier performance of the !WordPress manager.
+CACHING FUNCTIONALITY IS IN DEVELOPMENT -- it can cause as many problems as it solves.
+
+== Directory Scans ==
 
 == Images ==
 
