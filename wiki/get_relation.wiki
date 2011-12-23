@@ -4,10 +4,10 @@
 
 = get_relation =
 
-_object_ *get_relation*( string _$fieldname_ ) 
+_array_ *get_relation*( string _$fieldname_ ) 
 
 A relation field stores a post ID, and that ID identifies another post.  So given 
-a fieldname, this returns the complete post object for that was referenced by
+a fieldname, this returns the complete post array for that was referenced by
 the custom field.
 
 === $fieldname ===
@@ -18,6 +18,6 @@ the custom field.
 {{{
 <?php
 $my_related_post = get_relation('my_rel');
-print $my_related_post->post_content;
+print $my_related_post['post_content'];
 ?>
 }}}
