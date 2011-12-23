@@ -64,7 +64,7 @@ Note here that we are using a foreach loop to iterate over the array, and we're 
 === Recommended Output Filters ===
 
  * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
- * [to_image_tag_OutputFilter to_array]  for converting to a full `<img>` HTML tag.
+ * [to_image_tag_OutputFilter to_image_tag]  for converting to a full `<img>` HTML tag.
  * [to_image_src_OutputFilter to_array]  for retrieving the src of the image being referenced.
 
 ----
