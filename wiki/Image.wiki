@@ -121,6 +121,7 @@ Note here that we are using a foreach loop to iterate over the array, and we're 
 
 == Customizing Manager HTML ==
 
+See [CustomizingManagerHTML] for more information on customizing the appearance of the manager HTML.
 
 ==== Field tpl====
 
