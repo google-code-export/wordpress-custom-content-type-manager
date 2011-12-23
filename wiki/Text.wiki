@@ -66,7 +66,7 @@ Colorselector fields use the 2 standard tpls: field and wrapper.  See [Customizi
 The first of following tpls found will be used to format the field:
 
  * `fields/elements/{fieldname}.tpl`
- * `fields/elements/_colorselector.tpl`
+ * `fields/elements/_text.tpl`
  * `fields/elements/_default.tpl`
 
 ==== Wrapper tpl ====
