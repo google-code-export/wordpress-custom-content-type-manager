@@ -51,10 +51,10 @@ Since image fields support the "repeatable" option, your field might store an ar
 
 {{{
 <?php
-$array_of_media = get_custom_field('my_videos:to_array');
+$array_of_posts = get_custom_field('my_brothers:to_array');
 
-foreach ($array_of_media as $med_id) {
-   print CCTM::filter($med_id, 'to_image_src');
+foreach ($array_of_posts as $post_id) {
+   print CCTM::filter($post_id, 'to_link_href');
 }
 }}}
 
@@ -65,7 +65,8 @@ Note here that we are using a foreach loop to iterate over the array, and we're 
 
  * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
  * [to_link_href_OutputFilter to_array]  for linking to the related item.
-
+ * [to_link_OutputFilter to_array]  for generating a full link tag
+ * [get_post_OutputFilter get_post] for getting the entire related post.
 
 ----
 
