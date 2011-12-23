@@ -4,9 +4,9 @@
 
 ||http://s8.postimage.org/5q2dpjybl/wysiwyg.png||A What-you-see-is-what-you-get (WYSIWYG) field is a textarea with formatting controls like you might see in a word processor (e.g. Microsoft Word).  It allows users to format text without needing to know HTML markup codes.||
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">*RECOMMENDATION*</font>: always include the main content block and the title with your post-type definitions.  WordPress gets really weird without these fields.||
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">*RECOMMENDATION*</font>: always include the main content block and the title with your post-type definitions.  !WordPress gets really weird without these fields.||
 
-Note that some functionality does not work with these extended WYSIWYG (e.g. full-screen mode).  This is due to shortcomings in how !WordPress has integrated !TinyMCE.
+Note that some functionality does not work with these extended WYSIWYG (e.g. full-screen mode).  This is due to shortcomings in how !WordPress has integrated TinyMCE.
 
 <wiki:toc max_depth="2" />
 
