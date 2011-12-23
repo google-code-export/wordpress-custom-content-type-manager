@@ -5,7 +5,7 @@
 
 = Description =
 
-The _excerpt_ takes a long string and returns a shorter excerpt of it, either chopping the input on the separator string or limiting it to a given number of words.
+The _excerpt_ takes a long string and returns a shorter excerpt of it, either chopping the input on the separator string or limiting it to a given number of words depending on whether you supply a string or an integer as the optional argument.  The default behavior is to split on the `<!--more-->` separator.
 
 = Usage =
 
