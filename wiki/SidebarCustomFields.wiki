@@ -22,3 +22,7 @@ Or [CustomCustomFields write your own]! Starting with version 0.9.4, developers 
 == Output Filters ==
 
 [OutputFilters Output Filters]
+
+== Function Reference ==
+
+[TemplateFunctions Function Reference]
