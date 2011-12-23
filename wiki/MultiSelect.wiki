@@ -2,9 +2,10 @@
 #labels Custom-Fields
 #sidebar SidebarCustomFields
 
-== Overview ==
 
-||http://s8.postimage.org/hud1ssltt/multiselect.png||Multi-select fields are used to store a list of multiple values. The values are encoded as a JSON array, so you probably want to use either the "Array" or "Formatted List" [OutputFilters Output Filter].||
+||http://s8.postimage.org/hud1ssltt/multiselect.png||Multi-select fields are used to store a list of multiple values. The values are encoded as a JSON array.||
+
+<wiki:toc max_depth="2" />
 
 ----
 
@@ -18,86 +19,47 @@ The field definition affects how instances of this field type will display in th
  * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
  * *extra* : this can be used to provide additional parameters to the text input, e.g. `size="10"` or custom javascript.. 
  * *default_value* : This is used to determine the default value for new instances of this field type. 
- * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files. This field type supports the following output filters: none, to_image_src, to_image_tag, to_image_array
+ * *output_filter* : [OutputFilters Output Filters] -- you'll need to use a filter that handles arrays, e.g. [to_array_OutputFilter to_array], or [formatted_list_OutputFilter formatted_list]
 
 ----
 
-== Output in Theme Files: Output Filters ==
+== Included Javascript/CSS files ==
 
-===None===
-
-_integer_ *get_custom_field*( string _$fieldname_  ) 
-
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || In the case of an image field with no output filter, `print_custom_field('fieldname');` will return _an integer number_ representing the ID of the image post that has been referenced!  || 
-
-The output is identical to:
-
-{{{
-global $post;
-print get_post_meta($post->ID, $fieldname, true);
-}}}
-
-This has caused some confusion and ultimately it lead to the introduction of [OutputFilters Output Filters] in version 0.8.9 because usually you don't want the numerical ID, you want some attributes from the image that it _represents_.  The following Output Filters are here to help you.  In your custom field definition, select one of the following (available in versions 0.8.9 and greater).
+ * `/js/mColorPicker.js`  (Requires jquery-ui-core) 
 
 ----
 
-===Image src===
+== Example of Use  in Template File ==
 
-When the *Image src* output filter is selected, the output of the `print_custom_field('fieldname');`function is the full path to to the image, ideal for use inside of an image or anchor tag.  The returned result relies on the referenced image's *guid* attribute and is identical to putting the following in your theme file:
-
-{{{
-global $post;
-$image_id = get_post_meta($post->ID, $fieldname, true);
-$MyImage = get_post($image_id);
-print $MyImage->guid;
-}}}
-
-----
-
-===Full `<img>` tag===
-
-When the *Full `<img>` tag* output filter is selected, the output of the `print_custom_field('fieldname');`function is a complete `<img>` tag.  The returned result relies on the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function and is identical to putting the following in your theme file:
+Usually, you would use a color-selector field to print a value into some HTML element that would actually make use of the color information.
 
 {{{
-global $post;
-$image_id = get_post_meta($post->ID, $fieldname, true);
-print wp_get_attachment_image_src( $image_id, 'full', true);
+<div style="background-color: <?php print_custom_field('my_colorselector'); ?>;">... </div>
 }}}
 
+=== Recommended Output Filters ===
 
-*Options:*
-
-Any valid option for the *size* parameter in the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function, e.g. 
-
-{{{
-print_custom_field('my_image', 'thumbnail');
-}}}
+ * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
 
 
 ----
 
-===Array of image src, width, height===
+== Customizing Manager HTML ==
 
-_array_ *get_custom_field*( string _$fieldname_  ) 
+MultiSelect fields are the odd duck here.  THey use the 2 tpls: option and wrapper.  See [CustomizingManagerHTML] for more information.
 
-<font color="red">_ERROR_ *print_custom_field*( string _$fieldname_  )</font>
+==== Option tpl====
 
-This output filter is intended for users who require a bit more control in their theme files: instead of returning a _string_ value,  it returns an _array_ containing the the referenced image's src, width, and height.  
+The first of following tpls found will be used to format the field:
 
-To achieve the same effect in your themes _without_ the use of this output filter, you would make use of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function, e.g.:
+ * `fields/options/{fieldname}.tpl`
+ * `fields/options/_multiselect.tpl`
+ * `fields/options/_checkbox.tpl`
 
-{{{
-global $post;
-$image_id = get_post_meta($post->ID, $fieldname, true);
-list($src, $w, $h) = wp_get_attachment_image_src( $image_id, 'full', true);
-}}}
+==== Wrapper tpl ====
 
-*Options:*
+The first of the following tpls found will be used to wrap the output:
 
-Any valid option for the *size* parameter in the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image wp_get_attachment_image()] function, e.g. 
-
-{{{
-print_custom_field('my_image', 'thumbnail');
-}}}
-
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || *Using this output filter will effectively break any instances of `print_custom_field()`: use `get_custom_field()` instead.* ||
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_multiselect.tpl`
+ # `fields/wrappers/_default.tpl`
