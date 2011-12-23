@@ -40,15 +40,15 @@ The field definition affects how instances of this field type will display in th
 === Example 1 ===
 
 {{{
-<?php print_custom_field('my_textarea'); ?>
+<?php print_custom_field('my_wysiwyg'); ?>
 }}}
 
 === Example 2: Array ===
 
-Will join all the instances of your textarea fields if you're using "repeatable" field.
+Will join all the instances of your WYSIWYG fields if your field is "repeatable".
 
 {{{
-<?php print_custom_field('my_textarea:formatted_list', '<hr/>'); ?>
+<?php print_custom_field('my_wysiwyg:formatted_list', '<hr/>'); ?>
 }}}
 
 
