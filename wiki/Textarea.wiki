@@ -2,9 +2,10 @@
 #labels Custom-Fields
 #sidebar SidebarCustomFields
 
-== Overview ==
 
 ||http://s9.postimage.org/d13g5peh7/textarea.png||Custom textarea fields are meant to store arbitrary strings of data up to several pages in length.||
+
+<wiki:toc max_depth="2" />
 
 ----
 
@@ -18,18 +19,78 @@ The field definition affects how instances of this field type will display in th
  * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
  * *extra* : this can be used to provide additional parameters to the text input, e.g. `rows="2" cols="20"` or custom javascript.. 
  * *default_value* : This is used to determine the default value for new instances of this field type. 
+ * *output_filter*: choose an output filter...
 
 ----
 
-== Output in Theme Files: Output Filters ==
+== Included Javascript/CSS files ==
 
-===None===
+NONE.
 
-_string_ *get_custom_field*( string _$fieldname_  ) 
+----
 
-In the case of a textarea field with no output filter, `print_custom_field('fieldname');` will return exactly the string that was was entered in the !WordPress manager and stored in the database.  The output is identical to 
+== Example of Use  in Template File ==
+
+Text fields are the most basic type of field
+
+=== Example 1 ===
 
 {{{
-global $post;
-print get_post_meta($post->ID, $fieldname, true);
+<?php print_custom_field('my_textarea'); ?>
 }}}
+
+=== Example 2: Array ===
+
+Will join all the instances of your textarea fields if you're using "repeatable" field.
+
+{{{
+<?php print_custom_field('my_textarea:formatted_list', '<hr/>'); ?>
+}}}
+
+
+
+=== Recommended Output Filters ===
+
+ * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
+
+
+----
+
+== Customizing Manager HTML ==
+
+Colorselector fields use the 2 standard tpls: field and wrapper.  See [CustomizingManagerHTML] for more information.
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * `fields/elements/{fieldname}.tpl`
+ * `fields/elements/_textarea.tpl`
+ * `fields/elements/_default.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_textarea.tpl`
+ # `fields/wrappers/_default.tpl`
+
+=== Multi ===
+
+Text fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_textarea_multi.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_textarea_multi.tpl`
