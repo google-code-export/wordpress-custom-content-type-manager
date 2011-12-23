@@ -38,7 +38,7 @@ The field definition affects how instances of this field type will display in th
 Here we show how to use the [to_image_src_OutputFilter to_image_src] Output Filter:
 
 {{{
-<img src="<?php print_custom_field('my_image:to_image_src'); ?>" />
+<img src="<?php print_custom_field('my_video:to_image_src'); ?>" />
 }}}
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || In the case of a media field with no output filter, `print_custom_field('fieldname');` will return _an integer number_ representing the ID of the media item post that has been referenced!  || 
@@ -51,7 +51,7 @@ Since image fields support the "repeatable" option, your field might store an ar
 
 {{{
 <?php
-$array_of_media = get_custom_field('my_images:to_array');
+$array_of_media = get_custom_field('my_videos:to_array');
 
 foreach ($array_of_media as $med_id) {
    print CCTM::filter($med_id, 'to_image_src');
