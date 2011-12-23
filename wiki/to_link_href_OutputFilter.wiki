@@ -30,7 +30,14 @@ Gets the full URL to the referenced post.
 
 {{{
 <a href="<?php print_custom_field('my_relation:to_link_href'); ?>">Click here!</a>
-?>
+}}}
+
+== Example 2 ==
+
+You can use any output filter in the [CCTM_filter CCTM::filter()] function.
+
+{{{
+<a href="<?php print CCTM::filter(345, 'to_link_href'); ?>">Click here!</a>
 }}}
 
 = See Also =
