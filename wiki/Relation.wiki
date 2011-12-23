@@ -2,21 +2,9 @@
 #labels Custom-Fields
 #sidebar SidebarCustomFields
 
-= Description =
+||http://s12.postimage.org/bztgulut5/relation.png||The relation field stores a reference to another post of some kind: post, page, or a media attachment like an image or video.||
 
-||http://s12.postimage.org/bztgulut5/relation.png||The relation field stores an integer foreign key to another post of some kind: post, page, or a media attachment like an image or video.||
-
-What do you do with that integer that's stored?  You probably want the _post_ that integer represents, so you'll want to use !WordPress' *get_post()* function:
-
-http://codex.wordpress.org/Function_Reference/get_post
-
-Try something like this in your template:
-`$related_post = get_post( get_custom_field('my_relation') );` 
-
-
-== Overview ==
-
-Relation fields are used to store a foreign key reference to another post of some kind. 
+<wiki:toc max_depth="2" />
 
 ----
 
@@ -30,56 +18,91 @@ The field definition affects how instances of this field type will display in th
  * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
  * *extra* : this can be used to provide additional parameters to the text input, e.g. `size="10"` or custom javascript.. 
  * *default_value* : This is used to determine the default value for new instances of this field type. 
- * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files. This field type supports the following output filters: none, to_image_src, to_image_tag, to_image_array
+ * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files. A recommended default output filter for an image field would be: to_image_src
 
 ----
 
-== Output in Theme Files: Output Filters ==
+== Included Javascript/CSS files ==
 
-===None===
-
-_integer_ *get_custom_field*( string _$fieldname_  ) 
-
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || In the case of a relation field with no output filter, `print_custom_field('fieldname');` will return _an integer number_ representing the ID of the post that has been referenced!  || 
-
-The output is identical to:
-
-{{{
-global $post;
-print get_post_meta($post->ID, $fieldname, true);
-}}}
-
-This has caused some confusion and ultimately it lead to the introduction of [OutputFilters Output Filters] in version 0.8.9 because usually you don't want the numerical ID, you want some attributes from the post that it _represents_.  The following Output Filters are here to help you.  In your custom field definition, select one of the following (available in versions 0.8.9 and greater).
+ * `media-upload` (built-in !WordPress script)
+ * `thickbox` (built-in !WordPress script);
+ * `/js/relation.js`
 
 ----
 
-===Full link `<a>` tag===
+== Example of Use  in Template File ==
 
-_string_ *get_custom_field*( string _$fieldname_,  `[`, string _$link_text_ `]`) 
 
-When the *Full link `<a>` tag* output filter is selected, the output of the `print_custom_field('fieldname');` function is a full anchor tag containing pointing to the post referenced. If the optional *$link_text* option is not provided, the title of the post is used.  The output is the same as putting the following in your theme files:
+=== Example 1: Retrieve a Link to the Related Post ===
+
+Here we show how to use the [to_link_href_OutputFilter to_image_src] Output Filter:
 
 {{{
-global $post;
-$related_post_id = get_post_meta($post->ID, $fieldname, true);
-$RelatedPost = get_post($related_post_id);
-print '<a href="'.$RelatedPost->guid.'">'.$RelatedPost->post_title.'</a>';
+<a href="<?php print_custom_field('my_relation: to_link_href'); ?>">Click me</a>
 }}}
 
-*Options* 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || In the case of a relation field with no output filter, `print_custom_field('fieldname');` will return _an integer number_ representing the ID of the related  post. || 
 
- * *$link_text* : enter the text you want to be clickable in your link, e.g. `print_custom_field('fieldname','Click Here');`
+
+=== Example 2: Retrieving Multiple Related Items ===
+
+Since image fields support the "repeatable" option, your field might store an array of images.  Any time you use the "repeatable" option, you'll want to use the [to_array_OutputFilter to_array] Output Filter.
+
+
+{{{
+<?php
+$array_of_media = get_custom_field('my_videos:to_array');
+
+foreach ($array_of_media as $med_id) {
+   print CCTM::filter($med_id, 'to_image_src');
+}
+}}}
+
+Note here that we are using a foreach loop to iterate over the array, and we're using the [CCTM_filter CCTM::filter()] function to convert each value in the array into the source of the media items via the [to_image_tag_OutputFilter to_image_src] Output Filter
+
+
+=== Recommended Output Filters ===
+
+ * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
+ * [to_link_href_OutputFilter to_array]  for linking to the related item.
 
 
 ----
 
-===Link href only===
+== Customizing Manager HTML ==
 
-When the *Link href only* output filter is selected, the output of the `print_custom_field('fieldname');`function is the full path to to the related post, ideal for use inside of an anchor tag.  The returned result relies on the referenced image's *guid* attribute and is identical to putting the following in your theme file:
 
-{{{
-global $post;
-$related_post_id = get_post_meta($post->ID, $fieldname, true);
-$RelatedPost = get_post($related_post_id);
-print $RelatedPost->guid;
-}}}
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_relation.tpl`
+ # `fields/elements/_default.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_relation.tpl`
+ # `fields/wrappers/_default.tpl`
+
+=== Multi ===
+
+Relation fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_relation_multi.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_relation_multi.tpl`
