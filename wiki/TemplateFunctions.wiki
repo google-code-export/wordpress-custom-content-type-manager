@@ -1,5 +1,5 @@
 #summary Functions available to your theme files
-#labels Function-Reference
+#labels Function-Reference,Featured
 #sidebar SidebarFunctionReference
 
 Below are the functions available to your theme files so you can print out the values stored in your custom fields into your custom templates.  Some functions also return information _about_ the custom fields.
