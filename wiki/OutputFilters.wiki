@@ -1,5 +1,5 @@
 #summary Available Output Filters: how to control how data is displayed in your themes
-#labels Help,Output-Filters
+#labels Help,Output-Filters,Featured
 #sidebar SidebarOutputFilters
 
 The functionality of Output Filters was greatly enhanced in version 0.9.4 of the CCTM.  The reason they exist is pretty much the same reason !WordPress uses its own [http://codex.wordpress.org/Plugin_API filters]: they are used to modify data before sending it to the browser screen.
