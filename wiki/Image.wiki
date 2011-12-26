@@ -137,7 +137,7 @@ The first of the following tpls found will be used to wrap the output:
 
  # `fields/wrappers/{fieldname}.tpl`
  # `fields/wrappers/_image.tpl`
- # `fields/wrappers/_default.tpl`
+ # `fields/wrappers/_relation.tpl`
 
 === Multi ===
 
