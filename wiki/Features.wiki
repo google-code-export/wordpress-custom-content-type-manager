@@ -7,7 +7,11 @@ The Custom Content Type Manager is one of several plugins for !WordPress that al
 
 
 ==All types of Custom Fields==
-By default, !WordPress only supports custom _text_ fields.  That's kind of boring, and it may not help you adequately display your content.  This plugin offers date fields, WYSIWYG rich text fields, image fields, dropdown fields and more!
+By default, !WordPress only supports custom _text_ fields.  That's kind of boring, and it may not help you adequately display your content.  This plugin offers date fields, WYSIWYG rich text fields, image fields, dropdown fields and [SupportedCustomFields  more]!
+
+== Repeatable Fields ==
+
+Starting with version 0.9.5, you can select almost every field as "repeatable".  That means for one field, you can store an array of multiple values, e.g. multiple images or posts.
 
 ==Standardized Custom Fields==
 Another shortcoming of !WordPress is its inability to standardize its custom fields.  If you need 100 custom fields added to your posts, each time you created a new post, you would have to manually add those same 100 fields, one after the other (and let's hope you don't mistype something!!).  
