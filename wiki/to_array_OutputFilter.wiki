@@ -17,7 +17,7 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
  * *$input*: _mixed_.  Normally a JSON formatted string, e.g. `["dog","cat","pig"]`
- * *$options*: _none_.
+ * *$options*: _string_. The name of another Output Filter: each item in the list will be passed through this filter.
  * *OUTPUT*: _array_. E.g. `array('dog','cat','pig')`
 
 == Example 1==
@@ -41,7 +41,23 @@ print implode(', ', $my_array);
 ?>
 }}}
 
+
 == Example 3==
+
+By supplying the name of a 2nd output filter to the arguments, you can apply the filter to each of the items in the array. 
+
+In this example, the field is a relation field, storing the post ids of related posts.
+
+{{{
+<?php
+$my_array = get_custom_field('my_relations:to_array', 'to_link');
+print implode('<br/>', $my_array);
+// would print a list of links to the related posts
+?>
+}}}
+
+
+== Example 4==
 
 The functionality here relies on PHP's [http://php.net/manual/en/function.json-decode.php json_decode] function.
 
