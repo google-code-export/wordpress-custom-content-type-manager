@@ -1,5 +1,5 @@
 #summary Custom Fields currently supported
-#labels Help,Custom-Fields
+#labels Help,Custom-Fields,Featured
 #sidebar SidebarCustomFields
 
 
