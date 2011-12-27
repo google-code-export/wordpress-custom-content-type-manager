@@ -68,8 +68,8 @@ Below are the steps outlined in the video:
     * `wp-content/uploads/cctm/tpls/fields/elements`
     * `wp-content/uploads/cctm/tpls/fields/wrappers`
  # Copy the following files:
-    * `wp-content/plugins/custom-content-type-manager/tpls/fields/elements/_image.tpl` to `wp-content/uploads/cctm/tpls/fields/elements/_image.tpl`
-    * `wp-content/plugins/custom-content-type-manager/tpls/fields/wrappers/_relation.tpl` to `wp-content/uploads/cctm/tpls/fields/wrappers/_relation.tpl`
+    * `wp-content/plugins/custom-content-type-manager/tpls/fields/elements/_image.tpl` *to* `wp-content/uploads/cctm/tpls/fields/elements/_image.tpl`
+    * `wp-content/plugins/custom-content-type-manager/tpls/fields/wrappers/_relation.tpl` *to* `wp-content/uploads/cctm/tpls/fields/wrappers/_relation.tpl`
  # Rename the following file `wp-content/uploads/cctm/tpls/fields/wrappers/_relation.tpl` to `_image.tpl` -- this step is optional, but it helps show the priority of which tpls get used.
  # Edit the copies of your tpls!  The `elements/_image.tpl` formatting template will be used to format the individual image selection for all image fields.  The `wrappers/_image.tpl` is used to format the wrapping template of all image fields.
  # Make a copy of the `wrappers/_image.tpl` and name the copy after the name of the field, e.g. name the copy `wrappers/poster_img.tpl`.   Now the `wrappers/poster_img.tpl` will be used to wrap all instances of the *poster_img* field, whereas the catch-all `wrappers/_image.tpl` will be used to wrap all generic image fields.
