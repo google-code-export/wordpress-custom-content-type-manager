@@ -56,3 +56,12 @@ The post-selector is what pops up in a thickbox when you select a relation, imag
 === tpls/samples ===
 
 This is only used to generate sample !WordPress template files; you will probably never need to modify these formatting templates.
+
+= Tutorial =
+
+<wiki:video url="http://www.youtube.com/watch?v=VmSxzuQd7N8"/>
+
+ # Create a custom image field and add it to one of your post-types.
+ # Create the 
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || Use the `[+help+]` placeholder to display all possible placeholders available in any given .tpl file. ||
