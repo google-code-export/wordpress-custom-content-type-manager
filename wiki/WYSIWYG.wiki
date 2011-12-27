@@ -64,6 +64,8 @@ Will join all the instances of your WYSIWYG fields if your field is "repeatable"
 
 Colorselector fields use the 2 standard tpls: field and wrapper.  See [CustomizingManagerHTML] for more information.
 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">*WARNING*</font>: the functionality of !WordPress' implementation of TinyMCE changed drastically in version 3.3, so the formatting methods here are likely to change.||
+
 ==== Field tpl====
 
 The first of following tpls found will be used to format the field:
