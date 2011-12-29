@@ -40,4 +40,13 @@ This should return (not print) form elements that handle all the controls requir
 
 <font color="red">You MUST implement this function.</font>
 
+===<font color="red">abstract</font> <font color="green">public function get_name();</font>===
+
+_string_ *get_name*()
+
+This should return (not print) the common name of the field, e.g. "Text", "Dropdown", etc. 
+
+<font color="red">You MUST implement this function.</font>
+
+
 MORE COMING...
