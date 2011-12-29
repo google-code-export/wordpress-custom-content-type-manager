@@ -53,7 +53,7 @@ This should return (not print) the common name of the field, e.g. "Text", "Dropd
 
 _string_ *get_url*()
 
-This should return (not print) a full link to where users can get information about this type of field, e.g. "http://code.google.com/p/wordpress-custom-content-type-manager/wiki/Image"
+This should return (not print) a full link to where users can get information about this type of field, e.g. `http://code.google.com/p/wordpress-custom-content-type-manager/wiki/Image`
 
 <font color="red">You MUST implement this function.</font>
 
@@ -62,7 +62,7 @@ This should return (not print) a full link to where users can get information ab
 
 _string_ *get_icon*()
 
-Return URL to a 48x48 PNG image that should represent this type of field. e.g. "http://mysite/images/coolio.png"
+Return URL to a 48x48 PNG image that should represent this type of field. e.g. `http://mysite/images/coolio.png`
 
 
 
