@@ -18,11 +18,11 @@ Developers can save their own filters inside of *wp-content/uploads/cctm/filters
 
 By looking at the base class inside of *wp-content/plugins/custom-content-type-manager/includes/CCTM_OutputFilter.php*, you can see the following variables and methods.  Here's a brief description of each variable and function.
 
-=== public $show_in_menus ===
+=== <font color="green">public $show_in_menus</font> ===
 
 _boolean_ : whether or not the filter should be listed in the field definitions as a selectable filter.
 	
-=== public function filter()===
+=== <font color="green">public function filter()</font>===
 
 _mixed_ *filter*( mixed _$input_ , mixed _$options_)
 
@@ -31,25 +31,25 @@ This is where the magic happens.  This is where you put the code that will modif
 If your filter takes any arguments, they'll be sent to the $options argument.
 
 
-=== public function get_description()===
+=== <font color="green">public function get_description()</font>===
 
 _string_ *get_description*()
 
 Get the human readable description of what it is your filter does.
 
-===public function get_example()===
+===<font color="green">public function get_example()</font>===
 
 _string_ *get_example*()
 
 Show the user how to use the filter inside a template file.
 
-===public function get_name()===
+===<font color="green">public function get_name()</font>===
 
 _string_ *get_name*()
 
 Returns the human-readable name of the filter.
 
-===public function get_url()===
+===<font color="green">public function get_url()</font>===
 _string_ *get_url*()
 
 Returns the URL where the user can read more about the filter.
