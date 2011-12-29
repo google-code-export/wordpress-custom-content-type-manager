@@ -32,10 +32,12 @@ _string_ *public function get_create_field_definition*()
 
 This should return (not print) form elements that handle all the controls required to define this type of field.  Normally, you shouldn't need to implement this function.  Usually implementing the *get_edit_field_definition()* is enough.
 
-===<font color="green">abstract public get_edit_field_definition()</font>===
+===<font color="red">abstract</font> <font color="green">public get_edit_field_definition()</font>===
 
 _string_ *get_edit_field_definition*($current_values)
 
-This should return (not print) form elements that handle all the controls required to edit the field definition.
+This should return (not print) form elements that handle all the controls required to edit the field definition.  
+
+<font color="red">You MUST implement this function.</font>
 
 MORE COMING...
