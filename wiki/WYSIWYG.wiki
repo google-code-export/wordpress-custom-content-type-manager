@@ -4,8 +4,6 @@
 
 ||http://s8.postimage.org/5q2dpjybl/wysiwyg.png||A What-you-see-is-what-you-get (WYSIWYG) field is a textarea with formatting controls like you might see in a word processor (e.g. Microsoft Word).  It allows users to format text without needing to know HTML markup codes.||
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">*RECOMMENDATION*</font>: always include the main content block and the title with your post-type definitions.  !WordPress gets really weird without these fields.||
-
 Note that some functionality does not work with these extended WYSIWYG (e.g. full-screen mode).  This is due to shortcomings in how !WordPress has integrated TinyMCE.
 
 <wiki:toc max_depth="2" />
@@ -62,17 +60,10 @@ Will join all the instances of your WYSIWYG fields if your field is "repeatable"
 
 == Customizing Manager HTML ==
 
-Colorselector fields use the 2 standard tpls: field and wrapper.  See [CustomizingManagerHTML] for more information.
+Colorselector fields use only the wrapper tpl.  This is due to how !WordPress has implemented TinyMCE in a very constrictive manner.  This same deficiency in !WordPress prevents WYSIWYG fields from being repeatable. See issue 271 for more information.
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">*WARNING*</font>: the functionality of !WordPress' implementation of TinyMCE changed drastically in version 3.3, so the formatting methods here are likely to change.||
+See [CustomizingManagerHTML] for more information.
 
-==== Field tpl====
-
-The first of following tpls found will be used to format the field:
-
- * `fields/elements/{fieldname}.tpl`
- * `fields/elements/_wysiwyg.tpl`
- * `fields/elements/_default.tpl`
 
 ==== Wrapper tpl ====
 
@@ -81,22 +72,3 @@ The first of the following tpls found will be used to wrap the output:
  # `fields/wrappers/{fieldname}.tpl`
  # `fields/wrappers/_wysiwyg.tpl`
  # `fields/wrappers/_default.tpl`
-
-=== Multi ===
-
-Text fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
-
-
-==== Field tpl====
-
-The first of following tpls found will be used to format the field:
-
- # `fields/elements/{fieldname}.tpl`
- # `fields/elements/_wysiwyg_multi.tpl`
-
-==== Wrapper tpl ====
-
-The first of the following tpls found will be used to wrap the output:
-
- # `fields/wrappers/{fieldname}.tpl`
- # `fields/wrappers/_wysiwyg_multi.tpl`
