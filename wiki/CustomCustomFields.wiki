@@ -16,7 +16,7 @@ Starting with version 0.9.4, developers can create their own PHP classes that de
 
 By looking at the base class inside of *wp-content/plugins/custom-content-type-manager/includes/CCTM_FormElement.php*, you can see the following variables and methods.  Here's a brief description of each relevant variable and function.
 
-=== protected $props ===
+=== <font color="green">protected $props</font> ===
 
 _array_ : an associative array that defines which properties each instance of the field will have.
 	
