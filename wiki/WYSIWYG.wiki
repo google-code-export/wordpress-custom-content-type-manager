@@ -41,19 +41,10 @@ The field definition affects how instances of this field type will display in th
 <?php print_custom_field('my_wysiwyg'); ?>
 }}}
 
-=== Example 2: Array ===
-
-Will join all the instances of your WYSIWYG fields if your field is "repeatable".
-
-{{{
-<?php print_custom_field('my_wysiwyg:formatted_list', '<hr/>'); ?>
-}}}
-
-
 
 === Recommended Output Filters ===
 
- * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
+ _NONE_.
 
 
 ----
