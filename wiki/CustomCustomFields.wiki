@@ -58,5 +58,12 @@ This should return (not print) a full link to where users can get information ab
 <font color="red">You MUST implement this function.</font>
 
 
+===<font color="green">public function get_icon();</font>===
+
+_string_ *get_icon*()
+
+Return URL to a 48x48 PNG image that should represent this type of field. e.g. "http://mysite/images/coolio.png"
+
+
 
 MORE COMING...
