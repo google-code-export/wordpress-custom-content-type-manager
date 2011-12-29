@@ -49,4 +49,14 @@ This should return (not print) the common name of the field, e.g. "Text", "Dropd
 <font color="red">You MUST implement this function.</font>
 
 
+===<font color="red">abstract</font> <font color="green">public function get_url();</font>===
+
+_string_ *get_url*()
+
+This should return (not print) a full link to where users can get information about this type of field, e.g. "http://code.google.com/p/wordpress-custom-content-type-manager/wiki/Image"
+
+<font color="red">You MUST implement this function.</font>
+
+
+
 MORE COMING...
