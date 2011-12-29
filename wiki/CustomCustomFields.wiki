@@ -12,7 +12,7 @@ Starting with version 0.9.4, developers can create their own PHP classes that de
 
 = The Base Class =
 
-*CCTM_FormElement* is an abstract class that defines the behavior for all custom fields.
+`CCTM_FormElement` is an abstract class that defines the behavior for all custom fields.
 
 By looking at the base class inside of *wp-content/plugins/custom-content-type-manager/includes/CCTM_FormElement.php*, you can see the following variables and methods.  Here's a brief description of each relevant variable and function.
 
@@ -20,19 +20,19 @@ By looking at the base class inside of *wp-content/plugins/custom-content-type-m
 
 _array_ : an associative array that defines which properties each instance of the field will have.
 	
-=== public function admin_init() ===
+===<font color="green">public function admin_init()</font>===
 
 _void_ *admin_init*()
 
 Override this function to register any necessary CSS/JavaScript required by your field.  For examples, look at the *relation.php* field.
 
-=== public function get_create_field_definition()===
+===<font color="green">public function get_create_field_definition()</font>===
 
 _string_ *public function get_create_field_definition*()
 
 This should return (not print) form elements that handle all the controls required to define this type of field.  Normally, you shouldn't need to implement this function.  Usually implementing the *get_edit_field_definition()* is enough.
 
-===abstract public get_edit_field_definition()===
+===<font color="green">abstract public get_edit_field_definition()</font>===
 
 _string_ *get_edit_field_definition*($current_values)
 
