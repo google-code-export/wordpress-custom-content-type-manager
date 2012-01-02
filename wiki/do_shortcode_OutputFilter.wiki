@@ -1,0 +1,49 @@
+#summary do_shortcode Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The *do_shortcode* filter is the default output filter for [WYSIWYG] fields: this forces any !WordPress [http://codex.wordpress.org/Shortcode shortcodes] to be parsed as they would in the normal post content block.
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _string_.  Usually the contents of a WYSIWYG field.
+ * *$options*: _none_. 
+ * *OUTPUT*: _string_. Any shortcodes in the input will be parsed in the output.
+
+== Example 1==
+
+If you don't parse shortcodes in your custom WYSIWYG fields, they won't be parsed.   For example, if your WYSIWYG content contains a shortcode, e.g. 
+
+{{{
+[gallery id="123" size="medium"]
+}}}
+
+Then you must parse that shortcode
+{{{
+<?php
+print_custom_field('my_wysiwyg:do_shortcode');
+?>
+}}}
+
+== Example 2==
+
+If you don't want to use this Output Filter, you can instead use WordPress's function:
+
+{{{
+<?php
+print do_shortcode( get_custom_field('my_wysiwyg') );
+?>
+}}}
+
+
+= See Also =
+
+ * [http://codex.wordpress.org/Function_Reference/do_shortcode do_shortcode] !WordPress function reference.
