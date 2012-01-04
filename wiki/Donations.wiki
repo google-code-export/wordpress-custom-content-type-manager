@@ -11,3 +11,7 @@ If you have found this plugin helpful and you're using it on your site, please c
 Thank you!
 
 If you are hankering to see new features integrated into this plugin, please consider hiring me: that's the best way to ensure that I give this plugin the same attention to detail that I give to my paying projects.
+
+= Funding =
+
+The CCTM will start using [https://fundry.com Fundry.com] to fund feature development.  Stay tuned...
