@@ -110,12 +110,30 @@ foreach ($array_of_images as $img_id) {
 Note here that we are using a foreach loop to iterate over the array, and we're using the [CCTM_filter CCTM::filter()] function to convert each value in the array into an image tag via the [to_image_tag_OutputFilter to_image_tag] Output Filter
 
 
+=== Example 5: Retrieving Multiple Images ===
+
+Any time you use the "repeatable" option, you'll want to use the [to_array_OutputFilter to_array] Output Filter.  The trick with this example is passing the name of another output filter to the *to_array* filter's argument: each item in the array is processed with the filter you specify:
+
+
+{{{
+<?php
+$array_of_images = get_custom_field('my_images:to_array', 'to_image_src');
+
+foreach ($array_of_images as $img) {
+   print $img;
+}
+}}}
+
+Note here that we are using a foreach loop to iterate over the array, and we're using the [CCTM_filter CCTM::filter()] function to convert each value in the array into an image tag via the [to_image_tag_OutputFilter to_image_tag] Output Filter
+
+
+
 === Recommended Output Filters ===
 
  * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
- * [to_image_tag_OutputFilter to_array]  for converting to a full `<img>` HTML tag.
- * [to_image_src_OutputFilter to_array]  for retrieving the src of the image being referenced.
- * [to_image_array_OutputFilter to_array]  for retrieving the width, height, and src of the image.
+ * [to_image_tag_OutputFilter to_image_tag]  for converting to a full `<img>` HTML tag.
+ * [to_image_src_OutputFilter to_image_src]  for retrieving the src of the image being referenced.
+ * [to_image_array_OutputFilter to_image_array]  for retrieving the width, height, and src of the image.
 
 ----
 
