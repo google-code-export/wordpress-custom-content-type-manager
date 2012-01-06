@@ -98,7 +98,7 @@ In this plugin's settings area, each content-type has a link to "View Sample Tem
 
 See the wiki page on [TemplateFunctions]
 
------ 
+--------
 
 == How do I use a Custom Image Field ==
 
