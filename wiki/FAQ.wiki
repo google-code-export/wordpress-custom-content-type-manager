@@ -9,6 +9,8 @@ I get this one a lot.  Every time you use a relation, media, or image field, you
 
 The point here is you don't want the number, you want the image that the number _represents_.  The CCTM offers several [OutputFilters Output Filters] to help you do something with that number easily.
 
+See the documentation and examples on the [Image] page for more examples (or check the [Relation], [Media] pages).
+
 === Get images from a single field ===
 
 Here's an example using the [to_image_src_OutputFilter to_image_tag] filter:
