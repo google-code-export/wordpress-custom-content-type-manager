@@ -65,6 +65,8 @@ foreach ($img_array as $img) {
 ?>
 }}}
 
+---------
+
 == What does activating a custom content type do? ==
 
 When you activate a custom content type, you ensure that it gets registered with !WordPress. Once the content type is registered, a menu item will get created (so long as you checked the "Show Admin User Interface" box) and you ensure that its custom fields become standardized. If the "Public" box was checked for this content type, then the general public can access posts created under this content type using the URL structure defined by the "Permalink Action" and "Query Var" settings, e.g. http://site.com/?post_type=book&p=39
