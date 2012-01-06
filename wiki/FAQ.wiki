@@ -1,50 +1,101 @@
 #summary Frequently Asked Questions
 #labels Featured
 
-= What does activating a custom content type do? =
+<wiki:toc max_depth="2" />
+
+== My Image Field Only Shows Numbers. WTF?!? ==
+
+I get this one a lot.  Every time you use a relation, media, or image field, you don't store the path the image, you store the unique ID of that image or post.  This is one of the tenets of [http://en.wikipedia.org/wiki/Database_normalization database normalization].  The point here is you don't want the number, you want the image that the number _represents_.  The CCTM offers several [OutputFilters Output Filters] to help you do this easily.
+
+=== Get images from a single field ===
+
+Here's an example using the [to_image_src_OutputFilter to_image_tag] filter:
+{{{
+<?php print_custom_field('my_image:to_image_tag'); ?>
+}}}
+
+If you want a bit more control, then you can use the [to_image_src_OutputFilter to_image_src] filter:
+{{{
+<img src="<?php print_custom_field('my_image:to_image_src'); ?>" />
+}}}
+
+Just to be perfectly clear here, all we're doing with this is looking up the post data associated with the number.  If the image ID is 123, then you would get the image's source by doing this:
+
+{{{
+<?php print CCTM::filter(123, 'to_image_src'); ?>
+}}}
+
+Or if you want to do the same thing using just !WordPress functions and leave CCTM out of it:
+
+{{{
+<?php
+$image_id = 123;
+$post = get_post($image_id);
+print $post->guid;
+?>
+}}}
+
+Make sense?  We're just converting a post ID (which happens to be an image post), and converting it to the data we want.
+
+=== Get images from a multi-image field ===
+
+Things get a bit more complicated when you have multiple image field (i.e. an image field with the "repeatable" box checked.  Remember that when you have this box checked, you are storing an ARRAY of values: a list.  Not a single image, but a list of images.  And the CCTM stores this data as a JSON array. See the discussion on [CustomFieldsDataStructure data structure] for all the gory technical details.
+
+So let's get the array of image IDs and convert them.  The [to_array_OutputFilter to_array] filter here is critical to ensure that you're dealing with an array of images:
+
+{{{
+<?php
+$img_ids_array = get_custom_field('my_images:to_array');
+foreach ($img_ids_array as $img_id) {
+   print CCTM::filter($img_id, 'to_image_tag');
+}
+?>
+}}}
+
+We can make this a bit cleaner by passing an argument to the 'to_array' filter.  It accepts the name of another output filter as its argument:
+
+{{{
+<?php
+$img_array = get_custom_field('my_images:to_array', 'to_image_tag');
+foreach ($img_array as $img) {
+   print $img;
+}
+?>
+}}}
+
+== What does activating a custom content type do? ==
 
 When you activate a custom content type, you ensure that it gets registered with !WordPress. Once the content type is registered, a menu item will get created (so long as you checked the "Show Admin User Interface" box) and you ensure that its custom fields become standardized. If the "Public" box was checked for this content type, then the general public can access posts created under this content type using the URL structure defined by the "Permalink Action" and "Query Var" settings, e.g. http://site.com/?post_type=book&p=39
 
 "Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized. If you do not intend to standardize the custom fields for pages or posts, then there is no reason for you to activate them. 
 
-= What does deactivating a custom content type do? =
+------
 
-If you deactivate a custom content type, its settings remain in the database, but every other trace of it vanishes: any published posts under this content type will not be visible to the outside world, and the WordPress manager will no longer generate a link in the admin menu for you to create or edit posts in this content type.
+== What types of custom fields are supported? ==
 
-Deactivating a built-in post-type (a.k.a. content type) merely stops standardizing the custom fields; deactivating a built-in post-type has no other effect.
+See the list of [SupportedCustomFields Supported Custom Fields]
 
-= What types of custom fields are supported? =
+---------
 
- * [Text] -- simple text field
- * [Textarea] -- a simple textarea field
- * [WYSIWYG] -- a textarea with formatting controls
- * [Dropdown] -- you customize options and select one of them
- * [Checkbox] -- checkboxes
- * [Image] -- select any uploaded image
- * [Media]  -- allow the user to select an image, video, or audio clip
- * [Relation] -- allow the user to select another post of any type (e.g. a parent post).
-
-More field types coming...
-
-= How do I add images or video into a custom field? =
+== How do I add images or video into a custom field? ==
 
 The media-related custom fields tie into !WordPress' "attachment" posts, so if you have already uploaded images or video using the Media menu, they will show up for selection when edit a post using a custom image or media field.  You can also choose "Add New Image" when you browse existing images.
 
-= How do I make my custom field values show up in my templates? =
+-------
+
+== How do I make my custom field values show up in my templates? ==
 
 Content and templates must go hand in hand. If you have defined custom fields, you have to modify your theme files to accommodate them.  There are two included theme functions intended to help you with this task:
 
- * get_custom_field() -- gets the value
- * print_custom_field() -- prints the value
+ * [get_custom_field get_custom_field()] -- gets the value
+ * [print_custom_field print_custom_field()] -- prints the value
 
 In this plugin's settings area, each content-type has a link to "View Sample Templates" -- this page gives you a fully customized example showing demonstrating a custom theme file for your custom content type.
 
 See the wiki page on [TemplateFunctions]
 
-= How do I use a Custom Image Field =
+----- 
+
+== How do I use a Custom Image Field ==
 
 Image fields are created just like any other custom field, but pay close attention to the [OutputFilters Output Filter] (added in version 0.8.9).  That's what controls how the image displays in your theme files. For more information see the page on [Image Image Custom Fields].
-
-= How can I use this plugin to support an eCommerce site? =
-
-There are many ways to structure a site depending on what you are selling. For an example, let's say you are selling T-shirts. You could create a "shirt" content type, then you could define custom fields for size, color, and perhaps several image fields. Once you had defined the custom content type, you could simply create several "shirt" posts for each shirt design that you are selling.
