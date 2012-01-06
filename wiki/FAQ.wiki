@@ -3,6 +3,8 @@
 
 <wiki:toc max_depth="2" />
 
+------
+
 == My Image Field Only Shows Numbers. WTF?!? ==
 
 I get this one a lot.  Every time you use a relation, media, or image field, you don't store the path the image, you store the _unique ID_ of that image or post, in database lingo, this is called a "foreign key".  This is one of the tenets of [http://en.wikipedia.org/wiki/Database_normalization database normalization] (principles which, unfortunately, !WordPress often ignores). 
@@ -99,9 +101,3 @@ Content and templates must go hand in hand. If you have defined custom fields, y
 In this plugin's settings area, each content-type has a link to "View Sample Templates" -- this page gives you a fully customized example showing demonstrating a custom theme file for your custom content type.
 
 See the wiki page on [TemplateFunctions]
-
---------
-
-== How do I use a Custom Image Field ==
-
-Image fields are created just like any other custom field, but pay close attention to the [OutputFilters Output Filter] (added in version 0.8.9).  That's what controls how the image displays in your theme files. For more information see the page on [Image Image Custom Fields].
