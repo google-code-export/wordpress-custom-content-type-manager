@@ -53,7 +53,7 @@ A more explicit variation on Example 2 above, used to get full post data from th
 $posts_array = get_custom_field('my_relation:to_array'); 
 foreach ($posts_array as $post_id) {
    $post = CCTM::filter($post_id, 'get_post');
-   printf('<a href="%s">%s</strong>: %s', get_permalink($post['ID']), $post['post_title'], $post['my_custom_field']);
+   printf('<a href="%s">%s</a>: %s', get_permalink($post['ID']), $post['post_title'], $post['my_custom_field']);
 }
 ?>
 }}}
