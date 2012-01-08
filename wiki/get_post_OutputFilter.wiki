@@ -29,4 +29,19 @@ print $post['my_custom_field'];
 ?>
 }}}
 
+== Example 2==
+
+You can use this on a "repeatable" multi-relation field to get custom-field and other data from the related posts.
+
+{{{
+<?php 
+
+$posts_array = get_custom_field('my_relation:to_array', 'get_post'); 
+foreach ($posts_array as $p) {
+   printf('<strong>%s</strong>: %s', $p['post_title'], $p['my_custom_field']);
+}
+?>
+}}}
+
+
 = See Also =
