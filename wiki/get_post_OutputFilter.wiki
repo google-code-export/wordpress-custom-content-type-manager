@@ -38,7 +38,7 @@ You can use this on a "repeatable" multi-relation field to get custom-field and 
 
 $posts_array = get_custom_field('my_relation:to_array', 'get_post'); 
 foreach ($posts_array as $p) {
-   printf('<a href="%s">%s</strong>: %s', $p['guid'], $p['post_title'], $p['my_custom_field']);
+   printf('<a href="%s">%s</a>: %s', $p['guid'], $p['post_title'], $p['my_custom_field']);
 }
 ?>
 }}}
