@@ -86,14 +86,14 @@ foreach ($my_posts as $p) {
     print $p['post_title'];
     print $p['guid'];  // this is the permalink
     print $p['my_custom_field']; // any defined custom field is available
-    print $p['_thumbnail_id'];  // This is where WP stores the "Featured Image"
+    print $p['thumbnail_src'];  // This is the src of the "Featured Image", if set
     print_r($p); // this will show you EVERYTHING that's available in that post
 }
 }}}
 
 Once we've got an array of post IDs, then all you have to do is come up with some way to look up the data represented by that ID.  You can use !WordPress' own functions for this (e.g. [http://codex.wordpress.org/Function_Reference/get_permalink get_permalink()] or [http://codex.wordpress.org/Function_Reference/get_post get_post()], but the CCTM's get_post() function has the advantage of automatically retrieving all the custom fields, whereas with !WordPress' built-in functions, you'd have to use 2 separate functions: one to get the post, and another to get the post's custom fields.
 
-Note that if you are trying to get the "Featured Image", !Wordpress stores that in a hidden custom field named `_thumbnail_id`.  See that?  !WordPress also stores only the ID of the image.
+Note that if you are trying to get the "Featured Image", !Wordpress stores that in a hidden custom field named `_thumbnail_id`; GetPostsQuery automatically looks up the "thumbnail_src" attribute for any featured image set.  See that?  !WordPress also stores only the ID of the image.
 
 ==== If it's a singular field ===
 
