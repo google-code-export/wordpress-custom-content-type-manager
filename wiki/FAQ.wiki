@@ -69,6 +69,53 @@ foreach ($img_array as $img) {
 ?>
 }}}
 
+-------
+== I used a Multi-Relation field to select 3 other posts.  How do print links to them with title, thumbnail, etc? ==
+
+The trick here is that the relation fields store only the post IDs of those related posts, and you don't want the post's ID, you want the post that the ID represents.  In such a case, you'll find the [get_post_OutputFilter get_post] Output Filter extremely helpful.  Instead of just retrieving the link to the other post (like the [to_link_href_OutputFilter to_link_href] or [to_link_OutputFilter to_link] filters do), the [get_post_OutputFilter get_post] gets _everything_ from the referenced post, leveraging the power of the [http://code.google.com/p/wordpress-summarize-posts/wiki/get_posts GetPostsQuery::get_post] function from the integrated [http://code.google.com/p/wordpress-summarize-posts/ Summarize Posts] plugin.  
+
+What does that mean?  It means you can easily get the post's title, date, and _all_ of its custom fields.
+
+==== If it's a Repeatable Field ====
+
+If your custom field is a "repeatable" field that allows you to store multiple values, then you must first use the [to_array_OutputFilter to_array] filter to ensure that you retrieve an array of values.  You can pass the name of a 2nd Output Filter and each member of the array will get filtered by this secondary filter.
+
+{{{
+$my_posts = get_custom_field('select_relative_posts:to_array', 'get_post');
+foreach ($my_posts as $p) {
+    print $p['post_title'];
+    print $p['guid'];  // this is the permalink
+    print $p['my_custom_field']; // any defined custom field is available
+    print $p['_thumbnail_id'];  // This is where WP stores the "Featured Image"
+    print_r($p); // this will show you EVERYTHING that's available in that post
+}
+}}}
+
+Once we've got an array of post IDs, then all you have to do is come up with some way to look up the data represented by that ID.  You can use !WordPress' own functions for this (e.g. [http://codex.wordpress.org/Function_Reference/get_permalink get_permalink()] or [http://codex.wordpress.org/Function_Reference/get_post get_post()], but the CCTM's get_post() function has the advantage of automatically retrieving all the custom fields, whereas with !WordPress' built-in functions, you'd have to use 2 separate functions: one to get the post, and another to get the post's custom fields.
+
+Note that if you are trying to get the "Featured Image", !Wordpress stores that in a hidden custom field named `_thumbnail_id`.  See that?  !WordPress also stores only the ID of the image.
+
+==== If it's a singular field ===
+
+The simple non-repeatable version of the relation field is easy to work with.  You simply need a way to convert a post ID into something useful.
+
+{{{
+<?php
+$my_post = get_custom_field('select_relative_posts:get_post');
+?>
+print $my_post['post_title'];
+print $my_post['guid'];  // this is the post's permalink
+print $my_post['my_custom_field'];  // any defined custom fields are also retrieved
+
+print_r($my_post); // this will show you all the data available for that post, custom fields and all
+?>
+
+Or more a more practical example:
+
+<a href="<?php print $my_post['guid']; ?>"><?php print $my_post['post_title']; ?></a>
+}}}
+
+
 ---------
 
 == What does activating a custom content type do? ==
