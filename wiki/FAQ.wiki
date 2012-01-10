@@ -102,7 +102,7 @@ The simple non-repeatable version of the relation field is easy to work with.  Y
 {{{
 <?php
 $my_post = get_custom_field('select_relative_posts:get_post');
-?>
+
 print $my_post['post_title'];
 print $my_post['guid'];  // this is the post's permalink
 print $my_post['my_custom_field'];  // any defined custom fields are also retrieved
@@ -113,6 +113,18 @@ print_r($my_post); // this will show you all the data available for that post, c
 Or more a more practical example:
 
 <a href="<?php print $my_post['guid']; ?>"><?php print $my_post['post_title']; ?></a>
+}}}
+
+==== If it's an image field ====
+
+What's important here is that the post's "guid" attribute is where the image src is stored.
+
+{{{
+<?php
+$my_img = get_custom_field('related_image:get_post');
+?>
+
+<img src="<?php print $my_img['guid'];?>" alt="<?php $my_img['post_title']; ?>" />
 }}}
 
 
