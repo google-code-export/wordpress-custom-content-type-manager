@@ -2,6 +2,12 @@
 
 Here is my list of bookmarks to plugins that offer similar functionality to the Custom Content Type Manager.
 
+= Suffusion Theme =
+
+Shockingly, this theme has embarked on the dangerous architectural path and it has incorporated PLUGIN functionality.  This theme lets you define both custom post-types and custom taxonomies in a frightening display of !WordPress' blurry architecture:
+
+* http://wordpress.org/extend/themes/suffusion
+
 = PodsCMS=
 
 This some of the same functionality, but it takes a very different architectural approach: it gives each content-type its own table.  That has several distinct advantages, but it also means you depart significantly from the WordPress core, so I would expect that many plugins are not compatible with this.  It makes certain queries very easy, and it makes others very difficult.
