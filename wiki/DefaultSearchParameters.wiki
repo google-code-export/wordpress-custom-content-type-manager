@@ -14,6 +14,8 @@ The little secret is that any configuration file inside of *custom-content-type-
 Sample contents:
 
 {{{
+<?php
+
 CCTM::$post_selector['search_columns'] = array('post_title', 'post_content');
 CCTM::$post_selector['post_type'] = 'attachment';
 CCTM::$post_selector['post_mime_type'] = 'image';
@@ -22,4 +24,6 @@ CCTM::$post_selector['orderby'] = 'ID';
 CCTM::$post_selector['order'] = 'DESC';
 CCTM::$post_selector['limit'] = 10;
 CCTM::$post_selector['paginate'] = 1;
+
+?>
 }}}
