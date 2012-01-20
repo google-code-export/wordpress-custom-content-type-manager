@@ -90,7 +90,7 @@ $image_id = get_post_meta($post->ID, $fieldname, true);
 list($src, $w, $h) = wp_get_attachment_image_src( $image_id, 'full', true);
 }}}
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || *Using this output filter will effectively break any instances of `print_custom_field()`: use `get_custom_field()` instead.*  This is merely because an _ARRAY_ is returned, so you can't simply print it; you must iterate over its contents. ||
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || *Using this output filter will effectively break any instances of `print_custom_field()`: use `get_custom_field()` instead.*  This is because an _ARRAY_ is returned, so you can't simply print it; you must iterate over its contents. ||
 
 
 === Example 4: Retrieving Multiple Images ===
@@ -127,6 +127,14 @@ foreach ($array_of_images as $img) {
 Note here that we are using a foreach loop to iterate over the array, and we're using the [CCTM_filter CCTM::filter()] function to convert each value in the array into an image tag via the [to_image_tag_OutputFilter to_image_tag] Output Filter
 
 
+=== Example 5: All an Image's Data ===
+
+Sometimes you may want to get more info about the image than just its src or h or w.  You can use the [get_post_OutputFilter get_post] output filter to get ALL attributes from another post.  Remember that an image is just another type of post.  Remember that the *guid* is the image src.
+
+{{{
+<?php $img = get_custom_field('my_image:get_post'); ?>
+<img src="<?php print $img['guid']; ?>" title="<?php print $img['post_title']; ?>" />
+}}}
 
 === Recommended Output Filters ===
 
