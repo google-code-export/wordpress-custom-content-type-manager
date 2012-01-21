@@ -136,6 +136,26 @@ Sometimes you may want to get more info about the image than just its src or h o
 <img src="<?php print $img['guid']; ?>" title="<?php print $img['post_title']; ?>" />
 }}}
 
+=== Example 6: All an Image's Data ===
+
+Just like example 5, but with multiple images: you want all the image data, but for an _array_ of images.  There are LOTS of ways to do this: remember, *the fundamental problem is converting an image's id to information you need*.  
+
+{{{
+<?php 
+$images = get_custom_field('my_image:to_array', 'get_post'); 
+foreach($images as $img) {
+?>
+    <img src="<?php print $img['guid']; ?>" title="<?php print $img['post_title']; ?>" />
+<?php  
+}
+?>
+}}}
+
+See also the similar question in the [http://code.google.com/p/wordpress-custom-content-type-manager/wiki/FAQ#I_used_a_Multi-Relation_field_to_select_3_other_posts.__How_do_p FAQ] -- remember: *images are just a different kind of post*.
+
+The other image data is buried deeper, unfortunately.
+
+
 === Recommended Output Filters ===
 
  * [to_array_OutputFilter to_array] (if you have "repeatable" checked).
