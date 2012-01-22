@@ -1,0 +1,28 @@
+#summary gallery Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The _gallery_ filter formats one or many images using a formatting template.  Available 0.9.5.6.
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _mixed_.  
+ * *$options*: _string_: a formatting template containing placeholders for image data.
+ * *OUTPUT*: _string_.  An instance of the formatting template, processed once for each image.
+
+== Example 1==
+
+{{{
+<?php print_custom_field('my_images:gallery'); ?>
+}}}
+
+
+= See Also =
