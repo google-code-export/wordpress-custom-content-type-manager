@@ -16,6 +16,7 @@ Used as a sidebar in the Output Filters section.
   * [email_OutputFilter email]
   * [excerpt_OutputFilter excerpt]
   * [formatted_list_OutputFilter formatted_list]
+  * [gallery_OutputFilter get_post] 
   * [get_post_OutputFilter get_post] 
   * [help_OutputFilter help]
   * [raw_OutputFilter raw]
