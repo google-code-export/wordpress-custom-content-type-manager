@@ -15,7 +15,7 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
  * *$input*: _string_.  Usually the contents of a WYSIWYG field.
- * *$options*: _none_. 
+ * *$options*: _boolean_.  Set to true to override the wpautop() behavior. 
  * *OUTPUT*: _string_. Any shortcodes in the input will be parsed in the output.
 
 == Example 1==
