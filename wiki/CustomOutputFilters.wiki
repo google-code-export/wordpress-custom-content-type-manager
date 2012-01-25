@@ -101,11 +101,15 @@ class CCTM_demo extends CCTM_OutputFilter {
 
 
 	/**
-	 * Show the user how to use the filter inside a template file.
+	 * Show the user how to use the filter inside a template file. Use the $fieldtype
+	 * argument if you need to alter your examples depending on which type of field
+	 * is being filtered.
 	 *
+	 * @param string $fieldname -- the name of the field
+	 * @param string $fieldtype -- the type of field. 
 	 * @return string 	a code sample 
 	 */
-	public function get_example($fieldname='my_field') {
+	public function get_example($fieldname='my_field',$fieldtype) {
 		return "<?php print_custom_field('$fieldname:demo'); ?>";
 	}
 
