@@ -54,6 +54,10 @@ See [SupportedCustomFields#Dropdown Dropdown] (above).
 
 ||http://s9.postimage.org/d13g5peh7/textarea.png|| [Textarea] fields are meant to store arbitrary strings of data up to several pages in length.||
 
+== User ==
+
+||https://img.skitch.com/20120129-b68tkm2edkau7yaarj8187519x.jpg||A user field allows you to select a user from your local site. (Added 0.9.5.6)||
+
 
 == WYSIWYG ==
 
