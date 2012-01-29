@@ -26,6 +26,7 @@ Used as a sidebar in the Output Filters section.
   * [to_image_tag_OutputFilter to_image_tag]
   * [to_link_href_OutputFilter to_link_href]
   * [to_link_OutputFilter to_link]
+  * [userinfo_OutputFilter userinfo] 
   * [wrapper_OutputFilter wrapper]
 
 _See also:_
