@@ -1,0 +1,28 @@
+#summary userinfo Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+This *userinfo* Output Filter is designed to work on [User] fields: it retrieves information about the referenced user and allows you to format it via a formatting string.
+
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _mixed_: a single user id or an array of them.  
+ * *$options*: _string_. A formatting string containing placeholders
+ * *OUTPUT*: _string_.  The generated HTML
+
+== Example 1==
+
+{{{
+<?php
+print get_custom_field('my_user:userinfo');
+?>
+}}}
