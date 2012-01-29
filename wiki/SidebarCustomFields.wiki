@@ -13,6 +13,7 @@
  * [Relation]
  * [Text]
  * [Textarea]
+ * [User]
  * [WYSIWYG]
 
 See all [SupportedCustomFields Supported Custom Fields]
