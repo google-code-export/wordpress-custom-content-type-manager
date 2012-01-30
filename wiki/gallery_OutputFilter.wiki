@@ -40,4 +40,14 @@ The simplest invocation relies on the
 }}}
 
 
+== Example 2: Supply your custom format==
+
+Instead of relying on the default formatting string, you can specify your own, e.g. to add your own "rel" attribute:
+
+{{{
+<?php print_custom_field('my_images:gallery', '<img height="[+height+]" width="[+width+]" src="[+guid+]" title="[+post_title+]" alt="[+alt+]" class="cctm_image" id="cctm_image_[+i+]" rel="something"/>'); ?>
+}}}
+
+
+
 = See Also =
