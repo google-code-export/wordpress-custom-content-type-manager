@@ -1,5 +1,8 @@
 #summary Customizations available to the CCTM
-#labels Customization
+#labels Customizations
+#sidebar SidebarCustomizations
+
+<wiki:toc max_depth="1" />
 
 = Introduction =
 
