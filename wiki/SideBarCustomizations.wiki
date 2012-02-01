@@ -1,0 +1,28 @@
+#summary Sidebar displaying available output filters
+
+<wiki:comment>
+Used as a sidebar in the Output Filters section.
+</wiki:comment>
+
+== Custom Fields ==
+
+[SupportedCustomFields Supported Custom Fields]
+
+== Output Filters ==
+
+[OutputFilters Output Filters]
+
+== Function Reference ==
+
+[TemplateFunctions Function Reference]
+
+== Customizations ==
+
+ * [Config_admin_menu Admin Menu]
+ * [Config_post_selector_image Post Selector (Images)]
+ * [Config_post_selector_image Post Selector (Media)]
+ * [Config_post_selector_image Post Selector (Relation)]
+ * [Config_search_parameter_image Search Parameters (Image)] 
+ * [Config_search_parameter_image Search Parameters (Media)] 
+ * [Config_search_parameter_image Search Parameters (Relation)] 
+ * [Config_summarize_posts Summarize Posts TinyMCE] 
