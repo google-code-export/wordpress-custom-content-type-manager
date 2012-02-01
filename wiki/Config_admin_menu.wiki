@@ -32,7 +32,7 @@ if (defined('WP_ALLOW_MULTISITE') && WP_ALLOW_MULTISITE == true && is_super_admi
 
 == Changing Menu Position ==
 
-Another common customization is to change where the menu gets drawn.  WordPress can experience conflicts if two plugins try to create a menu item in the same place, so sometimes you have to edit this "menu position" number.
+Another common customization is to change where the menu gets drawn.  !WordPress can experience conflicts if two plugins try to create a menu item in the same place, so sometimes you have to edit this "menu position" number.
 
 If you need to change where the menu gets drawn, use your own number in place of the *self::menu_position* class constant.  For example, replace the class constant with _77_:
 
