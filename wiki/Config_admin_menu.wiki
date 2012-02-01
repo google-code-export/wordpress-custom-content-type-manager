@@ -53,6 +53,7 @@ add_menu_page(
 
 If your layout is cramped, you can easily change the text used for the menu.  In the example below, we've replaced the 'Custom Content Types' menu text with a shorter 'CCTM' label:
 
+{{{
 // Main menu item
 add_menu_page(
 	__('Manage Custom Content Types', CCTM_TXTDOMAIN),  // page title
@@ -63,3 +64,4 @@ add_menu_page(
 	CCTM_URL .'/images/gear.png',       // Icon
 	self::menu_position					// menu position
 );
+}}}
