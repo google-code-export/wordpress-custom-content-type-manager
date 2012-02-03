@@ -42,6 +42,26 @@ The CCTM is not the only plugin that might be using custom post-types on your si
 
 https://img.skitch.com/20110930-bie5w6w563ysxd7im5bk9ryeu1.png
 
+-------------
+== Cache Thumbnail Images ==
+
+When using image, media, or relation fields, a small thumbnail image is displayed to users when they sort through the available posts to select a value for the field.  WordPress usually uses the _full sized image_ for these "thumbnails", which can make for some very slow page-loads.  You can make CCTM generate small, low-quality images for this purpose, but note that this feature is currently experimental: some servers will quietly fail if the images they are operating on are too large.  Your post-selector screens will simply go white.  The planned workaround is to resize the images via ImageMagik, which stores the data on disk as it manipulates it, so you don't run into the memory issues that is inherent with vanilla PHP resizing, but ImageMagik is not available on every server.
+
+-------------
+== Save Empty Fields ==
+
+When you save a post with custom fields, you have an option here to control whether or not you wish to create a row in *wp_postmeta* for empty field values.  If your database space is at a premium, uncheck this so you don't create unused rows.  Some reporting and searching queries may be easier to construct if you do have an empty field in place as a kind of placeholder (e.g. JOIN statements may be more easily constructed), so the default option here is checked: empty fields will contain their own row in the *wp_postmeta* table.
+
+-------------
+== Summarize Posts TinyMCE Button ==
+
+With the integration of the Summzarize Posts plugin into the CCTM, the WYSIWYG editors will display a small button that assists you in creating valid Summarize Posts shortcodes.  If you would prefer for this button to _not_ be displayed, uncheck this option.
+
+-------------
+== Flush Permalink Rules  ==
+
+When registering custom post-types, you usually need the CCTM to flush the WordPress permalink rules in order to support URL mappings to your custom posts.  Other plugins may also perform this same operation, so you can save on the overhead by disabling this: flushing permalink rules is an expensive operation, so repeating it needlessly can cause your site's performance to suffer.
+
 
 -------------
 
