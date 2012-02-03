@@ -57,6 +57,8 @@ When you save a post with custom fields, you have an option here to control whet
 
 With the integration of the Summzarize Posts plugin into the CCTM, the WYSIWYG editors will display a small button that assists you in creating valid Summarize Posts shortcodes.  If you would prefer for this button to _not_ be displayed, uncheck this option.
 
+https://img.skitch.com/20120203-1n9tjx4q4j13utnps9ct5r28up.jpg
+
 -------------
 == Flush Permalink Rules  ==
 
