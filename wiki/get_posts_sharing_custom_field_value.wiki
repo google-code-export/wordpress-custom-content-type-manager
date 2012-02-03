@@ -21,7 +21,7 @@ For a more efficient query that returns the same type of results (including more
 {{{
 $posts = get_posts_sharing_custom_field_value('genre', 'comedy');	
 foreach ($posts as $p) {
-	print $p->post_title;
+	print $p['post_title'];
 }
 
 }}}
