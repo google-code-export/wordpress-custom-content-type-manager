@@ -62,7 +62,7 @@ https://img.skitch.com/20120203-1n9tjx4q4j13utnps9ct5r28up.jpg
 -------------
 == Flush Permalink Rules  ==
 
-When registering custom post-types, you usually need the CCTM to flush the WordPress permalink rules in order to support URL mappings to your custom posts.  Other plugins may also perform this same operation, so you can save on the overhead by disabling this: flushing permalink rules is an expensive operation, so repeating it needlessly can cause your site's performance to suffer.
+When registering custom post-types, you usually need the CCTM to flush the !WordPress permalink rules in order to support URL mappings to your custom posts.  Other plugins may also perform this same operation, so you can save on the overhead by disabling this: flushing permalink rules is an expensive operation, so repeating it needlessly can cause your site's performance to suffer.
 
 
 -------------
