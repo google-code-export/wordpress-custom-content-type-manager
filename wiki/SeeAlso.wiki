@@ -5,7 +5,7 @@ Here is my list of bookmarks to plugins that offer similar functionality to the 
 = WP Types & Views =
 "Types and Views let you create complex WordPress websites without touching PHP"
 
-http://wp-types.com/
+ * http://wp-types.com/
 
 This is a paid plugin.
 
