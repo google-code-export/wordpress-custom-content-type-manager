@@ -46,6 +46,7 @@ A robust, intuitive, polished custom fields plugin provides text, textarea, imag
  * http://wordpress.org/extend/plugins/verve-meta-boxes/
 
 = pType Converter =
+
  * http://www.briandgoad.com/downloads/ptypeconverter/
 
 = Custom Post Type UI =
@@ -56,7 +57,7 @@ The Custom-Post Type UI plugin offers some of the same features, but I felt that
 
 = CMS Press =
 
-http://wordpress.org/extend/plugins/cms-press/
+ * http://wordpress.org/extend/plugins/cms-press/
 
 CMS Press offers a simple and clean implementation of custom post types.  It does include a taxonomy manager.  However, this plugin does NOT offer the ability to standardize custom fields for each post type.
 
@@ -64,7 +65,7 @@ CMS Press offers a simple and clean implementation of custom post types.  It doe
 
 This is a set of extendable classes to allow easy handling of custom post fields.
 
-http://wordpress.org/extend/plugins/easy-custom-fields/
+ * http://wordpress.org/extend/plugins/easy-custom-fields/
 
 
 = Custom Content Types =
@@ -72,13 +73,13 @@ http://wordpress.org/extend/plugins/easy-custom-fields/
  * Compatible up to: 3.0.5
  * 8Last Updated: 2010-7-31
 
-https://wordpress.org/extend/plugins/custom-content-types/
+ * https://wordpress.org/extend/plugins/custom-content-types/
 
 = Others =
 
 This company makes some nice plugins:
 
-http://www.marcocimmino.net/cimy-wordpress-plugins/
+ * http://www.marcocimmino.net/cimy-wordpress-plugins/
 
 = eCommerce Plugins =
 
