@@ -1,0 +1,6 @@
+#summary Purging posts from your database
+#labels Help
+
+= Introduction =
+
+This tool was added to the CCTM in version 0.9.5.7: it allows you to remove orphaned rows from your database.  If you created multiple posts under one post-type, then you removed that post-type definition, you may still have many unused rows in your database.
