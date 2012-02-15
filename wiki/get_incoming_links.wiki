@@ -1,0 +1,11 @@
+#summary get_incoming_links function reference.
+#labels Function-Reference
+#sidebar SidebarFunctionReference
+
+= get_incoming_links =
+
+_array_ *get_incoming_links*() 
+
+If you have relation fields that have linked to a page, this function will show you which pages have linked there.  An array of post IDs is returned.
+
+See also [print_incoming_links]
