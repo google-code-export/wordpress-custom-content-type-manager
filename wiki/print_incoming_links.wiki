@@ -1,0 +1,16 @@
+#summary print_incoming_links function reference.
+#labels Function-Reference
+#sidebar SidebarFunctionReference
+
+= print_incoming_links =
+
+_array_ *print_incoming_links*( string $tpl) 
+
+If you have relation fields that have linked to a page, this function will show you which pages have linked there.  Each incoming link is formatted using the formatting string $tpl.
+
+Default formatting string is:
+{{{
+<span><a href="[+permalink+]">[+post_title+] ([+ID+])</a></span> &nbsp;
+}}}
+
+See also [get_incoming_links]
