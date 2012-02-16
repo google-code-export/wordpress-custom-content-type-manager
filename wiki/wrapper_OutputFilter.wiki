@@ -16,7 +16,7 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
 
  * *$input*: _string_ a post ID  
  * *$options*: _mixed_. You can supply either a formatting string or a 2 element array.
- * *OUTPUT*: _string_. Full path to the image
+ * *OUTPUT*: _string_. Formatted string -- the formatting string with the input replaced.
 
 = Options =
 
