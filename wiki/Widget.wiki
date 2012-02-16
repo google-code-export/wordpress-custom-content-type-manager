@@ -1,0 +1,20 @@
+#summary Summarize Posts Widget
+#labels Help
+
+= Introduction =
+
+A widget that encapsulated the Summarize Posts functionality was released in verison 0.9.5.8
+
+https://img.skitch.com/20120216-1f9jssi4565kfya3q6eb6rwctq.jpg
+
+= Settings =
+
+ * *Title:* set the title of the widget (similar to many other widgets)
+ * *Search Criteria:* this allows you to define which posts you want to list.  Note that the controls that show up on this form are configurable by the configuration file in *config/search_parameters/_widget.php* (see [Customizations] for information on customizing this and other forms in the CCTM).
+ * *Formatting String:* this is what formats each result returned.  _It should be a list item!_
+
+The default formatting string is this:
+
+{{{
+<li><a href="[+permalink+]">[+post_title+]</a></li>
+}}}
