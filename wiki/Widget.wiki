@@ -11,10 +11,12 @@ https://img.skitch.com/20120216-1f9jssi4565kfya3q6eb6rwctq.jpg
 
  * *Title:* set the title of the widget (similar to many other widgets)
  * *Search Criteria:* this allows you to define which posts you want to list.  Note that the controls that show up on this form are configurable by the configuration file in *config/search_parameters/_widget.php* (see [Customizations] for information on customizing this and other forms in the CCTM).
- * *Formatting String:* this is what formats each result returned.  _It should be a list item!_
+ * *Formatting String:* this is what formats each result returned.  _It should be a list item_!
 
 The default formatting string is this:
 
 {{{
 <li><a href="[+permalink+]">[+post_title+]</a></li>
 }}}
+
+Note that the formatting string uses `[+placeholders+]` that get replaced with data, just as the formatting templates do when you [CustomizingManagerHTML customize the Manager HTML].  Any field available to the posts you are listing will have a  corresponding placeholder.  This includes all built-in columns to the wp_posts table AND any custom fields you have defined.  
