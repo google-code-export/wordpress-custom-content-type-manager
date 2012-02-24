@@ -18,3 +18,4 @@ See your *includes/functions.php* for more information.
  * [print_custom_field]
  * [print_custom_field_meta]
  * [print_incoming_links]
+ * [CCTM_filter CCTM::filter]
