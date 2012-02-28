@@ -12,9 +12,9 @@ The *default* filter kicks in only if the input is empty: whatever you specify a
 
 Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
 
-_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+_mixed_ *get_custom_field*( string _$fieldname_ `[`, mixed _$options_ `]` ) 
 
- * *$input*: _string_ a post ID  
+ * *$fieldname*: _string_ the unique name for your field
  * *$options*: _mixed_. Whatever you supply here will be returned if the input is empty
  * *OUTPUT*: _string_. Full path to the image
 
