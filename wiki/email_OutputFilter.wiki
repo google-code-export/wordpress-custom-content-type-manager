@@ -13,9 +13,9 @@ The _email_ filter obscures an email address so it is still readable by a human,
 
 Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
 
-_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+_mixed_ *get_custom_field*( string _$fieldname_ `[`, mixed _$options_ `]` ) 
 
- * *$input*: _string_.  
+ * *$fieldname*: _string_ the unique name for your field
  * *$options*: _none_.
  * *OUTPUT*: _string_.  An encoded version of the $input.
 
