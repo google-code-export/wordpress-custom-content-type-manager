@@ -1,5 +1,6 @@
 #summary excerpt Output Filter
 #labels Output-Filters
+#sidebar SidebarOutputFilters
 
 <wiki:toc max_depth="1" />
 
@@ -11,9 +12,9 @@ The _excerpt_ takes a long string and returns a shorter excerpt of it, either ch
 
 Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
 
-_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+_mixed_ *get_custom_field*( string _$fieldname_ `[`, mixed _$options_ `]` ) 
 
- * *$input*: _string_.  
+ * *$fieldname*: _string_ the unique name for your field
  * *$options*: _none_.
  * *OUTPUT*: _string_.  An encoded version of the $input.
 
