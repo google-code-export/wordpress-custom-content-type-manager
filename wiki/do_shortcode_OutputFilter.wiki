@@ -12,11 +12,11 @@ The *do_shortcode* filter is the default output filter for [WYSIWYG] fields: thi
 
 Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
 
-_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+_mixed_ *get_custom_field*( string _$fieldname_ `[`, mixed _$options_ `]` ) 
 
- * *$input*: _string_.  Usually the contents of a WYSIWYG field.
+ * *$fieldname*: _string_ the unique name for your field
  * *$options*: _boolean_.  Set to true to override the wpautop() behavior. 
- * *OUTPUT*: _string_. Any shortcodes in the input will be parsed in the output.
+ * *OUTPUT*: _string_. The contents of your field. Any shortcodes in the input will be parsed in the output.
 
 == Example 1==
 
