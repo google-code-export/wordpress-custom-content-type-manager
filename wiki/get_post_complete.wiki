@@ -4,7 +4,7 @@
 
 = get_post_complete =
 
-_object_ *get_post_complete*( integer _$id_ ) 
+_array_ *get_post_complete*( integer _$id_ ) 
 
 This gets a _complete_ post as an associative array, including all custom fields.  REMEMBER: the data is returned as an ARRAY, not as an OBJECT!  You must access properties as `$p['property']` and not as `$p->property`
 
