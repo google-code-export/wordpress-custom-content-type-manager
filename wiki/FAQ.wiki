@@ -140,7 +140,16 @@ $my_img = get_custom_field('related_image:get_post');
 
 When you activate a custom content type, you ensure that it gets registered with !WordPress. Once the content type is registered, a menu item will get created (so long as you checked the "Show Admin User Interface" box) and you ensure that its custom fields become standardized. If the "Public" box was checked for this content type, then the general public can access posts created under this content type using the URL structure defined by the "Permalink Action" and "Query Var" settings, e.g. http://site.com/?post_type=book&p=39
 
-"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized. If you do not intend to standardize the custom fields for pages or posts, then there is no reason for you to activate them. 
+"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized.  This means that the default !WordPress metabox for custom fields is overridden by the CCTM -- see the next FAQ. 
+
+
+---------
+
+== What does "Standardizing Fields" do? ==
+
+When you standardize the fields of a post-type, you override the default !WordPress metabox for custom fields, replacing it with the CCTM's custom fields metabox.  This prevents you from adding custom fields ad nauseum: it _standardizes_ the fields to whatever custom fields you have defined for that post-type.
+
+You can standardize the custom fields for posts, pages, or any 3rd-party post-type (as of 0.9.5.11).  If you wish to customize the fields for a foreign post-type (i.e. a post-type registered by some other plugin), just ensure that you have updated the CCTM global settings to display foreign post-types.
 
 ------
 
