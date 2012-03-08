@@ -2,7 +2,7 @@
 #labels Help,Output-Filters,Featured
 #sidebar SidebarOutputFilters
 
-The functionality of Output Filters was greatly enhanced in version 0.9.4 of the CCTM.  The reason they exist is pretty much the same reason !WordPress uses its own [http://codex.wordpress.org/Plugin_API filters]: they are used to modify data before sending it to the browser screen.
+The reason the CCTM uses Output Filters is pretty much the same reason !WordPress uses its own [http://codex.wordpress.org/Plugin_API filters]: they are used to modify data before sending it to the browser screen.
 
 This is particularly confusing for some users when it comes to [Relation], [Image], and [Media] fields because the only thing that's stored in those relation fields is the _post ID_ of the related post, image, or media item you selected (it's a [http://en.wikipedia.org/wiki/Foreign_key foreign key]).  Most of the time, you don't want the number itself, you want the post info that is _represented_ by that number.  The solution is to use an Output Filter to convert the number into an img tag or to the src of the image.
 
