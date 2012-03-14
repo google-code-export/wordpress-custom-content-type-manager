@@ -14,7 +14,7 @@ https://img.skitch.com/20120201-qkwh8r23d44huk1ngwys13erx9.jpg
 
 ||https://img.skitch.com/20120201-r687d2fxjkdfg6feua52t6wwc8.jpg||All CCTM customizations rely on the same principle: if you create your own configuration file it will override the built-in default configuration file.  Several areas of functionality can be controlled via this method. See [Customizations] for more info.||
 
- # Copy the `wp-content/plugins/custom-content-type-manager/config/menus/admin_menu.php` file to `wp-content/uploads/cctm/menus/admin_menu.php`
+ # Copy the `wp-content/plugins/custom-content-type-manager/config/menus/admin_menu.php` file to `wp-content/uploads/cctm/config/menus/admin_menu.php`
  # Edit your copy to taste.
 
 
