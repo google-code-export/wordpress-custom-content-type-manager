@@ -2,6 +2,10 @@
 
 Here is my list of bookmarks to plugins that offer similar functionality to the Custom Content Type Manager.
 
+= Advanced Custom Fields =
+
+ * http://wordpress.org/extend/plugins/advanced-custom-fields/
+
 = WP Types & Views =
 "Types and Views let you create complex WordPress websites without touching PHP"
 
