@@ -175,3 +175,12 @@ Content and templates must go hand in hand. If you have defined custom fields, y
 In this plugin's settings area, each content-type has a link to "View Sample Templates" -- this page gives you a fully customized example showing demonstrating a custom theme file for your custom content type.
 
 See the wiki page on [TemplateFunctions]
+
+
+-------
+
+== My Custom Fields Broke after Moving my Site! ==
+
+This is usually due to a WordPress error: WordPress hardcodes paths and stores options as PHP serialized  data, which includes a character count.    So if you change your domain name, for example, the character count changes, and the serialized data structure becomes corrupted.  In general, WordPress is very poorly suited to site migration in part to this reason.
+
+*What to do?*  [Export] your custom field definitions to a .cctm.json file, then move your site and [Import] the definition file on the new site.  Because the settings are stored as a JSON object, it is not vulnerable to the limitations of the serialized data.
