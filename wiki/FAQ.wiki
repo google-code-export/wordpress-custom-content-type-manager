@@ -147,7 +147,7 @@ When you activate a custom content type, you ensure that it gets registered with
 
 == What does "Standardizing Fields" do? ==
 
-When you standardize the fields of a post-type, you override the default !WordPress metabox for custom fields, replacing it with the CCTM's custom fields metabox.  This prevents you from adding custom fields ad nauseum: it _standardizes_ the fields to whatever custom fields you have defined for that post-type.
+When you standardize the fields of a post-type, you override the default !WordPress metabox for custom fields, replacing it with the CCTM's custom fields metabox.  The standard !WordPress behavior is to allow any number or combination of fields on _any_ post -- it's a confusing mess.  So when you standardize the fields it forces each post or page to have the exact same fields on each post to the custom fields you have defined for that post-type.
 
 You can standardize the custom fields for posts, pages, or any 3rd-party post-type (as of 0.9.5.11).  If you wish to customize the fields for a foreign post-type (i.e. a post-type registered by some other plugin), just ensure that you have updated the CCTM global settings to display foreign post-types.
 
