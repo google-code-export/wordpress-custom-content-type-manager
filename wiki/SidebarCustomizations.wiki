@@ -20,8 +20,8 @@ Used as a sidebar in the Output Filters section.
 
  * [Config_admin_menu Admin Menu]
  * [Config_post_selector_image Post Selector (Images)]
- * [Config_post_selector_image Post Selector (Media)]
- * [Config_post_selector_image Post Selector (Relation)]
+ * [Config_post_selector_media Post Selector (Media)]
+ * [Config_post_selector_relation Post Selector (Relation)]
  * [Config_search_parameter_image Search Parameters (Image)] 
  * [Config_search_parameter_image Search Parameters (Media)] 
  * [Config_search_parameter_image Search Parameters (Relation)] 
