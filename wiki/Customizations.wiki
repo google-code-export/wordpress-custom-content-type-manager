@@ -15,7 +15,7 @@ These are PHP files, usually containing simple variable or array values.
  * [Config_admin_menu menus/admin_menu.php]: contains code that generates the main CCTM menu. 
  * *post_selector/_image.php*: settings
  * *post_selector/_media.php*: settings
- * *post_selector/_relation.php*: settings
+ * [Config_post_selector_media post_selector/_relation.php]: settings for the "Choose Relation" buttons on your posts/pages.
  * *search_parameters/_image.php*:
  * *search_parameters/_media.php*:
  * *search_parameters/_relation.php*:
