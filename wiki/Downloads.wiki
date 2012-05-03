@@ -2,9 +2,13 @@
 
 = Where to Download =
 
-This plugin can be downloaded from the !WordPress.org site:
+Normally his plugin can be downloaded from the !WordPress.org site:
 
 [http://wordpress.org/extend/plugins/custom-content-type-manager/ http://wordpress.org/extend/plugins/custom-content-type-manager/]
+
+However, if !WordPress is feeling petulant and has blocked downloads due to some imagined boogyman in the comments of some files, then you can download the latest release here: [http://wpcctm.org/custom-content-type-manager.zip 0.9.5.12.zip]
+
+Kinda silly !WordPress is so adamant about perceived licensing violations when the software ships with copyrighted lyrics from "Hello Dolly".  
 
 = Developers Download =
 
