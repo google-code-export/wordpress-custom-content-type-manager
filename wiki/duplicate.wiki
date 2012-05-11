@@ -1,0 +1,10 @@
+#summary How to duplicate your post_type Definitions
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+As of version *0.9.4.1*, you can duplicate your post_types by clicking on the "duplicate" link on the *Content Type* page.
+
+https://img.skitch.com/20120511-nu36f6e1feswn3iyeyy7cauyah.jpg
