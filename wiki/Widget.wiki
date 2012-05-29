@@ -19,4 +19,4 @@ The default formatting string is this:
 <li><a href="[+permalink+]">[+post_title+]</a></li>
 }}}
 
-Note that the formatting string uses `[+placeholders+]` that get replaced with data, just as the formatting templates do when you [CustomizingManagerHTML customize the Manager HTML].  Any field available to the posts you are listing will have a  corresponding placeholder.  This includes all built-in columns to the wp_posts table AND any custom fields you have defined.  
+Note that the formatting string uses `[+placeholders+]` that get replaced with data, just as the formatting templates do when you [CustomizingManagerHTML customize the Manager HTML].  Any field available to the posts you are listing will have a  corresponding placeholder.  This includes all built-in columns to the wp_posts table AND any custom fields you have defined.  You can use the `[+help+]` placeholder to print out any available placeholders for you.
