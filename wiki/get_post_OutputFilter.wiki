@@ -58,4 +58,16 @@ foreach ($posts_array as $post_id) {
 ?>
 }}}
 
+== Example 4 ==
+
+You can use the get_post filter standalone too -- this is useful if you need to convert a post ID into that post's attributes.
+
+{{{
+<?php
+$my_post = CCTM::filter( 123, 'get_post',
+print $my_post['guid'];
+print $my_post['some_custom_field'];
+// print_r($my_post); // <-- this will show you which fields are available
+?>
+}}}
 = See Also =
