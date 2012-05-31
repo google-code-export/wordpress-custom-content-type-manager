@@ -64,7 +64,7 @@ You can use the get_post filter standalone too -- this is useful if you need to 
 
 {{{
 <?php
-$my_post = CCTM::filter( 123, 'get_post',
+$my_post = CCTM::filter( 123, 'get_post');
 print $my_post['guid'];
 print $my_post['some_custom_field'];
 // print_r($my_post); // <-- this will show you which fields are available
