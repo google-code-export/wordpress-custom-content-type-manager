@@ -6,7 +6,7 @@ Normally his plugin can be downloaded from the !WordPress.org site:
 
 [http://wordpress.org/extend/plugins/custom-content-type-manager/ http://wordpress.org/extend/plugins/custom-content-type-manager/]
 
-If the WordPress repository is experiencing problems, I try to keep the most recent version of the plugin available as a zip file: [http://wpcctm.com/custom-content-type-manager.zip http://wpcctm.com/custom-content-type-manager.zip]
+If the !WordPress repository is experiencing problems, I try to keep the most recent version of the plugin available as a zip file: [http://wpcctm.com/custom-content-type-manager.zip http://wpcctm.com/custom-content-type-manager.zip]
 
 
 = Developers Download =
