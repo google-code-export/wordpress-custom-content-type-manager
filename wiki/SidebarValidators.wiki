@@ -14,9 +14,9 @@ Used as a sidebar in the validators section.
 
 == Validators ==
 
- * Email
- * Number
- * URL
+ * [email_Validator Email]
+ * [number_Validator Number]
+ * [url_Validator URL]
 
 == Function Reference ==
 
