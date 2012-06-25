@@ -1,4 +1,5 @@
 #summary Number Validator
+#labels Validators
 #sidebar SidebarValidators
 
 <wiki:toc max_depth="1" />
