@@ -9,6 +9,10 @@
 
 [OutputFilters Output Filters]
 
+== Validators ==
+
+[Validators]
+
 == Function Reference ==
 
 *Template Functions*
