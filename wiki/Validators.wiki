@@ -1,4 +1,5 @@
 #summary Validators help filter your content as you enter it
+#labels Validators
 #sidebar SidebarValidators
 
 The CCTM ships with the following Validators available:
