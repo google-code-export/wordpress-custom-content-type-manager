@@ -9,24 +9,60 @@ The CCTM was designed to be customized.  There are a series of optional folders 
 The default location of the folders are inside of `wp-content/uploads/cctm/`
 
 
-= defs =
+= defs/ =
 
 This is where your library of CCTM definition files lives (*defs* for definitions).  When you save your definition to your library or your import a definition file, it ends up here.
 
 `wp-content/uploads/cctm/defs/`
 
-= fields =
+-----------------
+
+= fields/ =
 
 This folder is for any [CustomCustomFields Custom Field Classes] that you write yourself.
 
-= filters =
+-----------------
+
+= filters/ =
 
 This is where you can add any [CustomOutputFilters Custom Output Filters]
 
-= tpls =
+-----------------
+
+= tpls/ =
 
 This folder and its sub-directories is where formatting strings are stored.
 
-= validators =
+== tpls/fields/ ==
+
+=== tpls/fields/elements/ ===
+
+=== tpls/fields/options/ ===
+
+=== tpls/fields/wrappers/ ===
+
+
+== tpls/post_selector/ ==
+
+=== tpls/post_selector/items/ ===
+
+=== tpls/post_selector/search_forms/ ===
+
+=== tpls/post_selector/wrappers/ ===
+
+== tpls/summarize_posts ==
+
+This contains 2 templates:
+
+ * search.tpl
+ * widget.tpl
+
+== tpls/widgets/ ==
+
+ * post_item.tpl
+
+-----------------
+
+= validators/ =
 
 This folder is where you can store custom validators.
