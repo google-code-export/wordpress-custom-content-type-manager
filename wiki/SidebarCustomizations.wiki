@@ -12,6 +12,10 @@ Used as a sidebar in the Output Filters section.
 
 [OutputFilters Output Filters]
 
+== Validators ==
+
+[Validators]
+
 == Function Reference ==
 
 [TemplateFunctions Function Reference]
