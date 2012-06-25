@@ -41,11 +41,6 @@ _string_ *get_options_html*()
 
 Optionally, you can use this function to generate any HTML for your validator.  This HTML is what shows up when you select a validator when you are defining a custom field.  See the [number_Validator Number] validator (`validators/number.php`) for an example of a class that implements some options.
 
-===<font color="green">public function get_name()</font>===
-
-_string_ *get_name*()
-
-Returns the human-readable name of the filter.
 
 ===<font color="red">public function validate()</font>===
 _string_ *validate*(string $input)
