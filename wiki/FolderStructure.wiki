@@ -2,7 +2,7 @@
 
 The CCTM was designed to be customized.  There are a series of optional folders that you can add to your site that will be scanned for various components to augment or override built-in CCTM functionality.
 
-<wiki:toc max_depth="2" />
+<wiki:toc max_depth="3" />
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING</font>: do not edit the files in the `plugins/custom-content-type-manager/` directory. Any changes you make there will be destroyed when you update the plugin!||
 
