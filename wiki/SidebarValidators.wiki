@@ -1,0 +1,23 @@
+#summary Sidebar displaying available validators
+
+<wiki:comment>
+Used as a sidebar in the validators section.
+</wiki:comment>
+
+== Custom Fields ==
+
+[SupportedCustomFields Supported Custom Fields]
+
+== Output Filters ==
+
+[OutputFilters Output Filters]
+
+== Validators ==
+
+ * Email
+ * Number
+ * URL
+
+== Function Reference ==
+
+[TemplateFunctions Function Reference]
