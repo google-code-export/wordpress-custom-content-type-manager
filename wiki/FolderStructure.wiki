@@ -65,4 +65,4 @@ This contains 2 templates:
 
 = validators/ =
 
-This folder is where you can store custom validators.
+This folder is where you can store [CustomValidators Custom Validators].  Use these if you need to ensure that input is a certain format prior to publishing your posts and pages.
