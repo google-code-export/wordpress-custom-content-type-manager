@@ -1,0 +1,55 @@
+#summary Writing your own Validators
+#sidebar SidebarValidators
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+Starting with version 0.9.5 of the CCTM, developers can write their own custom [Validators].  All that's required is that you write a PHP class that extends the [Validators CCTM_Validator] class.  That class is an [http://php.net/manual/en/language.oop5.abstract.php abstract class].  If you haven't used abstract classes before, check out Aleem Bawany's helpful explanation of them: [http://aleembawany.com/2010/04/03/understanding-abstract-classes-in-php/ Abstract Classes in PHP].  In a nutshell, they allow me to define what a class should look like, then the child class must implement the necessary functions.  That means each Validator follows a pattern: each class has a predictable set of functions that the CCTM expects.
+
+You can see examples of the built-in Output Filters inside of *custom-content-type-manager/includes/validators*.
+
+Developers can save their own filters inside of *wp-content/uploads/cctm/validators*
+
+------------
+
+= The Base Class =
+
+By looking at the base class inside of *wp-content/plugins/custom-content-type-manager/includes/CCTM_Validator.php*, you can see the following variables and methods.  Here's a brief description of each variable and function.
+
+=== <font color="green">public $show_in_menus</font> ===
+
+_boolean_ : whether or not the filter should be listed in the field definitions as a selectable validator.  99% of the time, this will be *true*, but if you've got some creative reason that you want your validator to only be available programmatically and remain invisible to the GUI, you can set this to false.
+
+=== <font color="red">public function get_description()</font>===
+
+_string_ *get_description*()
+
+Get the human readable description of what it is your validator does.
+
+	
+=== <font color="red">public function get_name()</font>===
+
+_string_ *get_name*()
+
+Get the name of the validator.  This can be localized if necessary.
+
+
+===<font color="green">public function get_options_html()</font>===
+
+_string_ *get_options_html*()
+
+Optionally, you can use this function to generate any HTML for your validator.  This HTML is what shows up when you select a validator when you are defining a custom field.  See the [number_Validator Number] validator (`validators/number.php`) for an example of a class that implements some options.
+
+===<font color="green">public function get_name()</font>===
+
+_string_ *get_name*()
+
+Returns the human-readable name of the filter.
+
+===<font color="red">public function validate()</font>===
+_string_ *validate*(string $input)
+
+This is where the magic happens.  The code inside this function should test the $input to see if it is valid. If the $input is not valid, an error message should be written to the *$this->error_msg* variable.  If the *$this->error_msg* variable remains empty, the $input is considered valid.
+
+The $input can be modified before being returned (e.g. to suggest a correction), but normally, you'll want to return the $input exactly as you found it.
