@@ -23,9 +23,13 @@ https://img.skitch.com/20120625-dxd7de4w5491d7wy8re2huspxb.jpg
 
 Now when you create posts or pages that use this field, the fields will be validated when users save the page.  They can still _save_ the page, but the page cannot be published until the fields contain valid input.
 
+=== Sample Error Messages ===
+
+At the top of the page:
+
 https://img.skitch.com/20120625-gqh8ts84spybksdspt55a12duw.jpg
 
-...
+The offending field:
 
 https://img.skitch.com/20120625-b8r63u3ab537233atpqfkpqxjt.jpg
 
