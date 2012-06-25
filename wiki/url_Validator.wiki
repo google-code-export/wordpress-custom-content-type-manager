@@ -1,5 +1,5 @@
 #summary URL Validator
-#sidebar SidebarValidatorss
+#sidebar SidebarValidators
 
 <wiki:toc max_depth="1" />
 
