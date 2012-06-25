@@ -6,11 +6,16 @@
 
 = Description =
 
-Starting with version 0.9.5 of the CCTM, developers can write their own custom [Validators].  All that's required is that you write a PHP class that extends the [Validators CCTM_Validator] class.  That class is an [http://php.net/manual/en/language.oop5.abstract.php abstract class].  If you haven't used abstract classes before, check out Aleem Bawany's helpful explanation of them: [http://aleembawany.com/2010/04/03/understanding-abstract-classes-in-php/ Abstract Classes in PHP].  In a nutshell, they allow me to define what a class should look like, then the child class must implement the necessary functions.  That means each Validator follows a pattern: each class has a predictable set of functions that the CCTM expects.
+Starting with version 0.9.5 of the CCTM, developers can write their own custom [Validators].  All that's required is that you write a PHP class that extends the [Validators CCTM_Validator] class.  That class is an [http://php.net/manual/en/language.oop5.abstract.php abstract class]. 
 
 You can see examples of the built-in Output Filters inside of *custom-content-type-manager/includes/validators*.
 
 Developers can save their own filters inside of *wp-content/uploads/cctm/validators*
+
+A couple things to remember:
+
+ * A field is only validated if it is _NOT EMPTY_.  Empty fields are considered valid unless you have checked the "Required" checkbox.
+ * For repeatable fields (i.e. for fields that store a list of values), each input is validated individually.  The code in each validator is meant to be as simple as possible, so it will always validate a single string (not an array).
 
 ------------
 
@@ -49,3 +54,7 @@ _string_ *validate*(string $input)
 This is where the magic happens.  The code inside this function should test the $input to see if it is valid. If the $input is not valid, an error message should be written to the *$this->error_msg* variable.  If the *$this->error_msg* variable remains empty, the $input is considered valid.
 
 The $input can be modified before being returned (e.g. to suggest a correction), but normally, you'll want to return the $input exactly as you found it.
+
+You will never have to test an $input to see whether or not it is empty: this is handled for you.  Inputs are only validated when they are _not empty_.  Also, the $input will always be singular (a string), not an array. 
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || The input to the *validate()* function will always be a string (not an array).  If the validation rule is used on a repeatable field (i.e. one storing multiple values), then each value will be sent to the *validate()* function individually. ||
