@@ -24,6 +24,10 @@ Or [CustomCustomFields write your own]! Starting with version 0.9.4, developers 
 
 [OutputFilters Output Filters]
 
+== Validators ==
+
+[Validators]
+
 == Function Reference ==
 
 [TemplateFunctions Function Reference]
