@@ -18,6 +18,9 @@ Used as a sidebar in the validators section.
  * [number_Validator Number]
  * [url_Validator URL]
 
+ * See all [Validators].
+ * Create your own [CustomValidators Custom Validator]
+
 == Function Reference ==
 
 [TemplateFunctions Function Reference]
