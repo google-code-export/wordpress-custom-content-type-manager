@@ -1,0 +1,17 @@
+#summary The CCTM Parser
+
+A lot of the CCTM relies on static formatting strings to format output. 
+
+*Advantages*
+
+ * Formatting strings are easily cached.
+ * They cannot crash or be hacked.
+
+*Disadvantages*
+
+ * They are not PHP
+ * They use their own custom syntax
+
+= Placeholders =
+
+Basic placeholders begin with a `[+` and end `+]`
