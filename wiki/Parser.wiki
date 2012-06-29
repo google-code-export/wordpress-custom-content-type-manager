@@ -6,12 +6,14 @@ A lot of the CCTM relies on static formatting strings to format output.
 
  * Formatting strings are easily cached.
  * They cannot crash or be hacked.
+ * Since they are static strings with only limited "windows" into dynamic functionality, they are far less likely to devolve into spaghetti.
 
 *Disadvantages*
 
  * They are not PHP
  * They use their own custom syntax
 
+
 = Placeholders =
 
-Basic placeholders begin with a `[+` and end `+]`
+Basic placeholders begin with a `[+` and end with a `+]`, e.g. `[+post_title+]`.
