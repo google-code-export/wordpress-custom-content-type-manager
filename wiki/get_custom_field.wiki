@@ -20,4 +20,4 @@ When you use an [OutputFilters Output Filter], this function parts ways with !Wo
 (string) (required) The name of the custom field whose value you want to get.
  
 === $options ===         
-(mixed) (optional) These are optional arguments passed to the Output Filter.
+(mixed) (optional) These are optional arguments passed to any referenced [OutputFilters Output Filters] (if any).
