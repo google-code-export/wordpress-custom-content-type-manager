@@ -6,7 +6,7 @@
 
 = Description =
 
-The *do_shortcode* filter is the default output filter for [WYSIWYG] fields: this forces any !WordPress [http://codex.wordpress.org/Shortcode shortcodes] to be parsed as they would in the normal post content block.
+The *do_shortcode* filter is the default output filter for [WYSIWYG] fields -- it is essentially a wrapper for the !WordPress function of the same name (see [http://codex.wordpress.org/Function_Reference/do_shortcode do_shortcode]).  This output filter forces any !WordPress [http://codex.wordpress.org/Shortcode shortcodes] to be parsed as they would in the normal post content block.
 
 = Usage =
 
@@ -35,7 +35,7 @@ print_custom_field('my_wysiwyg:do_shortcode');
 
 == Example 2==
 
-If you don't want to use this Output Filter, you can instead use WordPress's function:
+If you don't want to use this Output Filter, you can instead use !WordPress's function:
 
 {{{
 <?php
@@ -43,6 +43,7 @@ print do_shortcode( get_custom_field('my_wysiwyg') );
 ?>
 }}}
 
+See !WordPress' documentation for its [http://codex.wordpress.org/Function_Reference/do_shortcode do_shortcode] function. 
 
 = See Also =
 
