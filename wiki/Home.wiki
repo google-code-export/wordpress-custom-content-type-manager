@@ -8,7 +8,7 @@
 =What You Most Need to Know about the CCTM=
  
  * [Features Features of the CCTM]
- * [FAQ Frequently Asked Questions (FAQ]
+ * [FAQ Frequently Asked Questions (FAQ)]
 
 =Getting Started=
 
