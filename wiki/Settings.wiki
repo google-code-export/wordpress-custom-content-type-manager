@@ -1,5 +1,6 @@
 #summary Available Settings for the CCTM
 #labels Help
+#sidebar Sidebar
 
 = Settings =
 
@@ -64,6 +65,16 @@ https://img.skitch.com/20120203-1n9tjx4q4j13utnps9ct5r28up.jpg
 
 When registering custom post-types, you usually need the CCTM to flush the !WordPress permalink rules in order to support URL mappings to your custom posts.  Other plugins may also perform this same operation, so you can save on the overhead by disabling this: flushing permalink rules is an expensive operation, so repeating it needlessly can cause your site's performance to suffer.
 
+
+--------------
+==Show Pages in RSS Feed==
+
+Sometimes you want more than just your _posts_ to show up in your RSS feed.  Check this option to make your _pages_ show up in the feed.  If you want other custom post-types to show up in the feed, see the individual settings for each post-type.
+
+--------------
+==Right Now Widget Support==
+
+In the default WordPress dashboard, there is a manager widget called "Right Now".  It shows the latest posts and pages.  When you define each custom post-type, you can choose whether or not you want it to show up in this widget, or you can turn off support for custom post-types altogether by unchecking this option.
 
 -------------
 
