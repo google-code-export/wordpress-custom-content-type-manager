@@ -1,0 +1,12 @@
+#summary Getting Started with the CCTM
+#sidebar Sidebar
+
+Before you can get started, make sure your site meets the [Requirements] and that you've [Installation installed] the plugin successfully.
+
+= Create a New Content-Type =
+
+= Activate Your Content-Type=
+
+=Create Custom Fields=
+
+=Write Content!=
