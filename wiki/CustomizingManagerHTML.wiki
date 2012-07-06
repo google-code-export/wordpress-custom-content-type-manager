@@ -20,7 +20,7 @@ http://s7.postimage.org/vg0t7txx7/custom_field_wrapping.jpg
 
 = File Locations = 
 
-To begin understanding this, have a look at the `custom-content-type-manager/tpls` directory ("tpls" here is short for "templates").  There is a series of sub-directories there, each one dedicated to formatting a different part of the CCTM's output.  
+To begin understanding this, have a look at the `custom-content-type-manager/tpls` directory ("tpls" here is short for "templates").  There is a series of sub-directories there, each one dedicated to formatting a different part of the CCTM's output.  See [FolderStructure] for more information.
 
 Note that filenames beginning with an underscore, e.g. *_image.tpl* are intended as a _special_ formatting template, used to format a _type_ of field.  
 
