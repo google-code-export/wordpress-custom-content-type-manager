@@ -21,4 +21,4 @@ Used as a sidebar in the validators section.
 [TemplateFunctions Function Reference]
 
 
-[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]
+||[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]||
