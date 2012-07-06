@@ -1,0 +1,5 @@
+#summary Home of the official documentation for the Custom Content Type Manager (CCTM)
+#sidebar Sidebar
+
+||https://img.skitch.com/20120706-juu43m6n2i12cyxftjuuei9rgq.jpg||This is the official documentation for the CCTM.||
+
