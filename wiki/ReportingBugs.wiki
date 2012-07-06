@@ -1,5 +1,6 @@
 #summary How to report bugs
 #labels Help
+#sidebar Sidebar
 
 = Introduction =
 
