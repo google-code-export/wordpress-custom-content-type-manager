@@ -4,13 +4,9 @@
 Used as a sidebar in the validators section.
 </wiki:comment>
 
-== Custom Fields ==
+== [SupportedCustomFields Custom Fields] ==
 
-[SupportedCustomFields Supported Custom Fields]
-
-== Output Filters ==
-
-[OutputFilters Output Filters]
+== [OutputFilters Output Filters] ==
 
 == Validators ==
 
@@ -21,8 +17,7 @@ Used as a sidebar in the validators section.
  * See all [Validators].
  * Create your own [CustomValidators Custom Validator]
 
-== Function Reference ==
+== [TemplateFunctions Function Reference] ==
 
-[TemplateFunctions Function Reference]
 
 ||https://img.skitch.com/20120706-pxxntj3euky9mdy37xkgddsyt1.jpg||[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]||
