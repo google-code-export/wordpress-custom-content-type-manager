@@ -1,5 +1,6 @@
 #summary CCTM Menu Items in the WP Dashboard
 #labels Phase-Requirements
+#sidebar Sidebar
 
 = Menu Items =
 
