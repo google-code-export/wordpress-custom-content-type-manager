@@ -1,9 +1,10 @@
 #summary Donations
 #labels Featured
+#sidebar Sidebar
 
 = Donations =
 
-Developing a plugin like this one takes a _lot_ of time.  Thankfully, I've been able to use it on a couple paying projects to help offset the cost. 
+Developing a plugin like this one takes a _lot_ of time.  Thankfully, I've been able to use it on paying projects to help offset the cost. 
 
 If you have found this plugin helpful and you're using it on your site, please consider thanking me financially by
 [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=355ULXBFXYL8N Making a Donation].
@@ -14,4 +15,4 @@ If you are hankering to see new features integrated into this plugin, please con
 
 = Funding =
 
-The CCTM will start using [https://fundry.com Fundry.com] to fund feature development.  Stay tuned...
+The CCTM is exploring options to fund feature development.  Stay tuned...
