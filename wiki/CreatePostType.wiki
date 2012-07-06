@@ -1,5 +1,6 @@
 #summary Creating a content type
 #labels Help
+#sidebar Sidebar
 
 Creating a new Content Type (known officially by !WordPress as [http://codex.wordpress.org/Post_Types post-types]) gives your !WordPress site CMS functionality.  The CCTM plugin allows you to create custom content types (a.k.a custom post-types) by tying into !WordPress' [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function.
 
