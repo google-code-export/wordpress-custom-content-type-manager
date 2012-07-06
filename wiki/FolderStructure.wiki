@@ -1,4 +1,5 @@
 #summary Overview of the 3rd party folder structure available to the CCTM
+#sidebar Sidebar
 
 The CCTM was designed to be customized.  There are a series of optional folders that you can add to your site that will be scanned for various components to augment or override built-in CCTM functionality.
 
