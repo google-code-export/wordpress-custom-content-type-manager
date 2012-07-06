@@ -3,7 +3,7 @@
 
 The CCTM requires the following:
 
- * WordPress 3.0 or newer
+ * !WordPress 3.0 or newer
  * The [http://code.google.com/p/wordpress-summarize-posts/ Summarize Posts] plugin must NOT be installed!  It is already built into the CCTM, so there is no need to have both plugins.
  * PHP 5.2.6 or newer
  * MySQL 4.1.2 or newer
