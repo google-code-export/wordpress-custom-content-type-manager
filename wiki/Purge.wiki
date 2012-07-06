@@ -1,5 +1,6 @@
 #summary Purging posts from your database
 #labels Help
+#sidebar Sidebar
 
 = Purge Posts =
 
