@@ -1,5 +1,6 @@
 #summary Associating Fields with Content Types
 #labels Help,Custom-Fields
+#sidebar Sidebar
 
 = Associating Fields with Content Types =
 
