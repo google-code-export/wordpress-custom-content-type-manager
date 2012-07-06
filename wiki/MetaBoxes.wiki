@@ -1,4 +1,5 @@
 #summary Creating MetaBoxes for your Custom Content Type
+#sidebar Sidebar
 
 THIS PAGE IS UNDER CONSTRUCTION!!!
 
