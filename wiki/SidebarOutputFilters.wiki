@@ -5,9 +5,8 @@
 Used as a sidebar in the Output Filters section.
 </wiki:comment>
 
-== Custom Fields ==
+== [SupportedCustomFields Custom Fields] ==
 
-[SupportedCustomFields Supported Custom Fields]
 
 == Output Filters ==
 
@@ -34,12 +33,9 @@ _See also:_
  * [OutputFilters Output Filters Overview]
  * [CustomOutputFilters Custom Output Filters]
 
-== Validators ==
+== [Validators] ==
 
-[Validators]
+== [TemplateFunctions Function Reference] ==
 
-== Function Reference ==
-
-[TemplateFunctions Function Reference]
 
 ||https://img.skitch.com/20120706-pxxntj3euky9mdy37xkgddsyt1.jpg||[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]||
