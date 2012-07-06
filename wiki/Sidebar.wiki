@@ -1,0 +1,21 @@
+#summary Sidebar displaying main points
+
+<wiki:comment>
+Used as a sidebar in the validators section.
+</wiki:comment>
+
+== Custom Fields ==
+
+[SupportedCustomFields Supported Custom Fields]
+
+== Output Filters ==
+
+[OutputFilters Output Filters]
+
+== Validators ==
+
+[Validators]
+
+== Function Reference ==
+
+[TemplateFunctions Function Reference]
