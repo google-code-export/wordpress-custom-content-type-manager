@@ -8,9 +8,7 @@ Used as a sidebar in the validators section.
 
 [SupportedCustomFields Supported Custom Fields]
 
-== Output Filters ==
-
-[OutputFilters Output Filters]
+== [OutputFilters Output Filters] ==
 
 == Validators ==
 
