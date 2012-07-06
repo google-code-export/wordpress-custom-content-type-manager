@@ -19,3 +19,6 @@ Used as a sidebar in the validators section.
 == Function Reference ==
 
 [TemplateFunctions Function Reference]
+
+
+[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]
