@@ -1,0 +1,7 @@
+#summary Translations available
+#sidebar Sidebar
+
+The CCTM is available in the following translations
+
+ * English
+ * Romanian: Web Geek Sciense [http://webhostinggeeks.com/ Web Hosting Geeks]
