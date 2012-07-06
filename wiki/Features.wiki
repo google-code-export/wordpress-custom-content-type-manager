@@ -25,6 +25,13 @@ The CCTM plugin solves that problem by _standardizing_ your custom fields, so in
 
 Every time you create custom content, you need custom templates to help you _display_ that data.  The CCTM dynamically generates [SampleTemplates sample template code] for you -- you just need to copy and paste it into your theme.  This gives you a good head start when skinning all the various types of pages that your custom content types use.
 
+==Widgets==
+
+The CCTM includes powerful widgets:
+
+ * [Widget Summarize Posts Widget] -- lets you display a list of nearly any posts
+ * Post Content Widget -- shows the content of another post.
+
 ==Import and Export Definitions==
 
 If you are setting up several similar sites and you want them all to share the same content-types and custom fields, all you have to do is set up one site the way you want, then [Export] the definition for use on the other sites.  This feature can save you lots of time and guarantee consistency across sites!
