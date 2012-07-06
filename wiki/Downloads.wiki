@@ -1,4 +1,5 @@
 #summary Where to download this plugin
+#sidebar Sidebar
 
 = Where to Download =
 
