@@ -16,6 +16,15 @@ A lot of the CCTM relies on static formatting strings to format output.
 
 = Placeholders =
 
+==Simple Placeholders==
+
 Basic placeholders begin with a `[+` and end with a `+]`, e.g. `[+post_title+]`.  Starting in version 0.9.6.1 of the CCTM, complex placeholders were supported due to enhancements in the parser functionality.  [OutputFilters Output Filters] can referenced in the placeholders, and the syntax is similar to what is supported by the [get_custom_field get_custom_field()] and [print_custom_field print_custom_field()] functions.
 
-`[+placeholder_name:outputfilter=option+]`
+
+==Advanced Placeholders==
+
+Starting with version 0.9.6.1 of the CCTM, you can use advanced placeholders in your formatting tpls.
+
+*Sample Placeholder*
+
+`[+placeholder_name:outputfilter==option1||option2+]`
