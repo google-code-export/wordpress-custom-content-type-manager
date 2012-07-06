@@ -1,5 +1,18 @@
 #summary Home of the official documentation for the Custom Content Type Manager (CCTM)
 #sidebar Sidebar
 
-||https://img.skitch.com/20120706-juu43m6n2i12cyxftjuuei9rgq.jpg||This is the official documentation for the CCTM.||
+||https://img.skitch.com/20120706-juu43m6n2i12cyxftjuuei9rgq.jpg||Welcome to the official online documentation for the CCTM.||
 
+=What You Most Need to Know about the CCTM=
+ 
+ * [Features Features of the CCTM]
+ * [FAQ Frequently Asked Questions (FAQ]
+
+=Getting Started=
+
+ * [CreatePostType Create a Post-Type]
+
+=Give Back=
+
+ * [Donations Make a Donation]
+ * [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list File a Bug Report]
