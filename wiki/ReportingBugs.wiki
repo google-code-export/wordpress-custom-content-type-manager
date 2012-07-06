@@ -4,7 +4,7 @@
 
 = Introduction =
 
-This page was created to help remind users of how to effectively report bugs.  I've gotten a lot of incomplete bug reports that don't contain enough information, and the end result is that it wastes a lot of my time trying to figure things out and often the bug ends up being ignored.  That's not because I don't care -- I DO care.  I care a lot about my plugin, and I want it to help _solve_ problems, not cause them.  But it's impossible for me to fix things if I can't see what exactly is broken.  
+Before you [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list File a Bug Report], make sure that you know how to effectively report bugs.  I get a lot of incomplete bug reports that don't contain enough information for me to fix the problem.  That's not because I don't care -- I DO care.  I care a lot about my plugin, and I want it to help _solve_ problems, not cause them.  But it's impossible for me to fix things if I can't see what exactly is broken.  
 
 The bottom line is this: if you want the bug fixed, then please take the time to report it accurately.  *If I can't reproduce the bug for myself, then I cannot fix it.*
 
