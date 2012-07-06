@@ -17,4 +17,4 @@
 =Give Back=
 
  * [Donations Make a Donation]
- * [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list File a Bug Report]
+ * [ReportingBugs File a Bug Report]
