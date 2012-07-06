@@ -1,0 +1,10 @@
+#summary Minimum Requirements for the CCTM
+#sidebar Sidebar
+
+The CCTM requires the following:
+
+ * WordPress 3.0 or newer
+ * The [http://code.google.com/p/wordpress-summarize-posts/ Summarize Posts] plugin must NOT be installed!  It is already built into the CCTM, so there is no need to have both plugins.
+ * PHP 5.2.6 or newer
+ * MySQL 4.1.2 or newer
+ * The following !WordPress plugins must not be installed: Magic Fields, Custom Post Type UI, CMS Press.  Because the CCTM performs the same functions but in different ways, you cannot activate the CCTM if one of these other plugins is active.
