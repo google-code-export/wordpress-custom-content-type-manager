@@ -9,7 +9,7 @@ As of version 0.9.4, custom field definitions are _normalized_: you define the f
 There are 2 places where you can make this association:
 
  * *Custom Content Types --> Custom Content Types --> {_choose a content type_} --> Manage Custom Fields*
- * *Custom Content Types --> Custom Fields --> {_choose a field_} --> Manage Associations*
+ * *Custom Content Types --> Custom Fields --> {_choose a field_} --> Edit*
 
 If you choose the first, you can affect the order that the fields display in by dragging and dropping the fields into the order you want them.
 
@@ -28,11 +28,11 @@ Check the fields you want to include in this content type, drag them into the or
 
 
 ---------------
-== Managing Associations ==
+== Edit a Custom Field ==
 
 This option lets you manage the associations from a slightly different standpoint: it lets you look at a given *custom field* and choose where that field should be displayed.
 
-*Custom Content Types --> Custom Fields --> {_choose a field_} --> Manage Associations*
+*Custom Content Types --> Custom Fields --> {_choose a field_} --> Edit*
 
 https://img.skitch.com/20111003-f2txqt1m5x9gb476cgsae9ype9.png
 
