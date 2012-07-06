@@ -1,17 +1,11 @@
 #summary List of all functions available in the CCTM
 #labels Function-Reference
 
-== Custom Fields ==
+== [SupportedCustomFields Custom Fields] ==
 
-[SupportedCustomFields Custom Fields]
+== [OutputFilters Output Filters] ==
 
-== Output Filters ==
-
-[OutputFilters Output Filters]
-
-== Validators ==
-
-[Validators]
+== [Validators] ==
 
 == Function Reference ==
 
