@@ -11,7 +11,9 @@
  * [FAQ Frequently Asked Questions (FAQ)]
 
 =Getting Started=
-
+ 
+ * [Installation Installing the CCTM]
+ * [GettingStarted Getting Started]
  * [CreatePostType Create a Post-Type]
 
 =Give Back=
