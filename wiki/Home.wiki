@@ -12,6 +12,7 @@
 
 =Getting Started=
  
+ * [Requirements]
  * [Installation Installing the CCTM]
  * [GettingStarted Getting Started]
  * [CreatePostType Create a Post-Type]
