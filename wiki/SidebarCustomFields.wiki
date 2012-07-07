@@ -26,5 +26,9 @@ Or [CustomCustomFields write your own]! Starting with version 0.9.4, developers 
 
 == [TemplateFunctions Function Reference] ==
 
+== [Customizations] ==
+
+== [DeveloperDocumentation For Developers] ==
+
 
 ||https://img.skitch.com/20120706-pxxntj3euky9mdy37xkgddsyt1.jpg||[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]||
