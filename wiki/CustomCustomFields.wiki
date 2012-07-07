@@ -1,6 +1,6 @@
 #summary Developing your Own Custom Field Types
 #labels Custom-Fields
-#sidebar SidebarCustomFields
+#sidebar SidebarDevelopers
 
 <wiki:toc max_depth="1" />
 
