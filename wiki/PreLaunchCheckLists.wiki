@@ -1,6 +1,8 @@
 #summary Tests that should be run on any build before it is released
 #labels Technical
 
+These have been deprecated in favor of unit tests.
+
 = Pre-Launch Checklist =
 
 Here's my running list of things to test before releasing a build.
