@@ -5,8 +5,16 @@ Before you can get started, make sure your site meets the [Requirements] and tha
 
 = Create a New Content-Type =
 
+ * [CreatePostType]
+
+
+
 = Activate Your Content-Type=
 
 =Create Custom Fields=
 
+ * [DefinedCustomFields]
+
 =Write Content!=
+
+Now comes the fun part.
