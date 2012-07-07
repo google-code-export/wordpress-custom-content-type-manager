@@ -1,6 +1,6 @@
 #summary Constants available to developers
 #labels Technical
-#sidebar Sidebar
+#sidebar SidebarFunctionReference
 
 If you are a developer writing custom Output Filters or your own types of Custom Fields, you may find it useful to rely on the following PHP constants
 
