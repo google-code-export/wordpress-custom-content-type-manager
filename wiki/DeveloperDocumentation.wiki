@@ -1,6 +1,6 @@
 #summary RTFM for developers
 #labels Technical
-#sidebar SidebarFunctionReference
+#sidebar SidebarDevelopers
 
 = Introduction =
 
