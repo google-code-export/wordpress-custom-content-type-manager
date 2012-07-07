@@ -4,4 +4,5 @@
 The CCTM is available in the following translations
 
  * English
+ * German: Dr. Stahl
  * Romanian: Web Geek Sciense [http://webhostinggeeks.com/ Web Hosting Geeks]
