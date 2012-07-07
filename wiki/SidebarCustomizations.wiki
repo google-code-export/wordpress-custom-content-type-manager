@@ -20,7 +20,7 @@ Used as a sidebar in the Output Filters section.
 
 [TemplateFunctions Function Reference]
 
-== Customizations ==
+== [Customizations] ==
 
  * [Config_admin_menu Admin Menu]
  * [Config_post_selector_image Post Selector (Images)]
@@ -30,5 +30,7 @@ Used as a sidebar in the Output Filters section.
  * [Config_search_parameter_image Search Parameters (Media)] 
  * [Config_search_parameter_image Search Parameters (Relation)] 
  * [Config_summarize_posts Summarize Posts TinyMCE] 
+
+== [DeveloperDocumentation For Developers] ==
 
 ||https://img.skitch.com/20120706-pxxntj3euky9mdy37xkgddsyt1.jpg||[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]||
