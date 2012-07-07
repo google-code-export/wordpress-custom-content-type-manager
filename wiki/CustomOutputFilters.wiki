@@ -1,6 +1,6 @@
 #summary Writing your own Output Filter
 #labels Output-Filters
-#sidebar SidebarOutputFilters
+#sidebar SidebarDevelopers
 
 <wiki:toc max_depth="1" />
 
