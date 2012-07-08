@@ -1,8 +1,15 @@
 #summary Translations available
 #sidebar Sidebar
 
+= Available Languages =
+
 The CCTM is available in the following translations
 
  * English
  * German: Dr. Stahl
  * Romanian: Web Geek Sciense [http://webhostinggeeks.com/ Web Hosting Geeks]
+
+
+= Translations Wanted =
+
+We would love to see the CCTM available in your language!  If you are able to provide a translation, refer to the *lang/custom-content-type-mgr.pot* file.  Using [http://www.poedit.net/ PoEdit] or a similar editor, create .po and .mo translations of the original .pot file.  See [http://codex.wordpress.org/Translating_WordPress Translating WordPress] for more information..
