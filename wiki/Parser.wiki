@@ -1,4 +1,5 @@
 #summary The CCTM Parser
+#sidebar SidebarFunctionReference
 
 A lot of the CCTM relies on static formatting strings to format output. 
 
