@@ -4,7 +4,7 @@
 
 = get_custom_field_meta =
 
-_mixed_ *get_custom_field_meta*( string _$fieldname_, string _$item_ ) 
+_mixed_ *get_custom_field_meta*( string _$fieldname_ `[`, string _$item_`]` ) 
 
 This allows you to get information about the custom field's definition (i.e. its meta data).  Just provide the unique name of the field, which bit of data you want, and its definition data will be available to you.
 
