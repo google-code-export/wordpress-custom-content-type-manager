@@ -1,5 +1,5 @@
 #summary Summarize Posts Widget
-#labels Help
+#labels Help,Widget
 #sidebar Sidebar
 
 = Introduction =
