@@ -8,6 +8,9 @@ The Post Content Widget lets you include the content (or any field) from a singl
 
 https://img.skitch.com/20120823-f74r68gxyc2e3tmeq8jhf1134b.jpg 
 
+<wiki:video url="http://www.youtube.com/watch?v=uejIkssRfSM"/>
+
+
 = Settings =
 
  * *Post Type:* This dropdown will limit the choices available to you when you click the "Choose Post" button.
