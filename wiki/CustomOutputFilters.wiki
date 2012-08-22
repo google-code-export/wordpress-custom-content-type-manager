@@ -103,13 +103,15 @@ class CCTM_demo extends CCTM_OutputFilter {
 	/**
 	 * Show the user how to use the filter inside a template file. Use the $fieldtype
 	 * argument if you need to alter your examples depending on which type of field
-	 * is being filtered.
+	 * is being filtered.  Use the $is_repeatable value to show more thorough, e.g. when
+	 * usage may change depending on whether the field represents a single value or a list of values.
 	 *
 	 * @param string $fieldname -- the name of the field
 	 * @param string $fieldtype -- the type of field. 
+	 * @param boolean $is_repeatable -- whether or not the instance is a repeatable field.
 	 * @return string 	a code sample 
 	 */
-	public function get_example($fieldname='my_field',$fieldtype) {
+	public function get_example($fieldname='my_field',$fieldtype,$is_repeatable) {
 		return "<?php print_custom_field('$fieldname:demo'); ?>";
 	}
 
