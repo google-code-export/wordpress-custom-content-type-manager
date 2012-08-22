@@ -42,8 +42,8 @@ Or if you want to do the same thing using just !WordPress functions and leave CC
 {{{
 <?php
 $image_id = 123;
-$post = get_post($image_id);
-print $post->guid;
+$img = wp_get_attachment_image($image_id);
+print $img;
 ?>
 }}}
 
