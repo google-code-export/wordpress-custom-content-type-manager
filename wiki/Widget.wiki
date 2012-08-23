@@ -8,6 +8,9 @@ A widget that encapsulated the Summarize Posts functionality was released in ver
 
 https://img.skitch.com/20120216-1f9jssi4565kfya3q6eb6rwctq.jpg
 
+<wiki:video url="http://www.youtube.com/watch?v=peJCcor1ofM"/>
+
+
 = Settings =
 
  * *Title:* set the title of the widget (similar to many other widgets)
