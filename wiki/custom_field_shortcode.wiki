@@ -1,5 +1,5 @@
 #summary custom_field Shortcode
-#labels Help
+#labels Help,shortcode
 
 = Introduction =
 
