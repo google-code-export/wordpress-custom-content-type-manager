@@ -1,0 +1,18 @@
+#summary custom_field Shortcode
+#labels Help,shortcode
+
+= Introduction =
+
+The *summarize-posts* shortcode gives you access to the powerful *GetPostsQuery* class.
+
+{{{
+[summarize-posts]
+}}}
+
+<wiki:video url="http://www.youtube.com/watch?v=3wsrEGORvIQ"/>
+
+
+== Parameters ==
+
+There are many parameters, mirroring the arguments you can use for the *GetPostsQuery.
+
