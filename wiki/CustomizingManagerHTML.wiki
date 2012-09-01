@@ -36,9 +36,9 @@ Most of the time, a specific file is given precedence over a generic one.  For e
 
 === tpls/fields/elements ===
 
-This directory contains tpls used to format instances of a type of field, e.g. *_text.tpl*, *textarea.tpl*, *_dropdown.tpl*, etc.  These tpls are only used if there is no dedicated tpl for a given field inside of the *cctm/tpls/fields/elements* directory.   These are probably what you will want to customize the most.
+This directory contains tpls used to format instances of a type of field, e.g. `_text.tpl`, `_textarea.tpl`, `_dropdown.tpl`, etc.  These tpls are only used if there is no dedicated tpl for a given field inside of the *cctm/tpls/fields/elements* directory.   These are probably what you will want to customize the most.
 
-For example, if you wanted _all_ WYSIWYG fields to use a particular bit of HTML and CSS, you can place a file named *_wysiwyg.tpl* inside the *cctm/tpls/fields/elements* directory and your user-created *_wysiwyg.tpl* file will be used to format all instances of WYSIWYG fields.
+For example, if you wanted _all_ WYSIWYG fields to use a particular bit of HTML and CSS, you can place a file named `_wysiwyg.tpl` inside the *cctm/tpls/fields/elements* directory and your user-created `_wysiwyg.tpl` file will be used to format all instances of WYSIWYG fields.
 
 
 === tpls/fields/wrappers ===
