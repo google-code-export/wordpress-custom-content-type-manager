@@ -10,8 +10,9 @@ Using *SP_Posts* has these important distinctions:
  # It automatically creates/updates/deletes all custom fields in the postmeta table without the need to have to use the update_post_meta() and related functions.
  # It does not check for user permissions. If you're running around in the PHP code, you have full run of the database. BEWARE!
 
+= Methods =
 
-= get =
+== get ==
 
 _array_ *get_custom_field*( array _$args_) 
 
@@ -19,14 +20,79 @@ _array_ *get_custom_field*( array _$args_)
 
 This is a convenience function that acts as a pass-thru to [GetPostsQuery]'s *get_posts()* function.
 
-= get_errors =
+== get_errors ==
 
-This is a convenience function for aiding in debugging.
+_string_ *get_errors*( ) 
 
-= delete =
+* _no arguments_
 
-= insert =
+This is a convenience function for aiding in debugging: call it to return a list of errors (formatted with HTML).
 
-= save = 
+{{{
+$SP = new SP_Post();
+// do something.. maybe generate errors...
 
-= update =
+print $SP->get_errors();
+}}}
+
+== delete ==
+
+_void_ *delete*( integer _$post_id_ ) 
+
+* `$post_id` : the id of the post you want to delete
+
+This deletes a post, its revisions, and its custom fields from the database.
+
+{{{
+// Delete post 123 from the database
+$SP = new SP_Post();
+$SP->delete(123);
+}}}
+
+== insert ==
+
+_integer_ *insert*( array _$args_ ) 
+
+ * `$args` an associative array representing all values for the post you are creating.
+ 
+This inserts data into both the `wp_posts` table and the `wp_postmeta` tables.  Any array keys which are not 
+
+
+
+
+== save ==
+
+This switches between the insert/update functions based on whether or not the 'ID' key is present in the input arguments.
+
+== update ==
+
+
+----------------
+
+= Built in Columns =
+
+Columns from the `wp_posts` table.
+
+ * ID
+ * post_author
+ * post_date
+ * post_date_gmt
+ * post_content
+ * post_title
+ * post_excerpt
+ * post_status
+ * comment_status
+ * ping_status
+ * post_password
+ * post_name
+ * to_ping
+ * pinged
+ * post_modified
+ * post_modified_gmt
+ * post_content_filtered
+ * post_parent
+ * guid
+ * menu_order
+ * post_type
+ * post_mime_type
+ * comment_count
