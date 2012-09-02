@@ -1,0 +1,45 @@
+#summary What is a Field Definition?
+#labels Help
+#sidebar SidebarCustomFields
+
+This page explains what goes into a Custom Field Definition.  A field definition defines the name, data-type, and other aspects of a field.  These definitions are separate from posts or pages.  The definition itself does not store post data: the posts themselves store values, the definition only defines how that data is entered.
+
+Each type of field may have different attributes, but there are a handful of core attributes shared by most types of fields
+
+= Core Attributes =
+---------------------
+
+== Label ==
+
+The label is bolded text that tells the user what this field is.  
+
+https://img.skitch.com/20120902-jsxs9im6mdpqfym83mykdncyg2.jpg
+
+== Name ==
+
+The name is not seen directly by the user: it is a unique name for the field so that its values can be identified in the `wp_postmeta` database table.  The name is also used to generate CSS IDs for form elements are generated when a post is created or edited. The name should be all one word and lowercase, and only alphabetical characters and underscores should be used.  
+
+<font color="red">WARNING: WYSIWYG fields do not allow underscores for field names!</font>
+
+== Default Value ==
+
+== Extra ==
+
+
+== Class ==
+
+When the CCTM generates form elements inside the !WordPress manager, it adds standard IDs and classes to identify each unique field and each type of field to make the job of styling the output easier. However, if you wish to modify the display of generated form elements inside the !WordPress manager, you may wish to add your own CSS classes.
+
+<wiki:video url="http://www.youtube.com/watch?v=0X9OBLUq2T4"/>
+
+== Is Repeatable ==
+
+If checked, the field will store a _list_ of values instead of just a _single_ value.  For example an image field _without_ this checked will store only a single image, whereas an image field that is repeatable can select multiple images.
+
+<font color="red">WARNING: not every type of field supports this!</font>
+
+== Description ==
+
+This is a brief note describing what this field does.  The description appears under each instance of the field when a user creates or edits a post.
+
+https://img.skitch.com/20120902-jsxs9im6mdpqfym83mykdncyg2.jpg
