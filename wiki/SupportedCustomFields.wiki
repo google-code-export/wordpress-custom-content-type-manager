@@ -5,6 +5,14 @@
 
 By default, !WordPress supports only text custom fields.  The CCTM plugin allows you to define multiple types of custom fields to include inside your posts.  When you are adding a new custom field, you can choose to create any of the following types of field, or you can [CustomCustomFields develop your own].
 
+= Overview =
+
+It helps to distinguish our language here: when we say "create a custom field", we might be talking about adding a value to a single field within a given post (e.g. adding a phone number to our friend's contact information), or we might be talking about defining a new type of field for use with various content-types (e.g. creating a dropdown list of all possible brands of cell-phones).  Usually when we say "create a custom field", we are referring to the latter: we are talking about _defining_ a type of field.  We are creating a blueprint for a type of field that can be used on many different posts.
+
+Read more about [CustomFieldDefinitions Custom Field Definitions...]
+
+= Types of Custom Fields =
+
 == Checkbox ==
 
 ||http://s8.postimage.org/fglxaasn5/checkbox.png|| [Checkbox]: A simple checkbox that stores 1 (checked) or 0 (unchecked). You can define whether it is checked by default by setting the default value to "1". ||
