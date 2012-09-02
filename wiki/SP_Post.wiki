@@ -10,8 +10,9 @@ Using *SP_Posts* has these important distinctions:
  # It automatically creates/updates/deletes all custom fields in the postmeta table without the need to have to use the update_post_meta() and related functions.
  # It does not check for user permissions. If you're running around in the PHP code, you have full run of the database. BEWARE!
 
+--------------------------
 = Methods =
-
+--------------------------
 == get ==
 
 _array_ *get_custom_field*( array _$args_) 
