@@ -27,6 +27,7 @@
  * [GetPostsForms]
  * [GetPostsQuery]
  * [get_posts]
+ * [get_posts_examples]
  * [SP_Post]
  * [SummarizePosts]
 
