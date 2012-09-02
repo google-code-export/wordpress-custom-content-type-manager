@@ -1,0 +1,32 @@
+#summary SP_Post class reference
+#labels Function-Reference,Technical
+#sidebar SidebarFunctionReference
+
+The *SP_Post* class offers functions to create, update, and delete your posts and their meta data (i.e. CRUD).  Managing your post and all related data via a single interface is simpler than the alternative of using iterations of the !WordPress [http://codex.wordpress.org/Function_Reference/wp_insert_post wp_insert_post()] and [http://codex.wordpress.org/Function_Reference/update_post_meta update_post_meta()] and related functions.  
+
+Using *SP_Posts* has these important distinctions:
+
+ # It does not call any actions or filters when it is executed, so for better or for worse, there is no way for 3rd parties to intervene with this.
+ # It automatically creates/updates/deletes all custom fields in the postmeta table without the need to have to use the update_post_meta() and related functions.
+ # It does not check for user permissions. If you're running around in the PHP code, you have full run of the database. BEWARE!
+
+
+= get =
+
+_array_ *get_custom_field*( array _$args_) 
+
+* `$args` array arguments.
+
+This is a convenience function that acts as a pass-thru to [GetPostsQuery]'s *get_posts()* function.
+
+= get_errors =
+
+This is a convenience function for aiding in debugging.
+
+= delete =
+
+= insert =
+
+= save = 
+
+= update =
