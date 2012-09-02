@@ -1,0 +1,53 @@
+#summary CCTM_Pagination class reference
+#labels Function-Reference,Technical
+#sidebar SidebarFunctionReference
+
+= Introduction =
+
+The CCTM_Pagination class is a library for generating pagination links in conjunction with the GetPostsQuery class.  Examples of the pagination links it generates can be seen inside the modal lightbox windows when a relation field is used.
+
+
+
+= Usage =
+
+IN PROGRESS...
+
+{{{
+<?php
+
+// in your template file...
+
+$tpls['firstTpl'] = '';
+$tpls['lastTpl'] = '';
+$tpls['prevTpl'] = '';
+$tpls['nextTpl'] = '';
+$tpls['currentPageTpl'] = '';
+$tpls['pageTpl'] = '';
+$tpls['outerTpl'] = '';
+
+
+Example of Generated Links:
+
+			<< First < Prev.  1 2 3 4 5  Next >  Last >>
+
+Keys define which parameter to look for in the URL.
+number_of_pagination_links_displayed controls whether you have something like
+<<prev 1 2 3 next>> or 1 2 3 4 5 6 ... 
+
+	Templates used for formatting are assembled in the following manner:
+	
+	E.g. if the current page is 3:
+	
+	<<First <<Prev 1 2 3 Next>> Last>>
+	\_____/ \____/ ^ ^ ^ \____/ \____/
+	   |       |   | | |    |      +----- lastTpl
+	   |       |   | | |    +------------ nextTpl
+	   |       |   | | +----------------- currentPageTpl
+	   |       |   +-+------------------- pageTpl
+	   |       +------------------------- prevTpl
+	   +--------------------------------- firstTpl
+
+\_________________________________________________/
+                    |
+                    +-------------------- outerTpl
+}}}
