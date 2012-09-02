@@ -100,7 +100,33 @@ _integer_ *insert*( array _$args_ `[`, boolean _$overwrite_ `]` )
  * `$args` are identical to arguments for the `insert` function, but they *must* include a key for `ID` (the post ID).
  * `$overwrite` (optional) If true, update will nuke any custom fields not included in `$args`.
 
-This method updates an existing post.  
+This method updates an existing post.  Set the `$overwrite` parameter to true if you want to ensure that no residual custom fields persist across updates.
+
+=== Example 1 ===
+
+{{{
+$Q = new GetPostsQuery();
+$SP = new SP_Post();
+
+// retrieve post 123
+$my_post = $Q->get_post(123); 
+
+$my_post['post_content'] = 'I changed the content!';
+$my_post['my_custom_field'] = 'I changed/added a custom field!';
+
+// Since we retrieved the post, $my_post['ID'] is already set
+$SP->update($my_post);
+}}}
+
+=== Example 2 ===
+
+{{{
+$SP = new SP_Post();
+$data = array();
+$data['ID'] = 456;
+$data['post_title'] = 'Updated Title';
+$SP->update($data);
+}}}
 
 
 ----------------
