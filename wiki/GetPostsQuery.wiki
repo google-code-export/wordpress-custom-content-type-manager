@@ -1,0 +1,7 @@
+#summary GetPostsQuery class reference
+#labels Function-Reference,Technical
+#sidebar SidebarFunctionReference
+
+= Introduction =
+
+A class for querying the !WordPress database, including all custom fields using a unified API.
