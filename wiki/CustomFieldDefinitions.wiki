@@ -27,7 +27,9 @@ You can set a default value if you want new posts to start out with a given valu
 
 == Extra ==
 
-The extra attribute is useful for adding anything extra to the field definition that should not be constrained inside double quotes. Practical uses for this might include adding javascript events, or HTML 5 field attributes.
+The extra attribute is useful for adding anything extra to the field definition that should not be constrained inside double quotes. Extra data appears verbatim inside the form element, e.g. `<input type="text" my extra data goes here />`
+
+Practical uses for this might include adding javascript events, or HTML 5 field attributes.
 
 https://img.skitch.com/20120902-keqafg3xqc5gituc7ii62t3n9j.jpg
 
