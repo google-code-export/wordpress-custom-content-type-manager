@@ -1,0 +1,250 @@
+#summary One-sentence summary of this page.
+#labels Function-Reference,Technical
+#sidebar SidebarFunctionReference
+
+<wiki:toc max_depth="3" />
+
+
+= Description =
+
+_mixed_ *get_posts*( mixed _$args_ )
+
+This function is similar to the built-in !WordPress [http://codex.wordpress.org/Template_Tags/get_posts get_posts] function, but !SummarizePosts offers a much more thorough implementation including the ability to search by custom taxonomies or date ranges and to sort by custom fields. 
+
+The output format of results can be affected using the [set_output_type set_output_type()] function.
+
+= Setting Parameters =
+
+All parameters can be set in various ways: 
+
+ * By passing an associative array passed directly to the object constructor
+ * By passing an associative array passed to the get_posts() function
+ * By setting object attributes (see [Examples_get_posts  examples]) on the instantiated object.  
+
+Which method you use is largely up to you, but certain scenarios may lend themselves to one approach over another.
+
+== Via Object Constructor==
+
+Here we see how you can pass an associative array to the *GetPostsQuery* constructor:
+
+{{{
+$args = array();
+$args['post_type'] = 'page';
+$args['orderby'] = 'post_title';
+$Q = new GetPostsQuery($args);
+$results = $Q->get_posts();
+}}}
+
+== Via get_posts() ==
+
+Here is the equivalent parameters passed instead to the get_posts() function:
+
+{{{
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'page';
+$args['orderby'] = 'post_title';
+$results = $Q->get_posts($args);
+}}}
+
+== Via Object Attributes ==
+
+And here is the equivalent parameters set as object attributes:
+
+{{{
+$Q = new GetPostsQuery();
+$Q->post_type = 'page';
+$Q->orderby = 'post_title';
+$results = $Q->get_posts();
+}}}
+
+=All Parameters=
+
+There is a _long_ list of supported parameters here; most calls to this function will only use a small fraction of the available parameters.  Some inputs accept either comma-delineated strings _or_ arrays: this is intended to increase usability and it allows the function to be accessed via shortcodes or via standard PHP invocation in the theme files.
+
+
+=== limit ===         
+(integer) The maximum number of posts to retrieve.  If *pagination* is set to true, this value will determine the number of results to display on each page.
+
+Default: 10
+  
+=== offset ===          
+(integer) This parameter is used primarily when paginating results. The offset is ignored if no *limit* is set.
+
+Default: null
+
+=== orderby ===         
+(string) The column used to sort the results. You can specify any column name here, either a column from the _wp_posts_ table, or a custom field from _wp_postmeta_.  The following column names are in the _wp_posts_: _ID, post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count_.  
+
+If you use a term that's not in that list, it'll be assumed that you are ordering on a custom field.
+
+There is one reserved keyword here: specifying an orderby of _random_  will cause the results to be ordered randomly, but _be careful_: using this option on a large data set can negatively affect database performance.
+
+Default: ID
+
+=== order ===
+(string) This specifies the sort direction: *ASC* or *DESC*
+
+Default: DESC
+
+=== include === 
+(string or array) List of post IDs that you want to return. 
+
+Default: null
+
+=== exclude ===         
+(string or array) List of post IDs that you want to exclude from search results.
+
+Default: null
+
+=== append ===         
+(string or array) List of post IDs that you want to append to other search results.  This is useful if you want to conduct a search, but you _always_ want a certain post (or posts) returned.
+(string or array)
+
+Default: null
+
+=== meta_key ===        
+(string) This specifies the name of the custom field that should be searched for the value specified by _meta_value_. This parameter must be used in combination with _meta_value_.
+
+Default: null
+
+=== meta_value === 
+(string) This specifies the value of the custom field specified in the _meta_key_ parameter. This parameter must be used in combination with _meta_key_.
+
+Default: null
+
+=== post_type ===       
+(string or array) This specifies which post type(s) you want to return.  You can specify input as an array or as a comma-separated string of values. Built-in !WordPress post types include "post" or "page", but you can specify any registered post type including custom post types registered via the [http://codex.wordpress.org/Function_Reference/register_post_type register_post_type()] function.
+
+Default: null (i.e. shows all post-types)
+
+=== omit_post_type ===  
+(string or array) This specifies which post type(s) you want to omit from your search results. As with the *post_type* argument, input is any registered post type, built-in or custom.
+
+Default: revision, nav_menu_item
+
+=== post_mime_type === 
+(string) Specify the mime type OR the first part of the mime type.  This is for convenience so you can specify mime types like "image" to match "image/jpeg" and "image/gif".  Common post_mime_type's include _image/jpeg, application/pdf, audio/mpeg_
+
+Default: null
+
+=== post_parent ===    
+(string or array) Specify one or more parent posts by their IDs. 
+
+Default: null
+
+=== post_status ===     
+(string or array) Specify one or more post statuses: _draft, publish, inherit, auto-draft, trash, private_.
+
+Default: publish
+
+=== post_title === 
+(string) Specify the full post title.  If you need to conduct partial matches, use the _search_term_ parameter.
+
+Default: null
+
+=== author ===          
+(string) Defines the author's displayname.
+
+Default: null
+
+=== date ===       
+(string) Date in YYYY-MM-DD format.  Only records with a matching date will be returned.  The column searched is specified by _date_column_.  
+
+Default: null
+
+=== date_format ===
+(string) Specifies a date format that affects the date columns in the _wp_posts_ table ('post_date','post_date_gmt','post_modified','post_modified_gmt'), and it will format the column specified in the _date_column_ argument. 
+Any valid value that can be passed to PHP's date() function can be used (http://php.net/manual/en/function.date.php), but this supports the following shorthands:
+ 
+ * *1* : e.g. March 10, 2011, 5:16 pm
+ * *2* : e.g. 10 March, 2011
+ * *3* : e.g. Thursday March 10th, 2011
+ * *4* : e.g. 3/30/11
+ * *5* : e.g. 3/30/2011
+
+These are provided as a convenience.  For your own customizations, use PHP's date function directly.
+
+Default: null
+
+=== yearmonth ===       
+(integer) Allows you to specify a year and month so you can bring up recent posts for a particular calendar month, e.g. _201101_ would return posts from January 2011.
+
+Default: null
+
+=== date_min ===        
+(string) Date in YYYY-MM-DD format.  Only records with a date _greater than or equal to_ the *date_min* will be returned.  Which column is filtered on is determined by the *date_column* parameter. This argument can optionally include the time, e.g. '2011-02-01 23:30:59'; by default a time of 00:00:00 is assumed.
+
+Default: null
+
+=== date_max ===        
+(string) Date in YYYY-MM-DD format.  Only records with a date _less than or equal to_ the *date_max* will be returned. Which column is filtered on is determined by the *date_column* parameter. This argument can optionally include the time, e.g. '2011-02-01 23:30:59'; by default a time of 00:00:00 is assumed.
+
+Default: null
+
+=== taxonomy ===        
+(string) Name of a single taxonomy used to filter by, e.g. _category_ or _post_tag_.  Used in conjunction with either _taxonomy_term_ or _taxonomy_slug_.  Capitalization isn't terribly important because MySQL doesn't do case sensitive searches (unless specially configured).
+
+Default: null
+
+=== taxonomy_term ===   
+(string or array) Used to specify one or more taxonomy terms, e.g. "Mammals" or "Mammals,Dogs"
+
+Default: null
+
+
+=== taxonomy_slug === 
+(string) Alternative to _taxonomy_term_. Used to specify a taxonomy term as a valid URL-slug (i.e. lowercase with any non-alphanumeric character converted to an underscore).  In practice, you will probably rarely use this parameter since it's not obvious to you as a human what the slug-equivalent is for a given term.
+
+Default: null
+
+=== taxonomy_depth === 
+(string) Use this parameter if you are searching hierarchical taxonomies (e.g. Mammals --> Dogs --> Labrador).  If you want posts categorized as "Labrador" to be included in a search for Mammals, then you need to bump the _taxonomy_depth_ to 2 (or more).  
+
+ * *1*: retrieves posts that belong to the taxonomy specified.
+ * *2*: retrieves posts that belong to the specified taxonomy or its children.
+ * *3*: retrieves  posts that belong to the specified taxonomy, its children, or its grandchildren.
+ * *[...]*: _etc_ 
+
+Each layer in the hierarchy can potentially trigger an additional database query.  If you're not sure how many levels are in your hierarchy, then you can choose an arbitrarily large number. 
+
+Default: 1
+
+
+=== search_term ===     
+(string) Used to specify a search term.  You can adjust the _search_columns_ parameter to control which columns are searched for this value.
+
+Default: null
+
+=== search_columns === 
+(string or array) An array of columns to search for the string specified by the _search_term_. This can accept a comma-separated string or an array.  Note that a record matches if the search_term appears in ANY (not ALL) of the columns listed: the term may appear in column1 OR column2 OR column3 ... 
+
+Default: array('post_title', 'post_content')
+
+=== join_rule ===       
+(string) Either "AND" or "OR".  If you have specified multiple criteria, this determines how these criteria are combined.  This is an advanced parameter.  Normally your criteria are joined using AND, e.g. "WHERE post_type='page' AND 'page_title'='home'.  Changing this to "OR" can give you some flexibility in your searches, but generally "OR" based queries are massively confusing.
+
+Default: AND
+
+=== match_rule === 
+(string) Defines how the _search_term_ matches.  Options are: 
+ * _contains_: the whole phrase must appear somewhere in the _search_columns_ being searched
+ * _starts_with_: matching records must begin with the phrase entered
+ * _ends_with_: matching records must end with the phrase entered
+
+Default: contains
+
+=== date_column ===     
+(string) Specifies which column should be used for date range searches (i.e. the date column in question when you use the _date_min_ and _date_max_ parameters). 
+
+Default: post_modified
+
+=== paginate === 
+(boolean) True or false.  If true, the results are paginated.  The _limit_ parameter dictates how many results are shown per page.
+
+Default: false
+
+
+=Examples=
+
+See [Examples_get_posts Examples of get_posts()] on a separate page.
