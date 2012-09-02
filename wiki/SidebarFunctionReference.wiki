@@ -21,6 +21,14 @@
  * [print_custom_field_meta]
  * [CCTM_filter CCTM::filter]
 
+*Classes*
+ 
+ * [CCTM_Pagination]
+ * [GetPostsForms]
+ * [GetPostsQuery]
+ * [SP_Post]
+ * [SummarizePosts]
+
 *Other*
 
  * [Parser]
