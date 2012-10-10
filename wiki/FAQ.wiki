@@ -3,6 +3,25 @@
 
 <wiki:toc max_depth="2" />
 
+== The ____ plugin cannot load correctly! ==
+
+If you are trying to activate the CCTM when you already have the Summarize Posts plugin active, you will get this error:
+
+{{{
+The Summarize Posts plugin cannot load correctly! Another plugin has declared conflicting class, 
+function, or constant names: Class: uninstall_cctm You must deactivate the plugins that are using these 
+conflicting names.
+}}}
+
+or the error reads in part:
+
+{{{
+The Custom Post Type Manager plugin cannot load correctly!
+Another plugin has declared conflicting class, function, or constant names:
+}}}
+
+You must deactivate the Summarize Posts plugin.  Everything from the Summarize Posts plugin is in the CCTM, so there is no reason to use both.  The error stems from a simple PHP reality: you cannot redeclare class or function names.
+
 ------
 
 == The CCTM Menu Does not Display! ==
