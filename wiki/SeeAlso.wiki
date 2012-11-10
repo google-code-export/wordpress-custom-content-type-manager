@@ -81,12 +81,18 @@ This is a set of extendable classes to allow easy handling of custom post fields
 
  * https://wordpress.org/extend/plugins/custom-content-types/
 
+= Custom Post Type Helper Class =
+
+Some PHP classes for programmers.
+
+ * http://wp.tutsplus.com/tutorials/creative-coding/custom-post-type-helper-class/
+
 = Others =
 
 This company makes some nice plugins:
 
  * http://www.marcocimmino.net/cimy-wordpress-plugins/
-
+ 
 = eCommerce Plugins =
 
  * http://www.instinct.co.nz/e-commerce/ (notoriously buggy)
