@@ -124,6 +124,9 @@ It's important to review the arguments to the CCTM's [get_posts] function: some 
 
 This example creates a simple link for "Older posts" -- it uses only a small portion of the available formatting templates.
 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || When reading variables out of the URL, make sure you sanitize your data!  Using `(int)` to type-cast your variable to an integer is strong protection against SQL-Injection attacks, e.g. look closely at this line in the example below: `$args['offset'] = (int) $_GET['offset'];` || 
+
+
 {{{
 // Define the query
 $args = array();
@@ -158,9 +161,6 @@ foreach ($results as $r) {
 print $Q->get_pagination_links();
 
 }}}
-
-
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || When reading variables out of the URL, make sure you sanitize your data!  Using `(int)` to type-cast your variable to an integer is strong protection against SQL-Injection attacks. || 
 
 
 = Usage Example 2=
