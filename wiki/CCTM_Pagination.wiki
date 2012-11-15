@@ -113,7 +113,9 @@ It's important to review the arguments to the CCTM's [get_posts] function: some 
 == get_posts ==
 
  * limit (int) : this limits the number of records returned by a single query AND it sets the number or records visible on each page.
- * paginate (boolean) : 
+ * offset (int) : this controls the offset in the !MySQL query. For creating a page containing dynamic paginated results, you should read the offset out of the URL parameters and pass it back into your 
+ * paginate (boolean) : set this to true if you want to paginate your results. 
+
 
 
 ----
@@ -156,6 +158,9 @@ foreach ($results as $r) {
 print $Q->get_pagination_links();
 
 }}}
+
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || When reading variables out of the URL, make sure you sanitize your data!  Using `(int)` to type-cast your variable to an integer is strong protection against SQL-Injection attacks. || 
 
 
 = Usage Example 2=
