@@ -19,7 +19,7 @@ See the includes/CCTM_Pagination.conf.php for some examples.  The idea was to ha
 
 Used to format the link that takes you back to the very first page of results.  
 
-Sample:
+*Sample:*
 
 {{{
 <a href="[+base_url+]&offset=[+offset+]">&laquo; First</a> &nbsp;
@@ -29,10 +29,10 @@ Sample:
 
 Used to format the link that takes you back to the very last page of results.  
 
-Sample:
+*Sample:*
 
 {{{
-&nbsp;<a href="[+base_url+]&offset]=[+offset+]">Last &raquo;</a>
+&nbsp;<a href="[+base_url+]&offset=[+offset+]">Last &raquo;</a>
 }}}
 
 
@@ -40,30 +40,68 @@ Sample:
 
 Used to format the link that takes you back one page.
 
+*Sample:*
+
+{{{
+<a href="[+base_url+]&offset=[+offset+]">&lsaquo; Prev.</a>&nbsp;
+}}}
+
 == nextTpl ==
 
 Used to format the link that takes you forward one page.
 
+*Sample:*
+{{{
+&nbsp;<a href="[+base_url+]&offset=[+offset+]">Next &rsaquo;</a>
+}}}
+
 == currentPageTpl ==
 
-Used to format the number representing the current page.
+Used to format the number representing the current page.  You don't need to link to the page you're already on.
+
+*Sample:*
+{{{
+&nbsp;<span>[+page_number+]</span>&nbsp;
+}}}
 
 == pageTpl ==
 
 Used to format the links that take you directly to a given page.
 
+*Sample:*
+{{{
+&nbsp;<a href="[+base_url+]&offset=[+offset+]" [+extra+]>[+page_number+]</a>&nbsp;
+}}}
+
 == outerTpl ==
 
-Wraps the final output.
+Wraps the final output.  This has a  couple special placeholders.
 
----- 
+ * `[+content+]` : you *must* use this placeholder.  All other links and HTML will replace this placeholder.
+ * `[+current_page+]` : contains the number of the current page. Useful for messaging the user.
+ * `[+page_count+]` : shows the total number of pages in the result set. 
+ * `[+first_record+]` : number representing the first record visible on this page. 
+ * `[+last_record+]` : number representing the last record visible on this page. 
+ * `[+record_count+]` : number representing the total number of records in the result set. 
+ 
+*Sample:*
+
+{{{
+<div id="pagination">
+	[+content+]<br/>
+	Page [+current_page+] of [+page_count+]<br/>
+	Displaying records [+first_record+] thru [+last_record+] of [+record_count+]
+</div>
+}}}
+
+----
 
 = Arguments =
 
 It's important to review the arguments to the CCTM's [get_posts] function: some of those arguments directly affect pagination.
 
 
----- 
+----
 
 = Usage Example 1 =
 
