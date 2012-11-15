@@ -108,7 +108,7 @@ Wraps the final output.  This has a  couple special placeholders.
 
 = Arguments =
 
-It's important to review the arguments to the CCTM's [get_posts] function: some of those arguments directly affect pagination.
+It's important to review the arguments to the CCTM's [get_posts] function: some of those arguments directly affect pagination.  You don't have to use GetPostsQuery to use the CCTM_Pagination class, it's just common, so we demonstrate it here.
 
 == get_posts ==
 
