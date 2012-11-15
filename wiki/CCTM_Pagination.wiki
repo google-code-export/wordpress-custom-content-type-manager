@@ -80,7 +80,7 @@ Used to format the links that take you directly to a given page.
 
 *Sample:*
 {{{
-&nbsp;<a href="[+base_url+]&offset=[+offset+]" [+extra+]>[+page_number+]</a>&nbsp;
+&nbsp;<a href="[+base_url+]&offset=[+offset+]">[+page_number+]</a>&nbsp;
 }}}
 
 == outerTpl ==
