@@ -45,6 +45,7 @@ The first option argument is passed to the first filter (or to the default filte
 
 https://img.skitch.com/20110926-b7nqtrgeqn7pfcgckm6qcuwghd.png
 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || It is not recommended to chain together more than 2 output filters because your code becomes very difficult to read!   || 
 
 == Standalone Use ==
 
