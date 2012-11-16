@@ -28,6 +28,21 @@ _mixed_ *get_custom_field*( string _$fieldname_ `[`, mixed _$options_ `]` )
 <?php print_custom_field('my_email:email'); ?>
 }}}
 
+== Example 2 (array) ==
+
+If you've got a repeatable field containing an array of email addresses, you should iterate over the results and format each.
+
+{{{
+<p>Contact one of us at one of the following email addresses:</p>
+<?php 
+
+$email_array = get_custom_field('my_email:email'); 
+foreach ($email_array as $email) {
+    print $email . '<br/>';
+}
+?>
+}}}
+
 = See Also =
 
 See David Walsh's post for a description of this technique: http://davidwalsh.name/php-email-encode-prevent-spam
