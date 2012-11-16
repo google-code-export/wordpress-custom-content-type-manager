@@ -193,13 +193,23 @@ You don't have to use the CCTM_Pagination library with the GetPostsQuery class. 
 
 It's important to remember that the only thing the class absolutely needs is a count of the number of results you are paginating.  This normally comes from a database COUNT(*) operation of some sort, but strictly speaking, the CCTM_Pagination class doesn't care where you get your information.
 
-* set_base_url
-* set_extra
-* set_offset
-* set_results_per_page
-* set_tpls
+ * set_base_url
+ * set_extra
+ * set_offset
+ * set_results_per_page
+ * set_tpls
 
-* number_of_pagination_links_displayed
+ * get_lowest_visible_page($current_pg, $pgs_visible, $total_pgs)
+ * get_next_page($current_pg, $total_pgs)
+ * paginate($record_count)
+ * set_base_url($base_url='')
+ * offset_to_page($offset, $results_per_page)
+ * page_to_offset($page, $results_per_page)
+
+Create setter functions for:
+
+ * number_of_pagination_links_displayed
+ * next_prev_jump_size
 
 IN PROGRESS...
 
