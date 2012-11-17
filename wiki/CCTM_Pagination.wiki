@@ -193,8 +193,17 @@ You don't have to use the CCTM_Pagination library with the GetPostsQuery class. 
 
 It's important to remember that the only thing the class absolutely needs is a count of the number of results you are paginating.  This normally comes from a database COUNT(*) operation of some sort, but strictly speaking, the CCTM_Pagination class doesn't care where you get your information.
 
- * set_base_url
- * set_extra
+=== <font color="green">public function set_base_url()</font>===
+
+_void_ *set_base_url*( string _$url_ )
+
+Set the URL to be used as the base for the links.  This can be relative or absolute.  If you are not using friendly URLs and you have some CGI parameters that you wish to persist between pages, then you must include these when you set the base url. Default: "?"
+
+=== <font color="green">public function set_base_url()</font>===
+
+_void_ *set_extra*( string _$txt_ )
+
+
  * set_offset
  * set_results_per_page
  * set_tpls
