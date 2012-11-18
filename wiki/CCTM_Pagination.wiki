@@ -10,6 +10,134 @@ The CCTM_Pagination class is a library for generating pagination links.  It is u
 
 http://content.screencast.com/users/fireproofsocks/folders/Jing/media/f0d80440-d3d4-4f3d-a776-acbd94a48e9f/00000107.png
 
+The links generated are typical CGI style, with a URL parameter for `&offset`, something like this:
+
+{{{
+<a href="?&offset=25" >2</a>
+<a href="?&offset=50" >3</a>
+<a href="?&offset=75" >4</a>
+<!-- ... etc... -->
+}}}
+
+It is possible to configure your web application to respond offsets supplied via the URL instead of inside the query string, but that's an exercise in server configuration and in most cases, it is needlessly complex.
+
+= Methods =
+
+=== <font color="green">public function offset_to_page()</font>===
+
+_integer_ *offset_to_page*( integer _$offset_ `[`, integer _$results_per_page_`]`)
+
+ * *$offset* _integer_ 
+ * *$results_per_page* _integer_ -- if omitted, the class' results_per_page value will be used.
+ * *OUTPUT*: _integer_
+
+This is a convenience function for converting between an offset number and a page number.  The internal functions and database queries rely on offsets, but humans prefer page numbers.
+
+=== <font color="green">public function page_to_offset()</font>===
+
+_integer_ *page_to_offset*( integer _$offset_ `[`, integer _$results_per_page_`]`)
+
+ * *$page* _integer_ 
+ * *$results_per_page* _integer_ -- if omitted, the class' results_per_page value will be used.
+ * *OUTPUT*: _integer_
+
+This is a convenience function for converting between a page number and an offset number.  The internal functions and database queries rely on offsets, but humans prefer page numbers.
+
+
+=== <font color="green">public function paginate()</font>===
+
+_string_ *paginate*( integer _$record_count_) 
+
+ * *$record_count* : the number of records you are paginating.
+ * *OUTPUT*: HTML representing pagination links.
+
+This is THE primary function of this entire class. 
+
+
+=== <font color="green">public function set_base_url()</font>===
+
+_void_ *set_base_url*( string _$url_ )
+
+ * *$url* _string_  any valid URL, relative or absolute.
+
+Set the URL to be used as the base for the links.  This can be relative or absolute.  If you are not using friendly URLs and you have some CGI parameters that you wish to persist between pages, then you must include these when you set the base url.
+
+For relative URLs, you may wish to simply use "?".
+
+If your pagination occurs on a page that is reliant on other CGI query variables (e.g. if you have permalinks disabled), then you must include these when you set the base url.  Any URL parameter that you wish to remain constant across pages needs to be passed to this function.
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || Sanitize the URL before setting the base url! The `set_base_url()` function does not filter values!  Do not pass unsanitized data to this function or you will be vulnerable to XSS attacks! || 
+
+
+=== <font color="green">public function set_jump_size()</font>===
+
+_void_ *set_jump_size*( integer _$pgs_ )
+
+ * *$pgs* _integer_  greater than zero which defines the number of pages that are advanced when the "Next" or "Previous" links are clicked.
+
+Most commonly, the pagination flow is like that of a book: clicking on the "Next" or "Previous" links will flip forwards or backwards one page at a time.  However, in some scenarios (e.g. with very large record sets), you may with to "fast-forward" to an entirely new set of links each time the "Next" or "Previous" links are clicked.  In those cases, set the jump size to a larger number, e.g. to a number equal to the link_cnt (see `set_link_cnt()`).
+
+
+=== <font color="green">public function set_link_cnt()</font>===
+
+_void_ *set_link_cnt*( integer _$cnt_ )
+
+ * *$cnt* _integer_  greater than zero which determines the number of pagination links displayed.
+
+This class uses a default value of 10 links. Here is an example of using a link_cnt of 5:
+
+http://content.screencast.com/users/fireproofsocks/folders/Jing/media/304b3f14-a09b-4ea9-9114-e2c51f20cc64/00000116.png
+
+=== <font color="green">public function set_offset()</font>===
+
+_void_ *set_offset*( integer _$offset_ )
+
+ * *$offset* integer defining the offset used in the result set.
+
+This value should be dynamically read out of the URL so that the page containing the pagination can dynamically react to the values being passed to it.  The default value here is zero which is equivalent to being on the first page of results.
+
+{{{
+// Dynamically read the offset
+if (isset($_GET['offset'])) {
+	$offset = (int) $_GET['offset'];
+}
+$P = new CCTM_Pagination();
+$P->set_offset($offset);
+$P->paginate(1000); 
+}}}
+
+
+=== <font color="green">public function set_results_per_page()</font>===
+
+_void_ *set_results_per_page*( integer _$results_per_page_ )
+
+ * *$results_per_page* integer greater than zero which defines how many results are displayed on each page of results.
+
+Knowing the number of results displayed on each page is critical in calculating the pagination links.  100 results, for example, would require 10 pages if $results_per_page=10, but only 4 pages if $results_per_page were set to 25.
+
+It is important to understand that the CCTM_Pagination does not display results directly, so setting this value is more of a "courtesy call".  In order to ensure accurate pagination links, however, you should use the $results_per_page value that is equal to the number of results you are actually printing on each page.
+
+=== <font color="green">public function set_tpl()</font>===
+
+_void_ *set_tpl*( string _$tpl_, string _$content_ )
+
+ * *$tpl* string name of one of the component formatting templates (tpls): firstTpl,lastTpl,prevTpl,nextTpl,currentPageTpl,
+			pageTpl,outerTpl
+ * *$content* string containing placeholders.  See the Tpls section below.
+
+Use this function to set the content of a tpl.
+
+
+=== <font color="green">public function set_tpls()</font>===
+
+_void_ *set_tpls*( array _$tpls_ )
+
+ * *$tpls* associative array containing key/value pairs where each key corresponds to one of the named formatting templates (tpls): firstTpl,lastTpl,prevTpl,nextTpl,currentPageTpl,
+			pageTpl,outerTpl
+
+Use this function to set all tpls in one swoop.  If you omit any of the keys, it is equivalent to setting the corresponding tpl to an empty string.
+
+
 
 = Formatting Templates (tpls) =
 
@@ -32,6 +160,8 @@ This text graphic shows some sample links and the formatting tpl that applies to
                     +-------------------- outerTpl
 }}}
 
+You can set the tpls individually using the `set_tpl()` function or all at once using the `set_tpls()` function.
+
 === Placeholders ===
 
 The following placeholders are available throughout the tpls.  There are some others available only to the *outerTpl* (see below).
@@ -40,9 +170,6 @@ The following placeholders are available throughout the tpls.  There are some ot
  * `[+offset+]` : Contains an integer representing the offset.  You must read this from the URL and pass it back into your get_posts arguments.
  * `[+page_number +]` : instead of an offset number, this will print an integer for a page, e.g. when used in the *currentPageTpl*, it will contain the number of the current page, when used in the *nextTpl* it will contain the number for the next page, etc.
 
-
-
-See the includes/CCTM_Pagination.conf.php for some examples.  The idea was to hard-code some variations in link styles in that file.
 
 == firstTpl == 
 
@@ -140,6 +267,27 @@ It's important to review the arguments to the CCTM's [get_posts] function: some 
 ----
 = Examples =
 
+== Simplest Example ==
+
+The simplest invocation of this class isn't practically useful, but it should bring home the point that all this class needs is a number representing a count of the records to be paginated.
+
+{{{
+// In a template file
+require_once(CCTM_PATH.'/includes/CCTM_Pagination.php');
+$P = new CCTM_Pagination();
+print $P->paginate(1000);
+}}}
+
+The result will be something like this:
+
+http://content.screencast.com/users/fireproofsocks/folders/Jing/media/5444f4f3-a30e-49df-9711-3f9aeff06b93/00000115.png
+
+Note that this example relies on all the default tpls and it does not include any code to dynamically read the current page, so it is essentially static.
+
+== A Simple Example ==
+
+
+
 == Usage Example 1 (GetPostsQuery) ==
 
 This example creates a simple link for "Older posts" -- it uses only a small portion of the available formatting templates.
@@ -189,36 +337,6 @@ If you want to create something more involved than the simple "next/prev" type o
 
 == Usage Example 3 (standalone)==
 
-You don't have to use the CCTM_Pagination library with the GetPostsQuery class.  You can use the CCTM_Pagination library all by itself.
-
-It's important to remember that the only thing the class absolutely needs is a count of the number of results you are paginating.  This normally comes from a database COUNT(*) operation of some sort, but strictly speaking, the CCTM_Pagination class doesn't care where you get your information.
-
-=== <font color="green">public function set_base_url()</font>===
-
-_void_ *set_base_url*( string _$url_ )
-
-Set the URL to be used as the base for the links.  This can be relative or absolute.  If you are not using friendly URLs and you have some CGI parameters that you wish to persist between pages, then you must include these when you set the base url. Default: "?"
-
-=== <font color="green">public function set_base_url()</font>===
-
-_void_ *set_extra*( string _$txt_ )
-
-
- * set_offset
- * set_results_per_page
- * set_tpls
-
- * get_lowest_visible_page($current_pg, $pgs_visible, $total_pgs)
- * get_next_page($current_pg, $total_pgs)
- * paginate($record_count)
- * set_base_url($base_url='')
- * offset_to_page($offset, $results_per_page)
- * page_to_offset($page, $results_per_page)
-
-Create setter functions for:
-
- * number_of_pagination_links_displayed
- * next_prev_jump_size
 
 IN PROGRESS...
 
