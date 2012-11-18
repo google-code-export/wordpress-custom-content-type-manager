@@ -6,7 +6,7 @@
 
 = Introduction =
 
-The CCTM_Pagination class is a library for generating pagination links.  It is used by the GetPostsQuery class, for example when you select a post or image in a custom field:
+The CCTM_Pagination class is a library for generating pagination links (revised for version 0.9.6.2 of the CCTM).  It is used by the GetPostsQuery class, for example when you select a post or image in a custom field:
 
 http://content.screencast.com/users/fireproofsocks/folders/Jing/media/f0d80440-d3d4-4f3d-a776-acbd94a48e9f/00000107.png
 
@@ -306,6 +306,8 @@ However, in most cases we still need to calculate the number of records dynamica
 
 In order for the library to be used in real-world scenario we must dynamically read the offset (e.g. from the URL as shown in example 2) and we must have a valid calculation of the number of results.   Normally, we count the number of results by issuing a database query that counts the results, but you could also paginate results gleaned from an API or from a number of files etc -- the source of your data will determine how you will determine an accurate count of the results.
 
+This example assumes that you are using the CCTM_Paganation class inside a WordPress template file, so it is using the *$wpdb* global object to drive database queries, but the principle can apply no matter how you count results and retrieve data.
+
 {{{
 global $wpdb;
 
@@ -316,7 +318,7 @@ $P = new CCTM_Pagination();
 // Read the offset variable (VERY IMPORTANT!)
 $offset = 0;
 $results_per_page = 10;
-$P->set_results_per_page($results_per_page);
+$P->set_results_per_page($results_per_page);  // also pass this to your MySQL query's LIMIT
 
 if (isset($_GET['offset'])) {
 	$offset = (int) $_GET['offset'];
@@ -331,14 +333,18 @@ $result_cnt = $results[0]['cnt'];
 $query = "SELECT * FROM {$wpdb->posts} LIMIT $results_per_page OFFSET $offset";
 $results = $wpdb->get_results($query, ARRAY_A );
 foreach ($results as $r) {
-	print $r['post_title'] . '<br />';
+	print $r['post_title'] . '<br />';  // print whatever data you want
 }
 
 // Print the pagination links
 print $P->paginate($result_cnt);
 }}}
 
-== Usage Example 1 (GetPostsQuery) ==
+== Using with GetPostsQuery ==
+
+The !SummarizePosts and !GetPostQuery classes rely on the CCTM_Pagination class, so you do not need to directly instantiate it directly.  Some of the arguments passed to the SummarizePosts::get_posts() function or to the GetPostsQuery::get_posts() function will affect pagination settings.
+
+If you want to create something more involved than the simple "next/prev" type of links, then you need to use more of the formatting strings.
 
 This example creates a simple link for "Older posts" -- it uses only a small portion of the available formatting templates.
 
@@ -346,14 +352,12 @@ This example creates a simple link for "Older posts" -- it uses only a small por
 
 
 {{{
+require_once(CCTM_PATH.'/includes/GetPostsQuery.php');
+$Q = new GetPostsQuery();
+
 // Define the query
 $args = array();
-$args['post_type'] = array('my_post_type');
-$args['search_columns'] = array('post_title', 'post_content','some_custom_field');
-//$args['taxonomy'] = 'category';
-//$args['taxonomy_slug'] = '';
-$args['orderby'] = 'post_date';
-$args['date_format'] = 'F j, Y';
+$args['post_type'] = array('post');
 $args['limit'] = 20;
 $args['paginate'] = true;
 
@@ -361,14 +365,6 @@ $args['paginate'] = true;
 if (isset($_GET['offset'])) {
 	$args['offset'] = (int) $_GET['offset'];
 }
-
-
-// Pagination formatting
-$tpls = array();
-$tpls['prevTpl'] = '<div class="nav-next"><a href="[+base_url+]&[+offset_key+]=[+offset+]" [+extra+]>Newer posts <span class="meta-nav">&rarr;</span></a></div>';
-$tpls['nextTpl'] = '<div class="nav-previous"><a href="[+base_url+]&[+offset_key+]=[+offset+]" [+extra+]><span class="meta-nav">&larr;</span> Older posts</a></div>';
-$tpls['outerTpl'] = '<div id="nav-below" class="navigation">[+content+]</div>';
-$Q->set_tpls($tpls);
 
 $results = $Q->get_posts($args);
 
@@ -381,9 +377,6 @@ print $Q->get_pagination_links();
 }}}
 
 
-== Usage Example 2 (GetPostsQuery) ==
-
-If you want to create something more involved than the simple "next/prev" type of links, then you need to use more of the formatting strings.
 
 == Usage Example 3 (standalone)==
 
