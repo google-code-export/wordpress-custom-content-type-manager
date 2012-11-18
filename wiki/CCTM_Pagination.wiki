@@ -51,7 +51,7 @@ _string_ *paginate*( integer _$record_count_)
  * *$record_count* : the number of records you are paginating.
  * *OUTPUT*: HTML representing pagination links.
 
-This is THE primary function of this entire class. 
+This is THE primary function of this entire class.  See the examples below.
 
 
 === <font color="green">public function set_base_url()</font>===
@@ -267,7 +267,7 @@ It's important to review the arguments to the CCTM's [get_posts] function: some 
 ----
 = Examples =
 
-== Simplest Example ==
+== 1. Simplest Example ==
 
 The simplest invocation of this class isn't practically useful, but it should bring home the point that all this class needs is a number representing a count of the records to be paginated.
 
@@ -284,9 +284,59 @@ http://content.screencast.com/users/fireproofsocks/folders/Jing/media/5444f4f3-a
 
 Note that this example relies on all the default tpls and it does not include any code to dynamically read the current page, so it is essentially static.
 
-== A Simple Example ==
+== 2. Simple Example ==
 
+Here is a slightly more useful example where we can at least click through our pages and see our links update. 
 
+{{{
+require_once(CCTM_PATH.'/includes/CCTM_Pagination.php');
+$P = new CCTM_Pagination();
+
+// Read the offset variable (VERY IMPORTANT!)
+if (isset($_GET['offset'])) {
+	$P->set_offset($_GET['offset']);
+}
+
+print $P->paginate(1000);
+}}}
+
+However, in most cases we still need to calculate the number of records dynamically instead of passing the `paginate()` function a hard-coded value.
+
+== 3. Simplest Working Example ==
+
+In order for the library to be used in real-world scenario we must dynamically read the offset (e.g. from the URL as shown in example 2) and we must have a valid calculation of the number of results.   Normally, we count the number of results by issuing a database query that counts the results, but you could also paginate results gleaned from an API or from a number of files etc -- the source of your data will determine how you will determine an accurate count of the results.
+
+{{{
+global $wpdb;
+
+require_once(CCTM_PATH.'/includes/CCTM_Pagination.php');
+
+$P = new CCTM_Pagination();
+
+// Read the offset variable (VERY IMPORTANT!)
+$offset = 0;
+$results_per_page = 10;
+$P->set_results_per_page($results_per_page);
+
+if (isset($_GET['offset'])) {
+	$offset = (int) $_GET['offset'];
+	$P->set_offset($offset);
+}
+// Count results manually
+$cnt_query = "SELECT COUNT(*) as cnt FROM {$wpdb->posts}";
+$results = $wpdb->get_results($cnt_query, ARRAY_A );
+$result_cnt = $results[0]['cnt']; 
+
+// Get the data 
+$query = "SELECT * FROM {$wpdb->posts} LIMIT $results_per_page OFFSET $offset";
+$results = $wpdb->get_results($query, ARRAY_A );
+foreach ($results as $r) {
+	print $r['post_title'] . '<br />';
+}
+
+// Print the pagination links
+print $P->paginate($result_cnt);
+}}}
 
 == Usage Example 1 (GetPostsQuery) ==
 
