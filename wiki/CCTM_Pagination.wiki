@@ -21,6 +21,8 @@ The links generated are typical CGI style, with a URL parameter for `&offset`, s
 
 It is possible to configure your web application to respond offsets supplied via the URL instead of inside the query string, but that's an exercise in server configuration and in most cases, it is needlessly complex.
 
+----
+
 = Methods =
 
 === <font color="green">public function offset_to_page()</font>===
@@ -138,6 +140,7 @@ _void_ *set_tpls*( array _$tpls_ )
 Use this function to set all tpls in one swoop.  If you omit any of the keys, it is equivalent to setting the corresponding tpl to an empty string.
 
 
+----
 
 = Formatting Templates (tpls) =
 
@@ -168,8 +171,15 @@ The following placeholders are available throughout the tpls.  There are some ot
 
  * `[+base_url+]` : This is the URL of the page containing your get_posts query.  
  * `[+offset+]` : Contains an integer representing the offset.  You must read this from the URL and pass it back into your get_posts arguments.
- * `[+page_number +]` : instead of an offset number, this will print an integer for a page, e.g. when used in the *currentPageTpl*, it will contain the number of the current page, when used in the *nextTpl* it will contain the number for the next page, etc.
+ * `[+page_number+]` : instead of an offset number, this will print an integer for a page, e.g. when used in the *currentPageTpl*, it will contain the number of the current page, when used in the *nextTpl* it will contain the number for the next page, etc.
 
+It should be pointed out here that _any_ value set on the CCTM_Pagination object will be available in a corresponding placeholder.  For example:
+
+{{{
+$P->extra = 'onclick="alert('hiya');";
+}}}
+
+would populate any instances of `[+extra+]` with the bit of javascript.
 
 == firstTpl == 
 
@@ -265,6 +275,7 @@ It's important to review the arguments to the CCTM's [get_posts] function: some 
 
 
 ----
+
 = Examples =
 
 == 1. Simplest Example ==
@@ -378,7 +389,7 @@ print $Q->get_pagination_links();
 
 
 
-== Usage Example 3 (standalone)==
+== Customizing Tpls ==
 
 
 IN PROGRESS...
