@@ -9,9 +9,8 @@
 
 _mixed_ *get_posts*( mixed _$args_ )
 
-This function is similar to the built-in !WordPress [http://codex.wordpress.org/Template_Tags/get_posts get_posts] function, but !SummarizePosts offers a much more thorough implementation including the ability to search by custom taxonomies or date ranges and to sort by custom fields. 
+This function is similar to the built-in !WordPress [http://codex.wordpress.org/Template_Tags/get_posts get_posts] function, but !SummarizePosts offers a more thorough implementation including the ability to search by custom taxonomies or date ranges and to sort by custom fields. 
 
-The output format of results can be affected using the [set_output_type set_output_type()] function.
 
 = Setting Parameters =
 
