@@ -206,6 +206,6 @@ See the wiki page on [TemplateFunctions]
 
 == My Custom Fields Broke after Moving my Site! ==
 
-This is usually due to a !WordPress error: !WordPress hardcodes paths and URLs when it stores options as PHP serialized data, which includes a character count.    So if you change your domain name, for example, the character count changes, and the serialized data structure becomes corrupted.  In general, WordPress is very poorly suited to site migration in part due to this reason.
+This is usually due to a !WordPress error: !WordPress hardcodes paths and URLs when it stores options as PHP serialized data, which includes a character count.    So if you change your domain name, for example, the character count changes, and the serialized data structure becomes corrupted.  In general, !WordPress is very poorly suited to site migration in part due to this reason.
 
 *What to do?*  [Export] your custom field definitions to a .cctm.json file, then move your site and [Import] the definition file on the new site.  Because the settings are stored as a JSON object, it is not vulnerable to the limitations of the serialized data.
