@@ -246,4 +246,4 @@ Default: false
 
 =Examples=
 
-See [Examples_get_posts Examples of get_posts()] on a separate page.
+See [get_posts_examples Examples of get_posts()] on a separate page.
