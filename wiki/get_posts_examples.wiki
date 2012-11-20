@@ -105,5 +105,5 @@ You can also use some additional properties to format the results:
  * *before*: printed before the results. default = `<ul class="summarize-posts">`
  * *after*: printed after the results. default =  `</ul>`,
  * *paginate*: whether or not to paginate the results. default = false
- * *tpl* you can specify a path (relative to webroot) to a file to be used as the template. For example, a value of "wp-content/my.tpl" would look inside the "wp-content" folder for a file named "my.tpl". default = `null`
+ * *tpl* you can specify a path (relative to webroot) to a file to be used as the template. For example, a value of "wp-content/my.tpl" would look inside the "wp-content" folder for a file named "my.tpl". <font color="red">The file *must* use a `.tpl` extension!</font> default = `null`
  * *help* If set, the output will include debugging info and examples. default = `false`
