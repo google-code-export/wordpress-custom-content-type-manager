@@ -7,3 +7,14 @@
 A class for querying the !WordPress database, including all custom fields using a unified API.
 
 The key function here is [get_posts].  See its dedicated page as well as the page with [Examples of get_posts()get_posts_examples].
+
+----
+
+= Methods =
+
+=== <font color="green">public function count_posts()</font>===
+
+_integer_ *count_posts*(array _$args_ `[`,$ignore_defaults`]`)
+
+ * *$args* : criteria, inputs the same as for `get_posts()`.
+ * *OUTPUT*: Integer count of the number of rows meeting the criteria.
