@@ -20,6 +20,7 @@ Used as a sidebar in the validators section.
 
  * [CustomCustomFields CCTM_FieldElement]
  * [CustomOutputFilters CCTM_OutputFilter]
+ * [CCTM_Pagination]
 
 *Constants*
 
