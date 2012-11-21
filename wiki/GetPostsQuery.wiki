@@ -18,3 +18,35 @@ _integer_ *count_posts*(array _$args_ `[`,$ignore_defaults`]`)
 
  * *$args* : criteria, inputs the same as for `get_posts()`.
  * *OUTPUT*: Integer count of the number of rows meeting the criteria.
+
+=== <font color="green">public function debug()</font>===
+
+_string_ *debug*()
+
+ * *OUTPUT*: retrieves debugging information about the query you issued.  
+
+You should run this after you have run this class' `get_posts()` function.  Optionally, you can pass arguments to the constructor and then call this method.
+
+=== <font color="green">public function get_args()</font>===
+
+Returns an HTML formatted version of filtered input arguments useful for debugging.
+
+----
+
+IN PROGRESS...
+
+ * get_args Returns an HTML formatted version of filtered input arguments useful for debugging.
+ * get_current_page_url: Gets the URL of the current page to use in generating pagination links.
+ * get_duration: Gets script execution time (since instantiation) for debugging purposes
+ * get_errors: Format any errors in an unordered list, or returns a message saying there were no errors.
+ * get_found_rows: Gets the # of rows found given the criteria.  Must be run after get_posts 
+ * get_notices: Format any errors in an unordered list, or returns a message saying there were no errors.
+ * get_pagination_links: tie into the [CCTM_Pagination] class. Only valid if the pagination option has been set.  This is how the user should retrieve the pagination links that have been generated.
+ * get_post: returns a single post by its id.  The returned array includes all custom fields.
+ * get_shortcode: gets the equivalent shortcode for the query defined by the arguments.
+ * get_sql: get the raw SQL query
+ * get_warnings: like get_notices and get_warnings.
+ * set_default: This sets a default value for any field.  This should kick in only if the field is empty.
+ * set_defaults: 
+ * set_include_hidden_fields: Should hidden fields be included in the results?
+ * set_tpls: Passthru to pagination library's function of the same name.
