@@ -2,6 +2,8 @@
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
+<wiki:toc max_depth="2" />
+
 = Introduction =
 
 A class for querying the !WordPress database, including all custom fields using a unified API.
