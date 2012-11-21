@@ -5,3 +5,5 @@
 = Introduction =
 
 A class for querying the !WordPress database, including all custom fields using a unified API.
+
+The key function here is [get_posts].  See its dedicated page as well as the page with [Examples of get_posts()get_posts_examples].
