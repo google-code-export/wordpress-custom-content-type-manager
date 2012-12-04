@@ -2,7 +2,7 @@
 #labels Custom-Fields
 #sidebar SidebarCustomFields
 
-||http://s9.postimage.org/smg6bx11n/dropdown.png||Dropdown fields let you select a single option from a list of options.||
+||http://s9.postimage.org/smg6bx11n/dropdown.png||Dropdown fields let you select a single option from a list of options that the user defines one-by-one, in bulk, or via s SQL database query.||
 
 <wiki:toc max_depth="2" />
 
@@ -34,6 +34,46 @@ The field definition affects how instances of this field type will display in th
  * *values* : an array of values to be stored.  If _use_key_values_ is checked, these will be distinct from the _options_, otherwise this array will be exactly equal to the _options_ array.
  * *use_key_values* : 0|1. Checkbox defining whether or not you are creating a simple dropdown (0) where the options displayed visibly match the values stored, or if you are doing something more complex (1) where the values stored are different from what's displayed to the user.
  * *display_type* : dropdown|radio -- this defines whether or not the field will be rendered as a dropdown field or as a series of radio buttons.
+ * *alternate_input* : textarea -- starting with version 0.9.6.5, users can supply a block of text with each line representing an option (like Drupal), or a valid SQL query that should drive the available options.
+ * *is_sql* : checkbox (1|0) -- if checked, the text in the alternate_input will be evaluated as a database query.
+
+----
+
+== Alternate Inputs ==
+
+The dropdown fields are versatile and powerful.  Starting with 0.9.6.5, you can add options in bulk by pasting them into the Alternate Input field.  The format is simple: each line becomes a new option.  
+
+*Alternate Input Example 1:*
+{{{
+Cats
+Dogs
+Pa
+}}}
+
+
+If you wish to have separate options and values, then use two pipe characters "||" to separate the visible option label on the left from the stored value on the right.  Values are trimmed, so you can use some space around your double-pipes.  It is valid to include the double-pipes on some lines and omit it on others.
+
+*Alternate Input Example 2:*
+{{{
+Big Bear || big_bear
+Little Dog || litte_bear
+Cats
+}}}
+
+Lastly, you can check the box labeled "Execute as a MySQL query" if you have instead entered a SQL database query.  Note that the following behaviors of the database query option:
+
+ * Only the first 2 columns selected are relevant, so `SELECT *` operations are discouraged.  The first column in each result will be used as the visible option label.  The second column (if present) will be the value stored in the database.
+ * The database queried is the same one used by the WordPress installation.  
+ * You may use the `[+table_prefix+]` placeholder to dynamically detect the table prefix used on local !WordPress installation.  Using this placeholder is recommended over hard-coding table names because 1. your table prefix may change and 2. if you migrate your CCTM definitions to a new site, the table prefix may be different.
+
+{{{
+SELECT post_title, ID 
+FROM [+table_prefix+]posts 
+WHERE post_type='movie'
+AND post_author=3
+}}}
+
+Be advised that !MySQL queries are dependent on the specific _data_ in your site, so migrating your CCTM definitions to a new installation with different data may result in broken queries and broken dropdowns.
 
 ----
 
