@@ -45,9 +45,11 @@ The dropdown fields are versatile and powerful.  Starting with 0.9.6.5, you can 
 
 *Alternate Input Example 1:*
 {{{
-Cats
-Dogs
-Pa
+Scott
+Mark
+Bruce
+Kevin
+Dave
 }}}
 
 
@@ -66,6 +68,7 @@ Lastly, you can check the box labeled "Execute as a MySQL query" if you have ins
  * The database queried is the same one used by the WordPress installation.  
  * You may use the `[+table_prefix+]` placeholder to dynamically detect the table prefix used on local !WordPress installation.  Using this placeholder is recommended over hard-coding table names because 1. your table prefix may change and 2. if you migrate your CCTM definitions to a new site, the table prefix may be different.
 
+*Alternate Input Example 3:*
 {{{
 SELECT post_title, ID 
 FROM [+table_prefix+]posts 
