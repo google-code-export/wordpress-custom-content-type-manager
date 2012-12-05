@@ -14,5 +14,32 @@ The *summarize-posts* shortcode gives you access to the powerful *GetPostsQuery*
 
 == Parameters ==
 
-There are many parameters, mirroring the arguments you can use for the *GetPostsQuery.
+The parameters available to the shortcode are the same available to GetPostsQuery [get_posts] function.
 
+There are, however, several additional parameters available only to the shortcode:
+
+ * *before*: printed before the results. default = `<ul class="summarize-posts">`
+ * *after*: printed after the results. default =  `</ul>`,
+ * *paginate*: whether or not to paginate the results. default = false
+ * *tpl* you can specify a path (relative to webroot) to a file to be used as the template. For example, a value of "wp-content/my.tpl" would look inside the "wp-content" folder for a file named "my.tpl". <font color="red">The file *must* use a `.tpl` extension!</font> default = `null`
+ * *help* If set, the output will include debugging info and examples. default = `false`
+
+==Specifying Shortcode Format==
+
+What if you don't want the simplistic unordered list?  
+
+You can specify a few other arguments here to help you format your results.  Use the full version of the shortcode to specify the formatting template to be used to format each result.
+
+{{{
+[summarize_posts]<li>[+post_title+]</li>[/summarize_posts]
+}}}
+
+
+
+== Example 1==
+
+Creating an ordered list of your custom post-type named "movies"
+
+{{{
+[summarize_posts post_type="movies" before="<ol>" after="</ol>"]<li>[+post_title+]</li>[/summarize_posts]
+}}}
