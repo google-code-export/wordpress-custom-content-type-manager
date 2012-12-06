@@ -388,23 +388,59 @@ print $Q->get_pagination_links();
 }}}
 
 
-
 == Customizing Tpls ==
 
+The class offers two functions to allow you control over the formatting templates (tpls) used to format the output: 
 
-IN PROGRESS...
+ * *set_tpl($tpl_name, $content)*: set a single template (`$tpl_name`) to `$content`.  Valid `$tpl_name` arguments are any of the valid template names listed above: "firstTpl", "lastTpl", "prevTpl", "nextTpl", "currentPageTpl", "pageTpl", "outerTpl"
+ * *set_tpls($tpls)*: pass this function a _complete_ associative array of all templates to be used. If the array you pass omits any of the valid keys, it is equivalent to you setting a null value for that key.
+
+{{{
+require_once(CCTM_PATH.'/includes/CCTM_Pagination.php');
+$P = new CCTM_Pagination();
+
+// Set pagination tpls
+$tpls = array (
+	'firstTpl'		=> '<span class="linklike" onclick="javascript:change_page(1);">&laquo; First</span> &nbsp;',
+	'lastTpl' 		=> '&nbsp;<span class="linklike" onclick="javascript:change_page([+page_number+]);" >Last &raquo;</span>',
+	'prevTpl' 		=> '<span class="linklike" onclick="javascript:change_page([+page_number+]);">&lsaquo; Prev.</span>&nbsp;',
+	'nextTpl' 		=> '&nbsp;<span class="linklike" onclick="javascript:change_page([+page_number+]);">Next &rsaquo;</span>',
+	'currentPageTpl'=> '&nbsp;<span class="post_selector_pagination_active_page">[+page_number+]</span>&nbsp;',
+	'pageTpl' 		=> '&nbsp;<span class="linklike" title="[+page_number+]" onclick="javascript:change_page([+page_number+]);">[+page_number+]</span>&nbsp;',
+	'outerTpl' 		=> '<div id="pagination">[+content+]<br/>
+		Page [+current_page+] of [+page_count+]<br/>
+	</div>',
+);
+$P->set_tpls($tpls);
+
+print $P->paginate(1000);
+}}}
+
+== Customizing Tpls in GetPostsQuery==
+
+
+You can set the formatting of the formatting templates (tpls) when you use the GetPostsQuery class.
 
 {{{
 <?php
-
 // in your template file...
+$Q = new GetPostsQuery(); 
 
-$tpls['firstTpl'] = '';
-$tpls['lastTpl'] = '';
-$tpls['prevTpl'] = '';
-$tpls['nextTpl'] = '';
-$tpls['currentPageTpl'] = '';
-$tpls['pageTpl'] = '';
-$tpls['outerTpl'] = '';
+// ..add search filters to taste... 
 
+// Set your formatting tpls
+$tpls['firstTpl'] = '<a href="[+base_url+]&offset=[+offset+]" [+extra+]>&laquo; First</a> &nbsp;';
+$tpls['lastTpl'] = '&nbsp;<a href="[+base_url+]&offset=[+offset+]" [+extra+]>Last &raquo;</a>';
+$tpls['prevTpl'] = '<a href="[+base_url+]&offset=[+offset+]" [+extra+]>&lsaquo; Prev.</a>&nbsp;';
+$tpls['nextTpl'] = '&nbsp;<a href="[+base_url+]&offset=[+offset+]" [+extra+]>Next &rsaquo;</a>';
+$tpls['currentPageTpl'] = '&nbsp;<span>[+page_number+]</span>&nbsp;';
+$tpls['pageTpl'] = '&nbsp;<a href="[+base_url+]&offset=[+offset+]" [+extra+]>[+page_number+]</a>&nbsp;';
+$tpls['outerTpl'] = '<div id="pagination">[+content+]<br/>
+				Page [+current_page+] of [+page_count+]<br/>
+				Displaying records [+first_record+] thru [+last_record+] of [+record_count+]
+			</div>';
+
+$Q->set_tpls($tpls);
+
+print $Q->get_pagination_links()
 }}}
