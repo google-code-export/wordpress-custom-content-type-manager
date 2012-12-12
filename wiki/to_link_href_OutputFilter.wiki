@@ -6,7 +6,7 @@
 
 = Description =
 
-The *to_link_href* converts a post ID to the full link to that post (the link's [http://www.w3schools.com/tags/att_a_href.asp href] attribute.
+The *to_link_href* converts a post ID to the full link to that post (the link's [http://www.w3schools.com/tags/att_a_href.asp href] attribute).  <font color="red">Do not use this filter on URLs! It operates on integers only!</font>
 
 
 = Usage =
