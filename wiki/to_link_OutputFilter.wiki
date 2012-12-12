@@ -6,7 +6,7 @@
 
 = Description =
 
-The *to_link* converts a post ID to a full anchor tag (a link). 
+The *to_link* converts a post ID to a full anchor tag (a link).  <font color="red">Do not use this filter on URLs! It operates on integers only!</font>
 
 
 = Usage =
