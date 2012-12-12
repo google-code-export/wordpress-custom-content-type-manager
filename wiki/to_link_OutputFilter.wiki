@@ -49,7 +49,7 @@ print CCTM::filter(42,'to_link');
 ?>
 }}}
 
-== Example 2 (missing posts) ==
+== Example 3 (missing posts) ==
 
 If you are trying to link to a post that has been deleted, an error message will be returned.  This might also occur if you have migrated sites and your custom field is pointing to a post that does not exist in the new database.
 
@@ -61,7 +61,7 @@ print_custom_field('my_relation:to_link');
 // Prints out "Referenced post not found."
 }}}
 
-== Example 3 (invalid input) ==
+== Example 4 (invalid input) ==
 
 Just to be abundantly clear: this filter is meant to operate on _integer post IDs_.  If your field does not contain a post ID, then do not use this filter.  <font color="red">Do not pass it full URLs!</font>
 
@@ -81,4 +81,4 @@ Don't despair: it's a trivial task to print out your text field and treat it lik
 
 = See Also =
 
-[to_link_OutputFilter to_link_href] Output Filter
+[to_link_href_OutputFilter to_link_href] Output Filter
