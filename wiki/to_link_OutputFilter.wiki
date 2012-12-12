@@ -24,6 +24,8 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
 You can optionally specify the "click me" text for the link.
 
 
+= Examples =
+
 == Example 1==
 
 Gets a full anchor tag to the referenced post.
@@ -33,6 +35,17 @@ Gets a full anchor tag to the referenced post.
 print_custom_field('my_relation:to_link','Read more...'); 
 // Prints out something like:
 // <a href="http://yoursite.com/some/post/">Read more...</a>
+?>
+}}}
+
+== Example 2 ==
+
+Just to demonstrate that this filter operates solely on integers, here's an example of how you could call this filter on a raw value using the [CCTM_filter CCTM::filter()] function.  Assume that you want to print a link to post ID 42:
+
+{{{
+<?php
+print CCTM::filter(42,'to_link');
+// prints out something like <a href="http://yoursite.com/your-post/" title="Your Post">Your Post</a>
 ?>
 }}}
 
