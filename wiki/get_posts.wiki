@@ -243,6 +243,12 @@ Default: post_modified
 
 Default: false
 
+=== include_hidden_fields ===
+(boolean) True or false.  Controls whether or not custom fields whose names begin with an underscore (e.g. "_edit_lock") are included in the output. 
+
+Default: false
+
+
 
 =Examples=
 
