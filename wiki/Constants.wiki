@@ -8,3 +8,4 @@ If you are a developer writing custom Output Filters or your own types of Custom
  * *CCTM_URL* : full URL to CCTM directory, useful for Javascript or CSS includes. e.g. `http://yoursite.com/wp-content/plugins/custom-content-type-manager` -- does not include a trailing slash.
  * *CCTM_3P_PATH* : full server path to the third party directory. This is what 3rd party developers can use to include PHP files from their custom Output Filters or field types.  E.g. `/home/user/public_html/wp-content/uploads/cctm` -- does _not_ include a trailing slash!
  * *CCTM_3P_URL* : URL to the third party directory.  This is useful for developers of custom fields and custom output filters.  E.g. `http://yoursite.com/wp-content/uploads/cctm` -- does _not_ include a trailing slash!
+* *CCTM_DEBUG* : full path to a file to be used for logging.  I developed this for internal use, especially for checking the status of Ajax requests.  If set, messages will be written to this file.
