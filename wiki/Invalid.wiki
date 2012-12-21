@@ -1,10 +1,10 @@
 #summary Your bug report was invalid
 
-Sorry, but your bug report was not valid.  This usually is for one of several reasons.
+Sorry, but your bug report was not valid.  This doesn't mean there isn't a problem or that I don't care -- it just means that the communication was not at the level it needed to be.  Here are the most common reasons.
 
-= Not Enough Info =
+= 1. Not Enough Info =
 
-I really try to make it as easy as possible to report bugs with all the relevant info.  Every CCTM in the !WordPress manager includes a link in the footer to "Report a Bug" which includes a big yellow textarea full of all sorts of important system information, e.g.
+Your bug report may be invalid because it didn't include enough information.  Every page CCTM in the !WordPress manager includes a link in the footer to "Report a Bug" which includes a big yellow textarea full of all sorts of important system information. It looks something like this:
 
 {{{
 *SYSTEM INFO* 
@@ -20,16 +20,16 @@ ACTIVE PLUGINS:
 CURRENT THEME: Twenty Ten v.1.4 http://wordpress.org/
 }}}
 
-*I need this information!*.  Saying you have the "latest version" is meaningless.  Be precise.  I may not get to your bug-report for a few weeks, so the latest version may change.
+*I really need to see this information!*.  Saying you have the "latest version" is meaningless.  Be precise.  I may not get to your bug-report for a few weeks, so the latest version may change.
 
 It's critical that you outline the *exact steps to reproduce an error*.  I can't stress this one enough.  Most users are completely oblivious to their own work-flow, and it's a bad mistake to assume that someone else will magically intuit it out of thin air.  I strongly encourage the use of Jing to make screencasts of problems in addition to listing out the exact steps in pedantic detail.
 
-= No Point of Comparison =
+= 2. No Point of Comparison =
 
-Any bug report *requires* 2 things: steps to reproduce a certain state AND an explanation of what was expected.  Without being able to compare what you *actually* see with what you *expected* to see, you do not have a valid bug report.  
+Your bug report may be invalid because it does not include a comparison of what was expected vs. what you actually got.  Any bug report *requires* 2 things: steps to reproduce a certain state AND an explanation of what was expected.  Without being able to compare what you *actually* see with what you *expected* to see, you do not have a valid bug report.  
 
 A link to your site with a note saying "here's the problem" does nothing for me.  What may look like a horrible error to you probably is just yet-another-website for me.  It's like sending someone a picture of a zebra and saying "see!?! It's broken!".  Such a message makes no sense unless you also include what you expected, e.g. "Here's what I got (a zebra).  I expected a horse."  Without that point of comparison, chances are good that your bug report is invalid.
 
-= Being Rude =
+= 3. Being Rude =
 
-Please, don't be a dick.  I'm doing my very best to maintain my code and make it better.  It's not perfect.  Every software project has glitches, and this one is no exception.  Being rude the bug tracker is just immature and futile.  Most users of the plugin spent exactly zero money on it, and in most cases, most users get a lot more than they paid for.  If you can't channel your ire into something constructive then please find some other software to use -- my days are stressful enough without dealing with rude freeloaders.
+Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  Being rude the bug tracker is just immature and futile.  Most users of the plugin spent exactly zero money on it, and in most cases, most users get a lot more than they paid for.  If you can't channel your ire into something constructive then please find some other software to use -- my days are stressful enough without dealing with rude freeloaders.
