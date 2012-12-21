@@ -67,7 +67,8 @@ Array(
 	            [rewrite] => 
 	            [is_active] => 1
                     /* contains list of keys from custom_field_defs */
-	            [custom_fields] => Array( portrait, sex)
+	            [custom_fields] => Array( portrait, sex),
+	            [metaboxes] => Array(default,sidebar),
 	),
    /* unique name for each field */
    [custom_field_defs] => Array (
@@ -97,6 +98,17 @@ Array(
 	            [type] => dropdown
 	        ),
 	),
+   /* unique name for each metabox */
+   [metabox_defs] => Array
+        (
+            [default] => Array
+                 (
+                     [id] => default,
+                     [title] => Custom Fields,
+                     [context] => normal,
+                     [priority] => default,
+                 ),
+        ),
    [export_info] => Array
         (
             [title] => My Students
