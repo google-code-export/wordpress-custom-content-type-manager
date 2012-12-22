@@ -19,6 +19,8 @@ If you are using simple patterns (preg_match _not_ checked), then the following 
  * `*` : Matches any letter (A-Z).  This is not case sensitive.  This does not match UTF-8 characters.
  * `?` : Matches any single character.
 
+The purpose of this validator is not to reinvent regular expression syntax: for anything more complex than a character-for-character mapping, you must use a valid regex pattern.
+
 = Examples =
 
 == Example 1: Phone Number (simple) ==
@@ -34,9 +36,23 @@ Some businesses use alphanumeric codes to identify products.  As long as they ar
 
 == Example 3: Message (simple) ==
 
-Sometimes, you may want users to type in a message verbatim, e.g. giving their consent for something.
+Sometimes, you may want users to type in a message verbatim, e.g. giving their consent for something.  Here's how you could require a user to type in the phrase "I agree":
+
+ * *Pattern:* `I agree`
+ * *preg_match*: unchecked.
+ * *Message:* `You must type "I agree" before continuing.`
 
 == Example 4: Phone Number (advanced) ==
+
+If you want to allow different formats for phone numbers, you must use a regular expression.  Let's say you want to accept the following formats:
+
+ * `1-888-555-1212`
+ * `888.555.1212`
+ * `888-555-1212x123`
+
+ * *Pattern:* `//`
+ * *preg_match*: Checked.
+
 
 == Example 5: IP Address (advanced) ==
 
