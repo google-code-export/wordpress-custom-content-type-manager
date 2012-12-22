@@ -12,6 +12,7 @@ Used as a sidebar in the validators section.
 
  * [email_Validator Email]
  * [number_Validator Number]
+ * [pattern_Validator Pattern]
  * [url_Validator URL]
 
  * See all [Validators].
