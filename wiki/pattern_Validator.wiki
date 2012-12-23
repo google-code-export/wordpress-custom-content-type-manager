@@ -53,6 +53,9 @@ If you want to allow different formats for phone numbers, you must use a regular
  * *Pattern:* `/^([1][\-\.])?[0-9]{3}[\-\.][0-9]{3}[\-\.][0-9]{4}$/i`
  * *preg_match*: Checked.
 
+Here's how you could modify the pattern to accept an optional 1-4 digit extension:
+
+ * *Pattern:* `/^([1][\-\.])?[0-9]{3}[\-\.][0-9]{3}[\-\.][0-9]{4}([x][0-9]{1,4})?$/i`
 
 
 == Example 5: IP Address (advanced) ==
