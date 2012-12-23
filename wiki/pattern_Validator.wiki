@@ -60,7 +60,9 @@ Here's how you could modify the pattern to accept an optional 1-4 digit extensio
 
 == Example 5: IP Address (advanced) ==
 
-Since IP addresses are not always represented with the same length of characters, it's necessary to use a regular expression .
+Since IP addresses are not always represented with the same length of characters, it's necessary to use a regular expression . 
 
  * *Pattern:* `/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/`
  * *preg_match*: Checked.
+
+Note this regex isn't perfect: `888.888.888.888` would match the pattern, but it is not a valid IPv4 address.
