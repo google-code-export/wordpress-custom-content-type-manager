@@ -5,12 +5,12 @@
 
 = Description =
 
-The *Pattern* validator is used when you want to restrict input in a certain field to a pattern of letters or numbers, e.g. for phone numbers, SKUs, IP addresses and so forth.  A simple format is provided, or developer users can use [http://php.net/manual/en/function.preg-match.php regular expressions].
+The *Pattern* validator is used when you want to restrict input to a pattern of letters or numbers, e.g. for phone numbers, SKUs, IP addresses and so forth.  A simple format is provided, or developer users can use [http://php.net/manual/en/function.preg-match.php regular expressions].
 
 = Options =
 
- * *Pattern*: For simple patterns, specify a character for character pattern.
- * *Use  preg_match*: if checked, you must supply a valid regular expression pattern, compatible 
+ * *Pattern*: For simple patterns, specify symbols for each character, e.g. `#` for numbers, `*` for letters (see below).
+ * *Use  preg_match*: if checked, you must supply a valid regular expression pattern. 
  * *Message*: Write a custom message here that shows when a field fails validation.  Because your pattern may be testing for vastly different things, it's necessary to offer a way to customize the error message.  You may use "%s" as a placeholder for the field name.
 
 If you are using simple patterns (preg_match _not_ checked), then the following characters can define your pattern:
@@ -50,10 +50,14 @@ If you want to allow different formats for phone numbers, you must use a regular
  * `888.555.1212`
  * `888-555-1212x123`
 
- * *Pattern:* `//`
+ * *Pattern:* `/^([1][\-\.])?[0-9]{3}[\-\.][0-9]{3}[\-\.][0-9]{4}$/i`
  * *preg_match*: Checked.
+
 
 
 == Example 5: IP Address (advanced) ==
 
-Since IP addresses are not always represented with the same length of characters, it's necessary to use a regular expression 
+Since IP addresses are not always represented with the same length of characters, it's necessary to use a regular expression .
+
+ * *Pattern:* `/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/`
+ * *preg_match*: Checked.
