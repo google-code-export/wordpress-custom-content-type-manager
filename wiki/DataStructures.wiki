@@ -9,7 +9,7 @@ This is the proposed data structure used in version 0.9.4 and after.
 
 {{{
 Array(
-  /* each post_type def is a structure that is passable to register_post_type() */
+  // each post_type def is a structure that is passable to register_post_type()
    [post_type_defs] =>
 	Array
 	(
@@ -66,11 +66,15 @@ Array(
 	            [hierarchical] => 
 	            [rewrite] => 
 	            [is_active] => 1
-                    /* contains list of keys from custom_field_defs */
+                    // contains list of keys from custom_field_defs
 	            [custom_fields] => Array( portrait, sex),
-	            [metaboxes] => Array(default,sidebar),
+	            [map_field_metabox] => Array 
+                          (
+                             [portrait] => default,
+                             [sex] => sidebar,
+                          ),
 	),
-   /* unique name for each field */
+   // unique name for each field
    [custom_field_defs] => Array (
 	    [portrait] => Array
 	        (
@@ -98,7 +102,7 @@ Array(
 	            [type] => dropdown
 	        ),
 	),
-   /* unique name for each metabox */
+   // unique name for each metabox
    [metabox_defs] => Array
         (
             [default] => Array
@@ -107,6 +111,8 @@ Array(
                      [title] => Custom Fields,
                      [context] => normal,
                      [priority] => default,
+                     [callback] => ,
+                     [callback_args] => ,
                  ),
         ),
    [export_info] => Array
@@ -117,31 +123,31 @@ Array(
             [description] => Example
             [template_url] => http://www.themeforrest.com/my-theme /*Where can I download a theme  that utilizes this definition? */
         )
-   [cctm_version] => '0.9.3.3-dev'  /* used to test if we need to run updating scripts */
+   [cctm_version] => '0.9.3.3-dev'  // used to test if we need to run updating scripts
    [cctm_installation_timestamp] => 1303780421
    [cctm_update_timestamp] => 1303780421
-   /* The text of each warning is hashed to uniquely identify it */
+   // The text of each warning is hashed to uniquely identify it
    [warnings] => Array(
       'There was some problem!' => 23415241, /* timestamp when it was viewed and cleared*/
       'There was some other problem' => 0, /* 0 = still active... not cleared yet*/
    )
 
-   /* We do a wee bit of caching here to avoid directory scans */
+   // We do a wee bit of caching here to avoid directory scans
    [cache] => Array (
       [elements] => Array(
          [dropdown] => '/full/path/to/dropdown.php',
-         /* ... all available custom field types ... */
+         // ... all available custom field types ...
       ),
       [filters] => Array(
          [to_array] => '/full/path/to/to_array.php',
-         /* ... all available output filters ... */
+         // ... all available output filters ... 
       ),
    )
-   /* flash messages: keyed off user_id so we know which messages should be displayed for each user */
+   // flash messages: keyed off user_id so we know which messages should be displayed for each user
    [flash] => Array (
     '123' => 'This is my flash message',
    ),
-   /* FUTURE: track pages and settings that are being edited */
+   // FUTURE: track pages and settings that are being edited
    [locks] => Array(
       'some_page' => user id
    ) 
