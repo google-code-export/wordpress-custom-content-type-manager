@@ -7,7 +7,6 @@
 The CCTM was designed to be a flexible and extendible plugin, so there are points in its architecture designed with customizations in mind.   The dominant practice here is that the CCTM will look for your customizations in the *wp-content/uploads/cctm* for a given file, and if found, that file will be used.  If it's not found, the CCTM will fall-back to the included file inside of *wp-content/plugins/custom-content-type-manager*: it's a simple setup and it allows for dedicated users to customize their site in the way they need.
 
 
-
 == Configuration Files ==
 
 These are PHP files, usually containing simple variable or array values.  
@@ -21,3 +20,7 @@ These are PHP files, usually containing simple variable or array values.
  * *search_parameters/_media.php*:
  * *search_parameters/_relation.php*:
  * *search_parameters/_summarize_posts.php*: controls the form that pops when you click the SummarizePosts TinyMCE button
+
+== Template Files (.tpl) ==
+
+You can also customize a lot of the HTML used in the manager pages. See [CustomizingManagerHTML Customizing the Manager].
