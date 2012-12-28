@@ -14,11 +14,11 @@ Used as a sidebar in the Output Filters section.
 
 == [Customizations] ==
 
-=== HTML ===
+*HTML*
 
  * [CustomizingManagerHTML Manager HTML]
 
-=== Config Files ===
+*Config Files*
 
  * [Config_admin_menu Admin Menu]
  * [Config_post_selector_image Post Selector (Images)]
