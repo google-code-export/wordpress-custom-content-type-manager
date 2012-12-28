@@ -16,10 +16,10 @@ These are PHP files, usually containing simple variable or array values.
  * [Config_post_selector_media post_selector/_media.php]: settings for the "Choose Media" buttons on your posts/pages.
  * [Config_post_selector_relation post_selector/_relation.php]: settings for the "Choose Relation" buttons on your posts/pages.
  * [Config_post_selector_widget post_selector/_post_content_widget.php]: settings for the "Post Content" widget.
- * *search_parameters/_image.php*:
- * *search_parameters/_media.php*:
- * *search_parameters/_relation.php*:
- * *search_parameters/_summarize_posts.php*: controls the form that pops when you click the SummarizePosts TinyMCE button
+ * `search_parameters/_image.php`:
+ * `search_parameters/_media.php`:
+ * `search_parameters/_relation.php`:
+ * `search_parameters/_summarize_posts.php`: controls the form that pops when you click the SummarizePosts TinyMCE button
 
 == Template Files (.tpl) ==
 
