@@ -22,6 +22,12 @@ Used as a sidebar in the Output Filters section.
 
 == [Customizations] ==
 
+=== HTML ===
+
+ * [CustomizingManagerHTML Manager HTML]
+
+=== Config Files ===
+
  * [Config_admin_menu Admin Menu]
  * [Config_post_selector_image Post Selector (Images)]
  * [Config_post_selector_media Post Selector (Media)]
