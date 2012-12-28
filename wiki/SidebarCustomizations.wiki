@@ -4,21 +4,13 @@
 Used as a sidebar in the Output Filters section.
 </wiki:comment>
 
-== Custom Fields ==
+== [SupportedCustomFields Custom Fields] ==
 
-[SupportedCustomFields Supported Custom Fields]
+== [OutputFilters Output Filters] ==
 
-== Output Filters ==
+== [Validators] ==
 
-[OutputFilters Output Filters]
-
-== Validators ==
-
-[Validators]
-
-== Function Reference ==
-
-[TemplateFunctions Function Reference]
+== [TemplateFunctions Function Reference] ==
 
 == [Customizations] ==
 
@@ -38,5 +30,7 @@ Used as a sidebar in the Output Filters section.
  * [Config_summarize_posts Summarize Posts TinyMCE] 
 
 == [DeveloperDocumentation For Developers] ==
+
+== [FAQ] ==
 
 ||https://img.skitch.com/20120706-pxxntj3euky9mdy37xkgddsyt1.jpg||[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]||
