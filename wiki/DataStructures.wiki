@@ -111,6 +111,7 @@ Array(
                      [title] => Custom Fields,
                      [context] => normal,
                      [priority] => default,
+                     [post_types] => Array ( post, page ),
                      [callback] => ,
                      [callback_args] => ,
                  ),
