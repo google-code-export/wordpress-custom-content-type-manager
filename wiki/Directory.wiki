@@ -1,4 +1,5 @@
 #summary Documentation for Directory custom fields
+#labels Custom-Fields
 #sidebar SidebarCustomFields
 
 ||http://s13.postimage.org/zfisli0s3/directory.png||Directory fields let you choose a file by listing the contents of a directory and filtering by file extension(s).  Optionally, you can traverse sub-directories too.||
