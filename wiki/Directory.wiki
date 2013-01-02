@@ -4,6 +4,8 @@
 
 ||http://s13.postimage.org/zfisli0s3/directory.png||Directory fields let you choose a file by listing the contents of a directory and filtering by file extension(s).  Optionally, you can traverse sub-directories too.||
 
+Available since version 0.9.7.
+
 <wiki:toc max_depth="2" />
 
 ----
