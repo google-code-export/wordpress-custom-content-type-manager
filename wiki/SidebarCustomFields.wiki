@@ -6,6 +6,7 @@
  * [Checkbox]
  * [ColorSelector]
  * [Date]
+ * [Directory]
  * [Dropdown]
  * [Image]
  * [Media]
