@@ -25,6 +25,10 @@ Read more about [CustomFieldDefinitions Custom Field Definitions...]
 
 ||http://s9.postimage.org/upm05ubgr/date.png|| [Date] fields are used to select a date.||
 
+== Directory ==
+
+||http://s13.postimage.org/zfisli0s3/directory.png|| [Directory] fields are used when you want to select a file within a directory.||
+
 == Dropdown ==
 
 ||http://s9.postimage.org/smg6bx11n/dropdown.png|| [Dropdown] fields let you select a single option from a list of options via a dropdown list or a series of radio buttons.||
