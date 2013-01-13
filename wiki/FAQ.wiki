@@ -30,13 +30,19 @@ Some users report that the CCTM menu does not appear after installing the plugin
 
 ------
 
-== My Image Field Only Shows Numbers. WTF?!? ==
+== My Image/Relation/Media Field Only Shows Numbers. WTF?!? ==
 
 Every time you use a relation, media, or image field, you don't store the path to the image, you store the _unique ID_ of that image or post (in database lingo, this is called a "foreign key").  This is one of the tenets of [http://en.wikipedia.org/wiki/Database_normalization database normalization] (this is exactly how !WordPress stores the featured image and any attached images, by the way). 
 
-The point here is you don't want the number, you want the image that the number _represents_.  The CCTM offers several [OutputFilters Output Filters] to help you do something with that number easily, or you can use several built-in !WordPress functions to translate the number into something useful.
+The point here is you don't want the number, you want the image that the number _represents_.  The CCTM offers several [OutputFilters Output Filters] to help you do something with that number easily, or you can use several built-in !WordPress functions to translate the number into something useful. For example, in your template file:
 
-See the documentation and examples on the [Image] page for more examples (or check the [Relation], [Media] pages).
+{{{
+<?php print_custom_field('my_relation:to_link'); ?>
+OR
+<?php print_custom_field('my_image:to_image_tag'); ?>
+}}}
+
+See the documentation and examples on the [Image] page for more examples (or check the [Relation], [Media] pages), or read up on [OutputFilters Output Filters] to see how they can help you customize your output.
 
 === Get images from a single field ===
 
