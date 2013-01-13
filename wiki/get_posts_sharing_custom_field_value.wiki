@@ -6,7 +6,7 @@
 
 _array_ *get_posts_sharing_custom_field_value*( string _$fieldname_, string _$value_ ) 
 
-Returns an array of post objects (including all custom fields).  This relies on the _get_post_complete()_ function (see this page), but it is a database intensive operation.  
+Returns an array of posts (including all custom fields).  Posts are returned as associative arrays (not objects). This relies on the _get_post_complete()_ function (see this page), but it is a database intensive operation.  
 
 For a more efficient query that returns the same type of results (including more search options), please see the [http://wordpress.org/extend/plugins/summarize-posts/ SummarizePosts] plugin.
 
