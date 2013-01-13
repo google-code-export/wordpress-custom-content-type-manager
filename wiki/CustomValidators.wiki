@@ -1,5 +1,5 @@
 #summary Writing your own Validators
-#labels Validators
+#labels Validators,Technical
 #sidebar SidebarValidators
 
 <wiki:toc max_depth="1" />
