@@ -13,38 +13,38 @@ Read more about [CustomFieldDefinitions Custom Field Definitions...]
 
 = Types of Custom Fields =
 
-== Checkbox ==
+== [Checkbox] ==
 
 ||http://s8.postimage.org/fglxaasn5/checkbox.png|| [Checkbox]: A simple checkbox that stores 1 (checked) or 0 (unchecked). You can define whether it is checked by default by setting the default value to "1". ||
 
-== Color Selector ==
+== [ColorSelector Color Selector] ==
 
 ||http://s9.postimage.org/la64smtfv/colorselector.png || [ColorSelector]:  these text fields use a bit of !JavaScript to allow users to pick a color visually ([http://blog.meta100.com/post/600571131/mcolorpicker mColorPicker]).||
 
-== Date ==
+== [Date] ==
 
 ||http://s9.postimage.org/upm05ubgr/date.png|| [Date] fields are used to select a date.||
 
-== Directory ==
+== [Directory] ==
 
 ||http://s13.postimage.org/zfisli0s3/directory.png|| [Directory] fields are used when you want to select a file within a directory.||
 
-== Dropdown ==
+== [Dropdown] ==
 
 ||http://s9.postimage.org/smg6bx11n/dropdown.png|| [Dropdown] fields let you select a single option from a list of options via a dropdown list or a series of radio buttons.||
 
 
-== Image ==
+== [Image] ==
 
 ||http://s8.postimage.org/jqdm96etd/image.png|| [Image] fields allow users to select a valid image (or images) that has been uploaded into the !WordPress Media library.||
 
 
-== Media ==
+== [Media] ==
 
 ||http://s10.postimage.org/4r95kqwpx/media.png|| [Media] fields are used to select an uploaded media file(s) such as an mp3 or movie file.||
 
 
-== Multi-Select ==
+== [MultiSelect Multi-Select] ==
 
 ||http://s8.postimage.org/hud1ssltt/multiselect.png|| [MultiSelect] fields are used to store a list of multiple values. The values are encoded as a JSON array, so you probably want to use either the "Array" or "Formatted List" [OutputFilters Output Filter].||
 
@@ -52,26 +52,26 @@ Read more about [CustomFieldDefinitions Custom Field Definitions...]
 
 See [SupportedCustomFields#Dropdown Dropdown] (above).
 
-== Relation ==
+== [Relation] ==
 
 ||http://s12.postimage.org/bztgulut5/relation.png|| A [Relation] field stores an integer foreign key(s) to another post of some kind: post, page, or a media attachment like an image or video.||
 
 
-== Text ==
+== [Text] ==
 
 ||http://s12.postimage.org/o4dbpbx2x/text.png|| [Text] fields are the simplest type of custom fields.  They are meant to store arbitrary strings of data, usually no more than a few characters in length.||
 
 
-== Textarea ==
+== [Textarea] ==
 
 ||http://s9.postimage.org/d13g5peh7/textarea.png|| [Textarea] fields are meant to store arbitrary strings of data up to several pages in length.||
 
-== User ==
+== [User] ==
 
-||https://img.skitch.com/20120129-b68tkm2edkau7yaarj8187519x.jpg||A user field allows you to select a user from your local site. (Added 0.9.5.6)||
+||https://img.skitch.com/20120129-b68tkm2edkau7yaarj8187519x.jpg||A [User] field allows you to select a user from your local site. (Added 0.9.5.6)||
 
 
-== WYSIWYG ==
+== [WYSIWYG] ==
 
 ||http://s8.postimage.org/5q2dpjybl/wysiwyg.png||A [WYSIWYG What-you-see-is-what-you-get] (WYSIWYG) field is a textarea with formatting controls like you might see in a word processor (e.g. Microsoft Word).  It allows users to format text without needing to know HTML markup codes.||
 
