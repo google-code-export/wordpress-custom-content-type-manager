@@ -9,9 +9,9 @@ This represents a problem: it is _extremely_ difficult to retrieve a record set 
 
 So I took aim at !WordPress' strategy here and through the development of my Summarize Posts plugin, I arrived at a different strategy: one row in *wp_postmeta* per custom field.  Period.  Arrays of values (e.g. multiple values from a multi-select field) are stored as JSON-encoded strings.  
 
-Storing data structures as serialized strings or JSON-encoded strings is fairly common.  Note that this happens ONLY when you are storing data from a "repeatable" field (e.g. a multi-select storing multiple values).  In version 0.9.5 (almost ready for public release), this same approach is used to store repeatable image, text, or relation fields. It's used for all fields that store an array of data (relational data or not).  
+Storing data structures as serialized strings or JSON-encoded strings is fairly common.  Note that this happens ONLY when you are storing data from a "repeatable" field (e.g. a multi-select storing multiple values).  Starting in version 0.9.5, this same approach is used to store repeatable image, text, or relation fields. It's used for all fields that store an array of data (relational data or not).  
 
-!WordPress does something similar to store metadata for its uploaded images, but !WordPress _serializes_ the data instead of JSON-encoding it.  The JSON format is actually queriable (whereas PHP serialized data is not).  E.g.
+!WordPress does something similar to store metadata for its uploaded images, but !WordPress _serializes_ the data instead of JSON-encoding it.  The JSON format is actually queriable (whereas PHP serialized data generally is not).  E.g.
 
 {{{
 SELECT * FROM wp_postmeta WHERE post_id=123 AND meta_key='my_custom_field' AND meta_value LIKE '%"7"%';
