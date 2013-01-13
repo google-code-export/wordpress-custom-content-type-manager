@@ -7,14 +7,15 @@
 
 = Description =
 
-_mixed_ *get_posts*( mixed _$args_ )
+_array_ *get_posts*( array _$args_ )
 
-This function is similar to the built-in !WordPress [http://codex.wordpress.org/Template_Tags/get_posts get_posts] function, but !SummarizePosts offers a more thorough implementation including the ability to search by custom taxonomies or date ranges and to sort by custom fields. 
+This function performs a search on the database, returning a list of posts matching your criteria.  The criteria are very flexible, allowing you to search by custom taxonomies or date ranges and to sort by custom fields. 
 
+This function is similar to the built-in !WordPress [http://codex.wordpress.org/Template_Tags/get_posts get_posts] function, but !SummarizePosts offers a more thorough implementation and it avoids some of the weird caveats and awkward limitations present in other solutions.
 
-= Setting Parameters =
+= Setting Filter Parameters =
 
-All parameters can be set in various ways: 
+All filter parameters can be set in various ways: 
 
  * By passing an associative array passed directly to the object constructor
  * By passing an associative array passed to the get_posts() function
@@ -118,7 +119,7 @@ Default: null
 Default: null (i.e. shows all post-types)
 
 === omit_post_type ===  
-(string or array) This specifies which post type(s) you want to omit from your search results. As with the *post_type* argument, input is any registered post type, built-in or custom.
+(string or array) This specifies which post type(s) you want to omit from your search results.  Set it as a comma-sparated string or an array. As with the *post_type* argument, input is any registered post type (built-in or custom).  This input is useful because there are several unexpected post-types floating around in the !WordPress database that you probably don't want returned in your search results.
 
 Default: revision, nav_menu_item
 
@@ -249,6 +250,56 @@ Default: false
 Default: false
 
 
+= Operators =
+
+Normally, the arguments passed to this function assume an "equals" operator.  E.g. if you used the following filter criteria, your search would return posts where the custom field value was equal to "red":
+
+{{{
+$Q = new GetPostsQuery();
+//...
+$args['my_custom_field'] = 'red';
+//...
+$results = $Q->get_posts($args);
+}}}
+
+However, you can change the operators that are used for each comparison by including a 2nd layer to the input array.  For example, the following verbosely assigns the "equals" operator to the query:
+
+{{{
+$args['my_custom_field']['='] = 'red';
+}}}
+
+If you wanted to return results where your custom field began with the letter "z", you could use the "starts_with" operator:
+
+{{{
+$args['my_custom_field']['starts_with'] = 'z';
+}}}
+
+The following operators are available in GetPostsQuery (some aliases are supported for convenience):
+
+ * `!=` : not equal
+ * `ne` : not equal
+ * `<>` : not equal
+ * `>` : greater than
+ * `gt` : greater than
+ * `>=` : greater than or equal to
+ * `gte` : greater than or equal to
+ * `<` : less than
+ * `lt` : less than
+ * `<=` : less than or equal to
+ * `lte` : less than or equal to
+ * `^` : starts with
+ * `starts_with` : starts with
+ * `$` : ends with
+ * `ends_with` : ends with
+ * `%` : like
+ * `like` : like
+ * `contains` : like
+ * `!%` : not like
+ * `!like` : not like
+ * `not_like` : not like
+ * `=` : equals or contains _(default)_
+ * `in` : equals or contains
+ * `equals` : equals or contains
 
 =Examples=
 
