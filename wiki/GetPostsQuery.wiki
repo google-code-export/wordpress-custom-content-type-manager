@@ -6,7 +6,7 @@
 
 = Introduction =
 
-A class for querying the !WordPress database, including all custom fields using a unified API.
+A class for querying !WordPress posts (including pages or custom post-types), including all custom fields via a unified API.  This class was written to overcome limitations in `WP_Query`, `query_posts`, and other built-in !WordPress methods.
 
 The key function here is [get_posts].  See its dedicated page as well as the page with [get_posts_examples Examples of get_posts()].
 
