@@ -8,11 +8,20 @@
 
 A class for querying !WordPress posts (including pages or custom post-types), including all custom fields via a unified API.  This class was written to overcome limitations in `WP_Query`, `query_posts`, and other built-in !WordPress methods.
 
-The key function here is [get_posts].  See its dedicated page as well as the page with [get_posts_examples Examples of get_posts()].
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || The most important function here is [get_posts].  See its dedicated page as well as the page with [get_posts_examples Examples of get_posts()]. ||
 
 ----
 
 = Methods =
+
+=== <font color="green">public function get_posts()</font>===
+
+_array_ *get_posts*(array _$args_ `[`,$ignore_defaults`]`)
+
+ * *$args* : array of filter criteria.  See [get_posts] for details.
+ * *$ignore_defaults* : boolean
+ * *OUTPUT*: A record set (an array of arrays). Each post returned is an associative array.
+
 
 === <font color="green">public function count_posts()</font>===
 
