@@ -25,20 +25,20 @@ By looking at the base class inside of *wp-content/plugins/custom-content-type-m
 
 === <font color="green">public $show_in_menus</font> ===
 
-_boolean_ : whether or not the filter should be listed in the field definitions as a selectable validator.  99% of the time, this will be *true*, but if you've got some creative reason that you want your validator to only be available programmatically and remain invisible to the GUI, you can set this to false.
+_boolean_ : whether or not the validator should be listed in the field definitions as a selectable validator.  99% of the time, this will be *true*, but if you've got some creative reason that you want your validator to only be available programmatically and remain invisible to the GUI, you can set this to false (Note: I can't think of a use-case for this to be false, but if you can, knock yourself out!)
 
 === <font color="red">public function get_description()</font>===
 
 _string_ *get_description*()
 
-Get the human readable description of what it is your validator does.
+Get the human readable description of what your validator does.
 
 	
 === <font color="red">public function get_name()</font>===
 
 _string_ *get_name*()
 
-Get the name of the validator.  This can be localized if necessary.
+Get the name of the validator.  This string can be localized.
 
 
 ===<font color="green">public function get_options_html()</font>===
@@ -51,10 +51,10 @@ Optionally, you can use this function to generate any HTML for your validator.  
 ===<font color="red">public function validate()</font>===
 _string_ *validate*(string $input)
 
-This is where the magic happens.  The code inside this function should test the $input to see if it is valid. If the $input is not valid, an error message should be written to the *$this->error_msg* variable.  If the *$this->error_msg* variable remains empty, the $input is considered valid.
+This is where the magic happens.  The code inside this function should test the `$input` to see if it is valid. If the `$input` is not valid, an error message should be written to the `$this->error_msg` variable.  If the `$this->error_msg` variable remains empty, the $input is considered valid.
 
 The $input can be modified before being returned (e.g. to suggest a correction), but normally, you'll want to return the $input exactly as you found it.
 
-You will never have to test an $input to see whether or not it is empty: this is handled for you.  Inputs are only validated when they are _not empty_.  Also, the $input will always be singular (a string), not an array. 
+You will never have to test an `$input` to see whether or not it is empty: this is handled for you.  Inputs are passed along to be validated when they are _not empty_.  Also, the `$input` will always be singular (a string), not an array. 
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || The input to the *validate()* function will always be a string (not an array).  If the validation rule is used on a repeatable field (i.e. one storing multiple values), then each value will be sent to the *validate()* function individually. ||
