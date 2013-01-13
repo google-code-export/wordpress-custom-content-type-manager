@@ -2,7 +2,7 @@
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
-<wiki:toc max_depth="3" />
+<wiki:toc max_depth="2" />
 
 
 = Description =
