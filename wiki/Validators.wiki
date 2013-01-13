@@ -6,6 +6,7 @@ The CCTM ships with the following Validators available:
  
  * [email_Validator Email] -- ensures the input is a valid email address
  * [number_Validator Number] -- ensures the input is a valid number (many configurable options)
+ * [pattern_Validator Pattern] -- ensures the input follows a pattern of letters and numbers OR a regex (for developers)
  * [url_Validator URL] -- ensures the input is a valid URL
 
 
