@@ -301,6 +301,8 @@ The following operators are available in GetPostsQuery (some aliases are support
  * `in` : equals or contains
  * `equals` : equals or contains
 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || The "equals" operator uses MySQL `IN`, so if you pass it an array, `GetsPostsQuery::get_posts()` will look for posts that match any of the values, e.g. `$args['custom_field'] = array('red','green','blue');` would search for posts where the custom_field value was red, green, or blue.||
+
 =Examples=
 
 See [get_posts_examples Examples of get_posts()] on a separate page.
