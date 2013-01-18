@@ -107,3 +107,57 @@ When using GetPostsQuery, you simply iterate over your result set:
     ... stuff here...
 <?php endforeach; ?>
 }}}
+
+== the_ID() ==
+
+This prints out the id of the current post in the loop.  Since it relies on global variables, it's not suitable for use anywhere else (i.e. in a _normal_ loop).  
+
+When using GetPostsQuery, the post id is available like any other post attribute.  Simply print it:
+
+{{{
+<?php print $r['ID']; ?>
+}}}
+
+== post_class() ==
+
+This is used to come up with a CSS class for each post, e.g. 
+
+{{{
+<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+}}}
+
+When using GetPostsQuery, you have to pass the function a couple extra arguments:
+
+{{{
+<div id="post-<?php print $r['ID']; ?>" <?php post_class('', $r['ID']); ?>>
+}}}
+
+== the_permalink() ==
+
+This prints out the permalink for the active post.  When using GetPostsQuery, "permalink" is an attribute available like any other attribute:
+
+{{{
+<a href="<?php print $r['permalink']; ?>"><?php print $r['post_title']; ?></a>
+}}}
+
+== the_title_attribute() ==
+
+This is usually used to print the post's title inside an attribute (usually inside a link tag): 
+
+{{{
+<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+}}}
+
+When using GetPostsQuery, you can print the post's title, just filter out any inappropriate contents that may be there:
+
+{{{
+<a href="<?php print $r['permalink']; ?>" title="<?php print htmlspecialchars($r['post_title']; ?>" rel="bookmark"><?php print $r['post_title']; ?></a>
+}}}
+
+== the_title() ==
+
+Used to print the post's title.  When using GetPostsQuery, you can print the post's title like any other attribute:
+
+{{{
+<?php print $r['post_title']; ?>
+}}}
