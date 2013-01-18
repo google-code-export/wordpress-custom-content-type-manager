@@ -1,0 +1,109 @@
+#summary Using GetPostsQuery::get_posts() to replace the Loop
+#labels Function-Reference,Technical
+#sidebar SidebarFunctionReference
+
+
+
+<wiki:toc max_depth="3" />
+
+= Overview =
+
+"The Loop" is one of those !WordPress internals that every user hears about eventually.  However it can be murder to customize it.  The architecture is poorly conceived: it relies on myriad global variables and array pointers, and customizing certain aspects of it are nearly impossible.  !WordPress' query_posts() function only goes so far in allowing sensible overrides, and often times it made the problem worse.
+
+I have often had to replace the loop on certain pages in order to achieve the customization I required.  Some of the cases where I had to abandon the loop included the following:
+
+ * Limiting the number of posts differently between different pages.  E.g. category X shows 5 posts per page, but category Y shows 7 posts per page.
+ * Complex sorting.  E.g. sorting a set of results by a custom column, or doing complex sorting on multiple columns.
+ * Customizing search fields (e.g. filtering on custom fields)
+ * Customized pagination links.
+
+
+= Equivalent Functions =
+
+If you need to replace the !WordPress loop with your own home-rolled version, you realize that there are a lot of functions that you need to use.  It can quickly become exasperating to realize how many !WordPress functions _print_ data instead of _returning_ it, and worse yet, many of them do not accept input, instead they rely on global variables set up by the various looping functions.  It's an architectural nightmare hidden away in a template file.
+
+Fear not: there are solutions.  For most functions in the loop, there are equivalents that can work in your own home-rolled loop.
+
+For the following examples, assume your theme file includes a GetPostsQuery query something like the following:
+
+{{{
+require_once(CCTM_PATH.'/includes/GetPostsQuery.php');
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'person';
+$args['show_on_archive'] = 1;
+$args['orderby'] = 'last_name';
+$args['order'] = 'ASC';
+$args['limit'] = 10; // 
+$args['paginate'] = true;
+
+if (isset($_GET['offset'])) {
+	$args['offset'] = (int) $_GET['offset'];
+}
+
+$results = $Q->get_posts($args);
+
+print $Q->get_pagination_links();
+
+foreach ($results as $r):  // Begin our home-rolled loop:
+?>
+
+
+<?php
+
+endforeach;
+?>
+}}}
+
+== `$wp_query->max_num_pages` ==
+
+Typically, !WordPress uses this to determine whether or not you need to show pagination links, e.g. 
+
+{{{
+<?php if ( $wp_query->max_num_pages > 1 ) : ?>
+    <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentyten' ) ); ?></div>
+<?php endif; ?>
+}}}
+
+However, when using GetPostsQuery, this is unnecessary.  GetPostsQuery will automatically detect whether pagination links are required, so you can simply do the following:
+
+{{{
+<?php print $Q->get_pagination_links(); ?>
+}}}
+
+
+== have_posts() ==
+
+Used to trigger a "sorry" message, e.g. 
+
+{{{
+<?php if ( ! have_posts() ) : ?>
+	<p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'twentyten' ); ?></p>
+<?php endif; ?>
+}}}
+
+When using GetPostsQuery, you can simply test your $results to see if it is empty or not:
+
+{{{
+<?php if (empty($results)) : ?>
+	<p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'twentyten' ); ?></p>
+<?php endif; ?>
+}}}
+
+== have_posts() and the_post() ==
+
+These functions are the foundation of the built-in !WordPress loop, e.g.
+
+{{{
+<?php while ( have_posts() ) : the_post(); ?>
+    ... stuff here...
+<?php endwhile; ?>
+}}}
+
+When using GetPostsQuery, you simply iterate over your result set:
+
+{{{
+<?php foreach ($results as $r): ?>
+    ... stuff here...
+<?php endforeach; ?>
+}}}
