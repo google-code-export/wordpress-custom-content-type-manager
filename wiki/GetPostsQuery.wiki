@@ -24,14 +24,13 @@ _array_ *get_posts*(array _$args_ `[`,$ignore_defaults`]`)
 
 The keys in each record are dependent on the records being returned.  At a minimum, the record will contain the following:
 
- Keys for all built-in !WordPress columns in the `wp_posts` table (`post_content`, `comment_status`, etc.)
- 
-Keys for all custom fields present in _any_ of the results.  E.g. if one record has a custom field named "color" and another record has a custom field for "size", then all records in the result set will have array keys for both "size" and "color"
+ * Keys for all built-in !WordPress columns in the `wp_posts` table (`post_content`, `comment_status`, etc.)
+ * Keys for all custom fields present in _any_ of the results.  E.g. if one record has a custom field named "color" and another record has a custom field for "size", then all records in the result set will have array keys for both "size" and "color"
 
 Additionally, get_posts adds the following convenience keys:
 
  * author : the username of the author (not just the integer `post_author`)
- * thumbnail_id : the attachment id of the "featured image" (if present). Same as _thumbnail_id
+ * thumbnail_id : the attachment id of the "featured image" (if present). Same as `_thumbnail_id`
  * thumbnail_src : the URL src of the "featured image" (if present)
  * permalink : contains the full URL to the post
  * parent_ID : the post ID of the parent post (if available)
