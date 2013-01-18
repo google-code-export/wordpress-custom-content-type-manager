@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Variations on how to call the GetPostsQuery::get_posts() method
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
