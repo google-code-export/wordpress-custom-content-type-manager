@@ -2,11 +2,11 @@
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
+This page contains examples of how to use the [get_posts] function.
+
 <wiki:toc max_depth="3" />
 
-= Examples =
-
-This page contains examples of how to use the [get_posts] function.
+= Calling the Function via PHP =
 
 == In a Theme File ==
 
@@ -50,7 +50,7 @@ $results = SummarizePosts::get_posts($args);
 If you use the static function, you must pass arguments directly to the get_posts() function; you cannot set attributes on the *!GetPostsQuery* object because by definition, if you are using a static function then you have not instantiated an object.
 
 
-= !ShortCode =
+= Calling the Function via !ShortCode =
 This function can be accessed via [http://codex.wordpress.org/Shortcode_API shortcode] in your !WordPress posts. Note that !WordPress shortcodes are only parsed when they appear in a post's main content block (the one with the WYSIWYG editor).
 
 ==Simplest Invocation==
@@ -107,3 +107,18 @@ You can also use some additional properties to format the results:
  * *paginate*: whether or not to paginate the results. default = false
  * *tpl* you can specify a path (relative to webroot) to a file to be used as the template. For example, a value of "wp-content/my.tpl" would look inside the "wp-content" folder for a file named "my.tpl". <font color="red">The file *must* use a `.tpl` extension!</font> default = `null`
  * *help* If set, the output will include debugging info and examples. default = `false`
+
+
+= Examples =
+
+This section is focused on example queries possible with get_posts.  
+
+COMING...
+
+== Example 1 ==
+
+== Example 2 ==
+
+== Example 3 ==
+
+== Example 4 ==
