@@ -8,7 +8,7 @@
 
 = Overview =
 
-"The Loop" is one of those !WordPress internals that every user hears about eventually.  However it can be murder to customize it.  The architecture is poorly conceived: it relies on myriad global variables and array pointers, and customizing certain aspects of it are nearly impossible.  !WordPress' query_posts() function only goes so far in allowing sensible overrides, and often times it made the problem worse.
+"The Loop" is one of those !WordPress internals that every user hears about eventually.  It can be murder to customize it because the architecture is poorly conceived: The Loop relies on myriad global variables and array pointers, so customizing certain aspects of it is nearly impossible.  !WordPress' query_posts() function only goes so far in allowing sensible overrides, and often times it makes the problem worse.
 
 I have often had to replace the loop on certain pages in order to achieve the customization I required.  Some of the cases where I had to abandon the loop included the following:
 
@@ -160,4 +160,79 @@ Used to print the post's title.  When using GetPostsQuery, you can print the pos
 
 {{{
 <?php print $r['post_title']; ?>
+}}}
+
+== has_post_thumbnail() ==
+
+Tests whether the current post has a thumbnail (aka featured image) associated with it.  When using GetPostsQuery, you can test whether the result has an empty value for `thumbnail_id`:
+
+{{{
+if (!empty($r['thumbnail_id'])) {
+   // ... do something with the thumbnail
+}
+}}}
+
+== the_post_thumbnail() ==
+
+This function will print a thumbnail image (with some variations possible).  You can exchange it for `get_the_post_thumbnail()` and pass it extra arguments as needed:
+
+{{{
+<?php
+print get_the_post_thumbnail( $r['ID'], 'person-thumb', array('class' => 'alignnone size-full')); 
+?>
+}}}
+
+== get_the_category() ==
+
+This function optionally can be supplied a post ID, so we need to do that when iterating over results:
+
+{{{
+get_the_category($r['ID']));
+}}}
+
+== get_the_category_list() ==
+
+This generates a list of categories that each post has been placed in, e.g. 
+
+{{{
+<?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
+}}}
+
+When using GetPostsQuery, you would need to supply it with some extra parameters:
+
+{{{
+<?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ','',$r['ID'] ) ); ?>
+}}}
+
+== get_the_tag_list() ==
+
+This generates a list of tags that each post has been tagged with:
+
+{{{
+<?php
+	$tags_list = get_the_tag_list( '', ', ' );
+	if ( $tags_list ):
+?>
+	<span class="tag-links">
+		<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
+
+	</span>
+<?php endif; ?>
+}}}
+
+When using GetPostsQuery, we have to do some workarounds because there isn't a drop-in replacement function that can get the tags for any post.
+
+{{{
+<?php
+	$tags_list = get_the_tags($r['ID']);
+	if ( $tags_list ):
+		$tags_array = array();
+		foreach ($tags_list as $t) {
+			$tags_array[] = sprintf('<a href="%s">%s</a>', get_tag_link($t->term_id), $t->name);
+		}
+?>
+	<span class="tag-links">
+		<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-tag-links', implode(', ',$tags_array) ); ?>
+	</span>
+<?php endif; ?>
 }}}
