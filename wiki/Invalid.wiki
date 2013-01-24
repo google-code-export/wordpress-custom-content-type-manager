@@ -32,4 +32,4 @@ A link to your site with a note saying "here's the problem" does nothing for me.
 
 = 3. Being Rude =
 
-Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  Most users of the plugin spent exactly zero money on it, and in most cases, most users get a lot more than they paid for.  If you can't channel your ire into something constructive then please find some other software to use -- my days are stressful enough as it is.
+Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  If you can't channel your ire into something constructive then please find some other software to use.
