@@ -26,7 +26,7 @@ You must deactivate the Summarize Posts plugin.  Everything from the Summarize P
 
 == The CCTM Menu Does not Display! ==
 
-Some users report that the CCTM menu does not appear after installing the plugin.  Often this occurs when the site is running as a multi-site setup.  Configuring the admin menu code is easily done following the instructions here: [Config_admin_menu configuring the admin menu].  Sometimes !WordPress fails silently if another plugin is already using a menu space, and if you are using the MU setup, then you may need to adjust the permissions of the menu code.
+Some users report that the CCTM menu does not appear after installing the plugin.  Often this occurs when the site is running as a multi-site setup.  Configuring the admin menu code is done following the instructions here: [Config_admin_menu configuring the admin menu].  Sometimes !WordPress fails silently if another plugin is already using a menu space, and if you are using the MU setup, then you may need to adjust the permissions of the menu code.
 
 ------
 
@@ -207,6 +207,11 @@ In this plugin's settings area, each content-type has a link to "View Sample Tem
 
 See the wiki page on [TemplateFunctions]
 
+-------
+
+== When I print my custom field in my template, I only see "Array"! ==
+
+If you see "Array" instead of the value you stored in your field, then you are actually storing a list of values (i.e. an array).  This happens if you are using a multi-select field or if you've checked the "Repeatable" option on your field definition.  If you are storing a list of values, then you can't simply print it, you have to iterate over the items in the list.  You can use the [formatted_list_OutputFilter formatted_list]] Output Filter to help print a list from the array, or you can manually iterate over the items in the list -- see an example of this in the [to_array_OutputFilter to_array] Output Filter.
 
 -------
 
