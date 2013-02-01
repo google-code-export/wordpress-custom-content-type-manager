@@ -163,9 +163,14 @@ $my_img = get_custom_field('related_image:get_post');
 
 == How do I enable "friendly" URLs (a.k.a. "Pretty Permalinks") for my post-type? ==
 
-The default behavior of !WordPress is to support URLs like  http://site.com/?post_type=book&p=39.  You can change the URL format of your _posts_ by changing the permalink settings for your blog (see http://codex.wordpress.org/Using_Permalinks).  However, these settings are not global: they do not apply to your custom post-type.  You _do_ need to have the ability to rewrite URLs on your server, but merely enabling custom permalinks under *Settings --> Permalinks* will have no effect on your custom post-types.
+The default behavior of !WordPress is to support URLs like  http://site.com/?post_type=book&p=39.  You can change the URL format of your _posts_ by changing the permalink settings for your blog (see http://codex.wordpress.org/Using_Permalinks).  However, these settings are not global: they do not apply to your custom post-type.  You _do_ need to have the ability to rewrite URLs on your server, but merely enabling custom permalinks under *Settings --> Permalinks* will have no immediate effect on your custom post-types.  Here's how to set your custom post-types to use a friendly URL structure:
 
-When you define your post-type in the CCTM, be sure to visit the "URLs" tab and enable the "Permalink Action" dropdown to either `/%postname%/` or to `Custom`.  If you're using the custom option, you can enter your own settings in the "Rewrite Slug".
+1. When you define your post-type in the CCTM, be sure to visit its "URLs" tab and enable the "Permalink Action" dropdown to either `/%postname%/` or to `Custom`.  If you're using the custom option, you can enter your own settings in the "Rewrite Slug".
+
+2. Go to the !WordPress *Settings --> Permalinks* page, and change the permalinks settings (e.g. back to default) and save them.  
+
+3. While still under *Settings --> Permalinks*, change the format back to how you want them and save the settings again.  It seems that it is the act of _changing_ the global permalink settings which causes !WordPress to integrate the URL/permalink settings for your custom post-types.
+
 
 !WordPress' support of custom permalink structure is often limited and difficult to understand, so your success here may vary.  For a much cleaner alternative, try the [http://modx.com/ MODX CMS].  
 
