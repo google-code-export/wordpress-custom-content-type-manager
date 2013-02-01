@@ -161,11 +161,24 @@ $my_img = get_custom_field('related_image:get_post');
 
 ---------
 
-== What does activating a custom content type do? ==
+== How do I enable "friendly" URLs (a.k.a. "Pretty Permalinks") for my post-type? ==
 
-When you activate a custom content type, you ensure that it gets registered with !WordPress. Once the content type is registered, a menu item will get created (so long as you checked the "Show Admin User Interface" box) and you ensure that its custom fields become standardized. If the "Public" box was checked for this content type, then the general public can access posts created under this content type using the URL structure defined by the "Permalink Action" and "Query Var" settings, e.g. http://site.com/?post_type=book&p=39
+The default behavior of !WordPress is to support URLs like  http://site.com/?post_type=book&p=39.  You can change the URL format of your _posts_ by changing the permalink settings for your blog (see http://codex.wordpress.org/Using_Permalinks).  However, these settings are not global: they do not apply to your custom post-type.  You _do_ need to have the ability to rewrite URLs on your server, but merely enabling custom permalinks under *Settings --> Permalinks* will have no effect on your custom post-types.
 
-"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized.  This means that the default !WordPress metabox for custom fields is overridden by the CCTM -- see the next FAQ. 
+When you define your post-type in the CCTM, be sure to visit the "URLs" tab and enable the "Permalink Action" dropdown to either `/%postname%/` or to `Custom`.  If you're using the custom option, you can enter your own settings in the "Rewrite Slug".
+
+!WordPress' support of custom permalink structure is often limited and difficult to understand, so your success here may vary.  For a much cleaner alternative, try the [http://modx.com/ MODX CMS].  
+
+
+---------
+
+== What does Activating a Post-Type do?==
+
+"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized.  This means that the default !WordPress metabox for custom fields is overridden by the CCTM.  
+
+Activating a post-type ensures that it gets registered with !WordPress. Once the content type is registered, a menu item will get created (so long as you checked the "Show Admin User Interface" box) and you ensure that its custom fields become standardized. If the "Public" box was checked for this content type, then the general public can access posts created under this content type using the URL structure defined by the "Permalink Action" and "Query Var" settings, e.g. http://site.com/?post_type=book&p=39
+
+
 
 
 ---------
