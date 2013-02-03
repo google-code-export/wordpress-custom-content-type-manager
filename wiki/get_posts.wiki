@@ -276,30 +276,16 @@ $args['my_custom_field']['starts_with'] = 'z';
 
 The following operators are available in GetPostsQuery (some aliases are supported for convenience):
 
- * `!=` : not equal
- * `ne` : not equal
- * `<>` : not equal
- * `>` : greater than
- * `gt` : greater than
- * `>=` : greater than or equal to
- * `gte` : greater than or equal to
- * `<` : less than
- * `lt` : less than
- * `<=` : less than or equal to
- * `lte` : less than or equal to
- * `^` : starts with
- * `starts_with` : starts with
- * `$` : ends with
- * `ends_with` : ends with
- * `%` : like
- * `like` : like
- * `contains` : like
- * `!%` : not like
- * `!like` : not like
- * `not_like` : not like
- * `=` : equals or contains _(default)_
- * `in` : equals or contains
- * `equals` : equals or contains
+ * `!=` or `ne` or `<>`: not equal
+ * `>` or `gt` : greater than
+ * `>=` or `gte` : greater than or equal to
+ * `<` or `lt`: less than
+ * `<=` or `lte`: less than or equal to
+ * `^` or `starts_with` : starts with
+ * `$` or `ends_with`: ends with
+ * `%` or `like` or `contains`: like
+ * `!%` or `!like` or `not_like`: not like
+ * `=` or `in` or `equals`: equals  _(default)_
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || The "equals" operator uses MySQL `IN`, so if you pass it an array, `GetsPostsQuery::get_posts()` will look for posts that match any of the values, e.g. `$args['custom_field'] = array('red','green','blue');` would search for posts where the custom_field value was red, green, or blue.||
 
