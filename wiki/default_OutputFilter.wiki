@@ -14,7 +14,7 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 
 _mixed_ *get_custom_field*( string _$fieldname_ `[`, mixed _$options_ `]` ) 
 
- * *$fieldname*: _string_ the unique name for your field
+ * *$fieldname*: _string_ field name `+ :default`
  * *$options*: _mixed_. Whatever you supply here will be returned if the input is empty
  * *OUTPUT*: _string_. Full path to the image
 
