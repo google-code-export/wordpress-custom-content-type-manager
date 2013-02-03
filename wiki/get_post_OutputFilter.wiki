@@ -14,7 +14,7 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
- * *$input*: _string_ field name `+ :get_post`.  Referenced field should be an integer or an array of _integers_ (post IDs).  
+ * *$input*: _string_ field name `+ :get_post`.  Referenced field should contain an integer or an array of _integers_ (post IDs).  
  * *$options*: _string_: either supply the name of a field (e.g. *post_title*), OR supply a formatting string, e.g. `My post title is [+post_title+]`.
  * *OUTPUT*: _mixed_.  If no options are supplied, this returns one or more associative arrays representing the post and all of its custom fields.  If you have supplied an option, this will return a string.
 
