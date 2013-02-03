@@ -9,7 +9,7 @@
 The _email_ filter obscures an email address so it is still readable by a human, but more difficult for it to be harvested by a spam-bot.
 
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING: this filter is not a sure-fire way to guarantee an email address from being harvested!</font>   || 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING: this filter is not guaranteed to prevent an email address from being harvested!</font>   || 
 
 = Usage =
 
