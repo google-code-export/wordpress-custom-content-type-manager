@@ -14,7 +14,7 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
- * *$input*: _mixed_.  
+ * *$input*: _string_ field name `+ :help`.  
  * *$options*: _none_. 
  * *OUTPUT*: _string_. A help message 
 
