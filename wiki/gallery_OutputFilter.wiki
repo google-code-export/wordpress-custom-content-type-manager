@@ -14,7 +14,7 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
- * *$input*: _string_ field name `+ :gallery`  
+ * *$input*: _string_ field name `+ :gallery`. Referenced field should contain an integer or an array of integers (post IDs).
  * *$options*: _string_: a formatting template containing placeholders for image data.  The default formatting string is the following:
 {{{
 <div class="cctm_gallery" id="cctm_gallery_[+i+]">
