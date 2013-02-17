@@ -9,6 +9,15 @@
 Starting with version 0.9.4, developers can create their own PHP classes that describe their own custom fields.  You can use this feature to write your own types of custom fields, just like with [CustomOutputFilters Custom Output Filters].
 
 --------
+= Where to Save =
+
+Put your field classes inside your custom fields directory, which by default is `wp-content/uploads/cctm/fields`.  That directory will be scanned for additional classes.  (If you've customized the location of your uploads directory, then move the `tpls` directory into your custom location)
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">WARNING</font>: do not add files to the `wp-content/plugins/custom-content-type-manager/fields` directory!  Any files you add there will get deleted when the plugin is updated!||
+
+After you've added a field class to this folder, you can clear the CCTM cache: CCTM --> clear Cache.
+
+--------
 
 = The Base Class =
 
