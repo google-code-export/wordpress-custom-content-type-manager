@@ -33,4 +33,4 @@ Other options could include any built-in !WordPress column or any custom column,
 
 See the documentation for http://code.google.com/p/wordpress-summarize-posts/wiki/get_posts to see other valid array keys.
 
-Note that the `_relation.php` file applies to all relation fields, the `_image.php` file to all image fields, etc.  You can name using the _exact_ name of the custom field if you require one field to have a specific set of criteria.
+Note that the `_relation.php` file applies to all relation fields, the `_image.php` file to all image fields, etc.  You can use the _exact_ name of the custom field for your configuration file if you require one field to have a specific set of criteria, e.g. `config/post_selector/myrelation.php` would define the search form to be displayed for the "myrelation" field.
