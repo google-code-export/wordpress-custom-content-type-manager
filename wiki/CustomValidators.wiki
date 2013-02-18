@@ -65,7 +65,7 @@ You will never have to test an `$input` to see whether or not it is empty: this 
 
 If you want create your own validation function, you can add a file to `wp-content/uploads/cctm/validators/`.  Do NOT add files to the `plugins/custom-content-type-manager/validators/` directory!  It will get overwritten when you update the plugin!
 
-Create a file named *vowels_only.php*:
+Create a file named *vowels_only.php* and paste the following into it:
 
 {{{
 <?php
@@ -110,5 +110,7 @@ class CCTM_vowels_only extends CCTM_Validator {
 }
 /*EOF*/
 }}}
+
+After adding this, you may need to clear the CCTM's cache by clicking on the *CCTM --> Clear Cache* menu option.
 
 This example validator will ensure that inputs contain only vowels.  You can see that the real action here occurs in the `validate()` function.  That's where your regexes etc. will be.
