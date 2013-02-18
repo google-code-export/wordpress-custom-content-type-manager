@@ -73,6 +73,14 @@ _string_ *get_icon*()
 
 Return URL to a 48x48 PNG image that should represent this type of field. e.g. `http://mysite/images/coolio.png`
 
+________
 
+= Sample Field Class =
+
+== Naming Conventions ==
+
+ * Name your files in _all lowercase_!
+ * Do not use any spaces or dashes in the name!
+ * The name of the class _must_ correspond exactly to the base name of the file.  The classname will have a prefix of `CCTM_` and it will not use the ".php" extension.  E.g. if your field is named `my_field`, then your filename would be `my_field.php` and your classname will be `CCTM_my_field`.
 
 MORE COMING...
