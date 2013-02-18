@@ -20,6 +20,7 @@ To customize the configuration for all relation fields, perform the following st
  # Inside of the *config* folder, create a folder named "post_selector"
  # Into the *post_selector* folder, copy the `_relation.php` file from `wp-content/plugins/custom-content-type-manager/config/post_selector/_relation.php`.
 
+
 The end goal here is to have a file inside your _own_ folder outside the CCTM's folder.  *DO NOT EDIT FILES INSIDE THE CCTM's FOLDER*.  Any plugin files may be deleted or updated during an upgrade, so those files are off-limits!
 
 Update your copy of the `_relation.php` file so that it contains the search criteria you need.  For example, if you want the search function to only search for post_titles (instead of searching titles and content), update the file to contain a line like the following:
@@ -31,3 +32,5 @@ CCTM::$post_selector['search_columns'] = array('post_title');
 Other options could include any built-in !WordPress column or any custom column, e.g. post_author, my_custom_field, post_status etc.
 
 See the documentation for http://code.google.com/p/wordpress-summarize-posts/wiki/get_posts to see other valid array keys.
+
+Note that the `_relation.php` file applies to all relation fields, the `_image.php` file to all image fields, etc.  You can name using the _exact_ name of the custom field if you require one field to have a specific set of criteria.
