@@ -64,7 +64,7 @@ So that's all well and good, but let's have a look at how we might actually writ
 
  * Name your files in _all lowercase_!
  * Do not use any spaces or dashes in the name!
- * The name of the class _must_ correspond exactly to the base name of the file.  The classname will have a prefix of "CCTM_" and it will not use the ".php" extension.  E.g. if your filter is named "my_filter", then your filename would be *my_filter.php* and your classname will be "CCTM_my_filter".
+ * The name of the class _must_ correspond exactly to the base name of the file.  The classname will have a prefix of "CCTM_" and it will not use the ".php" extension.  E.g. if your filter is named "my_filter", then your filename would be *my_filter.php* and your classname will be `CCTM_my_filter`.
 
 == Sample Class ==
 
