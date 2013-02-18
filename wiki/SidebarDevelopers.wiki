@@ -16,7 +16,15 @@ Used as a sidebar in the validators section.
 
 == [DeveloperDocumentation For Developers] ==
 
-*Classes*
+*Extendable Classes*
+
+* [CustomOutputFilters CCTM_OutputFilter] -- add your own output filter
+* [CustomValidators CCTM_Validator] -- add your own validation rule
+* [CustomCustomFields CCTM_FormElement] -- add your own custom field type
+
+*Other Classes*
+
+_Classes you can use in your themes or plugins:_
 
  * [CustomCustomFields CCTM_FieldElement]
  * [CustomOutputFilters CCTM_OutputFilter]
