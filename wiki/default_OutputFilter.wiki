@@ -28,7 +28,7 @@ If your custom field is empty, the value you supplied as an option will be retur
 
 {{{ 
 <?php
-print_custom_field('fax_number:wrapper', 'Number unavailable' );
+print_custom_field('fax_number:default', 'Number unavailable' );
 ?>
 }}}
 
