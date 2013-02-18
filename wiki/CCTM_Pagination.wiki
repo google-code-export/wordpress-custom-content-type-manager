@@ -317,7 +317,7 @@ However, in most cases we still need to calculate the number of records dynamica
 
 In order for the library to be used in real-world scenario we must dynamically read the offset (e.g. from the URL as shown in example 2) and we must have a valid calculation of the number of results.   Normally, we count the number of results by issuing a database query that counts the results, but you could also paginate results gleaned from an API or from a number of files etc -- the source of your data will determine how you will determine an accurate count of the results.
 
-This example assumes that you are using the CCTM_Paganation class inside a WordPress template file, so it is using the *$wpdb* global object to drive database queries, but the principle can apply no matter how you count results and retrieve data.
+This example assumes that you are using the CCTM_Paganation class inside a !WordPress template file, so it is using the *$wpdb* global object to drive database queries, but the principle can apply no matter how you count results and retrieve data.
 
 {{{
 global $wpdb;
@@ -353,7 +353,7 @@ print $P->paginate($result_cnt);
 
 == Using with GetPostsQuery ==
 
-The !SummarizePosts and !GetPostQuery classes rely on the CCTM_Pagination class, so you do not need to directly instantiate it directly.  Some of the arguments passed to the SummarizePosts::get_posts() function or to the GetPostsQuery::get_posts() function will affect pagination settings.
+The !SummarizePosts and !GetPostQuery classes rely on the CCTM_Pagination class, so you do not need to directly instantiate it directly.  Some of the arguments passed to the `SummarizePosts::get_posts()` function or to the [get_posts GetPostsQuery::get_posts()] function will affect pagination settings.
 
 If you want to create something more involved than the simple "next/prev" type of links, then you need to use more of the formatting strings.
 
