@@ -293,7 +293,7 @@ The result will be something like this:
 
 http://content.screencast.com/users/fireproofsocks/folders/Jing/media/5444f4f3-a30e-49df-9711-3f9aeff06b93/00000115.png
 
-Note that this example relies on all the default tpls and it does not include any code to dynamically read the current page, so it is essentially static.
+Note that this example relies on all the default tpls and it does not include any code to dynamically read the current page, so it is not terribly useful.
 
 == 2. Simple Example ==
 
