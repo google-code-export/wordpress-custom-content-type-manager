@@ -1,4 +1,5 @@
 #summary Configuring Search Parameters
+#labels Help
 
 Starting with version 0.9.5, you can configure the search parameters that define which posts are available for selection in a relation, image, or media field.  
 
