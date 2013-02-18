@@ -58,3 +58,57 @@ The $input can be modified before being returned (e.g. to suggest a correction),
 You will never have to test an `$input` to see whether or not it is empty: this is handled for you.  Inputs are passed along to be validated when they are _not empty_.  Also, the `$input` will always be singular (a string), not an array. 
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || The input to the *validate()* function will always be a string (not an array).  If the validation rule is used on a repeatable field (i.e. one storing multiple values), then each value will be sent to the *validate()* function individually. ||
+
+------------
+
+= Example 1 = 
+
+If you want create your own validation function, you can add a file to `wp-content/uploads/cctm/validators/`.  Do NOT add files to the `plugins/custom-content-type-manager/validators/` directory!  It will get overwritten when you update the plugin!
+
+Create a file named *vowels_only.php*:
+
+{{{
+<?php
+/**
+ * Check to see if the input is a valid email address
+ * @package CCTM_Validator
+ *
+ */
+class CCTM_vowels_only extends CCTM_Validator {
+
+
+	/**
+	 * @return string	a description of what the validation rule is and does.
+	 */
+	public function get_description() {
+		return __('Check that the input contains only vowels.', CCTM_TXTDOMAIN);		
+	}
+
+
+	/**
+	 * @return string	the human-readable name of the validation rules.
+	 */
+	public function get_name() {
+		return __('Vowels Only', CCTM_TXTDOMAIN);
+	}
+		
+	/**
+	 * Run the rule: check the user input. Return the (filtered) value that should
+	 * be used to repopulate the form.
+	 *
+	 * @param string 	$input (as it is stored in the database)
+	 * @return string
+	 */
+	public function validate($input) {
+		if (!preg_match("/^[aeiou]$/i", $input)) {
+			$this->error_msg = sprintf(__('The %s field can only contain vowels.', CCTM_TXTDOMAIN), $this->get_subject());
+		}
+		
+		return $input;
+	}
+	
+}
+/*EOF*/
+}}}
+
+This example validator will ensure that inputs contain only vowels.  You can see that the real action here occurs in the `validate()` function.  That's where your regexes etc. will be.
