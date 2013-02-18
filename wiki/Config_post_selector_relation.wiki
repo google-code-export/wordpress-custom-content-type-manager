@@ -1,4 +1,4 @@
-#summary Customizing the Admin Menu
+#summary Customizing the Forms that specify search criteria
 #labels Customizations
 #sidebar SidebarCustomizations
 
@@ -6,7 +6,7 @@
 
 = Description =
 
-Use this configuration file to customize the behavior of the search forms that pop up when you click the "Choose Relation" buttons.
+Use this configuration file to customize the search forms that pop up when you click the "Choose Relation" buttons, e.g. if you need to present the user with more options to search for.
 
 
 = Customizing the Search Parameters =
