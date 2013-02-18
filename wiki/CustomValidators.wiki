@@ -70,7 +70,7 @@ Create a file named *vowels_only.php* and paste the following into it:
 {{{
 <?php
 /**
- * Check to see if the input is a valid email address
+ * Check to see if the input contains only Vowels (AEIOU).
  * @package CCTM_Validator
  *
  */
