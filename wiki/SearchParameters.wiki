@@ -13,18 +13,8 @@ When you click that button, you get the form that will define which posts are av
 https://img.skitch.com/20111214-jwr7hjgpmjbhm2dhwbmj58ab75.jpg
 
 
-= Configuring the Search Parameter Form =
+= Customizing the Search Form =
 
-You can override the default configurations by writing your own configuration file.
+What if you don't see the filters that you require?  You will be glad to know that this form is built according to a configuration file, and you can override the default configurations by writing your own configuration file.
 
-Inside of your !WordPress uploads directory, the CCTM uses its own directory, e.g. `wp-uploads/cctm` -- that's where we put all of our CCTM stuff.
-
-I have to point out here that this delves into some *convention* instead of just raw *configuration*.  CCTM tries to use configuration whenever possible, but in some cases, I just had to use some tricks to make it quicker to edit. 
-
-The little secret is that any configuration file inside of *custom-content-type-manager/config/search_parameters* can be overridden by placing a file into *uploads/cctm/config/search_parameters*.  That is to say, the user-created files inside of your upload directory take precedence over the the included built-in configurations.
-
-
-
-= The levels =
-
-How to explain this... you configure a form which in turn configures the search.
+See the instructions for [Config_post_selector_relation customizing the post selector].
