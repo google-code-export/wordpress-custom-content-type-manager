@@ -106,7 +106,7 @@ class CCTM_vowels_only extends CCTM_Validator {
 	 * @return string
 	 */
 	public function validate($input) {
-		if (!preg_match("/^[aeiou]$/i", $input)) {
+		if (preg_match("/[^aeiou]$/i", $input)) {
 			$this->error_msg = sprintf(__('The %s field can only contain vowels.', CCTM_TXTDOMAIN), $this->get_subject());
 		}
 		
