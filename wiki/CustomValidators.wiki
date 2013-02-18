@@ -65,6 +65,12 @@ You will never have to test an `$input` to see whether or not it is empty: this 
 
 If you want create your own validation function, you can add a file to `wp-content/uploads/cctm/validators/`.  Do NOT add files to the `plugins/custom-content-type-manager/validators/` directory!  It will get overwritten when you update the plugin!
 
+== Naming Conventions ==
+
+ * Name your files in _all lowercase_!
+ * Do not use any spaces or dashes in the name!
+ * The name of the class _must_ correspond exactly to the base name of the file.  The classname will have a prefix of "CCTM" and it will not use the ".php" extension.  E.g. if your filter is named `my_filter`, then your filename would be `my_filter.php` and your classname will be `CCTM_my_filter`.
+
 Create a file named *vowels_only.php* and paste the following into it:
 
 {{{
