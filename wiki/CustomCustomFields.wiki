@@ -77,6 +77,9 @@ Return URL to a 48x48 PNG image that should represent this type of field. e.g. `
 
 = Sample Field Class =
 
+If you want create your own type of custom field, you can add a file to `wp-content/uploads/cctm/fields/`.  Do NOT add files to the `plugins/custom-content-type-manager/fields/` directory!  It will get overwritten when you update the plugin!
+
+
 == Naming Conventions ==
 
  * Name your files in _all lowercase_!
