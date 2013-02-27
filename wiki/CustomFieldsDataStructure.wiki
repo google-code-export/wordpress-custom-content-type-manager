@@ -5,7 +5,7 @@ One of the things that I felt was at fault in the way !WordPress deals with cust
 
 !WordPress stores an array of values in multiple rows.  In other words, the names for each custom field are not unique.  Given a single post ID and a single field name, there could be an infinite number of rows in the database.  
 
-This represents a problem: it is _extremely_ difficult to retrieve a record set of posts and all their custom fields using a single database query.  MySQL just doesn't bend that way -- you can't join tables on an indeterminate number of rows.  That means that it can be very difficult to search and filter result sets when you are searching and filtering based on custom fields.
+This represents a problem: it is _extremely_ difficult to retrieve a set of posts and all their custom fields using a _single_ database query.  MySQL just doesn't bend that way -- you can't join tables on an indeterminate number of rows.  That means that it can be very difficult to search and filter result sets when you are searching and filtering based on custom fields.
 
 So I took aim at !WordPress' strategy here and through the development of my Summarize Posts plugin, I arrived at a different strategy: one row in *wp_postmeta* per custom field.  Period.  Arrays of values (e.g. multiple values from a multi-select field) are stored as JSON-encoded strings.  
 
