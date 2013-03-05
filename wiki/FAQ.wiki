@@ -3,6 +3,8 @@
 
 <wiki:toc max_depth="2" />
 
+------
+
 == I want posts and pages to have this functionality ==
 
 I've gotten several emails and forum posts about "adding" custom field functionality to posts and pages.  That functionality has always been part of CCTM.  You simply need to "Standardize" your post's or page's custom fields.
@@ -10,6 +12,8 @@ I've gotten several emails and forum posts about "adding" custom field functiona
 http://content.screencast.com/users/fireproofsocks/folders/Snagit/media/f90575a0-72f6-4b9e-aac5-647574f21669/2013-03-05_11-07-10.png
 
 This is an option that you can configure: some sites and some plugins handle custom fields for posts and pages differently, so the CCTM does not take over the custom fields on posts and pages by default.
+
+------
 
 == My other plugin cannot load correctly! ==
 
