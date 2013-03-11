@@ -30,6 +30,12 @@ Your bug report may be invalid because it does not include a comparison of what 
 
 A link to your site with a note saying "here's the problem" does nothing for me.  What may look like a horrible error to you probably is just yet-another-website for me.  It's like sending someone a picture of a zebra and saying "see!?! It's broken!".  Such a message makes no sense unless you also include what you expected, e.g. "I got a zebra.  I expected a horse."  Without that point of comparison, chances are good that your bug report is invalid.
 
-= 3. Being Rude =
+= 3. Older Version =
+
+Please make sure you're using the latest version of the plugin before filing a bug report!  Compare the version you see inside the !WordPress manager with the version you see on the !WordPress downloads page: http://wordpress.org/extend/plugins/custom-content-type-manager/
+
+The !WordPress repository is not always perfect at letting you know that updates are available.
+
+= 4. Being Rude =
 
 Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  If you can't channel your ire into something constructive then please find some other software to use.
