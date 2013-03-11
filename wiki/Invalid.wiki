@@ -28,7 +28,7 @@ It's critical that you outline the *exact steps to reproduce an error*.  I can't
 
 Your bug report may be invalid because it does not include a comparison of what was expected vs. what you actually got.  Any bug report *requires* 2 things: steps to reproduce a certain state AND an explanation of what was expected.  Without being able to compare what you *actually* see with what you *expected* to see, you do not have a valid bug report.  
 
-A link to your site with a note saying "here's the problem" does nothing for me.  What may look like a horrible error to you probably is just yet-another-website for me.  It's like sending someone a picture of a zebra and saying "see!?! It's broken!".  Such a message makes no sense unless you also include what you expected, e.g. "I got a zebra.  I expected a horse."  Without that point of comparison, chances are good that your bug report is invalid.
+A link to your site with a note saying "here's the problem" does nothing for me.  What may look like a horrible error to you probably is just yet-another-website for me.  It's like sending someone a picture of a horse and saying "see!?! It's broken!".  Such a message makes no sense unless you also include what you expected, e.g. "I got a horse.  I expected a zebra."  Without that point of comparison, chances are good that your bug report is invalid.
 
 = 3. Older Version =
 
