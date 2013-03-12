@@ -38,4 +38,4 @@ The !WordPress repository is not always perfect at letting you know that updates
 
 = 4. Being Rude =
 
-Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  If you can't channel your ire into something constructive then please find some other software to use.
+Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  This software is free, it's a gift.  If you can't channel your ire into something constructive then please find some other software to use.
