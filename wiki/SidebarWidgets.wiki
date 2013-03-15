@@ -1,0 +1,29 @@
+#summary Sidebar for widget sub-pages
+#labels Widget
+
+<wiki:comment>
+Used as a sidebar in the widget section.
+</wiki:comment>
+
+== [SupportedCustomFields Custom Fields] ==
+
+== [OutputFilters Output Filters] ==
+
+== [Validators] ==
+
+== [Shortcodes] ==
+
+== [Widgets] ==
+
+ * [Widget Summarize Posts Widget]
+ * [Post_Widget Post Content Widget]
+
+== [TemplateFunctions Function Reference] ==
+
+== [Customizations] ==
+
+== [DeveloperDocumentation For Developers] ==
+
+== [FAQ] ==
+
+||https://img.skitch.com/20120706-pxxntj3euky9mdy37xkgddsyt1.jpg||[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]||
