@@ -10,6 +10,10 @@ Used as a sidebar in the validators section.
 
 == [Validators] ==
 
+== [Shortcodes] ==
+
+== [Widgets] ==
+
 == [TemplateFunctions Function Reference] ==
 
 == [Customizations] ==
