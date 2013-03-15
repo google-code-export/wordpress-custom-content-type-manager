@@ -16,6 +16,16 @@ Starting with CCTM version 0.9.7.1, you can display a post-creation form on the 
 
  * post_type : you need to specify which post-type you want to use. This tells the CCTM which custom-fields it needs to draw.
 
+== Arguments for Control ==
+
+After submitting the form, generally you want a couple things to happen: you want a thank you page to be displayed or you want to be emailed that a form was submitted etc.  The shortcode accommodates these use cases.  Unlike the other arguments, control arguments are prefixed with an underscore (`_`).
+
+ * `_callback` : name of a callback function that accepts an array of arguments (either posted or hard-coded in your shortcode arguments).  Default is *CCTM::post_form_handler*.  That handles creating a new post out of the data submitted.
+ * `_onsubmit_email` : (_string_) comma-separated list of email addresses where notifications should be sent when a form is submitted.  
+ * `_onsubmit_redirect` : (_string_) redirect to a "Thank You" page after the form has been successfully submitted.
+ * `_email_tpl` : an email template, used only when `_onsubmit_email` has been set.  This should be a page id.
+
+
 == Default Arguments ==
 
 It's extremely important that you watch your content here.  By default, the post_status is set to be "draft" in order to force all posts created via this method to be in draft status so that they will REQUIRE admin approval before being publicly visible. 
@@ -31,6 +41,14 @@ Any other field value can be specified manually in your shortcode arguments, and
 }}}
 
 Any built-in !WordPress column is available as a shortcode attribute, as well as any custom field name you've defined for your post-type (see the limitations below).
+
+------
+
+= Custom Formatting =
+
+Just like in the manager, the field generation relies on formatting templates (tpls).  
+
+See [CustomizingManagerHTML Customizing the Manger HTML] page for information.
 
 ------
 
