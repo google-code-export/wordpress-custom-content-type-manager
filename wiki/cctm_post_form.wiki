@@ -43,4 +43,10 @@ For example, I have a post_type named "feedback" with a custom field named "Big5
 [cctm_post_form post_type="feedback" Big5="I am lost"]
 }}}
 
-!WordPress will misinterpret and rename the "Big5" variable, so when CCTM tries to find a value for your "Big5" field, it will not find the value.
+!WordPress will misinterpret and rename the "Big5" variable, so when CCTM tries to find a value for your "Big5" field, it will not find the value.  
+
+The solution is to use a different name for your field, e.g. "big_five".  Then you can use the shortcode normally:
+
+{{{
+[cctm_post_form post_type="feedback" big_five="I am found"]
+}}}
