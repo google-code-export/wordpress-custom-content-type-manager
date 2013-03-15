@@ -1,0 +1,10 @@
+#summary Widgets add functionality to your themes, contained in little boxes
+#labels Widgets
+#sidebar SidebarWidgets
+
+The CCTM ships with the following Widgets:
+ 
+ * [Widget Summarize Posts Widget]
+ * [Post_Widget Post Content Widget]
+
+Most WordPress themes support one or more widgets.  See http://codex.wordpress.org/WordPress_Widgets
