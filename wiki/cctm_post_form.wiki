@@ -1,5 +1,6 @@
 #summary Displays a post creation form on the front end
 #labels Shortcodes
+#sidebar SidebarShortcodes
 
 Starting with CCTM version 0.9.7.1, you can display a post-creation form on the front end of your site.  This is a beta version with limited functionality only.  See the section below on Limitations.
 
