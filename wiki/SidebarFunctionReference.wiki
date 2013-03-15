@@ -7,6 +7,10 @@
 
 == [Validators] ==
 
+== [Shortcodes] ==
+
+== [Widgets] ==
+
 == Function Reference ==
 
 *Template Functions*
