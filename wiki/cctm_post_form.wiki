@@ -31,7 +31,11 @@ Any other field value can be specified manually in your shortcode arguments, and
 
 Any built-in !WordPress column is available as a shortcode attribute, as well as any custom field name you've defined for your post-type (see the limitations below).
 
+------
+
 = Limitations =
+
+Letting the general public submit content to your site is potentially *very* dangerous.  There are some limitations here that exist specifically for the protection of you and your site.  In future versions some of these restrictions may change as safe work-arounds are developed.
 
 == Shortcode Attributes ==
 
@@ -64,3 +68,7 @@ For now, only plain textarea fields can be used for WYSIWYG fields.  In the futu
 == Image, Media, and Relation fields ==
 
 For security reasons, the form does not currently support these fields: image and media fields are not supported because they would offer the general public the unfettered ability to upload assets to your server, and relation fields are not supported because they may list posts that are not intended for public viewing (e.g. posts in draft status or posts in a non-public post_type).
+
+== Filtering ==
+
+When content is submitted via the *cctm_post_form* shortcode from the front-end of a site, the [kses http://codex.wordpress.org/Function_Reference/wp_kses] filter is applied to *all* inputs.  This is a stricter filter than what is used inside the !WordPress manager: it filters out all HTML.  Inside the manager, the post_content normally uses the more relaxed [wp_kses_post http://codex.wordpress.org/Function_Reference/wp_kses_post] filter, but since this form is shown on the front-end, the source of the data is considered untrusted.
