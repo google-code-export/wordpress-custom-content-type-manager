@@ -35,7 +35,7 @@ Any built-in !WordPress column is available as a shortcode attribute, as well as
 
 = Limitations =
 
-Letting the general public submit content to your site is potentially *very* dangerous.  There are some limitations here that exist specifically for the protection of you and your site.  In future versions some of these restrictions may change as safe work-arounds are developed.
+Letting the general public submit content to your site is potentially *very* dangerous.  There are some limitations here that exist specifically for the protection of you and your site.  In future versions some of these restrictions may be relaxed as safe work-arounds are developed.
 
 == Shortcode Attributes ==
 
