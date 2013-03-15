@@ -1,0 +1,30 @@
+#summary Sidebar for shortcode sub-pages
+#labels Shortcodes
+
+<wiki:comment>
+Used as a sidebar in the validators section.
+</wiki:comment>
+
+== [SupportedCustomFields Custom Fields] ==
+
+== [OutputFilters Output Filters] ==
+
+== [Validators] ==
+
+== [Shortcodes] ==
+
+ * [summarize_posts_shortcode summarize_posts]
+ * [custom_field_shortcode custom_field]
+ * [cctm_post_form]
+
+== [Widgets] ==
+
+== [TemplateFunctions Function Reference] ==
+
+== [Customizations] ==
+
+== [DeveloperDocumentation For Developers] ==
+
+== [FAQ] ==
+
+||https://img.skitch.com/20120706-pxxntj3euky9mdy37xkgddsyt1.jpg||[http://code.google.com/p/wordpress-custom-content-type-manager/w/list Wiki Index]||
