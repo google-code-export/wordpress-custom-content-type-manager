@@ -18,6 +18,10 @@ Used as a sidebar in the validators section.
  * See all [Validators].
  * Create your own [CustomValidators Custom Validator]
 
+== [Shortcodes] ==
+
+== [Widgets] ==
+
 == [TemplateFunctions Function Reference] ==
 
 == [Customizations] ==
