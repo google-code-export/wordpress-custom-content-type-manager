@@ -35,6 +35,10 @@ _See also:_
 
 == [Validators] ==
 
+== [Shortcodes] ==
+
+== [Widgets] ==
+
 == [TemplateFunctions Function Reference] ==
 
 == [Customizations] ==
