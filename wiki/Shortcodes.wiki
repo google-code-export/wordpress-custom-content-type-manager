@@ -1,0 +1,11 @@
+#summary Shortcodes let you indirectly include PHP scripts in your post content
+#labels Shortcodes
+#sidebar SidebarShortcodes
+
+The CCTM ships with the following Shortcodes:
+ 
+ * [summarize_posts_shortcode summarize_posts]
+ * [custom_field_shortcode custom_field]
+ * [cctm_post_form]
+
+See http://codex.wordpress.org/Shortcode_API
