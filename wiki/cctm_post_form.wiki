@@ -7,8 +7,9 @@ Starting with CCTM version 0.9.7.1, you can display a post-creation form on the 
 
 = Usage =
 
+{{{
  [cctm_post_form post_type="movie"]
-
+}}}
 
 == Required Arguments ==
 
@@ -24,7 +25,9 @@ It's extremely important that you watch your content here.  By default, the post
 
 Any other field value can be specified manually in your shortcode arguments, and these values will override anything posted in the form.  For example, if you want each form submitted on the front-end to be specially flagged, you might have a custom field named "source" which you can set via your shortcode call:
 
+{{{
  [cctm_post_form post_type="feedback" source="front-end"]
+}}}
 
 Any built-in !WordPress column is available as a shortcode attribute, as well as any custom field name you've defined for your post-type (see the limitations below).
 
