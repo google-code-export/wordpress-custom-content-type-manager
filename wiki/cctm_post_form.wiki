@@ -1,7 +1,7 @@
 #summary Displays a post creation form on the front end
 #labels Shortcodes
 
-Starting with CCTM version 0.9.7.1, you can display a post-creation form on the front end of your site.
+Starting with CCTM version 0.9.7.1, you can display a post-creation form on the front end of your site.  This is a beta version with limited functionality only.  See the section below on Limitations.
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || Displaying forms on the front-end of your site is dangerous!  Forms are often the vector of hacking attacks.  Use this feature with extreme caution. || 
 
@@ -33,6 +33,8 @@ Any built-in !WordPress column is available as a shortcode attribute, as well as
 
 = Limitations =
 
+== Shortcode Attributes ==
+
 There is a bug (a "feature"?) in !WordPress: <font color="red">*all* shortcode parameters must use only lowercase letters and underscores.</font>  If you try to pass custom field names as shortcode arguments and the attributes use upper-case letters or numbers, the shortcode will not work!  This is not well-documented!
 
 This restriction is for your field NAME, not for the LABEL.  The field name is what identifies it uniquely in the database, not what you display to your users in the !WordPress admin.  And this limitation only comes up if you need to hard-code a value for your field as a shortcode argument.  
@@ -50,3 +52,15 @@ The solution is to use a different name for your field, e.g. "big_five".  Then y
 {{{
 [cctm_post_form post_type="feedback" big_five="I am found"]
 }}}
+
+== Post Content and WYSIWYG ==
+
+The main content !WordPress block (ie. post_content field) relies on the !TinyMCE editor with numerous plugins that let you do things such as upload media or reference other posts.  For security reasons, this cannot be supported on the front-end!  You do not want the general public to have this kind of access to other parts of your site!
+
+Unfortunately, the WYSIWYG editor that !WordPress uses inside the manager is not easily implemented in other areas of the site. 
+
+For now, only plain textarea fields can be used for WYSIWYG fields.  In the future, the CCTM may integrate a simplified WYSIWYG editor for the post_content and any WYSIWYG fields, e.g. https://code.google.com/p/jwysiwyg/wiki/Introduction
+
+== Image, Media, and Relation fields ==
+
+For security reasons, the form does not currently support these fields: image and media fields are not supported because they would offer the general public the unfettered ability to upload assets to your server, and relation fields are not supported because they may list posts that are not intended for public viewing (e.g. posts in draft status or posts in a non-public post_type).
