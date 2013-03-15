@@ -1,0 +1,41 @@
+#summary Displays a post creation form on the front end
+#labels Shortcodes
+
+Starting with CCTM version 0.9.7.1, you can display a post-creation form on the front end of your site.
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || Displaying forms on the front-end of your site is dangerous!  Forms are often the vector of hacking attacks.  Use this feature with extreme caution. || 
+
+= Usage =
+
+ [cctm_post_form post_type="movie"]
+
+
+== Required Arguments ==
+
+ * post_type : you need to specify which post-type you want to use. This tells the CCTM which custom-fields it needs to draw.
+
+== Default Arguments ==
+
+It's extremely important that you watch your content here.  By default, the post_status is set to be "draft" in order to force all posts created via this method to be in draft status so that they will REQUIRE admin approval before being publicly visible. 
+
+ * post_status="draft"
+
+== Optional Arguments ==
+
+Any other field value can be specified manually in your shortcode arguments, and these values will override anything posted in the form.  For example, if you want each form submitted on the front-end to be specially flagged, you might have a custom field named "source" which you can set via your shortcode call:
+
+ [cctm_post_form post_type="feedback" source="front-end"]
+
+Any built-in !WordPress column is available as a shortcode attribute, as well as any custom field name you've defined for your post-type (see the limitations below).
+
+= Limitations =
+
+There is a bug (a "feature"?) in WordPress: <font color="red">*all* shortcode parameters must use only lowercase letters and underscores.</font>  If you try to pass custom field names as shortcode arguments and the attributes use upper-case letters or numbers, the shortcode will not work!  This is not well-documented!
+
+This restriction is for your field NAME, not for the LABEL.  The field name is what identifies it uniquely in the database, not what you display to your users in the !WordPress admin.  And this limitation only comes up if you need to hard-code a value for your field as a shortcode argument.  
+
+For example, I have a post_type named "feedback" with a custom field named "Big5".  The following shortcode would fail:
+
+ [cctm_post_form post_type="feedback" Big5="I am lost"]
+
+!WordPress will misinterpret and rename the "Big5" variable, so when CCTM tries to find a value for your "Big5" field, it will not find the value.
