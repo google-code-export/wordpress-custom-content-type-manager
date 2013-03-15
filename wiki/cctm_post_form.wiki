@@ -4,7 +4,7 @@
 
 Starting with CCTM version 0.9.7.1, you can display a post-creation form on the front end of your site.  This is a beta version with limited functionality only.  See the section below on Limitations.
 
-|| http://s2.postimage.org/by3ngezo/warning_icon.png || Displaying forms on the front-end of your site is dangerous!  Forms are often the vector of hacking attacks.  Use this feature with extreme caution. || 
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">Displaying forms on the front-end of your site is dangerous!  Forms are often the vector of XSS or SQL Injection attacks.  Use this feature with extreme caution!</font> || 
 
 = Usage =
 
@@ -60,7 +60,7 @@ The solution is to use a different name for your field, e.g. "big_five".  Then y
 
 == Post Content and WYSIWYG ==
 
-The main content !WordPress block (ie. post_content field) relies on the !TinyMCE editor with numerous plugins that let you do things such as upload media or reference other posts.  For security reasons, this cannot be supported on the front-end!  You do not want the general public to have this kind of access to other parts of your site!
+The main content !WordPress block (ie. post_content field) relies on the TinyMCE editor with numerous plugins that let you do things such as upload media or reference other posts.  For security reasons, this cannot be supported on the front-end!  You do not want the general public to have this kind of access to other parts of your site!
 
 Unfortunately, the WYSIWYG editor that !WordPress uses inside the manager is not easily implemented in other areas of the site. 
 
@@ -72,4 +72,6 @@ For security reasons, the form does not currently support these fields: image an
 
 == Filtering ==
 
-When content is submitted via the *cctm_post_form* shortcode from the front-end of a site, the [kses http://codex.wordpress.org/Function_Reference/wp_kses] filter is applied to *all* inputs.  This is a stricter filter than what is used inside the !WordPress manager: it filters out all HTML.  Inside the manager, the post_content normally uses the more relaxed [wp_kses_post http://codex.wordpress.org/Function_Reference/wp_kses_post] filter, but since this form is shown on the front-end, the source of the data is considered untrusted.
+When content is submitted via the *cctm_post_form* shortcode from the front-end of a site, the [http://codex.wordpress.org/Function_Reference/wp_kses wp_kses] filter is applied to *all* inputs.  This is a stricter filter than what is used inside the !WordPress manager: it filters out all HTML.  (Inside the manager, the post_content normally uses the more relaxed [http://codex.wordpress.org/Function_Reference/wp_kses_post wp_kses_post] filter). 
+
+Since this form is shown on the front-end, the source of the data is considered untrusted.
