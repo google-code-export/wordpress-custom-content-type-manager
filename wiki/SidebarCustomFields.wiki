@@ -25,6 +25,10 @@ Or [CustomCustomFields write your own]! Starting with version 0.9.4, developers 
 
 == [Validators] ==
 
+== [Validators] ==
+
+== [Shortcodes] ==
+
 == [TemplateFunctions Function Reference] ==
 
 == [Customizations] ==
