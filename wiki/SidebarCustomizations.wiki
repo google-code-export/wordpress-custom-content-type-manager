@@ -10,6 +10,10 @@ Used as a sidebar in the Output Filters section.
 
 == [Validators] ==
 
+== [Shortcodes] ==
+
+== [Widgets] ==
+
 == [TemplateFunctions Function Reference] ==
 
 == [Customizations] ==
