@@ -24,13 +24,18 @@ After submitting the form, generally you want a couple things to happen: you wan
  * `_onsubmit_email` : (_string_) comma-separated list of email addresses where notifications should be sent when a form is submitted.  
  * `_onsubmit_redirect` : (_string_) redirect to a "Thank You" page after the form has been successfully submitted.
  * `_email_tpl` : an email template, used only when `_onsubmit_email` has been set.  This should be a page id.
-
+ * `_tpl` : references a template file in `uploads/cctm/tpls/forms/`.  There is a default template available.  You can also specify a template file that matches the name of the post_type, prefixed with an underscore, e.g. `_my_post_type`.
+ * `_action` : used in the form template, where the form is submitted.  Default is the URL of the current page.
+ * `_id_prefix` : string used in form elements to prefix the CSS classes.
+ * `_name_prefix` : string used to prefix the field names, which affects the keys of the `$_POST` array.
 
 == Default Arguments ==
 
 It's extremely important that you watch your content here.  By default, the post_status is set to be "draft" in order to force all posts created via this method to be in draft status so that they will REQUIRE admin approval before being publicly visible. 
 
  * post_status="draft"
+
+If you specify a value via the shortcode argument, *no form element will be drawn*.  There's no reason to prompt the user for a value if you're specifying it manually.
 
 == Optional Arguments ==
 
