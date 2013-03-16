@@ -52,15 +52,37 @@ Default is *CCTM::post_form_handler*.  That handles creating a new post out of t
 
 This prefix stripped from keys in the `$_POST` array when the form is submitted.
 
+--------
 
-=== `_onsubmit_email` === 
+== Extra Control Arguments ==
 
-(_string_) comma-separated list of email addresses where notifications should be sent when a form is submitted.  
+The following arguments are used by the default callback function.  If you are using your own callback function, you may very well wish to supply your own arguments (just prefix them with an underscore), and let your callback function handle them appropriately.
 
-=== `_onsubmit_redirect` === 
+=== `_redirect` === 
 
-(_string_) redirect to a "Thank You" page after the form has been successfully submitted.
- * `_email_tpl` : an email template, used only when `_onsubmit_email` has been set.  This should be a page id.
+(_integer_) optionally, you can set a page ID here where you want the user to be redirected to after any other functionality is completed (i.e. after updating the database and sending an optional email).
+
+== Email Arguments ==
+
+You can use this form to send emails.  This could be used to alert the blog owner when a new person has entered their info, or email a sales rep when a question has been submitted.  There are lots of options.
+
+=== `_email_to` === 
+
+(_string_) comma-separated list of email addresses where notifications should be sent when a form is submitted.  If you set this, you must provide 
+
+=== `_email_from` === 
+
+(_string_) an email address to be used as the "from" address.  If omitted, this defaults to the admin_email setting (Settings --> General).
+
+=== `_email_subject` === 
+
+(_string_) subject for your email.  If omitted, this defaults to a simple message "From <name-of-your-blog>"
+
+=== `_email_tpl` === 
+
+(_integer_) specify here the page ID of the page containing the text of your email.  The page will be parsed for any `[+placeholders+]` corresponding to values submitted on the form.  For example, if your form includes a custom field for `first_name`, then your email template (tpl) might include something like `[+first_name+] submitted the form!`.  
+
+The built-in callback does not support dynamic email addresses: it sends only to the email address(es) supplied in the shortcode: this is to cut down on the risk that the form be used to send spam emails.
 
 
 -------
