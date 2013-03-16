@@ -2,7 +2,7 @@
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
-The *SP_Post* class offers functions to create, update, and delete a single post and its meta data (i.e. CRUD).  
+The *SP_Post* class offers functions to create, update, and delete a single post and its meta data (i.e. CRUD).  It does this by handling associative arrays passed to its functions (not by any persistent object state). 
 
 Managing your post and all related data via a single interface is simpler than the alternative of using iterations of the !WordPress [http://codex.wordpress.org/Function_Reference/wp_insert_post wp_insert_post()] and [http://codex.wordpress.org/Function_Reference/update_post_meta update_post_meta()] and related functions.  
 
