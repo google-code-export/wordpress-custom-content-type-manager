@@ -78,7 +78,7 @@ The solution is to use a different name for your field, e.g. "big_five".  Then y
 
 == Post Content and WYSIWYG ==
 
-The main content !WordPress block (ie. post_content field) relies on the TinyMCE editor with numerous plugins that let you do things such as upload media or reference other posts.  For security reasons, this cannot be supported on the front-end!  You do not want the general public to have this kind of access to other parts of your site!
+Any WYSIWYG field, including the main content editor (ie. post_content field) relies on the TinyMCE editor with numerous plugins that let you do things such as upload media or reference other posts.  For security reasons, this cannot be supported on the front-end!  You do not want the general public to have this kind of access to other parts of your site!
 
 Unfortunately, the WYSIWYG editor that !WordPress uses inside the manager is not easily implemented in other areas of the site. 
 
