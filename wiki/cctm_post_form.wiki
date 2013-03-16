@@ -12,6 +12,13 @@ Starting with CCTM version 0.9.7.1, you can display a post-creation form on the 
  [cctm_post_form post_type="movie"]
 }}}
 
+Or to send out an email:
+
+{{{
+ [cctm_post_form post_type="movie" _email_to="my@email.com" _email_tpl="32"]
+}}}
+
+
 It is possible to include multiple instances of this shortcode on a single page, but each instance must use a unique `_name_prefix` so that the form handler can identify which fields belong to it.  Relying on this is not recommended, however.
 
 == Required Arguments ==
@@ -68,22 +75,26 @@ You can use this form to send emails.  This could be used to alert the blog owne
 
 === `_email_to` === 
 
-(_string_) comma-separated list of email addresses where notifications should be sent when a form is submitted.  If you set this, you must provide 
+(_string_) required comma-separated list of email addresses where notifications should be sent when a form is submitted.  If you set this, you must provide 
 
 === `_email_from` === 
 
-(_string_) an email address to be used as the "from" address.  If omitted, this defaults to the admin_email setting (Settings --> General).
+(_string_) optional email address to be used as the "from" address.  If omitted, this defaults to the admin_email setting (Settings --> General).
 
 === `_email_subject` === 
 
-(_string_) subject for your email.  If omitted, this defaults to a simple message "From <name-of-your-blog>"
+(_string_) optional subject for your email.  If omitted, this will default to the `post_title` of the page referenced by the `_email_tpl` argument.
 
 === `_email_tpl` === 
 
-(_integer_) specify here the page ID of the page containing the text of your email.  The page will be parsed for any `[+placeholders+]` corresponding to values submitted on the form.  For example, if your form includes a custom field for `first_name`, then your email template (tpl) might include something like `[+first_name+] submitted the form!`.  
+(_integer_) required page ID of the page containing the text of your email.  The page will be parsed for any `[+placeholders+]` corresponding to values submitted on the form.  For example, if your form includes a custom field for `first_name`, then your email template (tpl) might include something like `[+first_name+] submitted the form!`.  
 
 The built-in callback does not support dynamic email addresses: it sends only to the email address(es) supplied in the shortcode: this is to cut down on the risk that the form be used to send spam emails.
 
+
+=== `_email_only` === 
+
+(_integer_) 1|0.  If set to 1, a new post will not be created, and only an email will go out (this requires that both the `_email_to` and `_email_tpl` be set.  Using this option is not usually recommended: email is inherently unreliable, and there is no way to verify its receipt.  It's usually a good idea to store data in the database as well.
 
 -------
 
