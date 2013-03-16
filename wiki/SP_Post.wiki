@@ -2,24 +2,42 @@
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
-The *SP_Post* class offers functions to create, update, and delete your posts and their meta data (i.e. CRUD).  Managing your post and all related data via a single interface is simpler than the alternative of using iterations of the !WordPress [http://codex.wordpress.org/Function_Reference/wp_insert_post wp_insert_post()] and [http://codex.wordpress.org/Function_Reference/update_post_meta update_post_meta()] and related functions.  
+The *SP_Post* class offers functions to create, update, and delete a single post and its meta data (i.e. CRUD).  
+
+Managing your post and all related data via a single interface is simpler than the alternative of using iterations of the !WordPress [http://codex.wordpress.org/Function_Reference/wp_insert_post wp_insert_post()] and [http://codex.wordpress.org/Function_Reference/update_post_meta update_post_meta()] and related functions.  
 
 Using *SP_Posts* has these important distinctions:
 
- # It does not call any actions or filters when it is executed, so for better or for worse, there is no way for 3rd parties to intervene with this.
+ # It does not call any actions or filters when it is executed, so for better or for worse, there is no way for 3rd parties to intervene with its behavior.
  # It automatically creates/updates/deletes all custom fields in the postmeta table without the need to have to use the update_post_meta() and related functions.
- # It does not check for user permissions. If you're running around in the PHP code, you have full run of the database. BEWARE!
+ # It does not check for user permissions. If you're mucking around in the PHP code and using this class, you have full run of the database. BEWARE!
 
 --------------------------
 = Methods =
 --------------------------
 == get ==
 
-_array_ *get_custom_field*( array _$args_) 
+_array_ *get*( array _$args_) 
 
-* `$args` array arguments.
+* `$args` integer post id or an array of search arguments passed to [GetPostsQuery]'s *get_posts()* function.
 
-This is a convenience function that acts as a pass-thru to [GetPostsQuery]'s *get_posts()* function.
+For example, you can use this to retrieve a single post by its ID:
+
+{{{
+$P = new SP_Post();
+$post = $P->get(123);
+}}}
+
+Or you can use this to retrieve a single post that matches some search criteria:
+
+{{{
+$P = new SP_Post();
+$args = array();
+$args['post_type'] = 'animal';
+$post = $P->get($args);
+}}}
+
+Remember: this always returns a single post.
 
 ---------------------------
 
