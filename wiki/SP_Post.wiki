@@ -113,10 +113,10 @@ This switches between the insert/update functions based on whether or not the 'I
 
 == update ==
 
-_integer_ *insert*( array _$args_ `[`, boolean _$overwrite_ `]` ) 
+_integer_ *update*( array _$args_ `[`, boolean _$overwrite_ `]` ) 
 
  * `$args` are identical to arguments for the `insert` function, but they *must* include a key for `ID` (the post ID).
- * `$overwrite` (optional) If true, update will nuke any custom fields not included in `$args`.
+ * `$overwrite` (optional) If true, update will delete any custom fields not included in `$args`.
 
 This method updates an existing post.  Set the `$overwrite` parameter to true if you want to ensure that no residual custom fields persist across updates.
 
