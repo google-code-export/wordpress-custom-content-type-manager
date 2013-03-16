@@ -18,18 +18,52 @@ It is possible to include multiple instances of this shortcode on a single page,
 
  * post_type : you need to specify which post-type you want to use. This tells the CCTM which custom-fields it needs to draw.
 
-== Arguments for Control ==
+------
+
+== Control Arguments ==
 
 After submitting the form, generally you want a couple things to happen: you want a thank you page to be displayed or you want to be emailed that a form was submitted etc.  The shortcode accommodates these use cases.  Unlike the other arguments, control arguments are prefixed with an underscore (`_`).
 
- * `_callback` : name of a callback function that accepts an array of arguments (either posted or hard-coded in your shortcode arguments).  Default is *CCTM::post_form_handler*.  That handles creating a new post out of the data submitted.  This function is called *after validation*.  It will receive all arguments passed to the  shortcode and all posted data, filtered via the [http://codex.wordpress.org/Function_Reference/wp_kses wp_kses] filter (see section below on Limitations).   Although the keys in the $_POST array include the prefix specified by the `_name_prefix` argument, this prefix is removed before the array is passed to the callback function.  The callback function should accept a single array of key/value pairs.
- * `_onsubmit_email` : (_string_) comma-separated list of email addresses where notifications should be sent when a form is submitted.  
- * `_onsubmit_redirect` : (_string_) redirect to a "Thank You" page after the form has been successfully submitted.
+=== `_callback` === 
+
+(_string_) Name of a callback function that accepts an array of arguments (either posted or hard-coded in your shortcode arguments).  This function is called *after successful validation*.  The callback function should accept a single array of key/value pairs.  It will receive all arguments passed to the  shortcode and all posted data, filtered via the [http://codex.wordpress.org/Function_Reference/wp_kses wp_kses] filter (see section below on Limitations).  Although the keys in the `$_POST` array include the prefix specified by the `_name_prefix` argument, this prefix is removed before the array is passed to the callback function.  
+
+Default is *CCTM::post_form_handler*.  That handles creating a new post out of the data submitted.
+
+===`_tpl` === 
+
+(_string_) references a template file in `uploads/cctm/tpls/forms/`.  There is a default template available.  You can also specify a template file that matches the name of the post_type, prefixed with an underscore, e.g. `_my_post_type`.  If you use your own form tpl, be sure to use either the `[+content+]` placeholder (containing _all_ fields), or include the `[+nonce+]` placeholder.  Otherwise form submission will fail.
+ 
+=== `_action` === 
+
+(_string_) used in the form template, where the form is submitted.  Default is the URL of the current page.  If you use a custom action parameter (e.g. to post a form to a 3rd party), then most of the other control behaviors are ignored: the form will not be validated, data will not be stored in the database, and notification emails will not go out.  
+
+=== `_id_prefix` === 
+
+(_string_) used in form elements to prefix the CSS classes.
+
+=== `_name_prefix` === 
+
+(_string_) used to prefix the field names, which affects the keys of the `$_POST` array, e.g. a prefix of `cctm_` and a field name of "yourfield" come out like this:
+
+{{{
+<input type="text" name="cctm_yourfield" />
+}}}
+
+This prefix stripped from keys in the `$_POST` array when the form is submitted.
+
+
+=== `_onsubmit_email` === 
+
+(_string_) comma-separated list of email addresses where notifications should be sent when a form is submitted.  
+
+=== `_onsubmit_redirect` === 
+
+(_string_) redirect to a "Thank You" page after the form has been successfully submitted.
  * `_email_tpl` : an email template, used only when `_onsubmit_email` has been set.  This should be a page id.
- * `_tpl` : references a template file in `uploads/cctm/tpls/forms/`.  There is a default template available.  You can also specify a template file that matches the name of the post_type, prefixed with an underscore, e.g. `_my_post_type`.  If you use your own form tpl, be sure to use either the `[+content+]` placeholder (containing _all_ fields), or include the `[+nonce+]` placeholder.  Otherwise form submission will fail.
- * `_action` : used in the form template, where the form is submitted.  Default is the URL of the current page.  If you use a custom action parameter (e.g. to post a form to a 3rd party), then most of the other control behaviors are ignored: the form will not be validated, data will not be stored in the database, and notification emails will not go out.  
- * `_id_prefix` : string used in form elements to prefix the CSS classes.
- * `_name_prefix` : string used to prefix the field names, which affects the keys of the `$_POST` array.  This prefix stripped from keys in the `$_POST` array when the form is submitted.
+
+
+-------
 
 == Default Arguments ==
 
