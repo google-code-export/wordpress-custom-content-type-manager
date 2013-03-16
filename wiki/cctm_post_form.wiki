@@ -20,7 +20,7 @@ Starting with CCTM version 0.9.7.1, you can display a post-creation form on the 
 
 After submitting the form, generally you want a couple things to happen: you want a thank you page to be displayed or you want to be emailed that a form was submitted etc.  The shortcode accommodates these use cases.  Unlike the other arguments, control arguments are prefixed with an underscore (`_`).
 
- * `_callback` : name of a callback function that accepts an array of arguments (either posted or hard-coded in your shortcode arguments).  Default is *CCTM::post_form_handler*.  That handles creating a new post out of the data submitted.
+ * `_callback` : name of a callback function that accepts an array of arguments (either posted or hard-coded in your shortcode arguments).  Default is *CCTM::post_form_handler*.  That handles creating a new post out of the data submitted.  This function is called *after validation*.  It will receive all arguments passed to the  shortcode and all posted data, filtered via the [http://codex.wordpress.org/Function_Reference/wp_kses wp_kses] filter (see section below on Limitations).   Although the keys in the $_POST array include the prefix specified by the `_name_prefix` argument, this prefix is removed before the array is passed to the callback function.  The callback function should accept a single array of key/value pairs.
  * `_onsubmit_email` : (_string_) comma-separated list of email addresses where notifications should be sent when a form is submitted.  
  * `_onsubmit_redirect` : (_string_) redirect to a "Thank You" page after the form has been successfully submitted.
  * `_email_tpl` : an email template, used only when `_onsubmit_email` has been set.  This should be a page id.
