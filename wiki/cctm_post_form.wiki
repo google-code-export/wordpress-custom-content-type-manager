@@ -35,7 +35,7 @@ It's extremely important that you watch your content here.  By default, the post
 
  * post_status="draft"
 
-If you specify a value via the shortcode argument, *no form element will be drawn*.  There's no reason to prompt the user for a value if you're specifying it manually.
+|| http://s15.postimage.org/s5mvsou53/info.png || If you specify a value via the shortcode argument, *no form element will be drawn*.  There's no reason to prompt the user for a value if you're specifying it manually. ||
 
 == Optional Arguments ==
 
