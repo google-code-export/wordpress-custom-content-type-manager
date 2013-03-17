@@ -26,17 +26,17 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
 
 Available placeholders include:
 
- * *ID*
- * *user_login*
- * *user_pass*
- * *user_nicename*
- * *user_email*
- * *user_url*
- * *user_registered*
- * *user_activation_key*
- * *user_status*
- * *display_name*
+ * *ID* e.g. `123`
+ * *user_login* e.g. `myusername`
+ * *user_nicename* e.g. `myusername`
+ * *user_email* e.g. `user@mail.com`
+ * *user_url* e.g. `http://craftsmancoding.com`
+ * *user_registered* e.g. `2013-03-17 17:02:36`
+ * *user_activation_key* optionally contains a random string.  
+ * *user_status* e.g. `0`
+ * *display_name* e.g. `Mister User`
 
+`user_pass` is intentionally unset for security reasons.
 
 == Example 1==
 
