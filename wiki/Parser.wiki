@@ -1,4 +1,5 @@
 #summary The CCTM Parser and its placeholder syntax
+#labels Function-Reference
 #sidebar SidebarFunctionReference
 
 The CCTM relies on string parsing to do automated find-and-replace operations on formatting strings.  It converts strings such as
@@ -12,18 +13,6 @@ to something like
 {{{
 Hello Steve, we have confirmed your trip to New York on March 17, 2013.
 }}}
-
-*Advantages*
-
- * Formatting strings are easily cached.
- * They cannot crash or be hacked.
- * Since they are static strings with only limited "windows" into dynamic functionality, they are far less likely to devolve into spaghetti.
-
-*Disadvantages*
-
- * They are not PHP
- * They return raw values: any manipulation of the values must occur via an Output Filter
- * They use their own custom syntax
 
 
 = Placeholders =
@@ -52,8 +41,33 @@ Starting with version 0.9.6.1 of the CCTM, you can use advanced placeholders in 
 
 Sometimes you need to supply placeholders as arguments to output filters.  Because the CCTM Parser is _not_ iterative, we use different glyphs to represent these "2nd level" placeholders.
 
+
+-----
+
+= Function =
+
+The parsing behavior is implemented by the `CCTM::parse` function.
+
+_string_ parse(string _$tpl_, array _$hash_ `[`, boolean _$preserve_unused_placeholders_`]`)
+
+ * *$tpl* the formatting string containing `[+placeholders+]`
+ * *$hash* an array of key/value pairs, with the key names corresponding to the placeholder names
+ * *$preserve_unused_placeholders* optional boolean that controls whether the output string removes or preserves any unused placeholders.  Default: false (all placeholders are removed).
+
 -----
 
 = Limitations =
 
 Although placeholders go a long way in keeping your view and logic layers separated, they are not a perfect solution.  If any output filter returns an array, the parser won't know what to do with that value: your results may be unpredictable.  In general, if you're getting this deep into the Parser behavior, you should consider using PHP as an alternative.
+
+*Advantages*
+
+ * Formatting strings are easily cached.
+ * They cannot crash or be hacked.
+ * Since they are static strings with only limited "windows" into dynamic functionality, they are far less likely to devolve into spaghetti.
+
+*Disadvantages*
+
+ * They are not PHP
+ * They return raw values: any manipulation of the values must occur via an Output Filter
+ * They use their own custom syntax
