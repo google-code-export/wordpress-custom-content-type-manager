@@ -31,15 +31,29 @@ The most basic examples match a placeholder to a named key (e.g. the name of a c
 }}}
 
 
-Starting with version 0.9.6.1 of the CCTM, you can use advanced placeholders in your formatting tpls.
+Starting with version 0.9.6.1 of the CCTM, you can use advanced placeholders in your formatting tpls in the following syntax:
 
 {{{
 [+placeholder_name:outputfilter==option1||option2+]
 }}}
 
+This is useful when the raw value is not in a format that is useful, e.g. when a relation field stores a reference to a post ID, or an image to an attachment id:
+
+{{{
+[+my_image_id:to_image_tag+]
+}}}
+
+{{{
+[+related_post:to_link+]
+}}}
+
 === Nested Tags ===
 
 Sometimes you need to supply placeholders as arguments to output filters.  Because the CCTM Parser is _not_ iterative, we use different glyphs to represent these "2nd level" placeholders.
+
+{{{
+[+related_post:get_post==My post title is {{post_title}}+]
+}}}
 
 
 -----
