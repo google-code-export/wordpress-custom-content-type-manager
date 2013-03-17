@@ -54,6 +54,21 @@ _string_ parse(string _$tpl_, array _$hash_ `[`, boolean _$preserve_unused_place
  * *$hash* an array of key/value pairs, with the key names corresponding to the placeholder names
  * *$preserve_unused_placeholders* optional boolean that controls whether the output string removes or preserves any unused placeholders.  Default: false (all placeholders are removed).
 
+== Example ==
+
+{{{
+$tpl = 'Hello [+first_name+], we have confirmed your trip to [+city+] on [+date+].';
+$hash = array(
+    'first_name' => 'Steve',
+    'city' => 'New York',
+    'date' => '2013-03-17'
+);
+print CCTM::parse($tpl, $hash);
+
+// prints :
+// Hello Steve, we have confirmed your trip to New York on 2013-03-17.
+}}}
+
 -----
 
 = Limitations =
