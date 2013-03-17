@@ -18,8 +18,15 @@ Or to send out an email:
  [cctm_post_form post_type="movie" _email_to="my@email.com" _email_tpl="32"]
 }}}
 
+Or to display a simple thank you message:
 
-It is possible to include multiple instances of this shortcode on a single page, but each instance must use a unique `_name_prefix` so that the form handler can identify which fields belong to it.  Relying on this is not recommended, however.
+{{{
+[cctm_post_form post_type="application"]
+Thank you submitting your application!
+[/cctm_post_form]
+}}}
+
+It is possible to include multiple instances of this shortcode on a single page, but each instance must use a unique `_name_prefix` so that the form handler can identify which fields belong to it.  Relying on this is not recommended, however -- it just gets too confusing to have multiple forms on the same page.
 
 == Required Arguments ==
 
@@ -64,6 +71,25 @@ This prefix stripped from keys in the `$_POST` array when the form is submitted.
 == Extra Control Arguments ==
 
 The following arguments are used by the default callback function.  If you are using your own callback function, you may very well wish to supply your own arguments (just prefix them with an underscore), and let your callback function handle them appropriately.
+
+=== `_msg` === 
+
+(_string_) optionally message shown to users after successful submission of the form.  The string can also be specified by using the full-shortcode with opening and closing tags:
+
+{{{
+[cctm_post_form post_type="abc" _msg="Your message here"]
+}}}
+
+Is equivalent to:
+
+{{{
+[cctm_post_form post_type="abc"]
+Your message here
+[/cctm_post_form]
+}}}
+
+The message shows only if the `_redirect` option is not used.
+
 
 === `_redirect` === 
 
