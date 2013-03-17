@@ -28,6 +28,12 @@ Thank you submitting your application!
 [/cctm_post_form]
 }}}
 
+Send the form to a 3rd party:
+
+{{{
+[cctm_post_form post_type="newsletter" _action="http://mailchimp.com/submit/"]
+}}}
+
 It is possible to include multiple instances of this shortcode on a single page, but each instance must use a unique `_name_prefix` so that the form handler can identify which fields belong to it.  Relying on this is not recommended, however -- it just gets too confusing to have multiple forms on the same page.
 
 ------
