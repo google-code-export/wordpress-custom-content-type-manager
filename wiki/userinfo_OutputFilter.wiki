@@ -16,13 +16,40 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
  * *$input*: _mixed_: a single user id or an array of them.  
- * *$options*: _string_. A formatting string containing placeholders
+ * *$options*: _string_. A formatting string containing placeholders. Default is
+
+{{{
+<div class="cctm_userinfo" id="cctm_user_[+ID+]">[+user_nicename+]: [+user_email+]</div>
+}}}
+
  * *OUTPUT*: _string_.  The generated HTML
+
+Available placeholders include:
+
+ * *ID*
+ * *user_login*
+ * *user_pass*
+ * *user_nicename*
+ * *user_email*
+ * *user_url*
+ * *user_registered*
+ * *user_activation_key*
+ * *user_status*
+ * *display_name*
+
 
 == Example 1==
 
 {{{
 <?php
 print get_custom_field('my_user:userinfo');
+?>
+}}}
+
+== Example 2==
+
+{{{
+<?php
+print get_custom_field('my_user:userinfo', '[[+display_name+]');
 ?>
 }}}
