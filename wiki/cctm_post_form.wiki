@@ -30,6 +30,10 @@ Thank you submitting your application!
 
 It is possible to include multiple instances of this shortcode on a single page, but each instance must use a unique `_name_prefix` so that the form handler can identify which fields belong to it.  Relying on this is not recommended, however -- it just gets too confusing to have multiple forms on the same page.
 
+------
+
+= Arguments =
+
 == Required Arguments ==
 
  * post_type : you need to specify which post-type you want to use. This tells the CCTM which custom-fields it needs to draw.
