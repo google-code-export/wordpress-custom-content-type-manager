@@ -80,14 +80,21 @@ Default is *CCTM::post_form_handler*.  That handles creating a new post out of t
 
 This prefix stripped from keys in the `$_POST` array when the form is submitted.
 
+=== `_css` ===
+
+(_string_) Comma-separated list of URLs for any additional CSS file(s) you wish to include on the form page.  
+
+Defaults are the CCTM's`css/validation.css` and `css/manager.css` CSS files.
+
+
 -------
 
 == Labeling Arguments ==
 
 Sometimes you want to display the built-in WordPress fields (the title, content, or excerpt) using a different label.  You can specify the following arguments to override the default !WordPress labels:
 
- *`_label_title`
- *`_label_content` 
+ * `_label_title`
+ * `_label_content` 
  * `_label_excerpt`
 
 
