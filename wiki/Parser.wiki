@@ -1,7 +1,17 @@
-#summary The CCTM Parser
+#summary The CCTM Parser and its placeholder syntax
 #sidebar SidebarFunctionReference
 
-A lot of the CCTM relies on static formatting strings to format output. 
+The CCTM relies on string parsing to do automated find-and-replace operations on formatting strings.  It converts strings such as
+
+{{{
+Hello [+first_name+], we have confirmed your trip to [+city+] on [+date+].
+}}}
+
+to something like
+
+{{{
+Hello Steve, we have confirmed your trip to New York on March 17, 2013.
+}}}
 
 *Advantages*
 
