@@ -78,7 +78,7 @@ Default is *CCTM::post_form_handler*.  That handles creating a new post out of t
 <input type="text" name="cctm_yourfield" />
 }}}
 
-This prefix stripped from keys in the `$_POST` array when the form is submitted.
+This prefix is stripped from keys in the `$_POST` array when the form is submitted: any callback function will not see the prefix.
 
 === `_css` ===
 
