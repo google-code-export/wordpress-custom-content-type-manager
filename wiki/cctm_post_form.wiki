@@ -226,6 +226,10 @@ Unfortunately, the WYSIWYG editor that !WordPress uses inside the manager is not
 
 For now, only plain textarea fields can be used for WYSIWYG fields.  In the future, the CCTM may integrate a simplified WYSIWYG editor for the post_content and any WYSIWYG fields, e.g. https://code.google.com/p/jwysiwyg/wiki/Introduction
 
+== Repeatable Fields ==
+
+Because repeatable fields require special Ajax requests to handle the creation and deletion of form elements dynamically, they are not currently supported.  Please use simple fields for this feature.
+
 == Image, Media, and Relation fields ==
 
 For security reasons, the form does not currently support these fields: image and media fields are not supported because they would offer the general public the unfettered ability to upload assets to your server, and relation fields are not supported because they may list posts that are not intended for public viewing (e.g. posts in draft status or posts in a non-public post_type).
