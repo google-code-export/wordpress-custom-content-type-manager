@@ -4,7 +4,7 @@
 
 = Introduction =
 
-The CCTM was designed to be a flexible and extendible plugin, so there are points in its architecture designed with customizations in mind.   The dominant practice here is that the CCTM will look for your customizations in the *wp-content/uploads/cctm* for a given file, and if found, that file will be used.  If it's not found, the CCTM will fall-back to the included file inside of *wp-content/plugins/custom-content-type-manager*: it's a simple setup and it allows for dedicated users to customize their site in the way they need.
+The CCTM was designed to be flexible and extendible, so there are points in its architecture designed with customizations in mind.   The dominant practice here is that the CCTM will look for your customizations in the *wp-content/uploads/cctm* for a given file, and if found, that file will be used.  If it's not found, the CCTM will fall-back to the included file inside of *wp-content/plugins/custom-content-type-manager*: it's a simple setup and it allows for dedicated users to customize their site in the way they need.
 
 
 == Configuration Files ==
