@@ -69,7 +69,7 @@ If you want create your own validation function, you can add a file to `wp-conte
 
  * Name your files in _all lowercase_!
  * Do not use any spaces or dashes in the name!
- * The name of the class _must_ correspond exactly to the base name of the file.  The classname will have a prefix of `CCTM_` and it will not use the ".php" extension.  E.g. if your validator is named `my_validator`, then your filename would be `my_validator.php` and your classname will be `CCTM_my_validator`.
+ * The name of the class _must_ correspond exactly to the base name of the file.  The classname will have a prefix of `CCTM_Rule_` and it will not use the ".php" extension.  E.g. if your validator is named `my_validator`, then your filename would be `my_validator.php` and your classname will be `CCTM_Rule_my_validator`.
 
 Create a file named *vowels_only.php* and paste the following into it:
 
@@ -80,7 +80,7 @@ Create a file named *vowels_only.php* and paste the following into it:
  * @package CCTM_Validator
  *
  */
-class CCTM_vowels_only extends CCTM_Validator {
+class CCTM_Rule_vowels_only extends CCTM_Validator {
 
 
 	/**
