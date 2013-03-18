@@ -1,7 +1,10 @@
 #summary number Output Filter
+#labels Output-Filters
 #sidebar SidebarOutputFilters
 
 <wiki:toc max_depth="1" />
+
+Added in 0.9.7.1
 
 = Description =
 
