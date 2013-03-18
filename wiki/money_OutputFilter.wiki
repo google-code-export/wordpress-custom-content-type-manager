@@ -23,6 +23,7 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
 {{{
 <?php
 print get_custom_field('amount:money');
+// e.g. $2,000.00
 ?>
 }}}
 
@@ -33,15 +34,17 @@ Show an amount with no decimal places
 {{{
 <?php
 print get_custom_field('amount:money==$|,|.|0');
+// e.g. $2,000
 ?>
 }}}
 
-== Example 2==
+== Example 3 ==
 
 In Euros, no decimal places.
 
 {{{
 <?php
 print get_custom_field('amount:money==&euro;|.|,|0');
+// e.g. €2.000
 ?>
 }}}
