@@ -125,7 +125,7 @@ The message shows only if the `_redirect` option is not used.
 
 === `_redirect` === 
 
-(_integer_) optionally, you can set a page ID here where you want the user to be redirected to after any other functionality is completed (i.e. after updating the database and sending an optional email).
+(_integer_) optionally, you can set a page ID here where you want the user to be redirected to after any other functionality is completed (i.e. after updating the database and sending an optional email).  Typically this is a "Thank You" page.
 
 == Email Arguments ==
 
