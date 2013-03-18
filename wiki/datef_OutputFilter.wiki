@@ -1,0 +1,39 @@
+#summary datef Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+Added 0.9.7.1
+
+= Description =
+
+This *datef* Output Filter formats a string as a date.  This is useful if you need to store dates in one format and display them in another.  It is recommended that you store all dates in the MySQL date format and then convert them for display using this type of date conversion.
+
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
+
+ * *$input*: _mixed_: a single user id or an array of them.  
+ * *$options*: _string_. A formatting string containing placeholders. Default is based on your blog settings: `get_option('date_format');`
+ * *OUTPUT*: _string_.  The generated HTML
+
+== Example 1==
+
+{{{
+<?php
+print get_custom_field('my_date:datef');
+?>
+}}}
+
+== Example 2==
+
+{{{
+<?php
+print get_custom_field('my_date:datef', 'F j, Y, g:i a');
+// e.g. March 10, 2001, 5:16 pm
+?>
+}}}
