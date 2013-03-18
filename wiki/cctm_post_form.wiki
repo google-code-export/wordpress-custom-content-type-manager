@@ -52,9 +52,13 @@ It is possible to include multiple instances of this shortcode on a single page,
 
 After submitting the form, generally you want a couple things to happen: you want a thank you page to be displayed or you want to be emailed that a form was submitted etc.  The shortcode accommodates these use cases.  Unlike the other arguments, control arguments are prefixed with an underscore (`_`).
 
+=== `_callback_pre` === 
+
+(_string_) Name of a callback function to be called before the form is drawn.  Use this if you need to vet the visitors before they fill out the form.  Default: null.
+
 === `_callback` === 
 
-(_string_) Name of a callback function that accepts an array of arguments (either posted or hard-coded in your shortcode arguments).  This function is called *after successful validation*.  The callback function should accept a single array of key/value pairs.  It will receive all arguments passed to the  shortcode and all posted data, filtered via the [http://codex.wordpress.org/Function_Reference/wp_kses wp_kses] filter (see section below on Limitations).  Although the keys in the `$_POST` array include the prefix specified by the `_name_prefix` argument, this prefix is removed before the array is passed to the callback function.  
+(_string_) Name of a callback function to be called _after_ all fields have been validated and any name prefixes have been stripped.  The function should accept an array of arguments (data is merged from posted data or hard-coded arguments in your shortcode).  This function is called *after successful validation*.  The callback function should accept a single array of key/value pairs.  It will receive all arguments passed to the  shortcode and all posted data, filtered via the [http://codex.wordpress.org/Function_Reference/wp_kses wp_kses] filter (see section below on Limitations).  Although the keys in the `$_POST` array include the prefix specified by the `_name_prefix` argument, this prefix is removed before the array is passed to the callback function.  
 
 Default is *CCTM::post_form_handler*.  That handles creating a new post out of the data submitted.
 
