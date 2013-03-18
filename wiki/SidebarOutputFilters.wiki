@@ -10,6 +10,7 @@ Used as a sidebar in the Output Filters section.
 
 == Output Filters ==
 
+  * [datef_OutputFilter datef]
   * [default_OutputFilter default]
   * [do_shortcode_OutputFilter do_shortcode]
   * [email_OutputFilter email]
@@ -18,6 +19,7 @@ Used as a sidebar in the Output Filters section.
   * [gallery_OutputFilter gallery] 
   * [get_post_OutputFilter get_post] 
   * [help_OutputFilter help]
+  * [number_OutputFilter number]
   * [raw_OutputFilter raw]
   * [to_array_OutputFilter to_array]
   * [to_image_array_OutputFilter to_image_array]
