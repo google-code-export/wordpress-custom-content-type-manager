@@ -161,8 +161,9 @@ The built-in callback does not support dynamic email addresses: it sends only to
 It's extremely important that you watch your content here.  By default, the post_status is set to be "draft" in order to force all posts created via this method to be in draft status so that they will REQUIRE admin approval before being publicly visible. 
 
  * post_status="draft"
+ * post_author = current user id (if available) 
 
-|| http://s15.postimage.org/s5mvsou53/info.png || If you specify a value via the shortcode argument, *no form element will be drawn*.  There's no reason to prompt the user for a value if you're specifying it manually. ||
+|| http://s15.postimage.org/s5mvsou53/info.png || If you specify a value via the shortcode argument, *no form element will be drawn*.  There's no reason to prompt the user for a value if you're hard-coding it. ||
 
 == Optional Arguments ==
 
