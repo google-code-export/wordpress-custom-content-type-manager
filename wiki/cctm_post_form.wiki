@@ -2,7 +2,7 @@
 #labels Shortcodes
 #sidebar SidebarShortcodes
 
-Starting with CCTM version 0.9.7.1, you can display a post-creation form on the front end of your site.  This is a beta version with limited functionality only.  See the section below on Limitations.
+Starting with CCTM version 0.9.7.1, you can display a post-creation form on the front end of your site, similar to Gravity Forms.  This is a beta version with limited functionality only.  See the section below on Limitations.
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || <font color="red">Displaying forms on the front-end of your site is dangerous!  Forms are often the vector of XSS or SQL Injection attacks.  Use this feature with extreme caution!</font> || 
 
