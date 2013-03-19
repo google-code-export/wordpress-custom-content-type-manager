@@ -54,7 +54,20 @@ After submitting the form, generally you want a couple things to happen: you wan
 
 === `_callback_pre` === 
 
-(_string_) Name of a callback function to be called before the form is drawn.  Use this if you need to vet the visitors before they fill out the form.  Default: null.
+(_string_) Name of a callback function to be called before the form is drawn.  Use this if you need to vet the visitors before they fill out the form: any output this function returns will be added to the `[+content+]` placeholder.  Default: null.
+
+Your function should accept an array: this will be an array of the arguments passed to the shortcode and any calculated defaults (e.g. "post_status").  Any output 
+
+You can use this function to prevent the form from being drawn by redirecting to another page, e.g.
+
+{{{
+// Redirect to page 123
+$url = get_permalink(123);
+CCTM::redirect($url, true);
+}}}
+
+Note that this uses a Javascript redirect: this is due to limitations in the !WordPress architecture (the headers are already sent, so a PHP redirect is impossible).
+
 
 === `_callback` === 
 
