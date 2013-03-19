@@ -1,4 +1,5 @@
 #summary Creating MetaBoxes for your Custom Content Type
+#labels Custom-Fields
 #sidebar Sidebar
 
 THIS PAGE IS UNDER CONSTRUCTION!!!
@@ -6,11 +7,30 @@ THIS PAGE IS UNDER CONSTRUCTION!!!
 
 = Introduction =
 
-Starting with version 0.9.6, you can customize your manager forms by creating metaboxes.
+Starting with version 0.9.7, you can customize your manager forms by creating metaboxes.
 
-This relies on !WordPress' [http://codex.wordpress.org/Function_Reference/add_meta_box add_meta_box()] function.
+This relies on !WordPress' [http://codex.wordpress.org/Function_Reference/add_meta_box add_meta_box()] function.  You can create your own custom meta boxes when you are managing the custom fields for a post-type.
 
 <wiki:toc max_depth="2" />
+
+
+http://content.screencast.com/users/fireproofsocks/folders/Snagit/media/191173f0-a40a-4bed-ad96-7bfef8d52b4b/2013-03-19_09-49-24.png
+
+
+
+== MetaBox Settings ===
+
+ *ID* (_required_): the unique CSS ID for the metabox.
+ *Title* (_required_): appears at the top of the box.
+ *Context* : controls where on the page the box will be drawn: advanced, normal, side.
+ *Priority* : controls order within a context
+ *Callback Function*: use this if you want you own custom behavior
+ *Callback Arguments*: use this if you have specified your own callback funciton.
+
+
+--------
+
+= Custom Formatting =
 
 == Hierarchy =
 
