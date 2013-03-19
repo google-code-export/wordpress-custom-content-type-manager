@@ -15,7 +15,7 @@ http://content.screencast.com/users/fireproofsocks/folders/Snagit/media/191173f0
 
 
 
-== Metabox Settings ===
+= Metabox Settings ==
 
  *ID* (_required_): the unique CSS ID for the metabox.
  *Title* (_required_): appears at the top of the box.
@@ -24,6 +24,7 @@ http://content.screencast.com/users/fireproofsocks/folders/Snagit/media/191173f0
  *Callback Function*: use this if you want you own custom behavior
  *Callback Arguments*: use this if you have specified your own callback funciton.
 
+See [http://codex.wordpress.org/Function_Reference/add_meta_box add_meta_box()] for more info.
 
 --------
 
