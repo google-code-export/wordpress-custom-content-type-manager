@@ -2,10 +2,7 @@
 #labels Custom-Fields
 #sidebar Sidebar
 
-THIS PAGE IS UNDER CONSTRUCTION!!!
 
-
-= Introduction =
 
 Starting with version 0.9.7, you can customize your manager forms by creating metaboxes.
 
@@ -18,7 +15,7 @@ http://content.screencast.com/users/fireproofsocks/folders/Snagit/media/191173f0
 
 
 
-== MetaBox Settings ===
+== Metabox Settings ===
 
  *ID* (_required_): the unique CSS ID for the metabox.
  *Title* (_required_): appears at the top of the box.
