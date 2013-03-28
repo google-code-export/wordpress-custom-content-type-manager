@@ -38,6 +38,8 @@ Please make sure you're using the latest version of the plugin before filing a b
 
 The !WordPress repository is not always perfect at letting you know that updates are available, so please do not assume that you have the latest version just because your plugins page says there are no updates available!
 
-= Footnote =
+--------
+
+== Footnote ==
 
 Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  This software is free; if it's not working properly, then accept my apologies and understand that you got what you paid for. If you can't channel your ire into something constructive then please take your bad attitude somewhere else and find some other software to use.
