@@ -1,6 +1,8 @@
 #summary Your bug report was invalid
 
-Sorry, but your bug report was not valid.  This doesn't mean there isn't a problem or that I don't care -- it just means that you didn't provide enough information for me to be able to help you.  Here are the most common things that sabotage a bug report:
+Sorry, but your bug report was not valid.  This doesn't mean there isn't a problem or that I don't care -- it just means that you didn't provide enough information for me to be able to help you.  Please take a moment to review this information and see if you can't help me isolate the problem.
+
+Here are the most common things that sabotage a bug report:
 
 <wiki:toc max_depth="1" />
 
@@ -25,6 +27,9 @@ CURRENT THEME: Twenty Ten v.1.4 http://wordpress.org/
 *I really need to see this information!*.  Saying you have the "latest version" is meaningless.  Be precise.  I may not get to your bug-report for a few weeks, so the "latest" version may change.
 
 It's critical that you outline the *exact steps to reproduce an error*.  I can't stress this one enough.  Most users are completely oblivious to their own work-flow, and it's a bad mistake to assume that someone else will magically intuit it out of thin air.  I strongly encourage the use of Jing (http://www.techsmith.com/jing.html) to make screencasts of problems in addition to listing out the exact steps in pedantic detail.
+
+
+http://content.screencast.com/users/fireproofsocks/folders/Snagit/media/79926862-966b-433f-abf0-0bac1e6a59a5/2013-03-28_18-00-00.png
 
 = 2. No Point of Comparison =
 
