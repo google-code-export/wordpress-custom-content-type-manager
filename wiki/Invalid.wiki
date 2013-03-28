@@ -1,6 +1,6 @@
 #summary Your bug report was invalid
 
-Sorry, but your bug report was not valid.  This doesn't mean there isn't a problem or that I don't care -- it just means that the communication was not at the level it needed to be.  Here are the most common reasons.
+Sorry, but your bug report was not valid.  This doesn't mean there isn't a problem or that I don't care -- it just means that you didn't provide enough information for me to be able to help you.  Here are the most common things that sabotage a bug report:
 
 = 1. Not Enough Info =
 
@@ -34,8 +34,8 @@ A link to your site with a note saying "here's the problem" does nothing for me.
 
 Please make sure you're using the latest version of the plugin before filing a bug report!  Compare the version you see inside the !WordPress manager with the version you see on the !WordPress downloads page: http://wordpress.org/extend/plugins/custom-content-type-manager/
 
-The !WordPress repository is not always perfect at letting you know that updates are available, so please do not assume that you have the latest version just because your plugins page says there are no updates available.
+The !WordPress repository is not always perfect at letting you know that updates are available, so please do not assume that you have the latest version just because your plugins page says there are no updates available!
 
-= 4. Being Rude =
+= Footnote =
 
-Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  This software is free, it's a gift.  If you can't channel your ire into something constructive then please find some other software to use.
+Your bug report may be invalid because of your language or tone. I'm doing my very best to maintain my code and make it better, but it's not perfect.  Every software project has glitches, and this one is no exception.  This software is free; if it's not working properly, then accept my apologies and understand that you got what you paid for. If you can't channel your ire into something constructive then please take your bad attitude somewhere else and find some other software to use.
