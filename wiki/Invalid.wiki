@@ -2,6 +2,8 @@
 
 Sorry, but your bug report was not valid.  This doesn't mean there isn't a problem or that I don't care -- it just means that you didn't provide enough information for me to be able to help you.  Here are the most common things that sabotage a bug report:
 
+<wiki:toc max_depth="1" />
+
 = 1. Not Enough Info =
 
 Your bug report may be invalid because it didn't include enough information.  Every page CCTM in the !WordPress manager includes a link in the footer to "Report a Bug" which includes a big yellow textarea full of all sorts of important system information. It looks something like this:
