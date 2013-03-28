@@ -50,6 +50,6 @@ print get_custom_field('my_user:userinfo');
 
 {{{
 <?php
-print get_custom_field('my_user:userinfo', '[[+display_name+]');
+print get_custom_field('my_user:userinfo', '[+display_name+]');
 ?>
 }}}
