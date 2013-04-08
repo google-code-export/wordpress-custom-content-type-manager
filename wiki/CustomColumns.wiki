@@ -14,6 +14,7 @@ http://content.screencast.com/users/fireproofsocks/folders/Snagit/media/3f3c00fa
 This is yet another area where !WordPress has some strange limitations that prevent otherwise sensible usage.
 
  * Your post-type name must not contain hyphens.
+ * You cannot override the content of built-in !WordPress columns
  * It is recommended that you always include the post-title in your list of columns
  * If you display a custom field as one of your columns, the value displayed will be filtered using the default [OutputFilter Output Filter] defined for that field.
 
@@ -31,7 +32,8 @@ The name of the callback function needs to be in the following format:
 cctm_custom_column_{$post_type}_{$fieldname}()
 }}}
 
-So for example, if you wanted to draw your own column for the "order" post-type and the post_title column, you would create 
+So for example, if you wanted to draw your own column for the "order" post-type and the "status" column, you would create a function named `cctm_custom_column_order_status`.  The function should print its data.
 
+See `includes/CCTM_Columns.php` and the `populate_custom_column_data()` function.
 
 = Examples =
