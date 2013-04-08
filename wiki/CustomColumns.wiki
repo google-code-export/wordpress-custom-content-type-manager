@@ -34,6 +34,17 @@ cctm_custom_column_{$post_type}_{$fieldname}()
 
 So for example, if you wanted to draw your own column for the "order" post-type and the "status" column, you would create a function named `cctm_custom_column_order_status`.  The function should print its data.
 
-See `includes/CCTM_Columns.php` and the `populate_custom_column_data()` function.
+Here's how we might manually print out the contents of our order's status:
 
-= Examples =
+{{{
+// In theme's functions.php file:
+function cctm_custom_column_order_status() {
+	global $post;
+	print_custom_field('status');
+}
+}}}
+
+
+Remember: the function is called merely because it exists.  This does not rely on the standard !WordPress callback action/filter behavior.
+
+See `includes/CCTM_Columns.php` and the `populate_custom_column_data()` function for an example.
