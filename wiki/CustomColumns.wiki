@@ -16,7 +16,7 @@ This is yet another area where !WordPress has some strange limitations that prev
  * Your post-type name must not contain hyphens.
  * You cannot override the content of built-in !WordPress columns
  * It is recommended that you always include the post-title in your list of columns
- * If you display a custom field as one of your columns, the value displayed will be filtered using the default [OutputFilter Output Filter] defined for that field.
+ * If you display a custom field as one of your columns, the value displayed will be filtered using the default [OutputFilters Output Filter] defined for that field.
 
 = Usage =
 
