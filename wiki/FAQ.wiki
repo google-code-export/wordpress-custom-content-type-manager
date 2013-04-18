@@ -38,7 +38,7 @@ You must deactivate the Summarize Posts plugin.  _Everything_ from the Summarize
 
 == The CCTM Menu Does not Display! ==
 
-Some users report that the CCTM menu does not appear after installing the plugin.  Often this occurs when the site is running as a multi-site setup.  Configuring the admin menu code is done following the instructions here: [Config_admin_menu configuring the admin menu].  Sometimes !WordPress fails silently if another plugin is already using a menu space, and if you are using the MU setup, then you may need to adjust the permissions of the menu code.
+Some users report that the CCTM menu does not appear after installing the plugin.  This seems to occur more often when the site is running as a multi-site setup.  Configuring the admin menu code is done following the instructions here: [Config_admin_menu configuring the admin menu].  Sometimes !WordPress fails silently if another plugin is already using a menu space, and if you are using the MU setup, then you may need to adjust the permissions of the menu code.
 
 ------
 
@@ -191,7 +191,7 @@ The default behavior of !WordPress is to support URLs like  http://site.com/?pos
 
 == What does Activating a Post-Type do?==
 
-"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized.  This means that the default !WordPress metabox for custom fields is overridden by the CCTM.  
+"Activating" a built-in post-type (i.e. pages or posts) will force their custom fields to be standardized.  This means that the default !WordPress metabox for custom fields is overridden by the CCTM, so instead of adding multiple text custom fields wily-nilly, you will need to define them and associate them with your post-type using the CCTM.
 
 Activating a post-type ensures that it gets registered with !WordPress. Once the content type is registered, a menu item will get created (so long as you checked the "Show Admin User Interface" box) and you ensure that its custom fields become standardized. If the "Public" box was checked for this content type, then the general public can access posts created under this content type using the URL structure defined by the "Permalink Action" and "Query Var" settings, e.g. http://site.com/?post_type=book&p=39
 
@@ -202,7 +202,7 @@ Activating a post-type ensures that it gets registered with !WordPress. Once the
 
 == My custom fields do not show up on my post or page! ==
 
-You have to _Standardize_ your custom fields in order for them to show up on your posts and pages.  Click the Custom Content Types menu and be sure that you have standardized the custom fields for posts or pages.
+You have to _Standardize_ your custom fields in order for them to show up on your posts and pages in the manager.  Click the Custom Content Types menu and be sure that you have standardized the custom fields for posts or pages.  For the front-end of the site, you need to modify your template files to print the extra data.  See [SampleTemplates] for more info.
 
 Why is it called "standardizing" custom fields?
 
