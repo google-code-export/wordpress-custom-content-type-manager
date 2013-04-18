@@ -88,7 +88,7 @@ Make sense?  We're just converting a post ID (which happens to be an image post)
 
 === Get images from a multi-image field ===
 
-Things get a bit more complicated when you have multiple image field (i.e. an image field with the "repeatable" box checked.  Remember that when you have this box checked, you are storing an ARRAY of values: a list.  Not a single image, but a list of images.  And the CCTM stores this data as a JSON array. See the discussion on [CustomFieldsDataStructure data structure] for all the gory technical details.
+Things get a bit more complicated when you have multiple images stored in your field (i.e. an image field with the "repeatable" box checked).  Remember that when you have this box checked, you are storing an ARRAY of values: a list.  Not a single image, but a list of images.  And the CCTM stores this data as a JSON array. See the discussion on [CustomFieldsDataStructure data structure] for all the gory technical details.
 
 So let's get the array of image IDs and convert them.  The [to_array_OutputFilter to_array] filter here is critical to ensure that you're dealing with an array of images:
 
