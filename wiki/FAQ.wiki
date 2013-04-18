@@ -241,7 +241,7 @@ See the wiki page on [TemplateFunctions]
 
 == When I print my custom field in my template, I only see "Array"! ==
 
-If you see "Array" instead of the value you stored in your field, then you are actually storing a list of values (i.e. an array).  This happens if you are using a multi-select field or if you've checked the "Repeatable" option on your field definition.  If you are storing a list of values, then you can't simply print it, you have to iterate over the items in the list.  You can use the [formatted_list_OutputFilter formatted_list]] Output Filter to help print a list from the array, or you can manually iterate over the items in the list -- see an example of this in the [to_array_OutputFilter to_array] Output Filter.
+If you see "Array" instead of the value you stored in your field, then you are actually storing a list of values (i.e. an array).  This happens if you are using a multi-select field or if you've checked the "Repeatable" option on your field definition.  If you are storing a list of values, then you can't simply print it, you have to iterate over the items in the list.  You can use the [formatted_list_OutputFilter formatted_list] Output Filter to help print a list from the array, or you can manually iterate over the items in the list -- see an example of this in the [to_array_OutputFilter to_array] Output Filter.
 
 -------
 
