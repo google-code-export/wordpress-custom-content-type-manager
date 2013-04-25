@@ -183,7 +183,7 @@ Default: null
 Default: null
 
 === taxonomy ===        
-(string) Name of a single taxonomy used to filter by, e.g. _category_ or _post_tag_.  Used in conjunction with either _taxonomy_term_ or _taxonomy_slug_.  Capitalization isn't terribly important because MySQL doesn't do case sensitive searches (unless specially configured).
+(string) Name of a single taxonomy used to filter by, e.g. `category` or `post_tag`.  Used in conjunction with either `taxonomy_term` or `taxonomy_slug`.  Capitalization does not matter unless you have specially configured MySQL.
 
 Default: null
 
@@ -199,7 +199,7 @@ Default: null
 Default: null
 
 === taxonomy_depth === 
-(string) Use this parameter if you are searching hierarchical taxonomies (e.g. Mammals --> Dogs --> Labrador).  If you want posts categorized as "Labrador" to be included in a search for Mammals, then you need to bump the _taxonomy_depth_ to 2 (or more).  
+(string) Use this parameter if you are searching hierarchical taxonomies (e.g. Mammals --> Dogs --> Labrador).  If you want posts categorized as "Labrador" to be included in a search for Mammals, then you need to bump the `taxonomy_depth` to 2 (or more).  
 
  * *1*: retrieves posts that belong to the taxonomy specified.
  * *2*: retrieves posts that belong to the specified taxonomy or its children.
@@ -212,12 +212,12 @@ Default: 1
 
 
 === search_term ===     
-(string) Used to specify a search term.  You can adjust the _search_columns_ parameter to control which columns are searched for this value.
+(string) Used to specify a search term.  You can adjust the `search_columns` parameter to control which columns are searched for this value.
 
 Default: null
 
 === search_columns === 
-(string or array) An array of columns to search for the string specified by the _search_term_. This can accept a comma-separated string or an array.  Note that a record matches if the search_term appears in ANY (not ALL) of the columns listed: the term may appear in column1 OR column2 OR column3 ... 
+(string or array) An array of columns to search for the string specified by the `search_term`. This can accept a comma-separated string or an array.  Note that a record matches if the search_term appears in ANY (not ALL) of the columns listed: the term may appear in column1 OR column2 OR column3 ... 
 
 Default: array('post_title', 'post_content')
 
@@ -245,7 +245,7 @@ Default: post_modified
 Default: false
 
 === include_hidden_fields ===
-(boolean) True or false.  Controls whether or not custom fields whose names begin with an underscore (e.g. "_edit_lock") are included in the output. 
+(boolean) True or false.  Controls whether or not custom fields whose names begin with an underscore (e.g. `_edit_lock`) are included in the output. 
 
 Default: false
 
