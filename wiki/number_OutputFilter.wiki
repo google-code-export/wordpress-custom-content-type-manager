@@ -25,7 +25,7 @@ _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` )
 
 {{{
 <?php
-print get_custom_field('amount:number');
+print_custom_field('amount:number');
 // e.g. 2,000
 // or 
 print '$'. get_custom_field('amount:number');
@@ -39,7 +39,7 @@ Show an amount with 2 decimal places
 
 {{{
 <?php
-print get_custom_field('amount:number==2|,|.');
+print_custom_field('amount:number==2|,|.');
 // e.g. 2,000.00
 ?>
 }}}
