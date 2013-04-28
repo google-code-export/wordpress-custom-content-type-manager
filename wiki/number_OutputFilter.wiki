@@ -18,39 +18,39 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
  * *$input*: _mixed_: a string, or an array of strings, each representing an amount of money.
- * *$options*: _string_.  an optional pipe-separated string containing the number of decimals (2), the thousands separator (,), and the decimal separator (.).  The default is `2|,|.|2` -- other common formats may include `2|.|,` for Euros, or dollar-amounts with no decimals: `0|,|.`
+ * *$options*: _string_.  an optional pipe-separated string containing the number of decimals (0), the thousands separator (,), and the decimal separator (.).  The default is `0|,|.` -- other common formats may include `2|.|,` for European currency, or dollar-amounts with with 2 decimals: `2|,|.`
  * *OUTPUT*: _string_.  The generated number (money).
 
 == Example 1==
 
 {{{
 <?php
-print get_custom_field('amount:money');
-// e.g. 2,000.00
+print get_custom_field('amount:number');
+// e.g. 2,000
 // or 
-print '$'. get_custom_field('amount:money');
-// e.g. $2,000.00
+print '$'. get_custom_field('amount:number');
+// e.g. $2,000
 ?>
 }}}
 
 == Example 2==
 
-Show an amount with no decimal places
+Show an amount with 2 decimal places
 
 {{{
 <?php
-print get_custom_field('amount:money==$|,|.|0');
-// e.g. 2,000
+print get_custom_field('amount:number==2|,|.');
+// e.g. 2,000.00
 ?>
 }}}
 
 == Example 3 ==
 
-In Euros, no decimal places.
+In Euros, 2 decimal places, using a period (.) as the thousands-separator, and a comma (,) as the decimal separator.
 
 {{{
 <?php
-print '&euro;'. get_custom_field('amount:money==0|.|,');
-// e.g. €2.000
+print '&euro;'. get_custom_field('amount:money==2|.|,');
+// e.g. €2.000,00
 ?>
 }}}
