@@ -8,6 +8,7 @@ If you're unclear on how to call the function, see [calling_get_posts Calling ge
 
 <wiki:toc max_depth="2" />
 
+----
 
 = Examples =
 
@@ -25,3 +26,11 @@ COMING...
 
 
 == Searching For a Search Term (2) ==
+
+-----
+
+= Troubleshooting =
+
+== get_posts returns the completely wrong post ==
+
+Be careful that you don't accidentally use `get_post` when you meant to use `get_posts`.  `get_post` expects an integer post ID as input, so if you instead pass it a series of arguments intended for `get_posts`, this will evaluate to some integer via some incomprensible bit of PHP number crunching, and you may get a result from the database that is completely unexpected.
