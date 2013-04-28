@@ -58,6 +58,9 @@ $Q->orderby = 'post_title';
 $results = $Q->get_posts();
 }}}
 
+
+----
+
 =All Parameters=
 
 There is a _long_ list of supported parameters here; most calls to this function will only use a small fraction of the available parameters.  Some inputs accept either comma-delineated strings _or_ arrays: this is intended to increase usability and it allows the function to be accessed via shortcodes or via standard PHP invocation in the theme files.
@@ -248,6 +251,27 @@ Default: false
 (boolean) True or false.  Controls whether or not custom fields whose names begin with an underscore (e.g. `_edit_lock`) are included in the output. 
 
 Default: false
+
+------
+
+= Direct Values =
+
+You can also filter by direct values on any column.  If you supply a post column name as an argument, the results will be filtered based on the value you supply, e.g. the following will retrieve post ID 123:
+
+{{{
+$args['ID'] = 123;
+}}}
+
+== Built-in !WordPress Column Names ===
+
+ * ID
+ * post_title
+ * post_content
+ * _... etc..._
+
+== Custom Column Names ===
+
+If you supply an argument that is not an argument listed here or not one of the !WordPress column names, it will be assumed you are filtering on a custom field.
 
 -----
 
