@@ -40,6 +40,16 @@ Additionally, get_posts adds the following convenience keys:
  * post_id : an alias of ID (but easier to remember)
 
 
+=== <font color="green">public function get_post()</font>===
+
+_array_ *get_post*(integer _$id_)
+
+ * *$id* : integer post id of the post you with to retrieve
+ * *OUTPUT*: An associative array: each field is a key in the array.
+
+Do not confuse this with the `get_posts()` function!  
+
+
 === <font color="green">public function count_posts()</font>===
 
 _integer_ *count_posts*(array _$args_ `[`,$ignore_defaults`]`)
