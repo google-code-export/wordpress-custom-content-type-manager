@@ -150,11 +150,11 @@ You can use this form to send emails.  This could be used to alert the blog owne
 
 === `_email_to` === 
 
-(_string_) required comma-separated list of email addresses where notifications should be sent when a form is submitted.  If you set this, you must provide 
+(_string_) required comma-separated list of email addresses where notifications should be sent when a form is submitted (see [http://codex.wordpress.org/Function_Reference/wp_mail wp_mail] for valid formats).  If you set this, you must provide the `_email_tpl` argument to specify the content and format of your email.
 
 === `_email_from` === 
 
-(_string_) optional email address to be used as the "from" address.  This may be a simple email address, or you may use the `My Name <myname@mydomain.com>` format.  If omitted, this defaults to the admin_email setting (Settings --> General).
+(_string_) optional email address to be used as the "from" address.  This may be a simple email address, or you may use the `My Name <myname@mydomain.com>` format (do not include the "From: " -- that is included automatically).  If omitted, this defaults to the admin_email setting (Settings --> General).
 
 === `_email_subject` === 
 
