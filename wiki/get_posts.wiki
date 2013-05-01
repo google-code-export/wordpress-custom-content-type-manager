@@ -147,7 +147,9 @@ Default: publish
 Default: null
 
 === author ===          
-(string) Defines the author's displayname.
+(string) Defines the author's displayname.  
+
+As of version 0.9.7.1, you may use the special constant `CURRENT_USER` to dynamically use the [http://codex.wordpress.org/Function_Reference/get_current_user_id get_current_user_id()] function.
 
 Default: null
 
@@ -269,9 +271,23 @@ $args['ID'] = 123;
  * post_content
  * _... etc..._
 
+The following is a full list of built-in columns:
+
+_ID, post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count_. 
+
 == Custom Column Names ===
 
 If you supply an argument that is not an argument listed here or not one of the !WordPress column names, it will be assumed you are filtering on a custom field.
+
+== Special Constants ==
+
+As of version 0.9.7.1, you may use a couple special constants to dynamically calculate values.
+
+ * `CURRENT_USER` may be passed to the "author" and "post_author" arguments to get the ID of the current user per the [http://codex.wordpress.org/Function_Reference/get_current_user_id get_current_user_id()] function.
+ * `NOW` may be passed as an argument to the date columns: "post_date", "post_modified", "post_date_gmt", "post_modified_gmt", "date_min", "date_max", and "date".
+
+For the gmt columns, the `gmdate()` function is used to calculate the UTC time.
+
 
 -----
 
