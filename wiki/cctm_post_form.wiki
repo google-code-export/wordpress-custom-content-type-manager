@@ -154,7 +154,15 @@ You can use this form to send emails.  This could be used to alert the blog owne
 
 === `_email_from` === 
 
-(_string_) optional email address to be used as the "from" address.  This may be a simple email address, or you may use the `My Name <myname@mydomain.com>` format (do not include the "From: " -- that is included automatically).  If omitted, this defaults to the admin_email setting (Settings --> General).
+(_string_) optional email address to be used as the "from" address.  The format may be one of the following:
+
+ * `user@email.com` for a simple email address.
+ * `'My Name' <myname@mydomain.com>` for a distinct name and email. 
+ * `&#034;My Name&#034; <myname@mydomain.com>` or use this format for a distinct name and email. 
+
+Do not include the "From: " -- that is included automatically).  
+
+If omitted, this defaults to the admin_email setting (Settings --> General).
 
 === `_email_subject` === 
 
