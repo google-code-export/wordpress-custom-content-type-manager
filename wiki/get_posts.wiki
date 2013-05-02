@@ -2,6 +2,8 @@
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
+= Table of Contents =
+
 <wiki:toc max_depth="3" />
 
 
