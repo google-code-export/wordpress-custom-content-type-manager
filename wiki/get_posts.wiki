@@ -4,6 +4,8 @@
 
 = Table of Contents =
 
+Use the following list for navigation.
+
 <wiki:toc max_depth="3" />
 
 
