@@ -238,10 +238,10 @@ Default: AND
 ===join===
 (string) Comma-separated string which defines which related tables are joined in the query (advanced).  If you are dealing with large data sets (e.g. thousands of users), then query times can get prohibitively slow, so you may need to stop joining on the related tables.  The items may include any combination of the following:
 
- * author: unlocks data for "author" (display name of the post author)
- * taxonomy: unlocks comma-separated list for all tags, categories, etc. as "taxonomy_names" and "taxonomy_slugs".  <font color="red">Note: this groups all terms together.  It does not distinguish tags from categories from any custom taxonomies.</font>
- * parent: unlocks data for "parent_ID", "parent_title", and "parent_excerpt"
- * thumbnail: unlocks data for "thumbnail_id" and "thumbnail_src"
+ * <font color="green">*author*</font>: unlocks data for "author" (display name of the post author)
+ * <font color="green">*taxonomy*</font>: unlocks comma-separated list for all tags, categories, etc. as "taxonomy_names" and "taxonomy_slugs".  <font color="red">Note: this groups all terms together.  It does not distinguish tags from categories from any custom taxonomies.</font>
+ * <font color="green">*parent*</font>: unlocks data for "parent_ID", "parent_title", and "parent_excerpt"
+ * <font color="green">*thumbnail*</font>: unlocks data for "thumbnail_id" and "thumbnail_src"
  * _blank_ (force the field to be blank if you want to retrieve only minimum post info)
 
 Default: author,parent,thumbnail
