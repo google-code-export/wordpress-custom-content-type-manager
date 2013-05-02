@@ -242,7 +242,7 @@ Default: AND
  * <font color="green">*taxonomy*</font>: unlocks comma-separated list for all tags, categories, etc. as "taxonomy_names" and "taxonomy_slugs".  <font color="red">Note: this groups all terms together.  It does not distinguish tags from categories from any custom taxonomies.</font>
  * <font color="green">*parent*</font>: unlocks data for "parent_ID", "parent_title", and "parent_excerpt"
  * <font color="green">*thumbnail*</font>: unlocks data for "thumbnail_id" and "thumbnail_src"
- * _blank_ (force the field to be blank if you want to retrieve only minimum post info)
+ * <font color="green">*none*</font> force the field to be blank if you want to retrieve only minimum post info.
 
 Default: author,parent,thumbnail
 
