@@ -2,7 +2,7 @@
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
-This page contains examples of how to use the [get_posts] function.  
+This page contains examples of how to use the !GetPostsQuery class' [get_posts] function.   This function offers a powerful and flexible interface into the !WordPress database.  It allows you to retrieve posts and their related data via a unified API via efficient database queries, and it avoids the confusing and inconsistent !WordPress functions.
 
 If you're unclear on how to call the function, see [calling_get_posts Calling get_posts()].
 
@@ -14,12 +14,38 @@ If you're unclear on how to call the function, see [calling_get_posts Calling ge
 
 This section is focused on example queries possible with get_posts.  
 
-COMING...
+IN PROGRESS...
 
 == List Posts in a Category ==
 
+In your template file, you can list all posts in a category by making use of the `taxonomy` and `taxonomy_slug` arguments.
+
+{{{
+<?php
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'article';
+$args['post_status'] = 'publish';
+$args['taxonomy'] = 'category';
+$args['taxonomy_slug'] = 'howto';
+$args['post_status'] = 'publish';
+$args['orderby'] = 'menu_order';
+$args['order'] = 'ASC';
+
+$results = $Q->get_posts($args);
+
+foreach ($results as $r):
+?>
+	<a href="<?php print $r['permalink']; ?>" rel="bookmark"><?php print $r['post_title']; ?></a> <br />
+<?php
+endforeach;
+?>
+}}}
+
+
 
 == List Posts in a Date Range ==
+
 
 
 == Searching For a Search Term (1) ==
