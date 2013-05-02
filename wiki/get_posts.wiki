@@ -2,7 +2,7 @@
 #labels Function-Reference,Technical
 #sidebar SidebarFunctionReference
 
-<wiki:toc max_depth="2" />
+<wiki:toc max_depth="3" />
 
 
 = Description =
@@ -227,9 +227,22 @@ Default: null
 Default: array('post_title', 'post_content')
 
 === join_rule ===       
-(string) Either "AND" or "OR".  If you have specified multiple criteria, this determines how these criteria are combined.  This is an advanced parameter.  Normally your criteria are joined using AND, e.g. "WHERE post_type='page' AND 'page_title'='home'.  Changing this to "OR" can give you some flexibility in your searches, but generally "OR" based queries are massively confusing.
+(string) Defines how multiple criteria are combined using either "AND" or "OR".  If you have specified multiple criteria, this determines how these criteria are combined.  This is an advanced parameter.  Normally your criteria are joined using AND, e.g. "WHERE post_type='page' AND 'page_title'='home'.  Changing this to "OR" can give you some flexibility in your searches, but generally "OR" based queries are massively confusing.
 
 Default: AND
+
+===join===
+(string) Comma-separated string which defines which related tables are joined in the query (advanced).  If you are dealing with large data sets (e.g. thousands of users), then query times can get prohibitively slow, so you may need to stop joining on the related tables.  The items may include any combination of the following:
+
+ * author
+ * taxonomy
+ * parent
+ * thumbnail
+ * _blank_ (force the field to be blank if you want to retrieve only minimum post info)
+
+Default: author
+
+Added 0.9.7.1.
 
 === match_rule === 
 (string) Defines how the _search_term_ matches.  Options are: 
