@@ -240,7 +240,7 @@ Default: AND
  * thumbnail
  * _blank_ (force the field to be blank if you want to retrieve only minimum post info)
 
-Default: author
+Default: author,parent,thumbnail
 
 Added 0.9.7.1.
 
@@ -342,6 +342,55 @@ The following operators are available in GetPostsQuery (some aliases are support
  * `=` or `in` or `equals`: equals  _(default)_
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || The "equals" operator uses MySQL `IN`, so if you pass it an array, `GetsPostsQuery::get_posts()` will look for posts that match any of the values, e.g. `$args['custom_field'] = array('red','green','blue');` would search for posts where the custom_field value was red, green, or blue.||
+
+-----
+
+=Return Values=
+
+The `get_posts()` function will return a record set: an array of arrays.  Each record will include all post data, plus any custom fields, plus several convenience attributes and other related data from various joined tables (see the `join` argument).
+
+Sample data from one post:
+
+{{{
+[ID] => 398
+[post_author] => 1
+[post_date] => 2013-04-04 07:44:37
+[post_date_gmt] => 2013-04-04 07:44:37
+[post_content] => 
+[post_title] => Test Post
+[post_excerpt] => 
+[post_status] => publish
+[comment_status] => closed
+[ping_status] => closed
+[post_password] => 
+[post_name] => test-post
+[to_ping] => 
+[pinged] => 
+[post_modified] => 2013-04-04 07:44:37
+[post_modified_gmt] => 2013-04-04 07:44:37
+[post_content_filtered] => 
+[post_parent] => 0
+[guid] => http://yoursite.com/?post_type=xyz&p=398
+[menu_order] => 0
+[post_type] => order
+[post_mime_type] => 
+[comment_count] => 0
+[parent_ID] => 
+[parent_title] => 
+[parent_excerpt] => 
+[author] => cctm
+[thumbnail_id] => 
+[thumbnail_src] => 
+[_edit_last] => 1
+[_edit_lock] => 1365484040:1
+[custom_field] => This is a custom field
+[permalink] => http://yoursite.com/test-post/
+[parent_permalink] => http://yoursite.com/test/parent-test/
+[post_id] => 398
+}}}
+
+
+-----
 
 =Examples=
 
