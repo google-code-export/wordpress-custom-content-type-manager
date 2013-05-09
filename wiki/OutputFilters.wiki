@@ -74,3 +74,7 @@ In this example, we assume that 123 is the post ID of an attachment post (i.e. a
 
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || Using the standalone *CCTM::filter()* function does not allow for automatic chaining: you would have to feed the output of one instance of this function into the input of another. ||
+
+== See Also ==
+
+The formatting strings used by the various Output Filters rely in the CCMT's [Parser].  This can trigger some useful functionality.
