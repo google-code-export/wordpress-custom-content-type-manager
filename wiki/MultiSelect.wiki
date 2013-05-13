@@ -37,6 +37,8 @@ The field definition affects how instances of this field type will display in th
 The dropdown fields are versatile and powerful.  Starting with 0.9.6.5, you can add options in bulk by pasting them into the Alternate Input field.  The format is simple: each line becomes a new option.  
 
 *Alternate Input Example 1:*
+
+For simple bulk entry, paste all your options into the text area: each line will represent a new option.
 {{{
 Scott
 Mark
@@ -46,14 +48,19 @@ Dave
 }}}
 
 
-If you wish to have separate options and values, then use two pipe characters "||" to separate the visible option label on the left from the stored value on the right.  Values are trimmed, so you can use some space around your double-pipes.  It is valid to include the double-pipes on some lines and omit it on others.
 
 *Alternate Input Example 2:*
+
+If you wish to have separate options and values, then use two pipe characters "||" to separate the visible option label on the left from the stored value on the right.  Values are trimmed, so you can use some space around your double-pipes.  It is valid to include the double-pipes on some lines and omit it on others.
+
 {{{
 Big Bear || big_bear
 Little Dog || litte_bear
 Cats
 }}}
+
+
+*MySQL Query*
 
 Lastly, you can check the box labeled "Execute as a MySQL query" if you have instead entered a SQL database query.  Note that the following behaviors of the database query option:
 
