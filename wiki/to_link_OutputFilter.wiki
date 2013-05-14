@@ -16,7 +16,7 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
  * *$input*: _string_.  an integer post ID
- * *$options*: _string_. (optional) The "click me" text. The default value is the post's title.
+ * *$options*: _string_. (optional) The "click me" text. The default value is the post's title. OR, you may also supply this argument a full formatting string with placeholders (similar to the [get_post_OutputFilter get_post] output filter).
  * *OUTPUT*: _string_. The URL for the referenced post.
 
 = Options =
@@ -78,6 +78,16 @@ Don't despair: it's a trivial task to print out your text field and treat it lik
 {{{
 <a href="<?php print_custom_field('my_url:raw'); ?>">Click Here!</a>
 }}}
+
+== Example 5 (formatting string) ==
+
+You can also supply a full formatting string to this filter for customizing the output.
+
+{{{
+print_custom_field('my_relation:to_link', '<href="[+permalink+]" class="my_class">Read More: [+post_title+]</a>'); 
+// prints out custom link format
+}}}
+
 
 = See Also =
 
