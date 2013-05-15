@@ -5,3 +5,14 @@
 
 COMING... added in 0.9.7.5
 
+Important points about RelationMeta fields:
+
+The following fields cannot be added as a relation meta sub-field:
+ 
+ * Relation
+ * Image
+ * Media
+ * Another Relation Meta
+ * WYSIWYG
+
+No validation is supported for the sub-fields.
