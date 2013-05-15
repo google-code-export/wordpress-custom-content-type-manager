@@ -59,7 +59,7 @@ Will join all the instances of your text fields if you're using "repeatable" fie
 
 == Customizing Manager HTML ==
 
-Colorselector fields use the 2 standard tpls: field and wrapper.  See [CustomizingManagerHTML] for more information.
+Text fields use the 2 standard tpls: field and wrapper.  See [CustomizingManagerHTML] for more information.
 
 ==== Field tpl====
 
