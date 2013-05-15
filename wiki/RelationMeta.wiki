@@ -3,7 +3,7 @@
 
 = Introduction =
 
-COMING... added in 0.9.7.5
+EXPERIMENTAL... added in 0.9.7.5
 
 = Limitations = 
 
@@ -19,11 +19,12 @@ The following fields cannot be added as a relation meta sub-field:
 
 Also note the following limitations:
 
- * No validation is supported for the sub-fields.
- * Sub-fields may not be repeatable.
+ * No validation is supported for the sub-fields. (All validation rules are overridden).
+ * Sub-fields may not be repeatable (the "Is Repeatable" setting is overridden).
 
 
 = Use in your Templates =
+
 RelationMeta fields _always_ store their data as a JSON data structure, e.g.
 
 {{{
@@ -36,3 +37,5 @@ RelationMeta fields _always_ store their data as a JSON data structure, e.g.
 }}}
 
 Where the post ID is the first key, and then the sub-fields' names are the subsequent keys.
+
+Fair Warning: if you're not comfortable navigating data structures and you need the simplicity of a straight-forward output-filter for everything printed in your template, then Relation-Meta fields are probably not for you.  They store complex data, and I can't think of a straightforward way to format it other than looping over their contents using custom PHP.
