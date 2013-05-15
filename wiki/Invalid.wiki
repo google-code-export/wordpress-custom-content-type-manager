@@ -24,7 +24,7 @@ ACTIVE PLUGINS:
 CURRENT THEME: Twenty Ten v.1.4 http://wordpress.org/
 }}}
 
-*I really need to see this information!*.  Saying you have the "latest version" is meaningless.  Be precise.  I may not get to your bug-report for a few weeks, so the "latest" version may change.
+*I really need to see ALL of this information!*.  Saying you have the "latest version" is meaningless.  Be precise.  I may not get to your bug-report for a few weeks, so the "latest" version may change.
 
 It's critical that you outline the *exact steps to reproduce an error*.  I can't stress this one enough.  Most users are completely oblivious to their own work-flow, and it's a bad mistake to assume that someone else will magically intuit it out of thin air.  I strongly encourage the use of Jing (http://www.techsmith.com/jing.html) to make screencasts of problems in addition to listing out the exact steps in pedantic detail.
 
@@ -37,7 +37,7 @@ Your bug report may be invalid because it does not include a comparison of what 
 
 A link to your site with a note saying "here's the problem" does nothing for me.  What may look like a horrible error to you probably is just yet-another-website for me.  It's like sending someone a picture of a horse and saying "see!?! It's broken!".  Such a message makes no sense unless you also include what you expected, e.g. "I got a horse.  I expected a zebra."  Without that point of comparison, chances are good that your bug report is invalid.
 
-= 3. Older Version =
+= 3. Not Using Latest Version =
 
 Please make sure you're using the latest version of the plugin before filing a bug report!  Compare the version you see inside the !WordPress manager with the version you see on the !WordPress downloads page: http://wordpress.org/extend/plugins/custom-content-type-manager/
 
