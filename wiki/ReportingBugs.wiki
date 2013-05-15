@@ -4,12 +4,13 @@
 
 = Introduction =
 
-Before you [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list File a Bug Report], make sure that you know how to effectively report bugs.  I get a lot of incomplete bug reports that don't contain enough information for me to fix the problem.  That's not because I don't care -- I DO care.  I care a lot about my plugin, and I want it to help _solve_ problems, not cause them.  But it's impossible for me to fix things if I can't see what exactly is broken.  
+If you're going to [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list File a Bug Report], please make sure that you do it effectively, and please be willing to follow up with additional information.  I do care and I want to make my plugin better, but it's impossible for me to fix things unless I can see what exactly is broken.
 
-The bottom line is this: if you want the bug fixed, then please take the time to report it accurately.  *If I can't reproduce the bug for myself, then I cannot fix it.*
+Do not email me directly about bugs unless you want to hire me for paid support.  If you aren't sure whether it's a bug or not, then it's fine to ask around in the forums, but once you've confirmed that it's a bug, create a new Issue by clicking the Issues tab and entering in the relevant info.
 
+To file a good bug report, please follow all of the following points.
 
-= Including System Information =
+= Include All System Information =
 
 Inside of your !WordPress site, there is a menu-item created by the Custom Content Type Manager plugin which reads _Custom Content Types_.  You can click it (or ANY of the CCTM's admin pages) and you will see a footer that contains a link to *Report a Bug*.
 
@@ -17,18 +18,22 @@ That page was designed to help you (the user) easily include the most relevant i
 
 https://img.skitch.com/20111104-jwhjfqbqnhrjb6crshcscn2nhf.jpg
 
-= Do a Screencast =
+I really need to see *all* of this information!
 
-One of the most effective ways to report a bug is to include a screencast of the problem.  [http://www.techsmith.com/download/jing/default.asp Jing] is free software that runs on Windows and on Macs and lets you easily capture your screen and share it via a link.  Screencast videos can save _hours_ of emailing back and forth, because no matter how hard you try, sometimes there are details that we forget to mention.
+= List the Exact Steps to Reproduce the Problem =
 
+I need to see exactly what you did to encounter the problem. If I can't see the problem myself, I cannot fix it.
 
-= Where to Report =
+Include screenshots or a short video!  [http://www.techsmith.com/download/jing/default.asp Jing] is free software that runs on Windows and on Macs and lets you easily capture your screen and share it via a link.  Screencast videos can save _hours_ of emailing back and forth, because no matter how hard you try, sometimes there are details that we forget to mention.
 
-If you do discover a bug, the appropriate place to report it is in the [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list Bug Tracker].  Do not email me directly about bugs unless you want to hire me for paid support.  If you aren't sure if it's a bug or not, then it's fine to ask around in the forums, but once you've confirmed that it's a bug, create a new Issue by clicking the Issues tab and entering in the relevant info.
+= Include the Comparison: Expected Result vs. Actual Result =
 
+A lot of bug reports are useless because the user includes a link and says "SEE!?!! IT'S BROKEN!!".  That does nothing for me.  A valid bug report compares what you _actually_ saw with what you _expected_ to see.  
 
-= Following Up =
+For example "I got a horse.  I expected a zebra."  
 
-If you got a link to this page pasted in your bug report then it's because I require additional information, or perhaps you forgot to include the system information.  Again, if it's worth reporting, it's worth reporting correctly.  You probably aren't the only one encountering a particular error, so it helps the whole community if you take the time to correctly identify the problem and follow up with details.
+= Make Sure You're Using the Latest Version =
+
+WordPress doesn't always packaging plugins correctly and it tries to release updates over time, so you may not have the latest version even though your dashboard says there are no updates available.  Check the http://wordpress.org/extend/plugins/custom-content-type-manager/ page to double-check that you have the latest version.
 
 Thanks!
