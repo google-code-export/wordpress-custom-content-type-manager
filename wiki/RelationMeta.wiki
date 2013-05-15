@@ -1,11 +1,30 @@
-#summary One-sentence summary of this page.
+#summary Documentation for Relation-Meta custom fields
 #labels Custom-Fields
+#sidebar SidebarCustomFields
 
-= Introduction =
+Added in 0.9.7.5
 
-EXPERIMENTAL... added in 0.9.7.5
+||http://s23.postimg.org/eevem113b/relationmeta.png|| A [RelationMeta] field stores additional data about a related post by adding custom fields to the relation.  <font color="red">THIS FIELD IS EXPERIMENTAL</font>||
 
-= Limitations = 
+<wiki:toc max_depth="2" />
+
+----
+
+== Field Definition (Meta Data)==
+
+The field definition affects how instances of this field type will display in the !WordPress manager while creating or posts that contain instances of this field type.
+
+ * *label* : the label identifies this field when you create or edit a post in the !WordPress manager
+ * *name* : the name is a unique identifier used when saving values for instances of this field; it corresponds to the *meta_key* column *wp_postmeta* table.  You will use this name when retrieving field values inside of your themes via the `print_custom_field()` or `get_custom_field()` functions.
+ * *description* : the description provides extra information to users as they create or edit a post in the !WordPress manager.
+ * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
+ * *extra* : this can be used to provide additional parameters to the text input, e.g. `size="10"` or custom javascript. 
+ * *default_value* : This is used to determine the default value for new instances of this field type. 
+ * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files. A recommended default output filter for an image field would be: to_image_src
+ * *metafields* : An array of fieldnames that appear under an instance of this field.
+
+----
+== Limitations ==
 
 Important points about RelationMeta fields:
 
@@ -23,7 +42,19 @@ Also note the following limitations:
  * Sub-fields may not be repeatable (the "Is Repeatable" setting is overridden).
 
 
-= Use in your Templates =
+----
+
+== Included Javascript/CSS files ==
+
+ * `media-upload` (built-in !WordPress script)
+ * `thickbox` (built-in !WordPress script);
+ * `/js/relation.js`
+
+----
+
+== Example of Use  in Template File ==
+
+Fair Warning: if you're not comfortable navigating data structures and you need the simplicity of a straight-forward output-filter for everything printed in your template, then Relation-Meta fields are probably not for you.  They store complex data, and I can't think of a straightforward way to format it other than looping over their contents using custom PHP.
 
 RelationMeta fields _always_ store their data as a JSON data structure, e.g.
 
@@ -38,4 +69,48 @@ RelationMeta fields _always_ store their data as a JSON data structure, e.g.
 
 Where the post ID is the first key, and then the sub-fields' names are the subsequent keys.
 
-Fair Warning: if you're not comfortable navigating data structures and you need the simplicity of a straight-forward output-filter for everything printed in your template, then Relation-Meta fields are probably not for you.  They store complex data, and I can't think of a straightforward way to format it other than looping over their contents using custom PHP.
+
+=== Recommended Output Filters ===
+
+ * [to_array_OutputFilter to_array] 
+
+----
+
+== Customizing Manager HTML ==
+
+See [CustomizingManagerHTML] for more information on customizing the appearance of the manager HTML.
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_relation.tpl`
+ # `fields/elements/_default.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_relation.tpl`
+ # `fields/wrappers/_default.tpl`
+
+=== Multi ===
+
+Relation fields can be repeatable.  If the "repeatable" option is checked, the following tpls are used to format the output:
+
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ # `fields/elements/{fieldname}.tpl`
+ # `fields/elements/_relation_multi.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_relation_multi.tpl`
