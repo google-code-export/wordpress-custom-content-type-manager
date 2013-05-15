@@ -1,0 +1,67 @@
+#summary Documentation for Hidden custom fields
+#sidebar SidebarCustomFields
+
+
+||http://s18.postimg.org/5l9pckpf9/hidden.png||Hidden fields store data out of site from users, useful if you need to keep your UI tidy.  They can also execute PHP to dynamically calculate values.||
+
+<wiki:toc max_depth="2" />
+
+----
+
+== Field Definition (Meta Data)==
+
+The field definition affects how instances of this field type will display in the !WordPress manager while creating or posts that contain instances of this field type.
+
+ * *label* : the label identifies this field when you create or edit a post in the !WordPress manager
+ * *name* : the name is a unique identifier used when saving values for instances of this field; it corresponds to the *meta_key* column *wp_postmeta* table.  You will use this name when retrieving field values inside of your themes via the `print_custom_field()` or `get_custom_field()` functions.
+ * *description* : the description provides extra information to users as they create or edit a post in the !WordPress manager.
+ * *class* : this affects the CSS class in the !WordPress manager that is used to display instances of this field type.
+ * *extra* : this can be used to provide additional parameters to the text input, e.g. `size="10"` or custom javascript.. 
+ * *default_value* : This is used to determine the default value for new instances of this field type. 
+ * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files.
+
+----
+
+== Included Javascript/CSS files ==
+
+NONE.
+
+----
+
+== Example of Use  in Template File ==
+
+Hidden fields usually store basic values, so they can usually be printed quite easily, without modification:
+
+=== Example 1 ===
+
+{{{
+<?php print_custom_field('my_hidden'); ?>
+}}}
+
+
+
+=== Recommended Output Filters ===
+
+None.
+
+----
+
+== Customizing Manager HTML ==
+
+Hidden fields use the 2 standard tpls: field and wrapper.  See [CustomizingManagerHTML] for more information.
+
+==== Field tpl====
+
+The first of following tpls found will be used to format the field:
+
+ * `fields/elements/{fieldname}.tpl`
+ * `fields/elements/_hidden.tpl`
+ * `fields/elements/_default.tpl`
+
+==== Wrapper tpl ====
+
+The first of the following tpls found will be used to wrap the output:
+
+ # `fields/wrappers/{fieldname}.tpl`
+ # `fields/wrappers/_hidden.tpl`
+ # `fields/wrappers/_default.tpl`
