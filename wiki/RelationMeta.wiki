@@ -5,6 +5,8 @@
 
 COMING... added in 0.9.7.5
 
+= Limitations = 
+
 Important points about RelationMeta fields:
 
 The following fields cannot be added as a relation meta sub-field:
@@ -14,10 +16,17 @@ The following fields cannot be added as a relation meta sub-field:
  * Media
  * Another Relation Meta
  * WYSIWYG
+ * Date 
 
-No validation is supported for the sub-fields.
-Sub-fields may not be repeatable.
+Also note the following limitations:
 
+ * No validation is supported for the sub-fields.
+ * Sub-fields may not be repeatable.
+
+Any field that loads its own javascript or CSS cannot work effectively as a sub-field because 
+
+
+= Use in your Templates =
 RelationMeta fields _always_ store their data as a JSON data structure, e.g.
 
 {{{
