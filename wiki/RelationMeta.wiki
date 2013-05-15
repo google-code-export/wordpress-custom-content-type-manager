@@ -16,3 +16,16 @@ The following fields cannot be added as a relation meta sub-field:
  * WYSIWYG
 
 No validation is supported for the sub-fields.
+
+RelationMeta fields _always_ store their data as a JSON data structure, e.g.
+
+{{{
+{
+   "413":{
+      "age":"32",
+      "birthday":"1999-12-31"
+   }
+}
+}}}
+
+Where the post ID is the first key, and then the sub-fields' names are the subsequent keys.
