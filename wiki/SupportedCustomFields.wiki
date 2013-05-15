@@ -33,6 +33,9 @@ Read more about [CustomFieldDefinitions Custom Field Definitions...]
 
 ||http://s9.postimage.org/smg6bx11n/dropdown.png|| [Dropdown] fields let you select a single option from a list of options via a dropdown list or a series of radio buttons.||
 
+== [Hidden] ==
+
+||http://s18.postimg.org/5l9pckpf9/hidden.png|| [Hidden] fields let you store values out of sight from users creating or editing content.  You can execute PHP to calculate dynamic values.||
 
 == [Image] ==
 
