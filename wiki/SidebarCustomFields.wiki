@@ -8,6 +8,7 @@
  * [Date]
  * [Directory]
  * [Dropdown]
+ * [Hidden]
  * [Image]
  * [Media]
  * [MultiSelect]
