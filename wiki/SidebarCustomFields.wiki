@@ -12,6 +12,7 @@
  * [Media]
  * [MultiSelect]
  * [Relation]
+ * [RelationMeta] (experimental)
  * [Text]
  * [Textarea]
  * [User]
