@@ -56,6 +56,11 @@ See [SupportedCustomFields#Dropdown Dropdown] (above).
 
 ||http://s12.postimage.org/bztgulut5/relation.png|| A [Relation] field stores an integer foreign key(s) to another post of some kind: post, page, or a media attachment like an image or video.||
 
+== [RelationMeta] ==
+
+||http://s23.postimg.org/eevem113b/relationmeta.png|| A [RelationMeta] field stores additional data about a related post by adding custom fields to the relation.||
+
+
 
 == [Text] ==
 
