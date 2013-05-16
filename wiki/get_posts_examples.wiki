@@ -107,6 +107,43 @@ This problem occurs at every level in the hierarchy!
 
 == List Posts in a Date Range ==
 
+A date range with just one parameter is easier than a from/to date range.  If you just need posts that are before or after a certain date, just use an operator in your arguments, e.g. the ">" greater than operator:
+
+{{{
+<?php
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'page';
+$args['post_date']['>'] = '2005-01-30';
+$args['order'] = 'ASC';
+
+$results = $Q->get_posts($args);
+
+foreach ($results as $r):
+    // print stuff here
+endforeach;
+?>
+}}}
+
+For using a date range, you should refer to the [get_posts] documentation, specifically the *date_min* and *date_max* and *date_column* arguments.
+
+{{{
+<?php
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'page';
+$args['date_column'] = 'post_date';
+$args['date_min'] = '2007-03-01';
+$args['date_max'] = '2007-03-31';
+$args['order'] = 'ASC';
+
+$results = $Q->get_posts($args);
+
+foreach ($results as $r):
+    // print stuff here
+endforeach;
+?>
+}}}
 
 
 == Searching For a Search Term (1) ==
