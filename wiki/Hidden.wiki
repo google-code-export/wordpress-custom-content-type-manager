@@ -48,9 +48,9 @@ Hidden fields usually store basic values, so they can usually be printed quite e
 
 == Generating a Value on Create==
 
-In your field definition, check "Evaluate OnCreate".
+In your field definition, check "Evaluate !OnCreate".
 
-Add PHP code to the "OnCreate" text area, e.g. this code to choose a random number between 1 and 100.
+Add PHP code to the "!OnCreate" text area, e.g. this code to choose a random number between 1 and 100.
 
 {{{
 return rand(1,100);
@@ -60,9 +60,9 @@ This code is only executed once per post: when the post is first created -- the 
 
 == Generating a Value on Edit ==
 
-In your field definition, check "Evalate OnEdit".
+In your field definition, check "Evalate !OnEdit".
 
-Add PHP code to the "OnEdit" text area, e.g. this code to get the current timestamp
+Add PHP code to the "!OnEdit" text area, e.g. this code to get the current timestamp
 
 {{{
 return date('Y-m-d H:i:s');
@@ -73,7 +73,7 @@ This code every time the edit form is _drawn_ (not as it is submitted).
 
 == Calculate Values on Save ==
 
-A powerful option is to calculate a value when the form is saved -- this occurs when either a "create" or an "edit" form is saved, so it overlaps with both of the previous events.  This code executes after the form is submitted, so it's a good place to calculate and modify content based on other values.
+Perhaps the most powerful option is to calculate a value when the form is saved -- this occurs when either a "create" or an "edit" form is saved, so it overlaps with both of the previous events.  This code executes after the form is submitted, so it's a good place to calculate and modify content based on other values.
 
 Note that the `$_POST` array is populated, but that all the CCTM's custom fields will be prefixed with a constant defined by `CCTM_FormElement::post_name_prefix`.  For example, if you have a custom field named `firstname`, it would appear in the `$_POST` array keyed as `cctm_firstname`.  
 
@@ -90,13 +90,13 @@ Array
 )
 }}}
 
-=== Example 1: Concatenate 2 Fields ===
+=== Example 1: Concatenate Two Fields ===
 
 Let's say we want to concatenate 2 submitted fields into one.  *first_name* and *last_name* with a space in between.
 
-In your field definition, check "Evalate OnSave"./
+In your field definition, check "Evalate !OnSave"./
 
-Add PHP code to the "OnSave" text area, e.g. this code to get the current timestamp
+Add PHP code to the "!OnSave" text area, e.g. this code to get the current timestamp
 
 {{{
 $value = sprintf('%s %s', 
@@ -113,13 +113,26 @@ Note a couple of the CCTM functions used here:
 
 This code every time the post form is submitted.
 
+=== Example 2: Calculate a Total ===
+
+Here's another scenario: you have custom fields with numbers in them, and you want to display a total to your user.  To do this, you need to use PHP to do the math, and then you need to edit your tpls to make the total visible.
+
+{{{
+$a = (int) CCTM::get_value($_POST, CCTM_FormElement::post_name_prefix.'number1', 0);
+$b = (int) CCTM::get_value($_POST, CCTM_FormElement::post_name_prefix.'number2', 0);
+return $a + $b;
+}}}
+
+The above example assumes that fields *number1* and *number2* are _integers_ (no decimals), so it uses _(int)_ type-casting to force the values to be integers.
+
+If you're dealing with decimals or other numbers, you would want to omit the _(int)_ type-cast and rely on `is_numeric()` or some other function to validate the input.
+
+Keep in mind that when data is posted on a form, it comes through to PHP as strings (i.e. all data typing is lost).
+
 || http://s2.postimage.org/by3ngezo/warning_icon.png || If your PHP code has errors in it, when the form is saved and it executes, you may just get a white screen, or you may see errors displayed on the page (depending on your logging settings). Test your code carefully!||
 
 
 
-== Example of Calculating a Value ==
-
-Sometimes you need a field to calculate a value.  Since Hidden fields in the CCTM can execute PHP code,
 
 === Recommended Output Filters ===
 
