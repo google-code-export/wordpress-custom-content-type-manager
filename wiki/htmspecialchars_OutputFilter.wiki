@@ -1,0 +1,25 @@
+#summary htmspecialchars Output Filter
+#labels Output-Filters
+#sidebar SidebarOutputFilters
+
+<wiki:toc max_depth="1" />
+
+= Description =
+
+The _htmspecialchars_ implements the PHP [http://php.net/manual/en/function.htmlspecialchars.php htmlspecialchars()] function.  This filter is useful if you need to print HTML data into a form field.
+
+
+= Usage =
+
+Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_custom_field get_custom_field()] function:
+
+_mixed_ *get_custom_field*( string _$fieldname_ `[`, mixed _$options_ `]` ) 
+
+ * *$fieldname*: _string_ field name `+ :email`
+ * *$options*: _none_.
+ * *OUTPUT*: _string_.  An encoded version of the $input.
+
+== Example 1==
+
+
+= See Also =
