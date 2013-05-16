@@ -1,4 +1,5 @@
 #summary Documentation for Hidden custom fields
+#labels Custom-Fields
 #sidebar SidebarCustomFields
 
 
@@ -19,6 +20,12 @@ The field definition affects how instances of this field type will display in th
  * *extra* : this can be used to provide additional parameters to the text input, e.g. `size="10"` or custom javascript.. 
  * *default_value* : This is used to determine the default value for new instances of this field type. 
  * *output_filter* : [OutputFilters Output Filters] control how data is filtered before being sent to your theme files.
+ * *evaluate_create_value* : if checked, the PHP code in the *create_value_code* textarea will be evaluated when the post containing this field is first created (i.e. it runs once only).
+ * *evaluate_update_value* : if checked, the PHP code in the *update_value_code* textarea will be evaluated when the post containing this field is edited.
+ * *evaluate_onsave* : if checked, the PHP code in the *onsave_code* textarea will be evaluated when the post containing this field is saved.
+ * *create_value_code* : any PHP code that returns a value.  Runs only if the *evaluate_create_value* box is checked.
+ * *update_value_code* : any PHP code that returns a value. Runs only if the *evaluate_update_value* box is checked.
+ * *onsave_code* : any PHP code that returns a value. Runs only if the *evaluate_onsave* box is checked.
 
 ----
 
@@ -39,6 +46,11 @@ Hidden fields usually store basic values, so they can usually be printed quite e
 }}}
 
 
+----
+
+== Example of Calculating a Value ==
+
+Sometimes you need a field to calculate a value.  Since Hidden fields in the CCTM can execute PHP code,
 
 === Recommended Output Filters ===
 
