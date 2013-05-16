@@ -145,6 +145,27 @@ endforeach;
 ?>
 }}}
 
+You can also use the *date_min* and *date_max* to filter on a custom date field, <font color="red">*but you must store your dates in the MySQL format!*</font>  This is critical: you can use the [datef_OutputFilter] to display dates to your visitors however you want, but it is strongly recommended that you always store your date values in a sensible, sortable.
+
+{{{
+<?php
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'movie';
+$args['date_column'] = 'release_date';
+$args['date_min'] = '2007-03-01';
+$args['date_max'] = '2007-03-31';
+$args['order'] = 'ASC';
+
+$results = $Q->get_posts($args);
+
+foreach ($results as $r):
+    // print stuff here
+endforeach;
+?>
+}}}
+
+----
 
 == Searching For a Search Term (1) ==
 
