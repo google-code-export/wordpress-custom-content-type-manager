@@ -41,7 +41,7 @@ Remember: this always returns a single post.
 
 ---------------------------
 
-== get_errors ==
+== debug ==
 
 _string_ *get_errors*( ) 
 
@@ -53,7 +53,7 @@ This is a convenience function for aiding in debugging: call it to return a list
 $SP = new SP_Post();
 // do something.. maybe generate errors...
 
-print $SP->get_errors();
+print $SP->debug();
 }}}
 
 ---------------------------
