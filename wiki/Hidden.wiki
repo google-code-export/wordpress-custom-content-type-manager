@@ -35,18 +35,55 @@ NONE.
 
 ----
 
-== Example of Use  in Template File ==
+== Examples ==
 
 Hidden fields usually store basic values, so they can usually be printed quite easily, without modification:
 
-=== Example 1 ===
+=== Use in your Template File ===
 
 {{{
 <?php print_custom_field('my_hidden'); ?>
 }}}
 
 
-----
+== Generating a Value on Create==
+
+In your field definition, check "Evaluate OnCreate".
+
+Add PHP code to the "OnCreate" text area, e.g. this code to choose a random number between 1 and 100.
+
+{{{
+return rand(1,100)
+}}}
+
+This code is only executed once per post: when the post is first created -- the code executes as the form is _drawn_ (not as it is submitted).  After that, it will not execute again.
+
+== Generating a Value on Edit ==
+
+In your field definition, check "Evalate OnEdit".
+
+Add PHP code to the "OnEdit" text area, e.g. this code to get the current timestamp
+
+{{{
+return date('Y-m-d H:i:s');
+}}}
+
+This code every time the edit form is _drawn_ (not as it is submitted).
+
+
+== Generating a Value on Save ==
+
+In your field definition, check "Evalate OnSave".
+
+Add PHP code to the "OnSave" text area, e.g. this code to get the current timestamp
+
+{{{
+return date('Y-m-d H:i:s');
+}}}
+
+This code every time the edit form is _drawn_ (not as it is submitted).
+
+
 
 == Example of Calculating a Value ==
 
