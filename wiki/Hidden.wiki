@@ -53,7 +53,7 @@ In your field definition, check "Evaluate OnCreate".
 Add PHP code to the "OnCreate" text area, e.g. this code to choose a random number between 1 and 100.
 
 {{{
-return rand(1,100)
+return rand(1,100);
 }}}
 
 This code is only executed once per post: when the post is first created -- the code executes as the form is _drawn_ (not as it is submitted).  After that, it will not execute again.
@@ -71,17 +71,49 @@ return date('Y-m-d H:i:s');
 This code every time the edit form is _drawn_ (not as it is submitted).
 
 
-== Generating a Value on Save ==
+== Calculate Values on Save ==
 
-In your field definition, check "Evalate OnSave".
+A powerful option is to calculate a value when the form is saved -- this occurs when either a "create" or an "edit" form is saved, so it overlaps with both of the previous events.  This code executes after the form is submitted, so it's a good place to calculate and modify content based on other values.
+
+Note that the `$_POST` array is populated, but that all the CCTM's custom fields will be prefixed with a constant defined by `CCTM_FormElement::post_name_prefix`.  For example, if you have a custom field named `firstname`, it would appear in the `$_POST` array keyed as `cctm_firstname`.  
+
+Another important thing to note is that any repeatable fields will appear as _arrays_ in the `$_POST` array.  For example, if you have a repeatable field named *email* to store a person's one (or many) emails, then the `$_POST` array would contain a bit like this:
+
+{{{
+Array
+(
+// ... other posted values here ...
+  [cctm_email] => Array
+        (
+            [0] => some@email.com
+        )
+)
+}}}
+
+=== Example 1: Concatenate 2 Fields ===
+
+Let's say we want to concatenate 2 submitted fields into one.  *first_name* and *last_name* with a space in between.
+
+In your field definition, check "Evalate OnSave"./
 
 Add PHP code to the "OnSave" text area, e.g. this code to get the current timestamp
 
 {{{
-return date('Y-m-d H:i:s');
+$value = sprintf('%s %s', 
+    CCTM::get_value($_POST, CCTM_FormElement::post_name_prefix.'first_name'),
+    CCTM::get_value($_POST, CCTM_FormElement::post_name_prefix.'last_name')
+);
+return trim($value);
 }}}
 
-This code every time the edit form is _drawn_ (not as it is submitted).
+Note a couple of the CCTM functions used here:
+
+ * `CCTM::get_value()` -- used to safely get an item out of an array, without the PHP notices that occur if the index does not exist.  Pass it the `$array` you wish to search, the `$key` you want to retrieve, and optionally, you can pass it a default value for the third argument.
+ * `CCTM_FormElement::post_name_prefix` -- this is the constant that is used to ensure that the CCTM's custom fields do not conflict with any !WordPress custom fields.
+
+This code every time the post form is submitted.
+
+|| http://s2.postimage.org/by3ngezo/warning_icon.png || If your PHP code has errors in it, when the form is saved and it executes, you may just get a white screen, or you may see errors displayed on the page (depending on your logging settings). Test your code carefully!||
 
 
 
