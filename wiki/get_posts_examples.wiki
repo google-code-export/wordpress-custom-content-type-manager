@@ -45,17 +45,18 @@ endforeach;
 
 == List Posts Hierarchically by Category ==
 
-<font color="red">Warning: This is tough.</font>  The problem is that people usually place posts into BOTH the parent AND the sub-category, so when you iterate through the posts in each category, the post will be listed in 2 or more places.
+<font color="red">Warning: This is tough.</font>  The problem is that people usually place posts into BOTH the parent AND the child categories, so when you iterate through the posts in each category, the post will be listed in both lists (once for the list of all posts in the parent category, and again in the lists of all posts in the child category).
 
-For example, if you have a category named "Mammals" and a child-category of mammals named "Dogs".  When you create a new "animal" post, for example, most users will check _both_ the parent "Mammals" category and the child "Dogs" category.  This can present a problem when you are trying to list posts hierarchically because technically speaking, the post now exists in _both_ categories, so it will show up in _both_ lists.  The problem is compounded by the fact that !WordPress GUI does not behave gracefully when you don't place a post into the parent and the child categories.
+For example, if you have a parent category named "Mammals" and a child-category named "Dogs".  When you create a new "animal" post, most users will check _both_ the parent "Mammals" category and the child "Dogs" category (indeed, this is the direction the !WordPress UI pushes you).  This can present a problem because technically speaking, the post now exists in _both_ categories, so it will show up in _both_ lists.  The problem is compounded by the fact that !WordPress GUI does not behave gracefully when you don't place a post into the parent and the child categories.
 
 Nevertheless, here is an example of how you might generate a list of posts by categories:
 
 {{{
 <?php
-$cats = get_categories(array('child_of' => $cat)); 
+// Some optional filters are shown here on the initial list of categories
+$categories = get_categories(array('child_of' => $some_category)); 
 
-foreach ($cats as $c) {
+foreach ($categories as $c) {
 
 	print '<h1>'. $c->name . '</h1>';
 
@@ -75,9 +76,9 @@ foreach ($cats as $c) {
 	}
 	//----- (omit to here) ------------------------
 
-	$subcats = get_categories(array('child_of' => $c->slug)) {
+	$subcategories = get_categories(array('child_of' => $c->slug)) {
 
-	foreach ($subcats as $s) {	
+	foreach ($subcategories as $s) {	
 		
 		// Sub Categories
 		print '<h2>'. $s->name . '</h2>';
@@ -100,9 +101,9 @@ foreach ($cats as $c) {
 ?>
 }}}
 
-In the above example, you may choose to omit the query that selects posts in the parent category.  If you omit that line, your results may become cleaner, but some posts may disappear off the radar.  For example, if you have a post that is _only_ in the "Mammals" parent category and you aren't printing those posts, the post will not be visible.
+In the above example, you may choose to omit the query that selects posts in the parent category.  If you omit that section, your results may become cleaner, but some posts may disappear off the radar.  For example, if you have a post that is _only_ in the "Mammals" parent category and you aren't printing those posts, the post will not be visible.
 
-This problem occurs at every level in the hierarchy!
+Remember: this problem occurs at every level in the hierarchy!
 
 
 == List Posts in a Date Range ==
@@ -157,6 +158,23 @@ $args['date_min'] = '2007-03-01';
 $args['date_max'] = '2007-03-31';
 $args['order'] = 'ASC';
 
+$results = $Q->get_posts($args);
+
+foreach ($results as $r):
+    // print stuff here
+endforeach;
+?>
+}}}
+
+
+A final example here uses the _starts_with_ operator.  So long as you have stored your dates using the correct !MySQL format of YYYY-MM-DD, then something like the following can retrieve all the posts, say, in a given year:
+
+{{{
+<?php
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'my_post_type';
+$args['my_date']['starts_with'] = '2007-';
 $results = $Q->get_posts($args);
 
 foreach ($results as $r):
