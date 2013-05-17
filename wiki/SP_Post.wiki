@@ -43,7 +43,7 @@ Remember: this always returns a single post.
 
 == debug ==
 
-_string_ *get_errors*( ) 
+_string_ *debug( )* 
 
 * _no arguments_
 
@@ -79,6 +79,8 @@ $SP->delete(123);
 _integer_ *insert*( array _$args_ ) 
 
  * `$args` an associative array representing all values for the post you are creating.
+
+Returns false on error.
  
 This inserts a post into the database.  Data is written into both the `wp_posts` table and the `wp_postmeta` tables.  Any array keys which do not correspond to columns in the `wp_posts` table will be considered custom fields (see the list of built-in columns at the bottom of the page).
 
