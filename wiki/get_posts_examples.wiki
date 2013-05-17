@@ -183,12 +183,44 @@ endforeach;
 ?>
 }}}
 
+The downside to using operators like this is that they are not available to shortcodes: you must code them in PHP.
+
 ----
 
 == Searching For a Search Term (1) ==
 
+Here's the standard example of searching both the title and the content fields for a search term:
+
+{{{
+$Q = new GetPostsQuery();
+$args = array();
+$args['search_columns'] =  array('post_title', 'post_content');
+$args['search_term'] = 'wordpress';
+$results = $Q->get_posts($args);
+
+foreach ($results as $r) {
+    // print stuff here
+}
+}}}
 
 == Searching For a Search Term (2) ==
+
+Here's a variation of the first search, where we want to match only records that _start_ with the search term.  We control the behavior using the *match_rule* argument.  This is a bit simpler than using the operators, but it has the advantage that it can be performed via a shortcode.
+
+{{{
+$Q = new GetPostsQuery();
+$args = array();
+$args['search_columns'] =  array('post_title');
+$args['search_term'] = 'wordpress';
+$args['match_rule'] = 'starts_with';
+$results = $Q->get_posts($args);
+
+foreach ($results as $r) {
+    // print stuff here
+}
+}}}
+
+
 
 -----
 
