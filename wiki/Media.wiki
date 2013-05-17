@@ -47,19 +47,22 @@ Here we show how to use the [to_image_src_OutputFilter to_image_src] Output Filt
 
 === Example 2: Get the URL to a PDF ===
 
-!WordPress obscures the source of many media items, so you have to dig around to find where the link to an actual file is.  In the case of a PDF, you can find the post's _guid_ using the [get_post_OutputFilter get_post] Output Filter:
-
+!WordPress obscures the source of many media items, so you have to dig around to find where the link to an actual file is.  In the case of a PDF, the link to the file is stored inside the *guid* field.  You can create links to the post's _guid_ using the [get_post_OutputFilter get_post]  or the [to_link_OutputFilter to_link] Output Filter.  The result is the same, but the syntax is different:
 
 {{{
+<?php print_custom_field('my_pdf:get_post','<a href="[+guid+]">Download PDF</a>'); ?>
+
+OR 
+
 <a href="<?php print_custom_field('my_pdf:get_post','guid'); ?>">Download PDF</a>
 }}}
 
 Note that you cannot control whether the browser will actually download the PDF or open it in the browser.  The WordPress application sends headers before you have a chance to modify them, so you don't have much control over things like forcing downloads, cookies, sessions, etc.  Furthermore, a user's browser may choose to handle the headers differently depending on what plugins are installed.
 
 
-=== Example 2: Retrieving Multiple Media Items ===
+=== Example 3: Retrieving Multiple Media Items ===
 
-Since image fields support the "repeatable" option, your field might store an array of images.  Any time you use the "repeatable" option, you'll want to use the [to_array_OutputFilter to_array] Output Filter.
+Since image fields support the "repeatable" option, your field might store an array of images.  Any time you use the "repeatable" option, you'll have to process a _list_ of items.  One way to make it 100% clear that you're dealing with an array is to use the [to_array_OutputFilter to_array] Output Filter.
 
 
 {{{
