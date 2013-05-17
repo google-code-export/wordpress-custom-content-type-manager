@@ -35,6 +35,8 @@ The field definition affects how instances of this field type will display in th
 
 === Example 1: Retrieve the src of the Media item ===
 
+<font color="red">*This example is only valid for an image item.*</font>
+
 Here we show how to use the [to_image_src_OutputFilter to_image_src] Output Filter:
 
 {{{
@@ -42,6 +44,17 @@ Here we show how to use the [to_image_src_OutputFilter to_image_src] Output Filt
 }}}
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || In the case of a media field with no output filter, `print_custom_field('fieldname');` will return _an integer number_ representing the ID of the media item post that has been referenced!  || 
+
+=== Example 2: Get the URL to a PDF ===
+
+!WordPress obscures the source of many media items, so you have to dig around to find where the link to an actual file is.  In the case of a PDF, you can find the post's _guid_ using the [get_post_OutputFilter get_post] Output Filter:
+
+
+{{{
+<a href="<?php print_custom_field('my_pdf:get_post','guid'); ?>">Download PDF</a>
+}}}
+
+Note that you cannot control whether the browser will actually download the PDF or open it in the browser.  The WordPress application sends headers before you have a chance to modify them, so you don't have much control over things like forcing downloads, cookies, sessions, etc.  Furthermore, a user's browser may choose to handle the headers differently depending on what plugins are installed.
 
 
 === Example 2: Retrieving Multiple Media Items ===
