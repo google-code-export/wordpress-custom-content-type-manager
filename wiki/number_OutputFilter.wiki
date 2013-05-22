@@ -35,11 +35,10 @@ print '$'. get_custom_field('amount:number');
 
 == Example 2==
 
-Show an amount with 2 decimal places
+Show an amount with 2 decimal places, in a tpl
 
 {{{
-<?php
-print_custom_field('amount:number==2|,|.');
+My formatting template includes a placeholder for [+amount:number==2|,|.+]
 // e.g. 2,000.00
 ?>
 }}}
@@ -50,7 +49,7 @@ In Euros, 2 decimal places, using a period (.) as the thousands-separator, and a
 
 {{{
 <?php
-print '&euro;'. get_custom_field('amount:money==2|.|,');
+print '&euro;'. get_custom_field('amount:money', '2|.|,');
 // e.g. €2.000,00
 ?>
 }}}
