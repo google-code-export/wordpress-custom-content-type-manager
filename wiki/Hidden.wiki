@@ -125,9 +125,15 @@ return $a + $b;
 
 The above example assumes that fields *number1* and *number2* are _integers_ (no decimals), so it uses _(int)_ type-casting to force the values to be integers.
 
-If you're dealing with decimals or other numbers, you would want to omit the _(int)_ type-cast and rely on `is_numeric()` or some other function to validate the input.
+If you're dealing with decimals or other numbers, you would want to omit the _(int)_ type-cast and rely on `is_numeric()` or some other function to validate the input.  Keep in mind that when data is posted on a form, it comes through to PHP as strings (i.e. all data typing is lost).
 
-Keep in mind that when data is posted on a form, it comes through to PHP as strings (i.e. all data typing is lost).
+If you're working with several related fields, you may want to store your calculations back in the `$_POST` array so you don't have to repeat calculations in each field, e.g.
+
+{{{
+// ... do calculations...
+$_POST[ CCTM_FormElement::post_name_prefix.'my_total'] = $my_total;
+return $my_total;
+}}}
 
 || http://s2.postimage.org/by3ngezo/warning_icon.png || If your PHP code has errors in it, when the form is saved and it executes, you may just get a white screen, or you may see errors displayed on the page (depending on your logging settings). Test your code carefully!||
 
