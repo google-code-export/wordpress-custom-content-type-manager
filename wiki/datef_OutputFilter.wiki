@@ -37,3 +37,13 @@ print get_custom_field('my_date:datef', 'F j, Y, g:i a');
 // e.g. March 10, 2001, 5:16 pm
 ?>
 }}}
+
+== Example 3 (in a placeholder) ==
+
+{{{
+<?php
+<span>
+My Date: [+my_date:datef==F j, Y, g:i a+]
+</span
+?>
+}}}
