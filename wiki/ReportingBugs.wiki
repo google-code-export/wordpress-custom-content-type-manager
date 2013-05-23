@@ -24,16 +24,16 @@ I really need to see *all* of this information!
 
 I need to see exactly what you did to encounter the problem. If I can't see the problem myself, I cannot fix it.
 
-Include screenshots or a short video!  [http://www.techsmith.com/download/jing/default.asp Jing] is free software that runs on Windows and on Macs and lets you easily capture your screen and share it via a link.  Screencast videos can save _hours_ of emailing back and forth, because no matter how hard you try, sometimes there are details that we forget to mention.
+Include screenshots or a short video!  [http://www.techsmith.com/download/jing/default.asp Jing] is free software that runs on Windows and on Macs and lets you easily capture your screen and share it via a link.  Screencast videos can save _hours_ of emailing back and forth, because no matter how hard you try, sometimes there are details that you simply don't think to mention.
 
 = Include the Comparison: Expected Result vs. Actual Result =
 
-A lot of bug reports are useless because the user includes a link and says "SEE!?!! IT'S BROKEN!!".  That does nothing for me.  A valid bug report compares what you _actually_ saw with what you _expected_ to see.  
+A lot of bug reports are useless because the user includes a link and says "SEE!?!! IT'S BROKEN!!".  *That does nothing for me*.  A valid bug report compares what you _actually_ saw with what you _expected_ to see.  
 
-For example "I got a horse.  I expected a zebra."  
+For example: "I got a horse.  I expected a zebra."  
 
 = Make Sure You're Using the Latest Version =
 
-WordPress doesn't always packaging plugins correctly and it tries to release updates over time, so you may not have the latest version even though your dashboard says there are no updates available.  Check the http://wordpress.org/extend/plugins/custom-content-type-manager/ page to double-check that you have the latest version.
+Don't simply say "I have the latest version" -- that does nothing.  WordPress doesn't always package plugins correctly, so you may not have the latest version even though your dashboard says there are no updates available.  Check the http://wordpress.org/extend/plugins/custom-content-type-manager/ page to double-check that you have the latest version and please, as I said before, include all the information in the plugin info textarea and I won't have to harass you for additional details.
 
 Thanks!
