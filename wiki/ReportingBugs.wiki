@@ -6,7 +6,7 @@
 
 If you're going to [http://code.google.com/p/wordpress-custom-content-type-manager/issues/list File a Bug Report], please make sure that you do it effectively, and please be willing to follow up with additional information.  I do care and I want to make my plugin better, but it's impossible for me to fix things unless I can see what exactly is broken.
 
-Do not email me directly about bugs unless you want to hire me for paid support.  If you aren't sure whether it's a bug or not, then it's fine to ask around in the forums, but once you've confirmed that it's a bug, create a new Issue by clicking the Issues tab and entering in the relevant info.
+Do not email me directly about bugs unless you want to hire me for paid support.  If you aren't sure whether it's a bug or not, then it's fine to ask around in the forums, but once you've confirmed that it's a bug, create a new Issue by clicking the [https://code.google.com/p/wordpress-custom-content-type-manager/issues/entry Issues] tab and entering in the relevant info.
 
 To file a good bug report, please follow all of the following points.
 
