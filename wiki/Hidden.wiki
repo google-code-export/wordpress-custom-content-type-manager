@@ -46,7 +46,7 @@ Hidden fields usually store basic values, so they can usually be printed quite e
 }}}
 
 
-== Generating a Value on Create==
+== Ex. 1: Generating a Value on Create==
 
 In your field definition, check "Evaluate !OnCreate".
 
@@ -58,7 +58,7 @@ return rand(1,100);
 
 This code is only executed once per post: when the post is first created -- the code executes as the form is _drawn_ (not as it is submitted).  After that, it will not execute again.
 
-== Generating a Value on Edit ==
+== Ex. 2: Generating a Value on Edit ==
 
 In your field definition, check "Evalate !OnEdit".
 
@@ -71,7 +71,7 @@ return date('Y-m-d H:i:s');
 This code every time the edit form is _drawn_ (not as it is submitted).
 
 
-== Calculate Values on Save ==
+== Ex. 3: Calculate Values on Save ==
 
 Perhaps the most powerful option is to calculate a value when the form is saved -- this occurs when either a "create" or an "edit" form is saved, so it overlaps with both of the previous events.  This code executes after the form is submitted, so it's a good place to calculate and modify content based on other values.
 
@@ -90,7 +90,7 @@ Array
 )
 }}}
 
-=== Example 1: Concatenate Two Fields ===
+== Ex. 4: Concatenate Two Fields ==
 
 Let's say we want to concatenate 2 submitted fields into one.  *first_name* and *last_name* with a space in between.
 
@@ -113,7 +113,7 @@ Note a couple of the CCTM functions used here:
 
 This code every time the post form is submitted.
 
-=== Example 2: Calculate a Total ===
+== Ex. 5: Calculate a Total ==
 
 Here's another scenario: you have custom fields with numbers in them, and you want to display a total to your user.  To do this, you need to use PHP to do the math, and then you need to edit your tpls to make the total visible.
 
@@ -135,10 +135,54 @@ $_POST[ CCTM_FormElement::post_name_prefix.'my_total'] = $my_total;
 return $my_total;
 }}}
 
+
 || http://s2.postimage.org/by3ngezo/warning_icon.png || If your PHP code has errors in it, when the form is saved and it executes, you may just get a white screen, or you may see errors displayed on the page (depending on your logging settings). Test your code carefully!||
 
+== Ex. 6: Doing your Own Ajax Action ==
 
+Because the CCTM lets you customize the manager HTML, you can put in your own custom Javascript into the manager, and you can use that to issue your own Ajax requests.  For example, we can put a button into our HTML and trigger an Ajax request when it is clicked.
 
+If your custom field is named *my_ajax*, then you would create your own tpl file inside *wp-content/uploads/cctm/tpls/fields/elements/my_ajax.tpl*:
+
+{{{
+<script type="text/javascript">
+
+    function do_my_ajax_action() {  
+        var post_id = jQuery('#post_ID').val();  // just an ex. of values available on your form
+    	var data = {
+    		"action": "my_ajax_action",
+    		"post_id": post_id
+    	};
+
+    	jQuery.post(ajaxurl, data, function(response) {
+    		alert('Got this from the server: ' + response);
+    	});
+	}
+
+</script>
+<span class="button" onclick="javascript:send_email_quote();">Send Email</span>
+<input type="hidden" name="[+name_prefix+][+name+]"  id="[+id_prefix+][+id+]" value="[+value+]"/>
+
+}}}
+
+The *ajaxurl* variable is available to requests inside the !WordPress manager.
+
+The other part of this is that you need to tell WordPress to route the request to your own custom PHP.  Register a new action inside your *functions.php* file:
+
+*Inside your functions.php file:*
+{{{
+// In your theme's functions.php file
+function my_ajax_action() {
+        // Do something.
+        print 'Send this back to the Javascript request';
+        die(); // Stop the Ajax request
+}
+add_action('wp_ajax_my_ajax_action', 'my_ajax_action');
+}}}
+
+The goal here is that when the button is clicked, the PHP code inside the `my_ajax_function()` is executed and text is returned to the Javascript.
+
+----
 
 === Recommended Output Filters ===
 
