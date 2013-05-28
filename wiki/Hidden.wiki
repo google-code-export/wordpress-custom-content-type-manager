@@ -9,7 +9,7 @@
 
 ----
 
-== Field Definition (Meta Data)==
+== Field Definition (Meta Data) ==
 
 The field definition affects how instances of this field type will display in the !WordPress manager while creating or posts that contain instances of this field type.
 
@@ -35,7 +35,7 @@ NONE.
 
 ----
 
-== Examples ==
+= Examples =
 
 Hidden fields usually store basic values, so they can usually be printed quite easily, without modification:
 
