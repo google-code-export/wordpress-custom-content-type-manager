@@ -55,6 +55,10 @@ Here we show how to use the [to_image_src_OutputFilter to_image_src] Output Filt
 OR 
 
 <a href="<?php print_custom_field('my_pdf:get_post','guid'); ?>">Download PDF</a>
+
+OR when using a tpl (e.g. via a summarize-posts shortcode)
+
+<a href="[+guid+]">Download [+post_title+]</a>
 }}}
 
 Note that you cannot control whether the browser will actually download the PDF or open it in the browser.  The WordPress application sends headers before you have a chance to modify them, so you don't have much control over things like forcing downloads, cookies, sessions, etc.  Furthermore, a user's browser may choose to handle the headers differently depending on what plugins are installed.
