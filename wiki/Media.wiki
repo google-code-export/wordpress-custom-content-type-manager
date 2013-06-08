@@ -57,8 +57,11 @@ OR
 <a href="<?php print_custom_field('my_pdf:get_post','guid'); ?>">Download PDF</a>
 
 OR when using a tpl (e.g. via a summarize-posts shortcode)
-
+// If your query loops over the actual PDFs:
 <a href="[+guid+]">Download [+post_title+]</a>
+
+// If your query loops over pages with custom fields that contain the pdfs, you need to get the guid of the referenced pages:
+<a href="[+my_pdf:get_post==guid+]">Download [+my_pdf:get_post==post_title+]</a>
 }}}
 
 Note that you cannot control whether the browser will actually download the PDF or open it in the browser.  The WordPress application sends headers before you have a chance to modify them, so you don't have much control over things like forcing downloads, cookies, sessions, etc.  Furthermore, a user's browser may choose to handle the headers differently depending on what plugins are installed.
