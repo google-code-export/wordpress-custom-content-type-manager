@@ -53,3 +53,24 @@ print get_custom_field('my_user:userinfo');
 print get_custom_field('my_user:userinfo', '[+display_name+]');
 ?>
 }}}
+
+== Example 3 (in a form tpl) ==
+
+The placeholders available to you are different depending on which tpl you're editing and how it's used.  In this example, you can see how to edit a form element's tpl, where the value is stored in the `[+value+]` placeholder:
+
+{{{
+<select name="[+name_prefix+][+name+]" class="cctm_dropdown [+class+]" id="[+id_prefix+][+id+]" [+extra+]>
+[+all_options+]
+</select>
+Email: [+value:userinfo=={{user_email}}+]
+}}}
+
+== Example 4 (in a Summarize Posts tpl) ==
+
+As shown in the previous example, the placeholders that are relevant depend on which tpl is used.  If you are using the Summarize Posts shortcode and you want to print out more information about the author of a post, for example, then you need to run the *userinfo* filter on the `post_author` field:
+
+{{{
+<li>
+[+post_title+] by [+post_author:userinfo==Email: {{user_email}}+]
+</li>
+}}}
