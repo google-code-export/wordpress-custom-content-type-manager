@@ -219,7 +219,7 @@ Custom post-types will have their fields standardized automatically, but for pos
 
 == What types of custom fields are supported? ==
 
-See the list of [SupportedCustomFields Supported Custom Fields]
+See the list of [SupportedCustomFields Supported Custom Fields].  You can also define your own [CustomCustomFields Custom Custom Fields types].
 
 ---------
 
