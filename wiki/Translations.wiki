@@ -14,10 +14,10 @@ The CCTM is available in the following translations:
 
 We would love to see the CCTM available in your language!  If you are able to provide a translation, refer to the *lang/custom-content-type-mgr.pot* file.  Using [http://www.poedit.net/ PoEdit] or a similar editor, create .po and .mo translations of the original .pot file.  See [http://codex.wordpress.org/Translating_WordPress Translating WordPress] for more information, but here's a quick overview:
 
-# Open the `lang/custom-content-type-mgr.pot` file in PoEdit
-# Replace the translations in the right-hand column with the new translations.
-# Save your work in the `lang` directory as a `.po` file named after your language and local, e.g. `en_US` for American English or `pt_BR` for Brazilian Portuguese.  PoEdit will create both `.po` and a `.mo` versions of the file. 
-# If you haven't already, open a ticket in the Issues tab and attach your `.mo` and `.po` files and request that these be included in the next version.
+ # Open the `lang/custom-content-type-mgr.pot` file in PoEdit
+ # Replace the translations in the right-hand column with the new translations.  If the language strings contain `%s`, these are placeholders for dynamic data, e.g. a fieldname used in the message.  Sometimes the language strings contain two or more placeholders, e.g. `%1$s` and `%2$s`.  The numbers here reflect the order: since not all languages follow the same word-order as English, you can change the placeholder order.
+ # Save your work in the `lang` directory as a `.po` file named after your language and local, e.g. `en_US` for American English or `pt_BR` for Brazilian Portuguese.  PoEdit will create both `.po` and a `.mo` versions of the file. 
+ # If you haven't already, open a ticket in the Issues tab and attach your `.mo` and `.po` files and request that these be included in the next version.
 
 = Customizing a Translation =
 
