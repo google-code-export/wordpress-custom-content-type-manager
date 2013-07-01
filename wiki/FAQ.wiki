@@ -1,5 +1,8 @@
 #summary Frequently Asked Questions
 #labels Featured
+#sidebar Sidebar
+
+Frequently Asked Questions:
 
 <wiki:toc max_depth="2" />
 
