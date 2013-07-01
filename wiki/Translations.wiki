@@ -3,13 +3,19 @@
 
 = Available Languages =
 
-The CCTM is available in the following translations
+The CCTM is available in the following translations:
 
  * English
  * German: Dr. Stahl
  * Romanian: Web Geek Sciense [http://webhostinggeeks.com/ Web Hosting Geeks]
 
 
-= Translations Wanted =
+= Making a Translation =
 
-We would love to see the CCTM available in your language!  If you are able to provide a translation, refer to the *lang/custom-content-type-mgr.pot* file.  Using [http://www.poedit.net/ PoEdit] or a similar editor, create .po and .mo translations of the original .pot file.  See [http://codex.wordpress.org/Translating_WordPress Translating WordPress] for more information..
+We would love to see the CCTM available in your language!  If you are able to provide a translation, refer to the *lang/custom-content-type-mgr.pot* file.  Using [http://www.poedit.net/ PoEdit] or a similar editor, create .po and .mo translations of the original .pot file.  See [http://codex.wordpress.org/Translating_WordPress Translating WordPress] for more information.
+
+= Customizing a Translation =
+
+If you need to customize things further, you can change your site's configuration.  Copy the `config/lang/dictionaries.php` file to your `wp-content/uploads/cctm` directory (the CCTM will attempt to create this directory when it installs, but you may have to create it manually).
+
+You can override the contents of this file and point it to your own new translation files.  This allows you to update any translations without overwriting the managed translations inside the plugin's directory.
