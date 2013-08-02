@@ -16,6 +16,38 @@ This section is focused on example queries possible with get_posts.
 
 IN PROGRESS...
 
+== Simplest Example ==
+
+The simplest possible example here is to fetch posts with no special arguments -- here's an example for retrieving posts.
+
+{{{
+<?php
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'post';
+$results = $Q->get_posts($args);
+
+foreach ($results as $r) {
+    print $r['post_name'] . '<br/>';
+    print $r['post_type'] . '<br/>';
+    print $r['ID'] . '<br/>'; 
+}
+?>
+}}}
+
+Note that the attributes available to the individual results ($r in this example) correlate to the names of the columns in the `wp_posts` table and to the names of your custom fields.  Use `print_r($r)` to dump the entire contents of any single item and see which attributes are available for you.
+
+It's a bit sloppy to print out data like this because you must concatenate PHP variables and HTML strings; please use your own judgement as to which format is most appropriate, but a common approach is to switch back into HTML mode when printing your results and use the long-form foreach statement like this:
+
+{{{
+foreach ($results as $r):
+?>
+    <p><?php print $r['post_name'; ?></p>
+<?php
+endforeach;
+}}}
+
+
 == List Posts in a Category ==
 
 In your template file, you can list all posts in a category by making use of the `taxonomy` and `taxonomy_slug` arguments.
