@@ -1,5 +1,6 @@
 #summary custom_field Shortcode
 #labels Help,shortcode
+#sidebar SidebarShortcodes
 
 = Introduction =
 
