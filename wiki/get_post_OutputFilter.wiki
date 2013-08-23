@@ -70,4 +70,28 @@ print $my_post['some_custom_field'];
 // print_r($my_post); // <-- this will show you which fields are available
 ?>
 }}}
+
+== Example 5 ==
+
+People often get confused when they need to retrieve a related image of a related post -- it's the same problem with foreign key associations, but it's one more level deep.
+
+For example, if you want to print the featured image of a related post, you can use get_post to get all the custom fields of the related post -- a reference to its featured image is stored as `thumbnail_id`.  Then you can use a built-in !WordPress function or another CCTM filter to convert that id to an image.
+
+{{{
+<?php
+// Use wp_get_attachment_image
+$related_post = get_custom_field('my_relation:get_post'); 
+$img = wp_get_attachment_image($related_post['thumbnail_id']);
+print $img;
+
+// Or use CCTM's to_image_src filter
+$related_post = get_custom_field('my_relation:get_post'); 
+$img_src = CCTM::filter($related_post['thumbnail_id'], 'to_image_src');
+print '<img src="'.$img_src.'" />';
+
+?>
+}}}
+
+This technique is possible with any image field.
+
 = See Also =
