@@ -141,8 +141,8 @@ All custom fields are available as placeholders as well.  If your query is pulli
 
 You may also notice a series of other placeholders that are included in your results.  These are included just in an effort to be transparent: !WordPress uses hidden custom fields to track meta data about each post, and the GetPostsQuery class (and the summarize_posts shortcut) includes this data by default.  Some examples include the following:
 
- * _edit_last
- * _edit_lock
- * _wp_page_template
+ * `_edit_last`
+ * `_edit_lock`
+ * `_wp_page_template`
 
 These fields are harmless (you probably never would notice them unless they were pointed out here in the docs), but you can control whether or not they are _returned_ by using the *include_hidden_fields* argument.  Usually, you are more concerned about what is _printed_ -- if you don't want these fields printed, then don't use their placeholders.
