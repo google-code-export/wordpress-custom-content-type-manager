@@ -1,0 +1,36 @@
+#summary GetPostsForm class reference
+#labels Function-Reference,Technical
+#sidebar SidebarFunctionReference
+
+<wiki:toc max_depth="2" />
+
+= Introduction =
+
+The GetPostsForm class helps draw forms, specifically forms for searching the contents of the `wp_posts` table (and the related `wp_postmeta` table).
+
+Sorry, this class is not yet documented much here in the wiki.  Refer to the source code inside of `includes/GetPostsForm.php`
+
+----
+
+= Methods =
+
+=== <font color="green">public function generate()</font>===
+
+_array_ *generate*(`[` array _$search_by`[`,$existing_values`]]`)
+
+ * *$search_by* : array of items you want to search by.
+ * *$existing_values* : array of key/value pairs to specify default values for any field
+ * *OUTPUT*: An HTML form
+
+The `$search_by` array can contain any of the built-in !WordPress columns from the `wp_posts` table (`post_content`, `comment_status`, etc.) and any of the following:
+ 
+ * author : the username of the author (not just the integer `post_author`)
+ * thumbnail_id : the attachment id of the "featured image" (if present). Same as `_thumbnail_id`
+ * thumbnail_src : the URL src of the "featured image" (if present)
+ * permalink : contains the full URL to the post
+ * parent_ID : the post ID of the parent post (if available)
+ * parent_permalink : contains the full URL of the post's parent (if available)
+ * parent_title : post_title from the parent post (if available)
+ * parent_excerpt : post_excerpt from the parent post (if available)
+ * post_id : an alias of ID (but easier to remember)
+
