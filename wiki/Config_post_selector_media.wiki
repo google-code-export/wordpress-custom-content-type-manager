@@ -6,7 +6,7 @@
 
 = Description =
 
-Use this configuration file to customize the behavior of the search forms that pop up when you click the "Choose Relation" buttons.
+Use this configuration file to customize the behavior of the search forms in the modal-windows that pop up when you click a "Choose Media" button.
 
 
 = Customizing the Search Parameters =
@@ -15,12 +15,12 @@ Use this configuration file to customize the behavior of the search forms that p
 
 To customize the configuration for all relation fields, perform the following steps:
 
- # Via FTP, navigate to your site's *wp-content/uploads* folder.  If there isn't already a folder named *cctm* there, create it.  NOTE: if you have customized the location of your uploads folder, you'll have to navigate to that custom directory.
+ # Via FTP, navigate to your site's *wp-content/uploads* folder.  If there isn't already a folder named *cctm* there, create it.  NOTE: change this if you have customized the location of your uploads folder.
  # Inside of the *cctm* folder, create a folder named "config" (it may already exist).  
  # Inside of the *config* folder, create a folder named "post_selector"
  # Into the *post_selector* folder, copy the *_media.php* file from `wp-content/plugins/custom-content-type-manager/config/post_selector/_media.php`.
 
-The end goal here is to have a file inside your _own_ folder outside the CCTM's folder.  *DO NOT EDIT FILES INSIDE THE CCTM's FOLDER*.  Any plugin files may be deleted or updated during an upgrade, so those files are off-limits!
+The end goal here is to have a file inside your _own_ folder outside the CCTM's folder.  <font color="red">*DO NOT EDIT FILES INSIDE THE CCTM's FOLDER*</font>.  Any plugin files may be deleted or updated during an upgrade, so those files are off-limits!
 
 Update your copy of the `_media.php` file so that it contains the search criteria you need.  For example, if you want the search function to only search for post_titles (instead of searching titles and content), update the file to contain a line like the following:
 
