@@ -6,8 +6,7 @@
 
 = Description =
 
-Use this configuration file to customize the search forms that pop up when you click the "Choose Relation" buttons, e.g. if you need to present the user with more options to search for.
-
+Use this configuration file to customize the behavior of the search forms in the modal-windows that pop up when you click a "Choose Relation" button.
 
 = Customizing the Search Parameters =
 
@@ -21,12 +20,26 @@ To customize the configuration for all relation fields, perform the following st
  # Into the *post_selector* folder, copy the `_relation.php` file from `wp-content/plugins/custom-content-type-manager/config/post_selector/_relation.php`.
 
 
-The end goal here is to have a file inside your _own_ folder outside the CCTM's folder.  *DO NOT EDIT FILES INSIDE THE CCTM's FOLDER*.  Any plugin files may be deleted or updated during an upgrade, so those files are off-limits!
+The end goal here is to have a file inside your _own_ folder outside the CCTM's folder.  <font color="red">*DO NOT EDIT FILES INSIDE THE CCTM's FOLDER*</font>.  Any plugin files may be deleted or updated during an upgrade, so those files are off-limits!
 
 Update your copy of the `_relation.php` file so that it contains the search criteria you need.  For example, if you want the search function to only search for post_titles (instead of searching titles and content), update the file to contain a line like the following:
 
 {{{
 CCTM::$post_selector['search_columns'] = array('post_title');
+CCTM::$post_selector['post_status'] = array('publish','inherit');
+CCTM::$post_selector['orderby'] = 'ID';
+CCTM::$post_selector['order'] = 'DESC';
+CCTM::$post_selector['limit'] = 10;
+CCTM::$post_selector['paginate'] = 1;
+
+CCTM::$search_by = array();
+CCTM::$search_by[] = 'post_type';
+CCTM::$search_by[] = 'post_status';
+CCTM::$search_by[] = 'taxonomy';
+CCTM::$search_by[] = 'taxonomy_term';
+CCTM::$search_by[] = 'post_parent';
+CCTM::$search_by[] = 'meta_key';
+CCTM::$search_by[] = 'meta_value';
 }}}
 
 Other options could include any built-in !WordPress column or any custom column, e.g. post_author, my_custom_field, post_status etc.
