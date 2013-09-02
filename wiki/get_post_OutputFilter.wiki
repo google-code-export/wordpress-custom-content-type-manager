@@ -6,7 +6,7 @@
 
 = Description =
 
-The _get_post_ filter returns an associative array for the entire post when given the post ID.
+The _get_post_ filter returns an associative array of entire post including all custom fields when given a post ID.
 
 = Usage =
 
@@ -95,3 +95,6 @@ print '<img src="'.$img_src.'" />';
 This technique is possible with any image field.
 
 = See Also =
+
+ * [to_image_array_OutputFilter to_image_array] Output Filter
+ * [to_image_tag_OutputFilter to_image_tag] Output Filter
