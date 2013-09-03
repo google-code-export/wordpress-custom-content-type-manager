@@ -79,7 +79,7 @@ Or:
 <?php
 $my_array = get_custom_field('my_image');
 // print_r($my_array);
-<img src="<?php print $my_array[0]; ?>" width="<?php print my_array[1]; ?>" height="<?php print $my_array[2]; ?>" />
+<img src="<?php print $my_array[0]; ?>" width="<?php print $my_array[1]; ?>" height="<?php print $my_array[2]; ?>" />
 }}}
 
 To achieve the same effect in your themes _without_ the use of this output filter, you would make use of the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src()] function, e.g.:
