@@ -6,7 +6,7 @@
 
 = Introduction =
 
-The GetPostsForm class helps draw forms, specifically forms for searching the contents of the `wp_posts` table (and the related `wp_postmeta` table).
+The GetPostsForm class helps draw forms, specifically forms for searching the contents of the `wp_posts` table (and the related `wp_postmeta` table).  The form elements contain names that are intended to be passed directly to the [get_posts GetPostsQuery::get_posts()] function.
 
 Sorry, this class is not yet documented much here in the wiki.  Refer to the source code inside of `includes/GetPostsForm.php`
 
@@ -16,7 +16,7 @@ Sorry, this class is not yet documented much here in the wiki.  Refer to the sou
 
 === <font color="green">public function generate()</font>===
 
-_array_ *generate*(`[` array _$search_by`[`,$existing_values`]]`)
+_string_ *generate*(`[` array _$search_by`[`,$existing_values`]]`)
 
  * *$search_by* : array of items you want to search by.
  * *$existing_values* : array of key/value pairs to specify default values for any field
@@ -24,13 +24,34 @@ _array_ *generate*(`[` array _$search_by`[`,$existing_values`]]`)
 
 The `$search_by` array can contain any of the built-in !WordPress columns from the `wp_posts` table (`post_content`, `comment_status`, etc.) and any of the following:
  
- * author : the username of the author (not just the integer `post_author`)
- * thumbnail_id : the attachment id of the "featured image" (if present). Same as `_thumbnail_id`
- * thumbnail_src : the URL src of the "featured image" (if present)
- * permalink : contains the full URL to the post
- * parent_ID : the post ID of the parent post (if available)
- * parent_permalink : contains the full URL of the post's parent (if available)
- * parent_title : post_title from the parent post (if available)
- * parent_excerpt : post_excerpt from the parent post (if available)
- * post_id : an alias of ID (but easier to remember)
-
+ * append : text field for specifying post IDs to always include in results
+ * author : dropdown for selecting a user by their display name. Limited to 100 users.
+ * date_column : text field for specifying a column to use as the date_column
+ * date_format : text field for specifying the date format to be used when records are returned.
+ * date_max : text field with jQuery datepicker attached.
+ * date_min : text field with jQuery datepicker attached.
+ * exclude : text field for specifying post IDs to always exclude from results
+ * include : text field for specifying post IDs to always include in results
+ * limit : text field for specifying the maximum number of results to return.
+ * match_rule : dropdown for specifying how the search term should be matched
+ * meta_key : text field for specifying a custom field name
+ * meta_value : text field for specifying a custom field value
+ * offset : text field for specifying the number of results to offset when returning results (used in pagination)
+ * omit_post_type : text field for specifying a list of post-types to omit from results
+ * order : dropdown or radio button that specifies ASC or DESC sort order for results
+ * orderby : text field for specifying a column to sort by.
+ * paginate : checkbox to determine whether or not results should be paginated.
+ * post_date : text field with jQuery datepicker attached.
+ * post_mime_type : text field for specifying a MIME type
+ * post_modified : text field with jQuery datepicker attached.
+ * post_parent : text field for specifying a parent post ID
+ * post_status : multi-select field displaying all valid post-statuses.
+ * post_title :  text field
+ * post_type : multi-select field displaying all public post-types
+ * search_columns :  text field for specifying which columns should be searched when a `search_term` is supplied.
+ * search_term : text field
+ * taxonomy : dropdown for selecting a registered taxonomy
+ * taxonomy_depth : text field for specifying an integer depth of taxonomy.  Useful if you need to allow/limit expensive hierarchical category-based searches.
+ * taxonomy_slug : text field
+ * taxonomy_term : text field
+ * yearmonth : dropdown field for selecting a year + month combo.  This can be an expensive query!
