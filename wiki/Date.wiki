@@ -2,10 +2,16 @@
 #labels Custom-Fields
 #sidebar SidebarCustomFields
 
-||http://s9.postimage.org/upm05ubgr/date.png||Date fields are used to select a date.||
+||http://s9.postimage.org/upm05ubgr/date.png||Date fields are used to select and store a date.||
 
 
 <wiki:toc max_depth="2" />
+
+Note that the format you select for your date field affects how the value is stored in the database (see screenshot).
+
+http://content.screencast.com/users/fireproofsocks/folders/Camtasia/media/ccfd5284-4090-446b-b711-463a2333989f/2013-09-04_08-47-37.png
+
+Although you can change the format, it's recommended that you stick with the default MySQL format for storing your dates.  If you need to change how the date is formatted in your theme files, you can use the PHP [http://php.net/manual/en/function.strtotime.php strtotime function] and the [http://php.net/manual/en/function.date.php date function] to manipulate the date format on the front-end or you can use the CCTM's [datef_OutputFilter datef] filter as a convenience method for this task.
 
 ----
 
@@ -82,3 +88,16 @@ The first of the following tpls found will be used to wrap the output:
  # `fields/wrappers/{fieldname}.tpl`
  # `fields/wrappers/_date_multi.tpl`
  # `fields/wrappers/_text_multi.tpl`
+
+
+----------
+
+= Use in  Theme File =
+
+== Example 1 ==
+
+Print the MySQL format into your theme file:
+
+{{{
+print_custom_field('my_date', 'Y-m-d H:i:s');
+}}}
