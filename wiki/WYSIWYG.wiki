@@ -44,14 +44,14 @@ The field definition affects how instances of this field type will display in th
 
 === Recommended Output Filters ===
 
- * [do_shortcode_OutputFilter do_shortcode] : this will parse any shortcodes in the field.  By default, WordPress only parses shortcodes in the post's main content block, not in any custom fields.
+ * [do_shortcode_OutputFilter do_shortcode] : this will parse any shortcodes in the field.  By default, !WordPress only parses shortcodes in the post's main content block, not in any custom fields.
 
 
 ----
 
 == Customizing Manager HTML ==
 
-Colorselector fields use only the wrapper tpl.  This is due to how !WordPress has implemented TinyMCE in a very constrictive manner.  This same deficiency in !WordPress prevents WYSIWYG fields from being repeatable. See issue 271 for more information.
+WYSIWYG fields use only the wrapper tpl.  This is due to how !WordPress has implemented TinyMCE in a very constrictive manner.  This same deficiency in !WordPress prevents WYSIWYG fields from being repeatable. See issue 271 for more information.
 
 See [CustomizingManagerHTML] for more information.
 
