@@ -41,6 +41,15 @@ The field definition affects how instances of this field type will display in th
 <?php print_custom_field('my_wysiwyg'); ?>
 }}}
 
+=== Example 2===
+
+Often, you want to convert newlines to br tags.  !WordPress does this via internal actions and its `do_shortcode` function.  You can achieve a similar result by using the CCTM's [do_shortcode_OutputFilter do_shortcode] output filter:
+
+{{{
+<?php
+print_custom_field('my_wysiwyg:do_shortcode');
+?>
+}}}
 
 === Recommended Output Filters ===
 
