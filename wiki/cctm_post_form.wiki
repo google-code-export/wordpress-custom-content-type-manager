@@ -103,6 +103,13 @@ This prefix is stripped from keys in the `$_POST` array when the form is submitt
 
 Defaults are the CCTM's`css/validation.css` and `css/manager.css` CSS files.
 
+=== `_fields` ===
+
+(_string_) Comma-separated list of fields to display.  Use this only when you need to display only some of the fields defined for your post-type.  Be careful: if your post-type has required fields and you do not display those fields, you will never be able to save the posted data!
+
+
+
+
 
 -------
 
