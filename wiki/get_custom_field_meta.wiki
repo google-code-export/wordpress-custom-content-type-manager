@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Function reference for get_custom_field_meta
 #labels Function-Reference
 #sidebar SidebarFunctionReference
 
