@@ -213,7 +213,7 @@ When you standardize the fields of a post-type, you override the default !WordPr
 
 You can standardize the custom fields for posts, pages, or any 3rd-party post-type (as of 0.9.5.11).  If you wish to customize the fields for a foreign post-type (i.e. a post-type registered by some other plugin), just ensure that you have updated the CCTM global settings to display foreign post-types.
 
-Custom post-types will have their fields standardized automatically, but for posts and pages (i.e. the built-in post-types), you have choose whether you want to enforce this behavior or not.
+Custom post-types will have their fields standardized automatically, but for posts and pages (i.e. the built-in post-types), you can choose whether you want to enforce this behavior or not.
 
 ------
 
