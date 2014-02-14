@@ -167,11 +167,23 @@ If you check this, make sure your templates use the `comments_template();` code.
 
 == Store Revisions ==
 
-Revisions require more storage space in the database, but you can easily roll back your post to a previous draft.
+Revisions require more storage space in the database, but you can easily roll back your post to a previous draft.  <font color="red">!WordPress will not store custom fields in its revisions.</font>
 
 == Enable Archives ==
 
 This allows posts to be summarized using !WordPress' built-in archive grouping functions.
+
+== Show in Right Now Widget ==
+
+!WordPress includes a manager widget to show the latest posts. Check this box if you want your custom post-type to show up in this report.
+
+== Order By ==
+
+Choose a column to sort your manager view by.  This ONLY affects the list view in the manager, e.g. showing all pages, or showing all movies.  
+
+== Sort Order == 
+
+Choose which direction you want to sort by: ascending or descending.
 
 == Taxonomies ==
 
