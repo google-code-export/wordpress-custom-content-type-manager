@@ -23,9 +23,10 @@ Nice clean interface, but this doesn't deal with the standardized custom fields 
 
 = Suffusion Theme =
 
-Shockingly, this theme has embarked on the dangerous architectural path and it has incorporated PLUGIN functionality.  This theme lets you define both custom post-types and custom taxonomies in a frightening display of !WordPress' blurry architecture:
+This theme has embarked on the dangerous architectural path and it has incorporated PLUGIN functionality.  This theme lets you define both custom post-types and custom taxonomies in a display of !WordPress' blurry architecture:
 
  * http://wordpress.org/extend/themes/suffusion
+
 
 = PodsCMS=
 
@@ -89,10 +90,9 @@ Some PHP classes for programmers.
 
 = Others =
 
-This company makes some nice plugins:
-
  * http://www.marcocimmino.net/cimy-wordpress-plugins/
- 
+ * http://www.nathanfranklin.com.au/plugins/introducing-horizontal-meta-performance-benchmarks
+
 = eCommerce Plugins =
 
  * http://www.instinct.co.nz/e-commerce/ (notoriously buggy)
