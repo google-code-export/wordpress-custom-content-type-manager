@@ -17,6 +17,7 @@
 
  * [get_custom_field]
  * [get_custom_field_meta]
+ * [get_incoming_links]
  * [get_post_complete]
  * [get_posts_sharing_custom_field_value]
  * [get_relation]
