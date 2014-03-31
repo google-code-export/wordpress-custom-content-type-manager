@@ -178,7 +178,7 @@ endforeach;
 ?>
 }}}
 
-You can also use the *date_min* and *date_max* to filter on a custom date field, <font color="red">*but you must store your dates in the MySQL format!*</font>  This is critical: you can use the [datef_OutputFilter] to display dates to your visitors however you want, but it is strongly recommended that you always store your date values in a sensible, sortable.
+You can also use the *date_min* and *date_max* to filter on a custom date field, <font color="red">*but you must store your dates in the MySQL format!*</font>  This is critical: you can use the [datef_OutputFilter] to display dates to your visitors however you want, but it is strongly recommended that you always store your date values in a sortable format.
 
 {{{
 <?php
