@@ -6,7 +6,7 @@
 
 = Description =
 
-The *to_image_src* converts an image field's value into the full path to the image.  Use the this filter if you want to return the full path to the image, for example for use in your own image tag or link.
+The *to_image_src* converts an image ID into the full URL to the image, used for example in your own image tag or links.
 
 = Usage =
 
@@ -14,7 +14,7 @@ Generic invocation of any Output Filter occurs via the [TemplateFunctions#get_cu
 
 _mixed_ *get_custom_field*( string _$input_ `[`, mixed _$options_ `]` ) 
 
- * *$input*: _string_ a post ID  
+ * *$input*: _string_ a post ID (ID of an attachment post, i.e. an image ID).
  * *$options*: _string_. src of a default image if an empty $input is supplied. 
  * *OUTPUT*: _string_. Full path to the image
 
