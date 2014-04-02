@@ -257,7 +257,7 @@ This is usually due to a !WordPress error: !WordPress hardcodes paths and URLs w
  # On the site you are moving, make a full backup of the files and database.
  # On the site you are moving, go to the CCTM's *Tools* tab and [Export] your custom field definitions to a .cctm.json file.  Save this file! 
  # Migrate your !WordPress site as per usual, moving both the files and the database to the new location.
- # On the new site, use phpMyAdmin or the MySQL command line, delete the CCTM data from the database.  You can do this via a statement such as `DELETE FROM wp_options WHERE option_name='cctm_data';` -- this will purge all CCTM from the database.
+ # On the new site, use phpMyAdmin or the MySQL command line, delete the CCTM data from the database.  You can do this via a statement such as `DELETE FROM wp_options WHERE option_name='cctm_data';` -- this will purge all CCTM from the database, including any broken paths.  This step may not be necessary in all cases.
  # Still on the new site, log into the !WordPress manager and head back to the CCTM's *Tools* tab and [Import] the definition file you created back on the old site.  Because the settings are stored as a JSON object, it is not vulnerable to the limitations of the serialized data.
 
 
