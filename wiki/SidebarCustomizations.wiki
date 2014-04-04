@@ -22,6 +22,10 @@ Used as a sidebar in the Output Filters section.
 
  * [CustomizingManagerHTML Manager HTML]
 
+*Columns*
+
+ [CustomColumns Customizing Columns]
+
 *Config Files*
 
  * [Config_admin_menu Admin Menu]
