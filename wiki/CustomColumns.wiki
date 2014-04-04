@@ -1,5 +1,6 @@
 #summary All about Custom Columns
 #labels Customizations
+#sidebar SidebarCustomizations
 
 = Introduction =
 
