@@ -76,18 +76,20 @@ endforeach;
 
 == List Posts and Their Categories ==
 
+Looking up a post's categories requires use of built-in !WordPress functions, e.g. [http://codex.wordpress.org/Function_Reference/get_the_category get_the_category()] or similar -- you need to look up the categories associated with a post by its post ID.
+
 {{{
 $Q = new GetPostsQuery();
 $args = array();
-$args['post_type'] = 'services';
+$args['post_type'] = 'your_post_type';
 $results = $Q->get_posts($args);
 foreach ($results as $r) {
-        print '<h3>'.$r['post_title'].'</h3>';
-    $categories = get_the_category($r['ID']); // lookup of for this post-id
-        print 'Categories this post is associated with: ';
-        foreach ($categories as $c) {
-                 print '<a href="'.get_category_link( $c->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $c->name ) ) . '">'.$c->cat_name.'</a>'
-        }
+    print '<h3>'.$r['post_title'].'</h3>';
+    $categories = get_the_category($r['ID']); // <-- what categories belong to this post ID?
+    print 'Categories this post is associated with: ';  // (this is an array of values we must loop over)
+    foreach ($categories as $c) {
+        print '<a href="'.get_category_link( $c->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $c->name ) ) . '">'.$c->cat_name.'</a>'
+    }
 }
 ?>
 }}}
