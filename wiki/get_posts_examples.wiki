@@ -74,6 +74,23 @@ endforeach;
 ?>
 }}}
 
+== List Posts and Their Categories ==
+
+{{{
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'services';
+$results = $Q->get_posts($args);
+foreach ($results as $r) {
+        print '<h3>'.$r['post_title'].'</h3>';
+    $categories = get_the_category($r['ID']); // lookup of for this post-id
+        print 'Categories this post is associated with: ';
+        foreach ($categories as $c) {
+                 print '<a href="'.get_category_link( $c->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $c->name ) ) . '">'.$c->cat_name.'</a>'
+        }
+}
+?>
+}}}
 
 == List Posts Hierarchically by Category ==
 
