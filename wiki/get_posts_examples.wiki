@@ -60,7 +60,6 @@ $args['post_type'] = 'article';
 $args['post_status'] = 'publish';
 $args['taxonomy'] = 'category';
 $args['taxonomy_slug'] = 'howto';
-$args['post_status'] = 'publish';
 $args['orderby'] = 'menu_order';
 $args['order'] = 'ASC';
 
