@@ -6,7 +6,7 @@
 
 = Description =
 
-The *to_image_src* converts an image ID into the full URL to the image, used for example in your own image tag or links.
+The *to_image_src* converts an image ID into the full URL to the image, used for example in your own image tag or links.  This is a convenience function that wraps the [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_image_src] function.
 
 = Usage =
 
@@ -43,6 +43,30 @@ print_custom_field('my_image:to_image_src', 'http://yoursite.com/wp-content/uplo
 }}}
 
 Don't get confused between this method of setting a default value and specifying a default image inside of your custom field.
+
+== Example 3: Inside GetPostsQuery ==
+
+A common task involves looping over results from GetPostsQuery (or any other function that loops over a list of posts).  In cases where you're not printing values for a single post, you cannot rely on `get_custom_field` or `print_custom_field` since those functions are designed to print a value from a _single_ post (notably, the single post being viewed via the `singe-xxxxx.php` template page.  
+
+Instead, you need to roll up your sleeves and convert the values from their raw values.  You can do this using using the built-in !WordPress [http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src wp_get_attachment_src]  
+or you can invoke the `to_image_src` filter like this:
+
+{{{
+<?php
+$Q = new GetPostsQuery();
+$args = array();
+$args['post_type'] = 'slideshow';
+$results = $Q->get_posts($args);
+
+foreach ($results as $r) { 
+?>
+    <img src="<?php print CCTM::filter(123, 'to_image_src'); ?>" />
+    OR
+     <img src="<?php print wp_get_attachment_image($image_id); ?>" />
+<?php
+endforeach;
+?>
+}}}
 
 = See Also =
 
